@@ -1,0 +1,29 @@
+bun test v1.4.4+absolute.1 (38afee6c8)
+
+tests/thin-membership.test.ts:
+60 | 			[u, v, sub(c, b)].some((edge) => edge.every((n) => n === 0))
+61 | 		) {
+62 | 			collapsedEdges.push([a, b], [b, c], [c, a]);
+63 | 			continue;
+64 | 		}
+65 | 		if (!(area2 > 1e-30)) throw Error('Degenerate solid point face');
+                                                                      ^
+error: Degenerate solid point face
+      at solidPointMembership (/home/alexkahn/alex/geometry-release/src/solidPointMembership.ts:65:66)
+      at <anonymous> (/home/alexkahn/alex/geometry-release/tests/thin-membership.test.ts:10:35)
+(fail) thin and collinear subdivisions preserve closed-cube membership without area cutoffs [2.01ms]
+60 | 			[u, v, sub(c, b)].some((edge) => edge.every((n) => n === 0))
+61 | 		) {
+62 | 			collapsedEdges.push([a, b], [b, c], [c, a]);
+63 | 			continue;
+64 | 		}
+65 | 		if (!(area2 > 1e-30)) throw Error('Degenerate solid point face');
+                                                                      ^
+error: Degenerate solid point face
+      at solidPointMembership (/home/alexkahn/alex/geometry-release/src/solidPointMembership.ts:65:66)
+      at <anonymous> (/home/alexkahn/alex/geometry-release/tests/thin-membership.test.ts:22:17)
+(fail) captured native pine cut with a 1.3e-34 squared face area supports boundary queries [3.00ms]
+
+ 0 pass
+ 2 fail
+Ran 2 tests across 1 file. [16.00ms]

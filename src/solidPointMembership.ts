@@ -31,7 +31,9 @@ export function solidPointMembership(
 		u: Point;
 		v: Point;
 		n: Point;
-		area2: number;
+		scale: number;
+		axis: number;
+		determinant: number;
 	}[] = [];
 	for (let i = 0; i < indices.length; i += 3) {
 		const points = [0, 1, 2].map((k) => {
@@ -43,27 +45,27 @@ export function solidPointMembership(
 			] as Point;
 		});
 		const [a, b, c] = points as [Point, Point, Point],
-			u = sub(b, a),
-			v = sub(c, a),
-			n = cross(u, v),
-			area2 = dot(n, n);
+			rawU = sub(b, a), rawV = sub(c, a),
+			scale = Math.max(...rawU.map(Math.abs), ...rawV.map(Math.abs)),
+			u = rawU.map(x=>scale ? x/scale : 0) as unknown as Point,
+			v = rawV.map(x=>scale ? x/scale : 0) as unknown as Point,
+			crossed = cross(u, v),
+			length = Math.hypot(...crossed);
 		for (const p of points)
 			for (let k = 0; k < 3; k++) {
 				min[k] = Math.min(min[k]!, p[k]!);
 				max[k] = Math.max(max[k]!, p[k]!);
 			}
-		// A clipping kernel may keep distinct topological vertices at identical
-		// coordinates. Such a face has exactly zero solid angle. Keep its edges
-		// for boundary queries without welding vertices or altering the mesh.
-		if (
-			area2 === 0 &&
-			[u, v, sub(c, b)].some((edge) => edge.every((n) => n === 0))
-		) {
+		// Exactly collinear boundary faces contribute zero solid angle. Keep
+		// their edges without welding vertices or discarding nonzero-area faces.
+		if (length === 0) {
 			collapsedEdges.push([a, b], [b, c], [c, a]);
 			continue;
 		}
-		if (!(area2 > 1e-30)) throw Error('Degenerate solid point face');
-		triangles.push({ a, b, c, u, v, n, area2 });
+		if (!Number.isFinite(length)) throw Error('Invalid solid point face');
+		const n = crossed.map(x=>x/length) as unknown as Point;
+		const axis = Math.abs(n[0]) >= Math.abs(n[1]) && Math.abs(n[0]) >= Math.abs(n[2]) ? 0 : Math.abs(n[1]) >= Math.abs(n[2]) ? 1 : 2;
+		triangles.push({a,b,c,u,v,n,scale,axis,determinant:crossed[axis]!});
 	}
 	if (!triangles.length) throw Error('Degenerate solid point mesh');
 	return (point: Point): 'inside' | 'outside' | 'boundary' => {
@@ -87,14 +89,17 @@ export function solidPointMembership(
 		}
 		let sum = 0,
 			correction = 0;
-		for (const { a, b, c, u, v, n, area2 } of triangles) {
+		for (const { a, b, c, u, v, n, scale, axis, determinant } of triangles) {
 			const delta = sub(point, a),
 				distance = dot(delta, n);
-			if (distance * distance <= epsilon * epsilon * area2) {
-				// Barycentric coordinates of the orthogonal projection, using cross products
-				// instead of subtracting nearly equal Gram determinants on thin faces.
-				const s = dot(cross(delta, v), n) / area2,
-					t = dot(cross(u, delta), n) / area2;
+			if (Math.abs(distance) <= epsilon) {
+				// Project onto the plane, then use its dominant 2D determinant.
+				// Scaling before cross products avoids squared-area underflow and
+				// removes the absolute area cutoff that rejected valid thin faces.
+				const d = delta.map((x,k)=>(x-distance*n[k]!)/scale);
+				const i=(axis+1)%3,j=(axis+2)%3;
+				const s=(d[i]!*v[j]!-d[j]!*v[i]!)/determinant;
+				const t=(u[i]!*d[j]!-u[j]!*d[i]!)/determinant;
 				if (s >= -1e-10 && t >= -1e-10 && s + t <= 1 + 1e-10)
 					return 'boundary';
 			}

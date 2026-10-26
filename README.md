@@ -286,3 +286,9 @@ does not choose a unique direction for isotropic or conflicting orientations.
 A second moment discards higher-order distribution information; it is neither a
 full fibre distribution nor a biological growth, fracture or constitutive model.
 Use a separate calibrated material model for strength and breaking forces.
+
+Thin-face membership uses scaled normals and dominant-plane projection. Nonzero
+faces are not rejected by an absolute area cutoff; exactly collinear boundary
+faces retain their edges. The existing 1e-7 boundary tolerance and winding checks
+remain unchanged. This does not make Boolean geometry exact below native feature
+limits, and does not alter source topology or repair degenerate whole solids.

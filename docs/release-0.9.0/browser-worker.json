@@ -1,0 +1,51 @@
+{
+  "result": {
+    "area": 0.5,
+    "gap": 0,
+    "cells": 4096,
+    "detached": true
+  },
+  "bitmapResult": {
+    "alpha": [
+      255,
+      0,
+      64,
+      128
+    ],
+    "sourceWidth": 2,
+    "error": null
+  },
+  "inertiaResult": {
+    "principal": [
+      2,
+      4,
+      4
+    ],
+    "frame": {
+      "x": 0,
+      "y": 0,
+      "z": -0.3826834323650897,
+      "w": 0.9238795325112867
+    },
+    "relativeReconstructionError": 2.220446049250313e-16,
+    "sweeps": 1
+  },
+  "orientationResult": [
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "membershipResult": [
+    "inside",
+    "outside",
+    "boundary"
+  ],
+  "errors": [],
+  "gpu": "disabled"
+}

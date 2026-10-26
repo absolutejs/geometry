@@ -14,7 +14,7 @@ const { chromium } = require(process.env.PLAYWRIGHT_MODULE || '/home/alexkahn/.c
         '/projection.js': fs.readFileSync('dist/projection.js', 'utf8'),
         '/alpha.js': fs.readFileSync('dist/alpha.js', 'utf8'),
  ...Object.fromEntries(['closedComponents','solidPointMembership','solidComponents','signedVolume','overlap','materialPartition','triangleWeights','surfaceOrigins','mergeIndexedMesh','principalInertia','axialOrientation','manifold','manifoldMesh64'].map(n=>['/'+n+'.js',fs.readFileSync('dist/'+n+'.js','utf8')])),
-        '/worker.js': `import {projectAlphaCoverage,alphaFromImageBitmap,principalInertiaFrame,axialOrientationTensor} from './index.js'; onmessage = e => { try {if(e.data.axes){const tensor=axialOrientationTensor(e.data.axes);postMessage({tensor},[tensor.buffer]);return;}if(e.data.tensor){postMessage(principalInertiaFrame(e.data.tensor));return;}if(e.data.bitmap){const alpha=alphaFromImageBitmap(e.data.bitmap);e.data.bitmap.close();postMessage({alpha},[alpha.buffer]);return;}const r = projectAlphaCoverage(e.data); postMessage(r,[r.cells.buffer]);} catch (error) {postMessage({error:String(error)});} };`,
+        '/worker.js': `import {projectAlphaCoverage,alphaFromImageBitmap,principalInertiaFrame,axialOrientationTensor,solidPointMembership} from './index.js'; onmessage = e => { try {if(e.data.membership){const m=e.data.membership;const query=solidPointMembership(m.positions,m.indices);postMessage(m.points.map(query));return;}if(e.data.axes){const tensor=axialOrientationTensor(e.data.axes);postMessage({tensor},[tensor.buffer]);return;}if(e.data.tensor){postMessage(principalInertiaFrame(e.data.tensor));return;}if(e.data.bitmap){const alpha=alphaFromImageBitmap(e.data.bitmap);e.data.bitmap.close();postMessage({alpha},[alpha.buffer]);return;}const r = projectAlphaCoverage(e.data); postMessage(r,[r.cells.buffer]);} catch (error) {postMessage({error:String(error)});} };`,
       };
       return route.fulfill({contentType: path in sources ? 'text/javascript' : 'text/html', body: sources[path] || '<!doctype html><title>Geometry worker qualification</title>'});
     });
@@ -70,9 +70,21 @@ const { chromium } = require(process.env.PLAYWRIGHT_MODULE || '/home/alexkahn/.c
       });}finally{worker.terminate()}
     });
     assert.deepEqual(orientationResult,[1,0,0,0,0,0,0,0,0]);
+    const membershipResult=await page.evaluate(async()=>{
+      const worker=new Worker('/worker.js',{type:'module'});
+      try{return await new Promise((resolve,reject)=>{
+        const timer=setTimeout(()=>reject(Error('membership worker deadline')),5000);
+        worker.onmessage=e=>{clearTimeout(timer);resolve(e.data)};
+        worker.onerror=e=>{clearTimeout(timer);reject(Error(e.message))};
+        const positions=new Float64Array([0,0,0,1,0,0,1,1,0,0,1,0,0,0,1,1,0,1,1,1,1,0,1,1,.5,0,1e-18]);
+        const indices=new Uint32Array([0,3,2,0,2,1,4,5,6,4,6,7,3,7,6,3,6,2,0,4,7,0,7,3,1,2,6,1,6,5,0,1,8,1,5,8,5,4,8,4,0,8]);
+        worker.postMessage({membership:{positions,indices,points:[[.5,.5,.5],[.5,-1e-6,.5],[.5,0,1e-18]]}},[positions.buffer,indices.buffer]);
+      });}finally{worker.terminate()}
+    });
+    assert.deepEqual(membershipResult,['inside','outside','boundary']);
     assert.deepEqual(errors,[]);
     fs.mkdirSync('.diagnostics',{recursive:true});
-    fs.writeFileSync('.diagnostics/browser-worker.json',JSON.stringify({result,bitmapResult,inertiaResult,orientationResult,errors,gpu:'disabled'},null,2));
+    fs.writeFileSync('.diagnostics/browser-worker.json',JSON.stringify({result,bitmapResult,inertiaResult,orientationResult,membershipResult,errors,gpu:'disabled'},null,2));
     console.log('GPU-disabled browser module worker passed',result);
   } finally {await browser.close()}
 })().catch(e=>{console.error(e);process.exitCode=1});
