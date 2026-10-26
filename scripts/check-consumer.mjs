@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { Worker } from 'node:worker_threads';
-import { projectAlphaCoverage } from '../dist/index.js';
+import { projectAlphaCoverage, principalInertiaFrame } from '../dist/index.js';
 const input = {
   positions: new Float64Array([0,0,0,1,0,0,0,0,1]),
   uv: new Float32Array([0,0,1,0,0,1]),
@@ -25,3 +25,5 @@ try {
   assert.equal(result.cells.length, 4096);
   console.log('Built ESM import and transferable worker round trip passed');
 } finally { await worker.terminate(); }
+
+assert.deepEqual(principalInertiaFrame([3,1,0,1,3,0,0,0,4]).principal,[2,4,4]);

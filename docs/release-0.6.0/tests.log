@@ -1,0 +1,59 @@
+$ bun run build && bun test ./tests
+$ tsc -p tsconfig.json
+bun test v1.4.4+absolute.1 (38afee6c8)
+
+tests/solid-components.test.ts:
+(pass) cavity walls stay with the surrounding material, separate same-owner pieces do not merge [19.43ms]
+(pass) nested material islands own their own cavities [4.55ms]
+(pass) ownership, touching shells, orphan voids and work budgets fail explicitly [3.72ms]
+(pass) translated coordinates and empty boundaries preserve semantics [1.91ms]
+
+tests/principalInertia.test.ts:
+(pass) rotated box inertia reconstructs across scales and near-degenerate axes [10.64ms]
+(pass) isotropic and thin-body inertia remain finite and deterministic [0.86ms]
+(pass) reject malformed, asymmetric, negative and nonphysical inertia [0.33ms]
+
+tests/alpha.test.ts:
+(pass) RGBA alpha extraction owns its output and preserves exact alpha independently of color [0.47ms]
+(pass) alpha extraction rejects malformed and oversized sources before allocating [0.31ms]
+
+tests/materialPartition.test.ts:
+(pass) ordered material cells remove duplicated volume and keep a distinct exterior [33.74ms]
+(pass) full coverage returns an explicit empty source cell, not a duplicate solid [8.90ms]
+(pass) hollow material, disconnected solids and large translations preserve physical volume [11.08ms]
+(pass) face, edge and point contact do not assign duplicated volume [9.49ms]
+(pass) success and each native failure release all successfully returned handles [6.37ms]
+(pass) invalid budgets and geometry fail before native allocation [1.05ms]
+(pass) host mutation of copied input arrays cannot change caller geometry [0.65ms]
+(pass) incorrect native operations and aliased handles cannot pass conservation [5.48ms]
+(pass) sequential cuts preserve the independent whole-union mass [13.58ms]
+(pass) native lifetime stays bounded as source count grows [39.92ms]
+
+tests/projection.test.ts:
+(pass) bilinear alpha resolves physical holes rather than treating the card as solid [16.73ms]
+(pass) coverage is a union and is invariant to winding/order without mutating inputs [7.59ms]
+(pass) disconnected leaves preserve open space inside their explicit convex reference hull [1.57ms]
+(pass) local coordinates preserve coverage at distant origins and tiny or large scales [8.48ms]
+(pass) sampler wrap modes apply to negative UV coordinates [7.72ms]
+(pass) hull area and sampled area remain separately visible and unreferenced vertices do not inflate it [3.60ms]
+(pass) malformed data, degenerate projections and oversized work are rejected [1.17ms]
+(pass) triangle-local rasterization agrees with independent point-in-triangle queries [46.14ms]
+
+tests/surfaceOrigins.test.ts:
+(pass) partition retains verified source triangles and reversed internal interfaces [32.42ms]
+(pass) false ancestry, flipped orientation and off-surface points are rejected [13.06ms]
+(pass) absent ancestry is explicit and copied metadata survives backend mutations [4.44ms]
+(pass) thin-triangle attribute interpolation remains stable and rejects unrelated points [0.47ms]
+(pass) explicit merge ancestry restores shared topology without proximity welding [0.99ms]
+(pass) per-solid export rebasing preserves a tiny solid at a distant local offset [3.14ms]
+
+tests/overlap.test.ts:
+(pass) initial overlap distinguishes duplicates, partial overlap, touching and disjoint solids [35.10ms]
+(pass) a chip inside a hollow shell has zero intersection, including large world translations [8.50ms]
+(pass) native handles are released on success, invalid output and kernel failure [4.60ms]
+(pass) budgets, orientation and corrupt meshes fail before unbounded kernel work [5.28ms]
+
+ 37 pass
+ 0 fail
+ 14590 expect() calls
+Ran 37 tests across 7 files. [476.00ms]

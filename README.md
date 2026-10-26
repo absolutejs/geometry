@@ -240,3 +240,19 @@ native handle during export and releases it even if ancestry validation fails.
 
 The ancestry contract does not assign grain across a newly cut face spanning
 multiple materials, validate a collider, or prove a physical attachment.
+
+## Principal inertia frame
+
+`principalInertiaFrame(tensor)` accepts nine finite numbers containing a symmetric
+row-major inertia tensor, in any consistent mass/length units. It returns sorted
+positive `principal` moments and an `{x,y,z,w}` unit-quaternion `frame` mapping
+principal coordinates into the original coordinates. The bounded double-precision
+Jacobi solver checks symmetry, physical moment inequalities and reconstruction;
+it rejects invalid input rather than repairing it. Isotropic/repeated moments may
+have non-unique physical axes; the returned frame is deterministic for identical
+input, not a temporally continuous orientation for animations.
+
+Use the full tensor, including off-diagonal terms. This helper does not integrate
+mesh mass or validate collisions. When passing explicit mass properties to Rapier,
+set collision-shape density to zero to avoid adding their mass a second time; unit
+conversion remains the caller's responsibility. No physics engine is imported.
