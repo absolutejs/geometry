@@ -198,3 +198,45 @@ The implementation uses the set identity
 `C_i = S_i ∖ (S_0 ∪ … ∪ S_(i−1))`; its tests use Manifold only as a development
 dependency. [Manifold's documentation](https://manifoldcad.org/docs/jsuser/classes/Manifold.html)
 describes the native Boolean/volume contract. No Boolean engine is bundled.
+
+## Boundary ancestry and optional Manifold adapter (0.5.0)
+
+Partition kernels receive `create(mesh, sourceIndex)`. Their `mesh(solid)` can
+return `origins: {sources: Uint16Array, faces: Uint32Array, reversed: Uint8Array}`,
+one entry per output triangle. These identify a source mesh/triangle and whether
+subtraction exposed its backside. This is **boundary ancestry**, distinct from a
+cell's volume owner. The result copies and verifies this metadata; absent ancestry
+is explicitly `null`.
+
+`auditSurfaceOrigins(mesh, origins, sourceMeshes, maximumPlaneDistance = 1e-6)`
+checks every output vertex against its nominated source triangle and verifies
+winding. Invalid IDs, lengths, orientation, unrelated triangles and exhausted
+budgets throw. The plane-distance acceptance range is 1e-7 through 1e-5 in the
+input coordinate units; this is not a certified Boolean error bound.
+`triangleWeights` exports the same dominant-plane barycentric interpolation for
+material attributes, including thin triangles; it rejects off-surface points.
+
+`mergeIndexedMesh(mesh, center, tolerance)` reconstructs indexed geometry using
+an explicit merge map. It never welds nearby vertices by guessed distance.
+It accepts three Float32 position properties, Uint32 indices and merge arrays,
+checks finite coordinates/indices/merge displacement, and restores the supplied
+origin in double precision. This reconstructs topology; use the separate closed
+boundary/component validators where appropriate.
+
+For Manifold **3.5.1**, the optional `@absolutejs/geometry/manifold` entry exports
+`createManifoldPartitionKernel(wasm, sourceCount = 64)`. Pass your initialized
+module. The optional peer is not imported at runtime and the core entry point
+does not require Manifold.
+
+The adapter supplies create/subtract/union/intersect/export, native status checks,
+original mesh IDs, face IDs and backside flags. It creates fresh IDs for overlap
+operands when no explicit source index is given. Each exported solid is translated
+to its own bounds center **before** native Float32 export, then restored in double
+precision. This avoids additional rounding from the larger shared Boolean frame.
+A regression covers a micrometre-sized cube at an offset where ordinary Float32
+export loses over 1% of its width. No tolerance increase, shape simplification or
+proximity welding is used. The adapter owns one additional temporary translated
+native handle during export and releases it even if ancestry validation fails.
+
+The ancestry contract does not assign grain across a newly cut face spanning
+multiple materials, validate a collider, or prove a physical attachment.

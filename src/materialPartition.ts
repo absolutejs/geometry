@@ -1,12 +1,13 @@
+import { auditSurfaceOrigins, type SurfaceOrigins } from './surfaceOrigins.js';
 import { closedComponents } from './closedComponents.js';
 import { signedVolume } from './signedVolume.js';
 import type { OverlapMesh, OverlapSolid } from './overlap.js';
 
 export type MaterialPartitionKernel<S extends OverlapSolid> = {
-  create(mesh: OverlapMesh): S;
+  create(mesh: OverlapMesh, source: number): S;
   subtract(a: S, b: S): S;
   union(a: S, b: S): S;
-  mesh(solid: S): OverlapMesh;
+  mesh(solid: S): OverlapMesh & { origins?: SurfaceOrigins };
 };
 
 /**
@@ -68,26 +69,37 @@ export function partitionSolidMaterials<S extends OverlapSolid>(
         (outputIndices += raw.indices.length) > 1200000)
       throw Error('Material output budget exceeded');
     const positions = raw.positions.slice(), indices = raw.indices.slice();
+    if(raw.origins !== undefined && (!(raw.origins.sources instanceof Uint16Array) ||
+      !(raw.origins.faces instanceof Uint32Array) || !(raw.origins.reversed instanceof Uint8Array) ||
+      [raw.origins.sources,raw.origins.faces,raw.origins.reversed].some(a=>a.length!==indices.length/3)))
+      throw Error('Invalid material surface origins');
+    const origins = raw.origins === undefined ? null : {
+      sources: raw.origins.sources?.slice(),
+      faces: raw.origins.faces?.slice(),
+      reversed: raw.origins.reversed?.slice(),
+    } as SurfaceOrigins;
     if (!indices.length) {
       if (positions.length || volume !== 0) throw Error('Invalid empty material cell');
-      return {positions,indices,volume};
+      if(origins) auditSurfaceOrigins({positions,indices},origins,inputs);
+      return {positions,indices,volume,origins};
     }
     closedComponents(positions,indices);
     checkVolume(signedVolume(positions,indices),volume);
     for(let i=0;i<positions.length;i++) positions[i] = positions[i]! + origin[i%3]!;
     // Re-check precision after restoring the requested coordinate frame.
     checkVolume(signedVolume(positions,indices),volume);
-    return {positions,indices,volume};
+    if(origins) auditSurfaceOrigins({positions,indices},origins,inputs);
+    return {positions,indices,volume,origins};
   };
   try {
-    const cells:({source:number} & OverlapMesh & {volume:number})[] = [];
+    const cells:({source:number} & OverlapMesh & {volume:number;origins:SurfaceOrigins|null})[] = [];
     let combined:S|undefined;
     for(let i=0;i<inputs.length;i++){
       const m=inputs[i]!;
       const input = own(kernel.create({
         positions:Float64Array.from(m.positions,(v,j)=>v-origin[j%3]!),
         indices:m.indices.slice(),
-      }));
+      },i));
       checkVolume(input.volume(),volumes[i]!);
       const exclusive = combined ? own(kernel.subtract(input,combined)) : input;
       if(combined) operations++;

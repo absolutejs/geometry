@@ -9,6 +9,12 @@
         "manifold-3d": "3.5.1",
         "typescript": "5.9.3",
       },
+      "peerDependencies": {
+        "manifold-3d": "3.5.1",
+      },
+      "optionalPeers": [
+        "manifold-3d",
+      ],
     },
   },
   "packages": {

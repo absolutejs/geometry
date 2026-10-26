@@ -1,6 +1,6 @@
 {
   "name": "@absolutejs/geometry",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "description": "Bounded geometry projection, oriented material components and point membership for worker-side web 3D tooling.",
   "type": "module",
   "main": "./dist/index.js",
@@ -10,6 +10,11 @@
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js",
       "default": "./dist/index.js"
+    },
+    "./manifold": {
+      "types": "./dist/manifold.d.ts",
+      "import": "./dist/manifold.js",
+      "default": "./dist/manifold.js"
     }
   },
   "files": [
@@ -36,5 +41,13 @@
     "@types/bun": "1.4.2",
     "manifold-3d": "3.5.1",
     "typescript": "5.9.3"
+  },
+  "peerDependencies": {
+    "manifold-3d": "3.5.1"
+  },
+  "peerDependenciesMeta": {
+    "manifold-3d": {
+      "optional": true
+    }
   }
 }
