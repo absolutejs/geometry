@@ -144,3 +144,37 @@ test("malformed data, degenerate projections and oversized work are rejected", (
   invalid[0] = NaN;
   expect(() => projectAlphaCoverage({ ...q, positions: invalid })).toThrow();
 });
+
+test("triangle-local rasterization agrees with independent point-in-triangle queries", () => {
+  let state = 123456789;
+  const random = () => {
+    state = (Math.imul(state, 1664525) + 1013904223) >>> 0;
+    return state / 4294967296;
+  };
+  for (let scene = 0; scene < 12; scene++) {
+    const positions = Float64Array.from({ length: 90 }, (_, i) => i % 3 === 1 ? 0 : random() * 20 - 10);
+    const input: AlphaProjectionInput = {
+      positions, uv: new Float32Array(60),
+      indices: Uint16Array.from({ length: 30 }, (_, i) => i),
+      alpha: new Uint8Array([255]), textureWidth: 1, textureHeight: 1,
+      cutoff: 0.4, resolution: 32,
+    };
+    const result = projectAlphaCoverage(input);
+    const [minX,minZ,maxX,maxZ] = result.bounds;
+    for (let row = 0; row < 32; row++) for (let col = 0; col < 32; col++) {
+      const x = minX + (col + 0.5) * (maxX-minX)/32;
+      const z = minZ + (row + 0.5) * (maxZ-minZ)/32;
+      let covered = false;
+      for (let t = 0; t < 30; t += 3) {
+        const signs: number[] = [];
+        for (let e = 0; e < 3; e++) {
+          const a = (t+e)*3, b = (t+(e+1)%3)*3;
+          signs.push((x-positions[a]!) * (positions[b+2]!-positions[a+2]!) -
+            (z-positions[a+2]!) * (positions[b]!-positions[a]!));
+        }
+        if (signs.every(v => v >= 0) || signs.every(v => v <= 0)) covered = true;
+      }
+      expect(result.cells[row*32+col] === 2).toBe(covered);
+    }
+  }
+});
