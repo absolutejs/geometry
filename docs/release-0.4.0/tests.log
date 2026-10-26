@@ -1,0 +1,46 @@
+$ bun run build && bun test ./tests
+$ tsc -p tsconfig.json
+bun test v1.4.4+absolute.1 (38afee6c8)
+
+tests/solid-components.test.ts:
+(pass) cavity walls stay with the surrounding material, separate same-owner pieces do not merge [15.45ms]
+(pass) nested material islands own their own cavities [5.05ms]
+(pass) ownership, touching shells, orphan voids and work budgets fail explicitly [2.49ms]
+(pass) translated coordinates and empty boundaries preserve semantics [1.01ms]
+
+tests/alpha.test.ts:
+(pass) RGBA alpha extraction owns its output and preserves exact alpha independently of color [0.24ms]
+(pass) alpha extraction rejects malformed and oversized sources before allocating [0.16ms]
+
+tests/materialPartition.test.ts:
+(pass) ordered material cells remove duplicated volume and keep a distinct exterior [35.43ms]
+(pass) full coverage returns an explicit empty source cell, not a duplicate solid [4.10ms]
+(pass) hollow material, disconnected solids and large translations preserve physical volume [11.82ms]
+(pass) face, edge and point contact do not assign duplicated volume [7.50ms]
+(pass) success and each native failure release all successfully returned handles [8.30ms]
+(pass) invalid budgets and geometry fail before native allocation [0.71ms]
+(pass) host mutation of copied input arrays cannot change caller geometry [0.55ms]
+(pass) incorrect native operations and aliased handles cannot pass conservation [8.93ms]
+(pass) sequential cuts preserve the independent whole-union mass [19.47ms]
+(pass) native lifetime stays bounded as source count grows [29.08ms]
+
+tests/projection.test.ts:
+(pass) bilinear alpha resolves physical holes rather than treating the card as solid [22.40ms]
+(pass) coverage is a union and is invariant to winding/order without mutating inputs [14.53ms]
+(pass) disconnected leaves preserve open space inside their explicit convex reference hull [1.49ms]
+(pass) local coordinates preserve coverage at distant origins and tiny or large scales [10.11ms]
+(pass) sampler wrap modes apply to negative UV coordinates [8.97ms]
+(pass) hull area and sampled area remain separately visible and unreferenced vertices do not inflate it [3.17ms]
+(pass) malformed data, degenerate projections and oversized work are rejected [0.79ms]
+(pass) triangle-local rasterization agrees with independent point-in-triangle queries [49.17ms]
+
+tests/overlap.test.ts:
+(pass) initial overlap distinguishes duplicates, partial overlap, touching and disjoint solids [25.91ms]
+(pass) a chip inside a hollow shell has zero intersection, including large world translations [9.01ms]
+(pass) native handles are released on success, invalid output and kernel failure [3.56ms]
+(pass) budgets, orientation and corrupt meshes fail before unbounded kernel work [3.22ms]
+
+ 28 pass
+ 0 fail
+ 12459 expect() calls
+Ran 28 tests across 5 files. [386.00ms]

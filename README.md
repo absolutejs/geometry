@@ -155,3 +155,46 @@ models, predict extraction clearance or validate dynamic contact penetration.
 Bounds are not proof of overlap. Limits: 64 meshes, 100,000 total vertices,
 200,000 total triangles, and at most 1,024 requested pair queries. A host worker
 must impose its own lifetime bound on its injected native kernel.
+
+## Exclusive material partition (0.4.0)
+
+`partitionSolidMaterials(meshes, kernel, maximumOperations = 126)` implements
+ordered solid ownership. Cell i is input i minus the union of earlier inputs.
+The caller explicitly chooses the order; this library does not invent a material
+priority. Inputs must be valid oriented solid boundaries, including cavity walls.
+
+Supply `{create(mesh), subtract(a,b), union(a,b), mesh(solid)}`. Native handles
+implement `volume()` and `delete()`; every construction/operation returns a fresh
+handle, and failures inside the adapter must clean up allocations not returned.
+`mesh` returns Float64 positions and Uint32 indices in the supplied local frame.
+Return a valid closed boundary, or two empty arrays for an empty solid. The
+package copies all borrowed arrays and releases native handles on success/failure.
+At most three native handles are retained at once, including the output of the
+current operation; previous union/intermediate geometry is promptly released.
+
+Results include:
+- `cells`: one entry per input, with stable `source` index, mesh and volume.
+  A fully covered source remains an explicitly empty cell.
+- `exterior`: the separate whole-union boundary and volume.
+- `inputVolumes`, `authoredVolume`, `materialVolume`, `volumeDifference`,
+  `maximumVolumeError` and `operations`. The signed volume difference is not
+  clamped; insignificant negative roundoff can remain.
+
+Cell walls include internal material interfaces. **Do not render every cell wall
+as exposed material or infer that two touching cells are detached.** Exterior face
+provenance, adjacency, strength, density, fracture surfaces and extraction/physics
+acceptance remain host concerns. In particular this does not turn an existing
+positive-overlap attachment graph into a surface-interface graph.
+
+Limits: 1–64 inputs, 100,000 input vertices/200,000 input triangles, up to 126
+Boolean operations, and 200,000 exported vertices/400,000 exported triangles
+across all cells plus exterior. Native input/output volume and total conservation
+errors above 1e-5 reject. These are acceptance budgets, not certified geometric
+error bounds or a proof against a faulty Boolean backend. Topology checks do not
+detect all geometric self-intersections. Use a cancellable worker: a synchronous
+backend call cannot be interrupted by an operation counter.
+
+The implementation uses the set identity
+`C_i = S_i ∖ (S_0 ∪ … ∪ S_(i−1))`; its tests use Manifold only as a development
+dependency. [Manifold's documentation](https://manifoldcad.org/docs/jsuser/classes/Manifold.html)
+describes the native Boolean/volume contract. No Boolean engine is bundled.
