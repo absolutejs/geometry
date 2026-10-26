@@ -1,0 +1,39 @@
+{
+  "name": "@absolutejs/geometry",
+  "version": "0.1.0",
+  "description": "Bounded alpha-aware geometry projection for worker-side asset measurement and web 3D tooling.",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "sideEffects": false,
+  "license": "BSL-1.1",
+  "author": "Alex Kahn",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/absolutejs/geometry.git"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "test": "bun test ./tests",
+    "check:package": "bun run build && bun test ./tests"
+  },
+  "devDependencies": {
+    "typescript": "5.9.3",
+    "@types/bun": "1.4.2"
+  }
+}

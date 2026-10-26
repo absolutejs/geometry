@@ -1,0 +1,1125 @@
+{
+  "source": "/home/alexkahn/alex/hello-world/src/backend/assets/models/forest-v8.glb",
+  "sourceSha256": "098c099d75aa0b62905988bbc354143dc33e263789792a27731ba5715e4a33ff",
+  "scope": "Static actual canopy triangles and bilinear alpha threshold; vertex-hull reference footprint, center-sampled vertical projection. Not measured hydrologic interception.",
+  "rows": [
+    {
+      "variant": 0,
+      "pose": "canonical",
+      "texture": [
+        256,
+        512
+      ],
+      "alphaSha256": "099e275bb4516ebfe211ac26f89c8d5c999152f13845b4b4cf6fb169d13578fd",
+      "revision": "alpha-projection-1",
+      "resolution": 128,
+      "bounds": [
+        -3.9331319332122803,
+        -4.12979793548584,
+        4.015288352966309,
+        3.7938971519470215
+      ],
+      "footprintArea": 50.21953441754407,
+      "sampledFootprintArea": 50.24168848767065,
+      "sampledCoveredArea": 31.052208079831942,
+      "coveredArea": 31.03851561016993,
+      "gapFraction": 0.3819433817903596,
+      "coveredCells": 8078,
+      "footprintCells": 13070,
+      "pixelTests": 300810,
+      "alphaTests": 30690,
+      "triangles": 10080,
+      "cellArea": 0.003844046556057433,
+      "elapsedMs": 70.76360399999999
+    },
+    {
+      "variant": 0,
+      "pose": "canonical",
+      "texture": [
+        256,
+        512
+      ],
+      "alphaSha256": "099e275bb4516ebfe211ac26f89c8d5c999152f13845b4b4cf6fb169d13578fd",
+      "revision": "alpha-projection-1",
+      "resolution": 256,
+      "bounds": [
+        -3.9331319332122803,
+        -4.12979793548584,
+        4.015288352966309,
+        3.7938971519470215
+      ],
+      "footprintArea": 50.21953441754407,
+      "sampledFootprintArea": 50.221507243251345,
+      "sampledCoveredArea": 30.966678043959664,
+      "coveredArea": 30.965461595830813,
+      "gapFraction": 0.38339807497273193,
+      "coveredCells": 32223,
+      "footprintCells": 52259,
+      "pixelTests": 1202711,
+      "alphaTests": 122464,
+      "triangles": 10080,
+      "cellArea": 0.0009610116390143583,
+      "elapsedMs": 121.71823700000004
+    },
+    {
+      "variant": 0,
+      "pose": "canonical",
+      "texture": [
+        256,
+        512
+      ],
+      "alphaSha256": "099e275bb4516ebfe211ac26f89c8d5c999152f13845b4b4cf6fb169d13578fd",
+      "revision": "alpha-projection-1",
+      "resolution": 512,
+      "bounds": [
+        -3.9331319332122803,
+        -4.12979793548584,
+        4.015288352966309,
+        3.7938971519470215
+      ],
+      "footprintArea": 50.21953441754407,
+      "sampledFootprintArea": 50.22054623161233,
+      "sampledCoveredArea": 30.978450436537592,
+      "coveredArea": 30.977826300913495,
+      "gapFraction": 0.3831518619158789,
+      "coveredCells": 128941,
+      "footprintCells": 209032,
+      "pixelTests": 4809128,
+      "alphaTests": 491596,
+      "triangles": 10080,
+      "cellArea": 0.00024025290975358956,
+      "elapsedMs": 218.14935300000002
+    },
+    {
+      "variant": 0,
+      "pose": "phenotype",
+      "texture": [
+        256,
+        512
+      ],
+      "alphaSha256": "099e275bb4516ebfe211ac26f89c8d5c999152f13845b4b4cf6fb169d13578fd",
+      "revision": "alpha-projection-1",
+      "resolution": 128,
+      "bounds": [
+        -4.48402203570003,
+        -4.739720165598436,
+        4.781881095193739,
+        4.706921844859985
+      ],
+      "footprintArea": 70.16014996391661,
+      "sampledFootprintArea": 70.23796768875965,
+      "sampledCoveredArea": 44.37488093274798,
+      "coveredArea": 44.32571731956274,
+      "gapFraction": 0.3682208868943485,
+      "coveredCells": 8306,
+      "footprintCells": 13147,
+      "pixelTests": 319441,
+      "alphaTests": 31819,
+      "triangles": 10080,
+      "cellArea": 0.00534250914191524,
+      "elapsedMs": 32.29016499999989
+    },
+    {
+      "variant": 0,
+      "pose": "phenotype",
+      "texture": [
+        256,
+        512
+      ],
+      "alphaSha256": "099e275bb4516ebfe211ac26f89c8d5c999152f13845b4b4cf6fb169d13578fd",
+      "revision": "alpha-projection-1",
+      "resolution": 256,
+      "bounds": [
+        -4.48402203570003,
+        -4.739720165598436,
+        4.781881095193739,
+        4.706921844859985
+      ],
+      "footprintArea": 70.16014996391661,
+      "sampledFootprintArea": 70.15783005163092,
+      "sampledCoveredArea": 44.63399262613087,
+      "coveredArea": 44.63546854047679,
+      "gapFraction": 0.36380597014925375,
+      "coveredCells": 33418,
+      "footprintCells": 52528,
+      "pixelTests": 1277827,
+      "alphaTests": 128028,
+      "triangles": 10080,
+      "cellArea": 0.00133562728547881,
+      "elapsedMs": 81.14696600000002
+    },
+    {
+      "variant": 0,
+      "pose": "phenotype",
+      "texture": [
+        256,
+        512
+      ],
+      "alphaSha256": "099e275bb4516ebfe211ac26f89c8d5c999152f13845b4b4cf6fb169d13578fd",
+      "revision": "alpha-projection-1",
+      "resolution": 512,
+      "bounds": [
+        -4.48402203570003,
+        -4.739720165598436,
+        4.781881095193739,
+        4.706921844859985
+      ],
+      "footprintArea": 70.16014996391661,
+      "sampledFootprintArea": 70.16384037441559,
+      "sampledCoveredArea": 44.72314574743658,
+      "coveredArea": 44.72079344223588,
+      "gapFraction": 0.3625898253462142,
+      "coveredCells": 133939,
+      "footprintCells": 210130,
+      "pixelTests": 5113460,
+      "alphaTests": 509459,
+      "triangles": 10080,
+      "cellArea": 0.0003339068213697025,
+      "elapsedMs": 181.39753199999996
+    },
+    {
+      "variant": 0,
+      "pose": "fallen",
+      "texture": [
+        256,
+        512
+      ],
+      "alphaSha256": "099e275bb4516ebfe211ac26f89c8d5c999152f13845b4b4cf6fb169d13578fd",
+      "revision": "alpha-projection-1",
+      "resolution": 128,
+      "bounds": [
+        -3.9331319332122803,
+        2.1314802169799805,
+        4.015288352966309,
+        13.995387077331543
+      ],
+      "footprintArea": 69.03528668078329,
+      "sampledFootprintArea": 69.06688327306031,
+      "sampledCoveredArea": 40.61708293816556,
+      "coveredArea": 40.598501508857304,
+      "gapFraction": 0.4119166666666667,
+      "coveredCells": 7057,
+      "footprintCells": 12000,
+      "pixelTests": 191821,
+      "alphaTests": 25406,
+      "triangles": 10080,
+      "cellArea": 0.00575557360608836,
+      "elapsedMs": 44.8476169999999
+    },
+    {
+      "variant": 0,
+      "pose": "fallen",
+      "texture": [
+        256,
+        512
+      ],
+      "alphaSha256": "099e275bb4516ebfe211ac26f89c8d5c999152f13845b4b4cf6fb169d13578fd",
+      "revision": "alpha-projection-1",
+      "resolution": 256,
+      "bounds": [
+        -3.9331319332122803,
+        2.1314802169799805,
+        4.015288352966309,
+        13.995387077331543
+      ],
+      "footprintArea": 69.03528668078329,
+      "sampledFootprintArea": 69.03666651162835,
+      "sampledCoveredArea": 40.80413908036343,
+      "coveredArea": 40.803323530995904,
+      "gapFraction": 0.4089497488484546,
+      "coveredCells": 28358,
+      "footprintCells": 47979,
+      "pixelTests": 766437,
+      "alphaTests": 102512,
+      "triangles": 10080,
+      "cellArea": 0.00143889340152209,
+      "elapsedMs": 88.72376199999985
+    },
+    {
+      "variant": 0,
+      "pose": "fallen",
+      "texture": [
+        256,
+        512
+      ],
+      "alphaSha256": "099e275bb4516ebfe211ac26f89c8d5c999152f13845b4b4cf6fb169d13578fd",
+      "revision": "alpha-projection-1",
+      "resolution": 512,
+      "bounds": [
+        -3.9331319332122803,
+        2.1314802169799805,
+        4.015288352966309,
+        13.995387077331543
+      ],
+      "footprintArea": 69.03528668078329,
+      "sampledFootprintArea": 69.03342900147493,
+      "sampledCoveredArea": 40.71204990266602,
+      "coveredArea": 40.71314545787454,
+      "gapFraction": 0.4102560094212301,
+      "coveredCells": 113176,
+      "footprintCells": 191907,
+      "pixelTests": 3063445,
+      "alphaTests": 411711,
+      "triangles": 10080,
+      "cellArea": 0.0003597233503805225,
+      "elapsedMs": 300.27099599999997
+    },
+    {
+      "variant": 1,
+      "pose": "canonical",
+      "texture": [
+        256,
+        512
+      ],
+      "alphaSha256": "099e275bb4516ebfe211ac26f89c8d5c999152f13845b4b4cf6fb169d13578fd",
+      "revision": "alpha-projection-1",
+      "resolution": 128,
+      "bounds": [
+        -3.716456890106201,
+        -4.384097576141357,
+        4.414900779724121,
+        3.974543571472168
+      ],
+      "footprintArea": 51.40814153205934,
+      "sampledFootprintArea": 51.41505416120919,
+      "sampledCoveredArea": 30.789295787033613,
+      "coveredArea": 30.78515624099923,
+      "gapFraction": 0.4011618525092787,
+      "coveredCells": 7422,
+      "footprintCells": 12394,
+      "pixelTests": 276129,
+      "alphaTests": 28175,
+      "triangles": 10080,
+      "cellArea": 0.004148382617493077,
+      "elapsedMs": 40.35469499999999
+    },
+    {
+      "variant": 1,
+      "pose": "canonical",
+      "texture": [
+        256,
+        512
+      ],
+      "alphaSha256": "099e275bb4516ebfe211ac26f89c8d5c999152f13845b4b4cf6fb169d13578fd",
+      "revision": "alpha-projection-1",
+      "resolution": 256,
+      "bounds": [
+        -3.716456890106201,
+        -4.384097576141357,
+        4.414900779724121,
+        3.974543571472168
+      ],
+      "footprintArea": 51.40814153205934,
+      "sampledFootprintArea": 51.40468320466546,
+      "sampledCoveredArea": 30.495797716845978,
+      "coveredArea": 30.49784936751412,
+      "gapFraction": 0.4067505951660413,
+      "coveredCells": 29405,
+      "footprintCells": 49566,
+      "pixelTests": 1103995,
+      "alphaTests": 113748,
+      "triangles": 10080,
+      "cellArea": 0.0010370956543732691,
+      "elapsedMs": 110.00231900000017
+    },
+    {
+      "variant": 1,
+      "pose": "canonical",
+      "texture": [
+        256,
+        512
+      ],
+      "alphaSha256": "099e275bb4516ebfe211ac26f89c8d5c999152f13845b4b4cf6fb169d13578fd",
+      "revision": "alpha-projection-1",
+      "resolution": 512,
+      "bounds": [
+        -3.716456890106201,
+        -4.384097576141357,
+        4.414900779724121,
+        3.974543571472168
+      ],
+      "footprintArea": 51.40814153205934,
+      "sampledFootprintArea": 51.40986868293732,
+      "sampledCoveredArea": 30.495797716845978,
+      "coveredArea": 30.49477318896542,
+      "gapFraction": 0.4068104335195981,
+      "coveredCells": 117620,
+      "footprintCells": 198284,
+      "pixelTests": 4414067,
+      "alphaTests": 452529,
+      "triangles": 10080,
+      "cellArea": 0.0002592739135933173,
+      "elapsedMs": 179.27078299999994
+    },
+    {
+      "variant": 2,
+      "pose": "canonical",
+      "texture": [
+        512,
+        256
+      ],
+      "alphaSha256": "78880446eeeb1f066015ce34ddceb53dd55b37ab942e48b935490781417379a2",
+      "revision": "alpha-projection-1",
+      "resolution": 128,
+      "bounds": [
+        -3.5889742374420166,
+        -3.901531934738159,
+        4.329416275024414,
+        4.079921722412109
+      ],
+      "footprintArea": 49.444534414521605,
+      "sampledFootprintArea": 49.475501919249375,
+      "sampledCoveredArea": 32.50663142628368,
+      "coveredArea": 32.48628500788816,
+      "gapFraction": 0.3429752066115702,
+      "coveredCells": 8427,
+      "footprintCells": 12826,
+      "pixelTests": 196908,
+      "alphaTests": 17223,
+      "triangles": 18432,
+      "cellArea": 0.003857438166166332,
+      "elapsedMs": 25.391807999999855
+    },
+    {
+      "variant": 2,
+      "pose": "canonical",
+      "texture": [
+        512,
+        256
+      ],
+      "alphaSha256": "78880446eeeb1f066015ce34ddceb53dd55b37ab942e48b935490781417379a2",
+      "revision": "alpha-projection-1",
+      "resolution": 256,
+      "bounds": [
+        -3.5889742374420166,
+        -3.901531934738159,
+        4.329416275024414,
+        4.079921722412109
+      ],
+      "footprintArea": 49.444534414521605,
+      "sampledFootprintArea": 49.445606773461584,
+      "sampledCoveredArea": 32.381264685883274,
+      "coveredArea": 32.380562412396515,
+      "gapFraction": 0.3451134125173093,
+      "coveredCells": 33578,
+      "footprintCells": 51273,
+      "pixelTests": 788967,
+      "alphaTests": 69529,
+      "triangles": 18432,
+      "cellArea": 0.000964359541541583,
+      "elapsedMs": 56.4649159999999
+    },
+    {
+      "variant": 2,
+      "pose": "canonical",
+      "texture": [
+        512,
+        256
+      ],
+      "alphaSha256": "78880446eeeb1f066015ce34ddceb53dd55b37ab942e48b935490781417379a2",
+      "revision": "alpha-projection-1",
+      "resolution": 512,
+      "bounds": [
+        -3.5889742374420166,
+        -3.901531934738159,
+        4.329416275024414,
+        4.079921722412109
+      ],
+      "footprintArea": 49.444534414521605,
+      "sampledFootprintArea": 49.44584786334697,
+      "sampledCoveredArea": 32.43936734826115,
+      "coveredArea": 32.438505649033004,
+      "gapFraction": 0.3439415289649086,
+      "coveredCells": 134553,
+      "footprintCells": 205093,
+      "pixelTests": 3153849,
+      "alphaTests": 277154,
+      "triangles": 18432,
+      "cellArea": 0.00024108988538539575,
+      "elapsedMs": 84.53674200000023
+    },
+    {
+      "variant": 3,
+      "pose": "canonical",
+      "texture": [
+        512,
+        256
+      ],
+      "alphaSha256": "78880446eeeb1f066015ce34ddceb53dd55b37ab942e48b935490781417379a2",
+      "revision": "alpha-projection-1",
+      "resolution": 128,
+      "bounds": [
+        -4.288830757141113,
+        -4.1757493019104,
+        4.006866931915283,
+        4.028008460998535
+      ],
+      "footprintArea": 51.22209079626368,
+      "sampledFootprintArea": 51.25376464581339,
+      "sampledCoveredArea": 33.37580022117761,
+      "coveredArea": 33.35517461285182,
+      "gapFraction": 0.34881270767485206,
+      "coveredCells": 8035,
+      "footprintCells": 12339,
+      "pixelTests": 186155,
+      "alphaTests": 16682,
+      "triangles": 18432,
+      "cellArea": 0.004153802143270394,
+      "elapsedMs": 32.161700999999994
+    },
+    {
+      "variant": 3,
+      "pose": "canonical",
+      "texture": [
+        512,
+        256
+      ],
+      "alphaSha256": "78880446eeeb1f066015ce34ddceb53dd55b37ab942e48b935490781417379a2",
+      "revision": "alpha-projection-1",
+      "resolution": 256,
+      "bounds": [
+        -4.288830757141113,
+        -4.1757493019104,
+        4.006866931915283,
+        4.028008460998535
+      ],
+      "footprintArea": 51.22209079626368,
+      "sampledFootprintArea": 51.23507253616867,
+      "sampledCoveredArea": 33.404876836180506,
+      "coveredArea": 33.396412840695,
+      "gapFraction": 0.34800762090072557,
+      "coveredCells": 32168,
+      "footprintCells": 49338,
+      "pixelTests": 747288,
+      "alphaTests": 66326,
+      "triangles": 18432,
+      "cellArea": 0.0010384505358175984,
+      "elapsedMs": 41.868946999999935
+    },
+    {
+      "variant": 3,
+      "pose": "canonical",
+      "texture": [
+        512,
+        256
+      ],
+      "alphaSha256": "78880446eeeb1f066015ce34ddceb53dd55b37ab942e48b935490781417379a2",
+      "revision": "alpha-projection-1",
+      "resolution": 512,
+      "bounds": [
+        -4.288830757141113,
+        -4.1757493019104,
+        4.006866931915283,
+        4.028008460998535
+      ],
+      "footprintArea": 51.22209079626368,
+      "sampledFootprintArea": 51.22287074237281,
+      "sampledCoveredArea": 33.37216564430225,
+      "coveredArea": 33.3716575023264,
+      "gapFraction": 0.3484909150807126,
+      "coveredCells": 128546,
+      "footprintCells": 197305,
+      "pixelTests": 2986458,
+      "alphaTests": 265368,
+      "triangles": 18432,
+      "cellArea": 0.0002596126339543996,
+      "elapsedMs": 87.27433299999984
+    },
+    {
+      "variant": 4,
+      "pose": "canonical",
+      "texture": [
+        512,
+        256
+      ],
+      "alphaSha256": "78880446eeeb1f066015ce34ddceb53dd55b37ab942e48b935490781417379a2",
+      "revision": "alpha-projection-1",
+      "resolution": 128,
+      "bounds": [
+        -5.665699005126953,
+        -5.997521877288818,
+        5.913601398468018,
+        5.510963439941406
+      ],
+      "footprintArea": 100.42092478661468,
+      "sampledFootprintArea": 100.40876929546849,
+      "sampledCoveredArea": 63.824026947066926,
+      "coveredArea": 63.8317534872876,
+      "gapFraction": 0.36435803969218306,
+      "coveredCells": 7847,
+      "footprintCells": 12345,
+      "pixelTests": 187301,
+      "alphaTests": 16131,
+      "triangles": 20736,
+      "cellArea": 0.00813355765860417,
+      "elapsedMs": 24.730579000000034
+    },
+    {
+      "variant": 4,
+      "pose": "canonical",
+      "texture": [
+        512,
+        256
+      ],
+      "alphaSha256": "78880446eeeb1f066015ce34ddceb53dd55b37ab942e48b935490781417379a2",
+      "revision": "alpha-projection-1",
+      "resolution": 256,
+      "bounds": [
+        -5.665699005126953,
+        -5.997521877288818,
+        5.913601398468018,
+        5.510963439941406
+      ],
+      "footprintArea": 100.42092478661468,
+      "sampledFootprintArea": 100.4372367472736,
+      "sampledCoveredArea": 63.65932240448019,
+      "coveredArea": 63.648983526228804,
+      "gapFraction": 0.3661780783091063,
+      "coveredCells": 31307,
+      "footprintCells": 49394,
+      "pixelTests": 749086,
+      "alphaTests": 65015,
+      "triangles": 20736,
+      "cellArea": 0.0020333894146510427,
+      "elapsedMs": 30.663564999999835
+    },
+    {
+      "variant": 4,
+      "pose": "canonical",
+      "texture": [
+        512,
+        256
+      ],
+      "alphaSha256": "78880446eeeb1f066015ce34ddceb53dd55b37ab942e48b935490781417379a2",
+      "revision": "alpha-projection-1",
+      "resolution": 512,
+      "bounds": [
+        -5.665699005126953,
+        -5.997521877288818,
+        5.913601398468018,
+        5.510963439941406
+      ],
+      "footprintArea": 100.42092478661468,
+      "sampledFootprintArea": 100.42656145284668,
+      "sampledCoveredArea": 63.62526313178479,
+      "coveredArea": 63.621692021044666,
+      "gapFraction": 0.36644984940902536,
+      "coveredCells": 125161,
+      "footprintCells": 197555,
+      "pixelTests": 2995150,
+      "alphaTests": 260143,
+      "triangles": 20736,
+      "cellArea": 0.0005083473536627607,
+      "elapsedMs": 80.4588590000003
+    },
+    {
+      "variant": 4,
+      "pose": "phenotype",
+      "texture": [
+        512,
+        256
+      ],
+      "alphaSha256": "78880446eeeb1f066015ce34ddceb53dd55b37ab942e48b935490781417379a2",
+      "revision": "alpha-projection-1",
+      "resolution": 128,
+      "bounds": [
+        -6.814088039317612,
+        -7.333554815495835,
+        7.541632710077986,
+        6.940257503577364
+      ],
+      "footprintArea": 154.56232838852935,
+      "sampledFootprintArea": 154.57112818875564,
+      "sampledCoveredArea": 98.1781176698545,
+      "coveredArea": 98.17252834775917,
+      "gapFraction": 0.3648353426652642,
+      "coveredCells": 7850,
+      "footprintCells": 12359,
+      "pixelTests": 182542,
+      "alphaTests": 16239,
+      "triangles": 20736,
+      "cellArea": 0.012506766582147071,
+      "elapsedMs": 30.540803999999753
+    },
+    {
+      "variant": 4,
+      "pose": "phenotype",
+      "texture": [
+        512,
+        256
+      ],
+      "alphaSha256": "78880446eeeb1f066015ce34ddceb53dd55b37ab942e48b935490781417379a2",
+      "revision": "alpha-projection-1",
+      "resolution": 256,
+      "bounds": [
+        -6.814088039317612,
+        -7.333554815495835,
+        7.541632710077986,
+        6.940257503577364
+      ],
+      "footprintArea": 154.56232838852935,
+      "sampledFootprintArea": 154.57738157204673,
+      "sampledCoveredArea": 98.38135262681439,
+      "coveredArea": 98.37177197186529,
+      "gapFraction": 0.36354625996197254,
+      "coveredCells": 31465,
+      "footprintCells": 49438,
+      "pixelTests": 731271,
+      "alphaTests": 65172,
+      "triangles": 20736,
+      "cellArea": 0.0031266916455367677,
+      "elapsedMs": 34.06400299999996
+    },
+    {
+      "variant": 4,
+      "pose": "phenotype",
+      "texture": [
+        512,
+        256
+      ],
+      "alphaSha256": "78880446eeeb1f066015ce34ddceb53dd55b37ab942e48b935490781417379a2",
+      "revision": "alpha-projection-1",
+      "resolution": 512,
+      "bounds": [
+        -6.814088039317612,
+        -7.333554815495835,
+        7.541632710077986,
+        6.940257503577364
+      ],
+      "footprintArea": 154.56232838852935,
+      "sampledFootprintArea": 154.56721982419873,
+      "sampledCoveredArea": 98.3766625893461,
+      "coveredArea": 98.37354936057112,
+      "gapFraction": 0.36353476046708033,
+      "coveredCells": 125854,
+      "footprintCells": 197739,
+      "pixelTests": 2921328,
+      "alphaTests": 260731,
+      "triangles": 20736,
+      "cellArea": 0.0007816729113841919,
+      "elapsedMs": 75.36360599999989
+    },
+    {
+      "variant": 4,
+      "pose": "fallen",
+      "texture": [
+        512,
+        256
+      ],
+      "alphaSha256": "78880446eeeb1f066015ce34ddceb53dd55b37ab942e48b935490781417379a2",
+      "revision": "alpha-projection-1",
+      "resolution": 128,
+      "bounds": [
+        -5.665699005126953,
+        2.844740152359009,
+        5.913601398468018,
+        11.59536361694336
+      ],
+      "footprintArea": 87.02759216413052,
+      "sampledFootprintArea": 87.06474640148632,
+      "sampledCoveredArea": 49.593138328847765,
+      "coveredArea": 49.57197482342397,
+      "gapFraction": 0.430387839181702,
+      "coveredCells": 8019,
+      "footprintCells": 14078,
+      "pixelTests": 133878,
+      "alphaTests": 16403,
+      "triangles": 20736,
+      "cellArea": 0.006184454212351635,
+      "elapsedMs": 45.314502000000175
+    },
+    {
+      "variant": 4,
+      "pose": "fallen",
+      "texture": [
+        512,
+        256
+      ],
+      "alphaSha256": "78880446eeeb1f066015ce34ddceb53dd55b37ab942e48b935490781417379a2",
+      "revision": "alpha-projection-1",
+      "resolution": 256,
+      "bounds": [
+        -5.665699005126953,
+        2.844740152359009,
+        5.913601398468018,
+        11.59536361694336
+      ],
+      "footprintArea": 87.02759216413052,
+      "sampledFootprintArea": 87.05856194727397,
+      "sampledCoveredArea": 49.7802180687714,
+      "coveredArea": 49.76250949968939,
+      "gapFraction": 0.4281984797897279,
+      "coveredCells": 32197,
+      "footprintCells": 56308,
+      "pixelTests": 536731,
+      "alphaTests": 65995,
+      "triangles": 20736,
+      "cellArea": 0.0015461135530879088,
+      "elapsedMs": 62.676322999999684
+    },
+    {
+      "variant": 4,
+      "pose": "fallen",
+      "texture": [
+        512,
+        256
+      ],
+      "alphaSha256": "78880446eeeb1f066015ce34ddceb53dd55b37ab942e48b935490781417379a2",
+      "revision": "alpha-projection-1",
+      "resolution": 512,
+      "bounds": [
+        -5.665699005126953,
+        2.844740152359009,
+        5.913601398468018,
+        11.59536361694336
+      ],
+      "footprintArea": 87.02759216413052,
+      "sampledFootprintArea": 87.03498371558938,
+      "sampledCoveredArea": 49.68358597170341,
+      "coveredArea": 49.679366532959435,
+      "gapFraction": 0.42915384307925974,
+      "coveredCells": 128538,
+      "footprintCells": 225171,
+      "pixelTests": 2143659,
+      "alphaTests": 264326,
+      "triangles": 20736,
+      "cellArea": 0.0003865283882719772,
+      "elapsedMs": 72.74303599999985
+    },
+    {
+      "variant": 5,
+      "pose": "canonical",
+      "texture": [
+        512,
+        256
+      ],
+      "alphaSha256": "78880446eeeb1f066015ce34ddceb53dd55b37ab942e48b935490781417379a2",
+      "revision": "alpha-projection-1",
+      "resolution": 128,
+      "bounds": [
+        -5.66071891784668,
+        -5.82613468170166,
+        5.626585483551025,
+        5.522151947021484
+      ],
+      "footprintArea": 101.51103136352796,
+      "sampledFootprintArea": 101.5413363145673,
+      "sampledCoveredArea": 64.17869031461987,
+      "coveredArea": 64.15953622291354,
+      "gapFraction": 0.36795503541730823,
+      "coveredCells": 8209,
+      "footprintCells": 12988,
+      "pixelTests": 195197,
+      "alphaTests": 17199,
+      "triangles": 20736,
+      "cellArea": 0.00781808872147885,
+      "elapsedMs": 49.63569899999993
+    },
+    {
+      "variant": 5,
+      "pose": "canonical",
+      "texture": [
+        512,
+        256
+      ],
+      "alphaSha256": "78880446eeeb1f066015ce34ddceb53dd55b37ab942e48b935490781417379a2",
+      "revision": "alpha-projection-1",
+      "resolution": 256,
+      "bounds": [
+        -5.66071891784668,
+        -5.82613468170166,
+        5.626585483551025,
+        5.522151947021484
+      ],
+      "footprintArea": 101.51103136352796,
+      "sampledFootprintArea": 101.52570013712435,
+      "sampledCoveredArea": 64.0672825503388,
+      "coveredArea": 64.05802589452263,
+      "gapFraction": 0.3689550284922224,
+      "coveredCells": 32779,
+      "footprintCells": 51944,
+      "pixelTests": 781436,
+      "alphaTests": 68142,
+      "triangles": 20736,
+      "cellArea": 0.0019545221803697124,
+      "elapsedMs": 83.50273900000002
+    },
+    {
+      "variant": 5,
+      "pose": "canonical",
+      "texture": [
+        512,
+        256
+      ],
+      "alphaSha256": "78880446eeeb1f066015ce34ddceb53dd55b37ab942e48b935490781417379a2",
+      "revision": "alpha-projection-1",
+      "resolution": 512,
+      "bounds": [
+        -5.66071891784668,
+        -5.82613468170166,
+        5.626585483551025,
+        5.522151947021484
+      ],
+      "footprintArea": 101.51103136352796,
+      "sampledFootprintArea": 101.51739341785778,
+      "sampledCoveredArea": 64.11028203830693,
+      "coveredArea": 64.10626427264438,
+      "gapFraction": 0.3684798251820619,
+      "coveredCells": 131204,
+      "footprintCells": 207759,
+      "pixelTests": 3120263,
+      "alphaTests": 272733,
+      "triangles": 20736,
+      "cellArea": 0.0004886305450924281,
+      "elapsedMs": 218.64800599999944
+    },
+    {
+      "variant": 6,
+      "pose": "canonical",
+      "texture": [
+        512,
+        256
+      ],
+      "alphaSha256": "78880446eeeb1f066015ce34ddceb53dd55b37ab942e48b935490781417379a2",
+      "revision": "alpha-projection-1",
+      "resolution": 128,
+      "bounds": [
+        -5.346221923828125,
+        -4.733300685882568,
+        4.3055291175842285,
+        5.1984100341796875
+      ],
+      "footprintArea": 72.34627941488732,
+      "sampledFootprintArea": 72.3794102514207,
+      "sampledCoveredArea": 48.88871975271775,
+      "coveredArea": 48.86634150762254,
+      "gapFraction": 0.3245493492846172,
+      "coveredCells": 8356,
+      "footprintCells": 12371,
+      "pixelTests": 259252,
+      "alphaTests": 17458,
+      "triangles": 20736,
+      "cellArea": 0.00585073237825727,
+      "elapsedMs": 34.240875000000415
+    },
+    {
+      "variant": 6,
+      "pose": "canonical",
+      "texture": [
+        512,
+        256
+      ],
+      "alphaSha256": "78880446eeeb1f066015ce34ddceb53dd55b37ab942e48b935490781417379a2",
+      "revision": "alpha-projection-1",
+      "resolution": 256,
+      "bounds": [
+        -5.346221923828125,
+        -4.733300685882568,
+        4.3055291175842285,
+        5.1984100341796875
+      ],
+      "footprintArea": 72.34627941488732,
+      "sampledFootprintArea": 72.35893268809679,
+      "sampledCoveredArea": 48.88871975271775,
+      "coveredArea": 48.88017067239122,
+      "gapFraction": 0.3243581968870022,
+      "coveredCells": 33424,
+      "footprintCells": 49470,
+      "pixelTests": 1038492,
+      "alphaTests": 69163,
+      "triangles": 20736,
+      "cellArea": 0.0014626830945643175,
+      "elapsedMs": 44.76428699999997
+    },
+    {
+      "variant": 6,
+      "pose": "canonical",
+      "texture": [
+        512,
+        256
+      ],
+      "alphaSha256": "78880446eeeb1f066015ce34ddceb53dd55b37ab942e48b935490781417379a2",
+      "revision": "alpha-projection-1",
+      "resolution": 512,
+      "bounds": [
+        -5.346221923828125,
+        -4.733300685882568,
+        4.3055291175842285,
+        5.1984100341796875
+      ],
+      "footprintArea": 72.34627941488732,
+      "sampledFootprintArea": 72.3395521370938,
+      "sampledCoveredArea": 48.89968987592698,
+      "coveredArea": 48.90423734391777,
+      "gapFraction": 0.3240255374645523,
+      "coveredCells": 133726,
+      "footprintCells": 197827,
+      "pixelTests": 4151281,
+      "alphaTests": 276519,
+      "triangles": 20736,
+      "cellArea": 0.0003656707736410794,
+      "elapsedMs": 83.75458999999955
+    },
+    {
+      "variant": 7,
+      "pose": "canonical",
+      "texture": [
+        512,
+        256
+      ],
+      "alphaSha256": "78880446eeeb1f066015ce34ddceb53dd55b37ab942e48b935490781417379a2",
+      "revision": "alpha-projection-1",
+      "resolution": 128,
+      "bounds": [
+        -4.5276079177856445,
+        -4.417449951171875,
+        5.3833909034729,
+        5.195883274078369
+      ],
+      "footprintArea": 71.46573874956269,
+      "sampledFootprintArea": 71.41759365808001,
+      "sampledCoveredArea": 49.65095795559703,
+      "coveredArea": 49.68442939856414,
+      "gapFraction": 0.3047797410634313,
+      "coveredCells": 8538,
+      "footprintCells": 12281,
+      "pixelTests": 260472,
+      "alphaTests": 17757,
+      "triangles": 20736,
+      "cellArea": 0.00581529139793828,
+      "elapsedMs": 43.95661099999961
+    },
+    {
+      "variant": 7,
+      "pose": "canonical",
+      "texture": [
+        512,
+        256
+      ],
+      "alphaSha256": "78880446eeeb1f066015ce34ddceb53dd55b37ab942e48b935490781417379a2",
+      "revision": "alpha-projection-1",
+      "resolution": 256,
+      "bounds": [
+        -4.5276079177856445,
+        -4.417449951171875,
+        5.3833909034729,
+        5.195883274078369
+      ],
+      "footprintArea": 71.46573874956269,
+      "sampledFootprintArea": 71.47865421775836,
+      "sampledCoveredArea": 49.65968089269394,
+      "coveredArea": 49.65070789178624,
+      "gapFraction": 0.3052515966318188,
+      "coveredCells": 34158,
+      "footprintCells": 49166,
+      "pixelTests": 1041958,
+      "alphaTests": 70609,
+      "triangles": 20736,
+      "cellArea": 0.00145382284948457,
+      "elapsedMs": 43.405604000000494
+    },
+    {
+      "variant": 7,
+      "pose": "canonical",
+      "texture": [
+        512,
+        256
+      ],
+      "alphaSha256": "78880446eeeb1f066015ce34ddceb53dd55b37ab942e48b935490781417379a2",
+      "revision": "alpha-projection-1",
+      "resolution": 512,
+      "bounds": [
+        -4.5276079177856445,
+        -4.417449951171875,
+        5.3833909034729,
+        5.195883274078369
+      ],
+      "footprintArea": 71.46573874956269,
+      "sampledFootprintArea": 71.47138510351094,
+      "sampledCoveredArea": 49.63351208140322,
+      "coveredArea": 49.629590954416514,
+      "gapFraction": 0.3055470800024409,
+      "coveredCells": 136560,
+      "footprintCells": 196644,
+      "pixelTests": 4161276,
+      "alphaTests": 282488,
+      "triangles": 20736,
+      "cellArea": 0.0003634557123711425,
+      "elapsedMs": 86.20773800000006
+    }
+  ],
+  "convergence": [
+    {
+      "variant": 0,
+      "pose": "canonical",
+      "gapChange": 0.0002462130568530174,
+      "areaRelativeChange": 0.00039914695636075726
+    },
+    {
+      "variant": 0,
+      "pose": "phenotype",
+      "gapChange": 0.0012161448030395539,
+      "areaRelativeChange": 0.0019079469569183245
+    },
+    {
+      "variant": 0,
+      "pose": "fallen",
+      "gapChange": 0.0013062605727754972,
+      "areaRelativeChange": 0.0022149620744648956
+    },
+    {
+      "variant": 1,
+      "pose": "canonical",
+      "gapChange": 0.000059838353556829205,
+      "areaRelativeChange": 0.00010087560020982807
+    },
+    {
+      "variant": 2,
+      "pose": "canonical",
+      "gapChange": 0.001171883552400721,
+      "areaRelativeChange": 0.001786248641149014
+    },
+    {
+      "variant": 3,
+      "pose": "canonical",
+      "gapChange": 0.00048329417998704827,
+      "areaRelativeChange": 0.0007418072766350885
+    },
+    {
+      "variant": 4,
+      "pose": "canonical",
+      "gapChange": 0.00027177109991904924,
+      "areaRelativeChange": 0.0004289654097082265
+    },
+    {
+      "variant": 4,
+      "pose": "phenotype",
+      "gapChange": 0.000011499494892208695,
+      "areaRelativeChange": 0.0000180677500952806
+    },
+    {
+      "variant": 4,
+      "pose": "fallen",
+      "gapChange": 0.0009553632895318298,
+      "areaRelativeChange": 0.0016735915236519405
+    },
+    {
+      "variant": 5,
+      "pose": "canonical",
+      "gapChange": 0.000475203310160488,
+      "areaRelativeChange": 0.0007524752638305983
+    },
+    {
+      "variant": 6,
+      "pose": "canonical",
+      "gapChange": 0.0003326594224498658,
+      "areaRelativeChange": 0.0004921183282605837
+    },
+    {
+      "variant": 7,
+      "pose": "canonical",
+      "gapChange": 0.00029548337062212937,
+      "areaRelativeChange": 0.0004254908606665997
+    }
+  ]
+}
