@@ -1,0 +1,18 @@
+$ bun run build && bun test ./tests
+$ tsc -p tsconfig.json
+bun test v1.4.4+absolute.1 (38afee6c8)
+
+tests/projection.test.ts:
+(pass) bilinear alpha resolves physical holes rather than treating the card as solid [13.30ms]
+(pass) coverage is a union and is invariant to winding/order without mutating inputs [6.10ms]
+(pass) disconnected leaves preserve open space inside their explicit convex reference hull [1.52ms]
+(pass) local coordinates preserve coverage at distant origins and tiny or large scales [8.67ms]
+(pass) sampler wrap modes apply to negative UV coordinates [5.43ms]
+(pass) hull area and sampled area remain separately visible and unreferenced vertices do not inflate it [2.00ms]
+(pass) malformed data, degenerate projections and oversized work are rejected [0.60ms]
+(pass) triangle-local rasterization agrees with independent point-in-triangle queries [41.48ms]
+
+ 8 pass
+ 0 fail
+ 12333 expect() calls
+Ran 8 tests across 1 file. [97.00ms]
