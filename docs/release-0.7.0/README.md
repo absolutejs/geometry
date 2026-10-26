@@ -30,3 +30,9 @@ Primary API references checked2026-10-26:
 - https://manifoldcad.org/docs/jsapi/classes/manifold.Mesh.html
 The bounded sidecar implementation is our inference from the documented callback
 and export contracts, qualified by executable fixtures rather than assumed.
+
+Publication verified on 2026-10-26: npm reports version 0.7.0 and tarball
+SHA1 `6ec8e2d5ae9d2f5f65a88353b3a04df60fa68ff5`, matching the prepared release.
+Source release commit: `58505ab14ef1ddbeb946136d05b8664647d67e68`.
+The game has installed the exact published version; integration qualification is
+recorded separately in its repository.
