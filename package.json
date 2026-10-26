@@ -1,6 +1,6 @@
 {
   "name": "@absolutejs/geometry",
-  "version": "0.7.0",
+  "version": "0.8.0",
   "description": "Bounded geometry projection, oriented material components and point membership for worker-side web 3D tooling.",
   "type": "module",
   "main": "./dist/index.js",

@@ -270,3 +270,19 @@ Use the full tensor, including off-diagonal terms. This helper does not integrat
 mesh mass or validate collisions. When passing explicit mass properties to Rapier,
 set collision-shape density to zero to avoid adding their mass a second time; unit
 conversion remains the caller's responsibility. No physics engine is imported.
+
+### Unoriented fibre mixtures
+
+`axialOrientationTensor([{axis: [1, 0, 0], weight: 1}, ...])` returns the
+second orientation moment as a transferable row-major Float64Array. Directions
+are normalized and weights are nonnegative. An axis and its negation contribute
+identically, avoiding cancellation when blending wood, hair or textile fibre axes.
+All-zero weights, zero axes and invalid input fail explicitly; at most 4096
+samples are accepted. Input arrays are never changed. Finite vector and weight
+scales near the limits of double precision are normalized before accumulation.
+
+The output is symmetric, positive semidefinite and has trace one. It intentionally
+does not choose a unique direction for isotropic or conflicting orientations.
+A second moment discards higher-order distribution information; it is neither a
+full fibre distribution nor a biological growth, fracture or constitutive model.
+Use a separate calibrated material model for strength and breaking forces.

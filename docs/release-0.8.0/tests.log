@@ -1,0 +1,71 @@
+$ bun run build && bun test ./tests
+$ tsc -p tsconfig.json
+bun test v1.4.4+absolute.1 (38afee6c8)
+
+tests/solid-components.test.ts:
+(pass) cavity walls stay with the surrounding material, separate same-owner pieces do not merge [12.45ms]
+(pass) nested material islands own their own cavities [3.93ms]
+(pass) ownership, touching shells, orphan voids and work budgets fail explicitly [3.69ms]
+(pass) translated coordinates and empty boundaries preserve semantics [2.30ms]
+
+tests/principalInertia.test.ts:
+(pass) rotated box inertia reconstructs across scales and near-degenerate axes [12.44ms]
+(pass) isotropic and thin-body inertia remain finite and deterministic [0.89ms]
+(pass) reject malformed, asymmetric, negative and nonphysical inertia [0.35ms]
+
+tests/alpha.test.ts:
+(pass) RGBA alpha extraction owns its output and preserves exact alpha independently of color [0.40ms]
+(pass) alpha extraction rejects malformed and oversized sources before allocating [0.30ms]
+
+tests/materialPartition.test.ts:
+(pass) ordered material cells remove duplicated volume and keep a distinct exterior [38.91ms]
+(pass) full coverage returns an explicit empty source cell, not a duplicate solid [7.02ms]
+(pass) hollow material, disconnected solids and large translations preserve physical volume [17.99ms]
+(pass) face, edge and point contact do not assign duplicated volume [9.36ms]
+(pass) success and each native failure release all successfully returned handles [9.74ms]
+(pass) invalid budgets and geometry fail before native allocation [1.29ms]
+(pass) host mutation of copied input arrays cannot change caller geometry [1.16ms]
+(pass) incorrect native operations and aliased handles cannot pass conservation [11.42ms]
+(pass) sequential cuts preserve the independent whole-union mass [13.83ms]
+(pass) native lifetime stays bounded as source count grows [26.42ms]
+
+tests/projection.test.ts:
+(pass) bilinear alpha resolves physical holes rather than treating the card as solid [14.17ms]
+(pass) coverage is a union and is invariant to winding/order without mutating inputs [4.53ms]
+(pass) disconnected leaves preserve open space inside their explicit convex reference hull [1.39ms]
+(pass) local coordinates preserve coverage at distant origins and tiny or large scales [10.13ms]
+(pass) sampler wrap modes apply to negative UV coordinates [7.30ms]
+(pass) hull area and sampled area remain separately visible and unreferenced vertices do not inflate it [2.78ms]
+(pass) malformed data, degenerate projections and oversized work are rejected [1.03ms]
+(pass) triangle-local rasterization agrees with independent point-in-triangle queries [42.17ms]
+
+tests/surfaceOrigins.test.ts:
+(pass) partition retains verified source triangles and reversed internal interfaces [40.32ms]
+(pass) false ancestry, flipped orientation and off-surface points are rejected [14.23ms]
+(pass) absent ancestry is explicit and copied metadata survives backend mutations [6.38ms]
+(pass) thin-triangle attribute interpolation remains stable and rejects unrelated points [0.52ms]
+(pass) explicit merge ancestry restores shared topology without proximity welding [0.85ms]
+(pass) per-solid export rebasing preserves a tiny solid at a distant local offset [3.96ms]
+
+tests/overlap.test.ts:
+(pass) initial overlap distinguishes duplicates, partial overlap, touching and disjoint solids [28.53ms]
+(pass) a chip inside a hollow shell has zero intersection, including large world translations [6.21ms]
+(pass) native handles are released on success, invalid output and kernel failure [5.09ms]
+(pass) budgets, orientation and corrupt meshes fail before unbounded kernel work [3.74ms]
+
+tests/manifoldMesh64.test.ts:
+(pass) sidecar retains a native solid whose Float32 export collapses every position [7.82ms]
+(pass) double export retains custom properties and original Boolean face identities [7.01ms]
+(pass) empty export stays empty and temporary handles are released on read failure [3.44ms]
+(pass) normal property channels keep native transformed export values [4.76ms]
+
+tests/axialOrientation.test.ts:
+(pass) opposite fibre axes reinforce instead of cancelling; analytic isotropic and planar mixtures [0.81ms]
+(pass) finite extremes and weight scaling preserve the second moment [9.06ms]
+(pass) rotation covariance, positive directional response and sign independence [10.07ms]
+(pass) rejects absent orientation and malformed data rather than choosing an arbitrary axis [0.48ms]
+
+ 45 pass
+ 0 fail
+ 18644 expect() calls
+Ran 45 tests across 9 files. [578.00ms]
