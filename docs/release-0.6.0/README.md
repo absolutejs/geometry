@@ -19,3 +19,7 @@ error below8.4e-8. Physical mass is supplied once, collision density is zero.
 Those fixtures remain game-specific evidence, not a claim of universal collision
 or trajectory correctness. Native data and reproduction code live in the game's
 docs/material-provenance-2026-10-26 folder.
+
+Published after npm browser confirmation; registry version0.6.0 verified with
+SHA1 d7a6800237f6c46418f6a508a28502a57d69de6d. Hello World installed the exact
+registry release. No sibling checkout is used by its application runtime.
