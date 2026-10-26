@@ -28,3 +28,9 @@ https://ecm-academics.plymouth.ac.uk/jsummerscales/FPCM/FPCM15/FPCM15_keynote_Tu
 The package implements the discrete weighted second moment, not the paper's
 suspension flow evolution model. Game biological context is documented separately
 in material-provenance-2026-10-26/grain-field-design.md.
+
+Publication verified 2026-10-26: registry version 0.8.0, tarball SHA1
+`6b6eaa1192562d70f521be7c72ad049ae8abc0c8`, matching the prepared release.
+Source commit `c43599ff16331788755d9200f0dda0d7d748a85c` is pushed to main.
+The expired authentication was retried; npm reported success and registry
+availability was checked after processing, before game adoption.
