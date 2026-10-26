@@ -1,0 +1,28 @@
+$ bun run build && bun test ./tests
+$ tsc -p tsconfig.json
+bun test v1.4.4+absolute.1 (38afee6c8)
+
+tests/solid-components.test.ts:
+(pass) cavity walls stay with the surrounding material, separate same-owner pieces do not merge [13.11ms]
+(pass) nested material islands own their own cavities [3.45ms]
+(pass) ownership, touching shells, orphan voids and work budgets fail explicitly [2.64ms]
+(pass) translated coordinates and empty boundaries preserve semantics [1.58ms]
+
+tests/alpha.test.ts:
+(pass) RGBA alpha extraction owns its output and preserves exact alpha independently of color [0.57ms]
+(pass) alpha extraction rejects malformed and oversized sources before allocating [0.40ms]
+
+tests/projection.test.ts:
+(pass) bilinear alpha resolves physical holes rather than treating the card as solid [17.77ms]
+(pass) coverage is a union and is invariant to winding/order without mutating inputs [7.99ms]
+(pass) disconnected leaves preserve open space inside their explicit convex reference hull [1.00ms]
+(pass) local coordinates preserve coverage at distant origins and tiny or large scales [7.28ms]
+(pass) sampler wrap modes apply to negative UV coordinates [8.02ms]
+(pass) hull area and sampled area remain separately visible and unreferenced vertices do not inflate it [5.05ms]
+(pass) malformed data, degenerate projections and oversized work are rejected [1.00ms]
+(pass) triangle-local rasterization agrees with independent point-in-triangle queries [43.13ms]
+
+ 14 pass
+ 0 fail
+ 12366 expect() calls
+Ran 14 tests across 3 files. [126.00ms]

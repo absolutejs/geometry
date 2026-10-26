@@ -4,3 +4,7 @@ export {
   type AlphaProjection,
 } from "./projection.js";
 export { alphaFromRgba, alphaFromImageBitmap } from './alpha.js';
+
+export { closedComponents } from './closedComponents.js';
+export { solidPointMembership } from './solidPointMembership.js';
+export { solidComponents } from './solidComponents.js';

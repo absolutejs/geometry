@@ -1,7 +1,7 @@
 {
   "name": "@absolutejs/geometry",
-  "version": "0.1.1",
-  "description": "Bounded alpha-aware geometry projection for worker-side asset measurement and web 3D tooling.",
+  "version": "0.2.0",
+  "description": "Bounded geometry projection, oriented material components and point membership for worker-side web 3D tooling.",
   "type": "module",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",

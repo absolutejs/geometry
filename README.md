@@ -96,3 +96,38 @@ leaves its source usable. Transfer only owned copies if using a transfer list.
 See the [HTML ImageBitmap ownership contract](https://html.spec.whatwg.org/multipage/imagebitmap-and-animations.html#imagebitmap)
 and [OffscreenCanvas](https://developer.mozilla.org/en-US/docs/Web/API/OffscreenCanvas).
 These helpers prepare raster inputs; they do not assign hydrologic meaning to alpha.
+
+## Oriented solid boundaries (0.2.0)
+
+`closedComponents(positions, indices)` splits index-connected closed oriented
+boundary shells. Coincident coordinates never weld distinct authored vertices.
+`solidPointMembership(positions, indices)` prepares a solid-angle classifier that
+returns `inside`, `outside`, or `boundary`; oriented cavity walls cancel their
+outer shell's winding inside a void.
+
+`solidComponents(positions, indices, faceOwners, maxTriangleTests?)` returns
+`{ components, shells, cavities, pointQueries, triangleTests }`. Each component
+contains positions, indices and original `sourceTriangles`. It preserves separate
+positive components of the same source, and assigns each inward cavity to the
+smallest enclosing positive shell **of its explicitly declared source**. It never
+infers source identity, takes absolute cavity mass, or uses a convex hull.
+
+Precondition: each owner's input must be a valid, nonintersecting oriented solid
+boundary, such as a validated Boolean kernel result. Shells must not touch.
+Topology checks and all-cavity-vertex containment checks are **not** a complete
+triangle-intersection validator; do not use this API to repair arbitrary soups.
+An outward material island inside an inward cavity remains a separate component.
+Deterministic order is positive-shell order, followed by each component's cavity
+shells; provenance follows that same face order (not globally sorted).
+
+Inputs are Float64 positions, Uint32 indices, and Int16/Uint16 per-face owners.
+Limits: 100,000 vertices, 200,000 triangles, 128 shells. Prepared point classifiers
+support up to 20,000 triangles; containment charges every tested outer triangle
+per cavity vertex, with 2 million tests by default (maximum 8 million). No GPU,
+Three.js, WASM, or runtime dependencies. All coordinates must share one local
+frame; point boundary tolerance is 1e-7 coordinate units, winding tolerance 1e-5.
+Near-degenerate faces, unresolved orientation, missing cavity parents, detected
+touching/crossing shells and exhausted budgets throw rather than guess.
+
+Sources: [Manifold's oriented boundary representation](https://manifoldcad.org/docs/jsuser/classes/Manifold.html)
+and [Jacobson et al.'s generalized winding numbers](https://igl.ethz.ch/projects/winding-number/robust-inside-outside-segmentation-using-generalized-winding-numbers-siggraph-2013-jacobson-et-al.pdf).
