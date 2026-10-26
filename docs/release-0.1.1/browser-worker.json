@@ -1,0 +1,20 @@
+{
+  "result": {
+    "area": 0.5,
+    "gap": 0,
+    "cells": 4096,
+    "detached": true
+  },
+  "bitmapResult": {
+    "alpha": [
+      255,
+      0,
+      64,
+      128
+    ],
+    "sourceWidth": 2,
+    "error": null
+  },
+  "errors": [],
+  "gpu": "disabled"
+}

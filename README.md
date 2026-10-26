@@ -75,3 +75,24 @@ Run `bun install --frozen-lockfile` and `bun run check:package`.
 and its development asset tooling; see docs/canopy-audit/README.md.
 
 Licensed under BSL-1.1; see LICENSE for the additional use grant and change date.
+
+## Worker-side alpha preparation (0.1.1)
+
+`alphaFromRgba(rgba, width, height)` copies one alpha byte per RGBA8 texel into an
+owned Uint8Array. It accepts Uint8Array or Uint8ClampedArray and validates the
+exact byte length and the same 4,194,304-texel budget before allocation.
+
+`alphaFromImageBitmap(bitmap)` reads an already decoded bitmap using a temporary
+OffscreenCanvas 2D context with `willReadFrequently: true`. Call it in a worker;
+it performs synchronous CPU readback wherever it is called. The temporary canvas
+is released afterward. It does not create a WebGL context, close the input bitmap,
+or detach any borrowed renderer resource. The caller owns bitmap cleanup.
+Unsupported runtimes, closed/invalid bitmaps and oversized images fail explicitly.
+There is no hidden main-thread fallback.
+
+ImageBitmap supports structured cloning as well as transfer. The browser-worker
+qualification checks exact alpha values and that closing a cloned worker image
+leaves its source usable. Transfer only owned copies if using a transfer list.
+See the [HTML ImageBitmap ownership contract](https://html.spec.whatwg.org/multipage/imagebitmap-and-animations.html#imagebitmap)
+and [OffscreenCanvas](https://developer.mozilla.org/en-US/docs/Web/API/OffscreenCanvas).
+These helpers prepare raster inputs; they do not assign hydrologic meaning to alpha.

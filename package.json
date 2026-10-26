@@ -1,6 +1,6 @@
 {
   "name": "@absolutejs/geometry",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Bounded alpha-aware geometry projection for worker-side asset measurement and web 3D tooling.",
   "type": "module",
   "main": "./dist/index.js",
