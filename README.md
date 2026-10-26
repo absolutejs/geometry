@@ -230,13 +230,27 @@ does not require Manifold.
 
 The adapter supplies create/subtract/union/intersect/export, native status checks,
 original mesh IDs, face IDs and backside flags. It creates fresh IDs for overlap
-operands when no explicit source index is given. Each exported solid is translated
-to its own bounds center **before** native Float32 export, then restored in double
-precision. This avoids additional rounding from the larger shared Boolean frame.
-A regression covers a micrometre-sized cube at an offset where ordinary Float32
-export loses over 1% of its width. No tolerance increase, shape simplification or
-proximity welding is used. The adapter owns one additional temporary translated
-native handle during export and releases it even if ancestry validation fails.
+operands when no explicit source index is given. Export now preserves native
+**double-precision positions** through `getManifoldMesh64(solid)`, also exported
+from the optional Manifold entry. A temporary property channel stores exact integer
+indices into a bounded sidecar captured by Manifold's property callback; the final
+Float32 property index recovers the original double position. No simplification,
+proximity welding or tolerance change is used. The temporary native copy is freed.
+
+`getManifoldMesh64` returns owned arrays with interleaved Float64 `vertProperties`,
+`numProp`, triangle indices, explicit merge maps, original IDs, face IDs, run
+boundaries and per-run `reversed` flags. Extra property values keep native getMesh
+export semantics (including transformed normals); only position precision is
+upgraded. The input solid remains owned and unchanged by the caller. The result
+is an export record, not an input accepted directly by Manifold's Float32 Mesh API.
+
+Limits:200,000 triangles,100,000 exported property vertices,16 extra channels,
+and at most600,000 position callbacks. `mergeIndexedMesh` accepts Float32 or
+Float64 position-only buffers and still uses explicit merge ancestry. Core imports
+remain independent of Manifold. Input creation in the adapter still uses native
+Float32 Mesh construction: this export improvement cannot restore precision lost
+before a solid was created, or repair invalid native geometry. Keep precision-
+sensitive native operations native until their final export when possible.
 
 The ancestry contract does not assign grain across a newly cut face spanning
 multiple materials, validate a collider, or prove a physical attachment.

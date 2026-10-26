@@ -13,7 +13,7 @@ const { chromium } = require(process.env.PLAYWRIGHT_MODULE || '/home/alexkahn/.c
         '/index.js': fs.readFileSync('dist/index.js', 'utf8'),
         '/projection.js': fs.readFileSync('dist/projection.js', 'utf8'),
         '/alpha.js': fs.readFileSync('dist/alpha.js', 'utf8'),
- ...Object.fromEntries(['closedComponents','solidPointMembership','solidComponents','signedVolume','overlap','materialPartition','triangleWeights','surfaceOrigins','mergeIndexedMesh','principalInertia'].map(n=>['/'+n+'.js',fs.readFileSync('dist/'+n+'.js','utf8')])),
+ ...Object.fromEntries(['closedComponents','solidPointMembership','solidComponents','signedVolume','overlap','materialPartition','triangleWeights','surfaceOrigins','mergeIndexedMesh','principalInertia','manifold','manifoldMesh64'].map(n=>['/'+n+'.js',fs.readFileSync('dist/'+n+'.js','utf8')])),
         '/worker.js': `import {projectAlphaCoverage,alphaFromImageBitmap,principalInertiaFrame} from './index.js'; onmessage = e => { try {if(e.data.tensor){postMessage(principalInertiaFrame(e.data.tensor));return;}if(e.data.bitmap){const alpha=alphaFromImageBitmap(e.data.bitmap);e.data.bitmap.close();postMessage({alpha},[alpha.buffer]);return;}const r = projectAlphaCoverage(e.data); postMessage(r,[r.cells.buffer]);} catch (error) {postMessage({error:String(error)});} };`,
       };
       return route.fulfill({contentType: path in sources ? 'text/javascript' : 'text/html', body: sources[path] || '<!doctype html><title>Geometry worker qualification</title>'});
@@ -48,6 +48,7 @@ const { chromium } = require(process.env.PLAYWRIGHT_MODULE || '/home/alexkahn/.c
       }finally{bitmap.close();worker.terminate()}
     });
     assert.deepEqual(bitmapResult,{alpha:[255,0,64,128],sourceWidth:2,error:null});
+    assert.equal(await page.evaluate(async()=>typeof(await import('/manifold.js')).getManifoldMesh64),'function');
     const inertiaResult = await page.evaluate(async () => {
       const worker=new Worker('/worker.js',{type:'module'});
       try{return await new Promise((resolve,reject)=>{
