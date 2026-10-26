@@ -26,3 +26,8 @@ A separate game candidate bundle passes 13 tests /2238681 assertions covering
 canopy variants/phenotypes/cuts, physical components and finite cut conservation.
 Its source and receipts are under the game's material-provenance-2026-10-26 docs.
 Registry adoption and the complete game suite remain separate release steps.
+
+Publication verified 2026-10-26 after npm registry processing: version 0.9.0,
+SHA1 `d97ddfb825c1e00117cd6f1f7150ebae0128e7de`, matching the prepared tarball.
+Release source `0892f8b5a674aedd6f812198f5f06273c00841c4` is pushed to main.
+Game adoption and its separate regression results are recorded in the game repo.
