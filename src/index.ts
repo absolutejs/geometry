@@ -8,3 +8,4 @@ export { alphaFromRgba, alphaFromImageBitmap } from './alpha.js';
 export { closedComponents } from './closedComponents.js';
 export { solidPointMembership } from './solidPointMembership.js';
 export { solidComponents } from './solidComponents.js';
+export { auditSolidOverlaps, type OverlapMesh, type OverlapSolid, type SolidOverlapAudit } from './overlap.js';

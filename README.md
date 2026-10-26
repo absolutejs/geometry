@@ -131,3 +131,27 @@ touching/crossing shells and exhausted budgets throw rather than guess.
 
 Sources: [Manifold's oriented boundary representation](https://manifoldcad.org/docs/jsuser/classes/Manifold.html)
 and [Jacobson et al.'s generalized winding numbers](https://igl.ethz.ch/projects/winding-number/robust-inside-outside-segmentation-using-generalized-winding-numbers-siggraph-2013-jacobson-et-al.pdf).
+
+## Initial material overlap audit (0.3.0)
+
+`auditSolidOverlaps(meshes, kernel, maximumQueries = 256)` checks solid intersection
+volumes before physics publication. Supply `{create(mesh), intersect(a,b)}` using
+your Boolean backend. Handles implement `volume()` and `delete()`; each operation
+must return a new owned handle. A factory that throws must release any allocation
+it made before throwing. The audit releases all successfully returned handles on
+both success and failure, and passes private position/index copies to the kernel.
+No Boolean engine is bundled or required at runtime.
+
+The result includes per-mesh oriented volumes, pair indices/intersection volumes,
+fraction of the smaller solid, query count, bounds skips and maximum input volume
+round-trip error. Touching/disjoint bounds need no native intersection. Candidate
+pairs are rebased before construction. Native volume error above 1e-5 or impossible
+intersection volume rejects; tiny nonzero intersections are reported, not rounded
+away. The host chooses its material-resolution threshold explicitly.
+
+Use valid oriented material boundaries, including cavity walls. The API does not
+repair overlapping shells within one input mesh, assign source ownership, union
+models, predict extraction clearance or validate dynamic contact penetration.
+Bounds are not proof of overlap. Limits: 64 meshes, 100,000 total vertices,
+200,000 total triangles, and at most 1,024 requested pair queries. A host worker
+must impose its own lifetime bound on its injected native kernel.

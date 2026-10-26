@@ -1,0 +1,34 @@
+$ bun run build && bun test ./tests
+$ tsc -p tsconfig.json
+bun test v1.4.4+absolute.1 (38afee6c8)
+
+tests/solid-components.test.ts:
+(pass) cavity walls stay with the surrounding material, separate same-owner pieces do not merge [34.84ms]
+(pass) nested material islands own their own cavities [15.18ms]
+(pass) ownership, touching shells, orphan voids and work budgets fail explicitly [6.55ms]
+(pass) translated coordinates and empty boundaries preserve semantics [3.02ms]
+
+tests/alpha.test.ts:
+(pass) RGBA alpha extraction owns its output and preserves exact alpha independently of color [0.56ms]
+(pass) alpha extraction rejects malformed and oversized sources before allocating [1.02ms]
+
+tests/projection.test.ts:
+(pass) bilinear alpha resolves physical holes rather than treating the card as solid [51.26ms]
+(pass) coverage is a union and is invariant to winding/order without mutating inputs [21.18ms]
+(pass) disconnected leaves preserve open space inside their explicit convex reference hull [1.60ms]
+(pass) local coordinates preserve coverage at distant origins and tiny or large scales [11.57ms]
+(pass) sampler wrap modes apply to negative UV coordinates [8.79ms]
+(pass) hull area and sampled area remain separately visible and unreferenced vertices do not inflate it [4.27ms]
+(pass) malformed data, degenerate projections and oversized work are rejected [1.24ms]
+(pass) triangle-local rasterization agrees with independent point-in-triangle queries [79.84ms]
+
+tests/overlap.test.ts:
+(pass) initial overlap distinguishes duplicates, partial overlap, touching and disjoint solids [43.46ms]
+(pass) a chip inside a hollow shell has zero intersection, including large world translations [16.51ms]
+(pass) native handles are released on success, invalid output and kernel failure [13.61ms]
+(pass) budgets, orientation and corrupt meshes fail before unbounded kernel work [10.08ms]
+
+ 18 pass
+ 0 fail
+ 12393 expect() calls
+Ran 18 tests across 4 files. [419.00ms]

@@ -13,7 +13,7 @@ const { chromium } = require(process.env.PLAYWRIGHT_MODULE || '/home/alexkahn/.c
         '/index.js': fs.readFileSync('dist/index.js', 'utf8'),
         '/projection.js': fs.readFileSync('dist/projection.js', 'utf8'),
         '/alpha.js': fs.readFileSync('dist/alpha.js', 'utf8'),
- ...Object.fromEntries(['closedComponents','solidPointMembership','solidComponents'].map(n=>['/'+n+'.js',fs.readFileSync('dist/'+n+'.js','utf8')])),
+ ...Object.fromEntries(['closedComponents','solidPointMembership','solidComponents','signedVolume','overlap'].map(n=>['/'+n+'.js',fs.readFileSync('dist/'+n+'.js','utf8')])),
         '/worker.js': `import {projectAlphaCoverage,alphaFromImageBitmap} from './index.js'; onmessage = e => { try {if(e.data.bitmap){const alpha=alphaFromImageBitmap(e.data.bitmap);e.data.bitmap.close();postMessage({alpha},[alpha.buffer]);return;}const r = projectAlphaCoverage(e.data); postMessage(r,[r.cells.buffer]);} catch (error) {postMessage({error:String(error)});} };`,
       };
       return route.fulfill({contentType: path in sources ? 'text/javascript' : 'text/html', body: sources[path] || '<!doctype html><title>Geometry worker qualification</title>'});
