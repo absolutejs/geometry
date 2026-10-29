@@ -10,9 +10,10 @@ const game=resolve(process.argv[2]!),output=process.argv[3]!;
 const threePath=game+'/node_modules/three/build/three.module.js',bvhPath=game+'/node_modules/three-mesh-bvh/src/index.js';
 const THREE=await import(threePath),{MeshBVH}=await import(bvhPath);
 const sha=(b:Uint8Array)=>createHash('sha256').update(b).digest('hex');
-const inputs=[import.meta.path,'src/closeRectangularPatch.ts','src/classifyMeshWitness.ts','src/solidPointMembership.ts','tests/fixtures/terrain-inspection-patch.json.gz',threePath,bvhPath];
+const fixturePath=process.argv[4]??'tests/fixtures/terrain-inspection-patch.json.gz';
+const inputs=[import.meta.path,'src/closeRectangularPatch.ts','src/classifyMeshWitness.ts','src/solidPointMembership.ts',fixturePath,threePath,bvhPath];
 const sources=Object.fromEntries(inputs.map(p=>[p,sha(readFileSync(p))]));
-const fixture=JSON.parse(gunzipSync(readFileSync('tests/fixtures/terrain-inspection-patch.json.gz')).toString());
+const fixture=JSON.parse(gunzipSync(readFileSync(fixturePath)).toString());
 const map:number[]=[],ids=new Map<string,number>(),values:number[]=[];
 for(let i=0;i<fixture.positions.length;i+=3){const p=fixture.positions.slice(i,i+3),key=p.join(',');let id=ids.get(key);if(id===undefined){id=ids.size;ids.set(key,id);values.push(...p);}map.push(id);}
 const p=Float64Array.from(values),f=Uint32Array.from(fixture.indices.map((i:number)=>map[i]!));let low=Infinity,high=-Infinity;for(let i=1;i<p.length;i+=3){low=Math.min(low,p[i]!);high=Math.max(high,p[i]!);}

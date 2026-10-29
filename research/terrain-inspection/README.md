@@ -78,3 +78,38 @@ result; edge/vertex and nested cavity controls now pass. All 66 package tests
 domain-build.log. New helpers are still unexported and unreleased. Broader
 terrain validation and coverage semantics are required before a game gate can
 use them. No dependency adoption or finite-drop gate changes are included.
+
+## Wider terrain and surface coverage
+
+`generate-patches.ts` reuses canonical game generation at three reported sites,
+with no excavation and radii 2.5/8 m. All nine patches support inspection closure.
+Their 5,166 nearest-witness samples have zero known sign disagreements against
+the winding oracle. Synthetic-boundary queries remain unknown (638 total).
+Source hashes, compressed exact patches, all witnesses and logs are retained
+under patches/. This is sampled evidence, not self-intersection certification.
+
+The new unexported `auditDistanceTriangles` addresses the vertex-only blind spot:
+a triangle's centroid distance minus its enclosing radius is a lower bound over
+its entire surface for a static 1-Lipschitz signed-distance oracle. Ambiguous
+triangles split along their longest edge. Known oracle uncertainty and explicit
+arithmetic padding are deducted; penetration requires the upper distance bound
+also to fail. Unknown oracle results and depth/query exhaustion stay unknown.
+It owns the input arrays and shields points from callback mutation. Five tests
+cover a sphere intersecting a face while all vertices clear, analytic plane
+subdivision, uncertainty/budget failures, malformed input and alias isolation.
+All 71 package tests (30,829 assertions) and the build pass.
+
+`probe-terminal-surfaces.ts` reconstructs convex hulls of the saved source
+points with installed Three's double-precision ConvexHull (not Float32
+ConvexGeometry). This is NOT a native hull export. At 5 mm tolerance the initial
+20,000-query-per-hull cap clears 18 of 19 terminal-pose surfaces and leaves one
+explicit query-budget unknown. A diagnostic 100,000 cap clears all 19 with
+61,296 total queries (42,316 for that large hull); cold observed loop cost is
+609 ms. Both results remain saved. No production budget or acceptance tolerance
+was changed, and the original non-settling physics attempt still fails.
+
+This expensive surface-only prototype is not ready for runtime adoption. It
+does not establish continuous-time clearance, exclude a fully enclosed obstacle,
+or prove that reconstructed hulls equal native collision shapes. Next work must
+address actual native-hull coverage and acceleration before promoting a finite
+terrain gate. These findings are a reason to preserve the gate, not bypass it.

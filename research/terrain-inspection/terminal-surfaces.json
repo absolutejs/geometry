@@ -1,0 +1,306 @@
+{
+  "scope": "Terminal-pose reconstructed source-point convex hull surface audit, 5mm tolerance; NOT native hull export, continuous motion or enclosed-volume certification. Unknown budget exhaustion never clears a hull.",
+  "sources": {
+    "/home/alexkahn/alex/geometry-terrain-inspection/research/terrain-inspection/probe-terminal-surfaces.ts": "b8bd590f21f6bed9260f27683cb820d21265e491e63b6681a7061886ff5a06f9",
+    "src/closeRectangularPatch.ts": "159b125a4426c05752fd8348b30ed59937514843d9ae2b5aa0a5bd974a9479a2",
+    "src/classifyMeshWitness.ts": "19a7c2b36c4d759046fe237780296be4751812e870e95677c388b46f3df0b1f6",
+    "src/auditDistanceTriangles.ts": "f04428a5fca24e4867167bb6746bc7d11b4502a8451f73db8825eb0e5c09e9f0",
+    "/home/alexkahn/alex/hello-world/docs/finite-terrain-expansion-2026-10-29/large-deformed-reported-landform-generated-1920-rejected.json.gz": "866104b12d8d7bf60d11dc730c56e8fa5789a34fd8ec210c6e1a42b983bcaab4",
+    "/home/alexkahn/alex/hello-world/node_modules/three/build/three.module.js": "9052042d676cb0fdc1ddfefe193053f34b7ac0513a616fdac4535d49987812ea",
+    "/home/alexkahn/alex/hello-world/node_modules/three-mesh-bvh/src/index.js": "935c798512c3a3b09d5bb951df4556a5d71ec4d807f4733625d1f0799a7ac924",
+    "/home/alexkahn/alex/hello-world/node_modules/three/examples/jsm/math/ConvexHull.js": "7b7d53ed4533556f555440676d2cbc3680ffab32b1a910c79c9a522019bd3a06"
+  },
+  "elapsedMs": 420.955335,
+  "queries": 38980,
+  "clear": 18,
+  "penetrating": 0,
+  "unknown": 1,
+  "rows": [
+    {
+      "body": 0,
+      "collider": 0,
+      "poseSeconds": 20,
+      "sourceVertices": 48,
+      "surfaceTriangles": 92,
+      "elapsedMs": 215.19451199999997,
+      "result": {
+        "kind": "unknown",
+        "reason": "query-budget",
+        "triangle": 69,
+        "queries": 20000,
+        "certifiedLeaves": 10032,
+        "maximumDepth": 15
+      }
+    },
+    {
+      "body": 1,
+      "collider": 0,
+      "poseSeconds": 20,
+      "sourceVertices": 48,
+      "surfaceTriangles": 92,
+      "elapsedMs": 26.15668599999998,
+      "result": {
+        "kind": "clear",
+        "penetrationTolerance": 0.005,
+        "queries": 1814,
+        "certifiedLeaves": 953,
+        "maximumDepth": 14
+      }
+    },
+    {
+      "body": 1,
+      "collider": 1,
+      "poseSeconds": 20,
+      "sourceVertices": 24,
+      "surfaceTriangles": 44,
+      "elapsedMs": 11.681190000000015,
+      "result": {
+        "kind": "clear",
+        "penetrationTolerance": 0.005,
+        "queries": 790,
+        "certifiedLeaves": 417,
+        "maximumDepth": 6
+      }
+    },
+    {
+      "body": 1,
+      "collider": 2,
+      "poseSeconds": 20,
+      "sourceVertices": 24,
+      "surfaceTriangles": 44,
+      "elapsedMs": 3.702040000000011,
+      "result": {
+        "kind": "clear",
+        "penetrationTolerance": 0.005,
+        "queries": 302,
+        "certifiedLeaves": 173,
+        "maximumDepth": 4
+      }
+    },
+    {
+      "body": 1,
+      "collider": 3,
+      "poseSeconds": 20,
+      "sourceVertices": 12,
+      "surfaceTriangles": 20,
+      "elapsedMs": 0.44537900000000263,
+      "result": {
+        "kind": "clear",
+        "penetrationTolerance": 0.005,
+        "queries": 44,
+        "certifiedLeaves": 32,
+        "maximumDepth": 1
+      }
+    },
+    {
+      "body": 1,
+      "collider": 4,
+      "poseSeconds": 20,
+      "sourceVertices": 12,
+      "surfaceTriangles": 20,
+      "elapsedMs": 0.6887999999999579,
+      "result": {
+        "kind": "clear",
+        "penetrationTolerance": 0.005,
+        "queries": 68,
+        "certifiedLeaves": 44,
+        "maximumDepth": 2
+      }
+    },
+    {
+      "body": 1,
+      "collider": 5,
+      "poseSeconds": 20,
+      "sourceVertices": 12,
+      "surfaceTriangles": 20,
+      "elapsedMs": 0.27822499999996353,
+      "result": {
+        "kind": "clear",
+        "penetrationTolerance": 0.005,
+        "queries": 32,
+        "certifiedLeaves": 26,
+        "maximumDepth": 1
+      }
+    },
+    {
+      "body": 1,
+      "collider": 6,
+      "poseSeconds": 20,
+      "sourceVertices": 24,
+      "surfaceTriangles": 44,
+      "elapsedMs": 16.082381999999996,
+      "result": {
+        "kind": "clear",
+        "penetrationTolerance": 0.005,
+        "queries": 1206,
+        "certifiedLeaves": 625,
+        "maximumDepth": 7
+      }
+    },
+    {
+      "body": 1,
+      "collider": 7,
+      "poseSeconds": 20,
+      "sourceVertices": 12,
+      "surfaceTriangles": 20,
+      "elapsedMs": 4.969797999999969,
+      "result": {
+        "kind": "clear",
+        "penetrationTolerance": 0.005,
+        "queries": 398,
+        "certifiedLeaves": 209,
+        "maximumDepth": 6
+      }
+    },
+    {
+      "body": 1,
+      "collider": 8,
+      "poseSeconds": 20,
+      "sourceVertices": 12,
+      "surfaceTriangles": 20,
+      "elapsedMs": 1.3563689999999724,
+      "result": {
+        "kind": "clear",
+        "penetrationTolerance": 0.005,
+        "queries": 114,
+        "certifiedLeaves": 67,
+        "maximumDepth": 4
+      }
+    },
+    {
+      "body": 1,
+      "collider": 9,
+      "poseSeconds": 20,
+      "sourceVertices": 12,
+      "surfaceTriangles": 20,
+      "elapsedMs": 37.286558000000014,
+      "result": {
+        "kind": "clear",
+        "penetrationTolerance": 0.005,
+        "queries": 4104,
+        "certifiedLeaves": 2062,
+        "maximumDepth": 15
+      }
+    },
+    {
+      "body": 1,
+      "collider": 10,
+      "poseSeconds": 20,
+      "sourceVertices": 25,
+      "surfaceTriangles": 44,
+      "elapsedMs": 44.000707000000034,
+      "result": {
+        "kind": "clear",
+        "penetrationTolerance": 0.005,
+        "queries": 5708,
+        "certifiedLeaves": 2876,
+        "maximumDepth": 16
+      }
+    },
+    {
+      "body": 1,
+      "collider": 11,
+      "poseSeconds": 20,
+      "sourceVertices": 12,
+      "surfaceTriangles": 20,
+      "elapsedMs": 2.110253000000057,
+      "result": {
+        "kind": "clear",
+        "penetrationTolerance": 0.005,
+        "queries": 236,
+        "certifiedLeaves": 128,
+        "maximumDepth": 5
+      }
+    },
+    {
+      "body": 1,
+      "collider": 12,
+      "poseSeconds": 20,
+      "sourceVertices": 12,
+      "surfaceTriangles": 20,
+      "elapsedMs": 20.54847499999994,
+      "result": {
+        "kind": "clear",
+        "penetrationTolerance": 0.005,
+        "queries": 1712,
+        "certifiedLeaves": 866,
+        "maximumDepth": 9
+      }
+    },
+    {
+      "body": 1,
+      "collider": 13,
+      "poseSeconds": 20,
+      "sourceVertices": 12,
+      "surfaceTriangles": 20,
+      "elapsedMs": 10.693885000000023,
+      "result": {
+        "kind": "clear",
+        "penetrationTolerance": 0.005,
+        "queries": 1134,
+        "certifiedLeaves": 577,
+        "maximumDepth": 10
+      }
+    },
+    {
+      "body": 1,
+      "collider": 14,
+      "poseSeconds": 20,
+      "sourceVertices": 25,
+      "surfaceTriangles": 46,
+      "elapsedMs": 8.14358100000004,
+      "result": {
+        "kind": "clear",
+        "penetrationTolerance": 0.005,
+        "queries": 680,
+        "certifiedLeaves": 363,
+        "maximumDepth": 6
+      }
+    },
+    {
+      "body": 1,
+      "collider": 15,
+      "poseSeconds": 20,
+      "sourceVertices": 12,
+      "surfaceTriangles": 20,
+      "elapsedMs": 3.800589999999943,
+      "result": {
+        "kind": "clear",
+        "penetrationTolerance": 0.005,
+        "queries": 378,
+        "certifiedLeaves": 199,
+        "maximumDepth": 6
+      }
+    },
+    {
+      "body": 1,
+      "collider": 16,
+      "poseSeconds": 20,
+      "sourceVertices": 13,
+      "surfaceTriangles": 22,
+      "elapsedMs": 2.348324000000048,
+      "result": {
+        "kind": "clear",
+        "penetrationTolerance": 0.005,
+        "queries": 82,
+        "certifiedLeaves": 52,
+        "maximumDepth": 2
+      }
+    },
+    {
+      "body": 1,
+      "collider": 17,
+      "poseSeconds": 20,
+      "sourceVertices": 13,
+      "surfaceTriangles": 22,
+      "elapsedMs": 1.6173919999999953,
+      "result": {
+        "kind": "clear",
+        "penetrationTolerance": 0.005,
+        "queries": 178,
+        "certifiedLeaves": 100,
+        "maximumDepth": 4
+      }
+    }
+  ]
+}

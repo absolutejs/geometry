@@ -1,0 +1,16 @@
+{
+  "scope": "Retained patch, CPU-only nearest witnesses; 1mm face offsets and seeded volume points; finite samples do not certify arbitrary self-intersection or continuous body separation",
+  "versions": {
+    "three": "0.186.1",
+    "bvh": "0.8.3"
+  },
+  "constructionMs": 200.95882600000002,
+  "queryMs": 71.33491900000013,
+  "oracleMs": 4061.424534999997,
+  "count": 574,
+  "mismatches": 0,
+  "unknown": 100,
+  "unknownReasons": {
+    "synthetic-boundary": 100
+  }
+}

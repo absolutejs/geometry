@@ -1,0 +1,296 @@
+{
+  "scope": "Terminal-pose reconstructed source-point convex hull surface audit, 5mm tolerance; NOT native hull export, continuous motion or enclosed-volume certification. Unknown budget exhaustion never clears a hull.",
+  "elapsedMs": 420.955335,
+  "queries": 38980,
+  "clear": 18,
+  "penetrating": 0,
+  "unknown": 1,
+  "rows": [
+    {
+      "body": 0,
+      "collider": 0,
+      "poseSeconds": 20,
+      "sourceVertices": 48,
+      "surfaceTriangles": 92,
+      "elapsedMs": 215.19451199999997,
+      "result": {
+        "kind": "unknown",
+        "reason": "query-budget",
+        "triangle": 69,
+        "queries": 20000,
+        "certifiedLeaves": 10032,
+        "maximumDepth": 15
+      }
+    },
+    {
+      "body": 1,
+      "collider": 0,
+      "poseSeconds": 20,
+      "sourceVertices": 48,
+      "surfaceTriangles": 92,
+      "elapsedMs": 26.15668599999998,
+      "result": {
+        "kind": "clear",
+        "penetrationTolerance": 0.005,
+        "queries": 1814,
+        "certifiedLeaves": 953,
+        "maximumDepth": 14
+      }
+    },
+    {
+      "body": 1,
+      "collider": 1,
+      "poseSeconds": 20,
+      "sourceVertices": 24,
+      "surfaceTriangles": 44,
+      "elapsedMs": 11.681190000000015,
+      "result": {
+        "kind": "clear",
+        "penetrationTolerance": 0.005,
+        "queries": 790,
+        "certifiedLeaves": 417,
+        "maximumDepth": 6
+      }
+    },
+    {
+      "body": 1,
+      "collider": 2,
+      "poseSeconds": 20,
+      "sourceVertices": 24,
+      "surfaceTriangles": 44,
+      "elapsedMs": 3.702040000000011,
+      "result": {
+        "kind": "clear",
+        "penetrationTolerance": 0.005,
+        "queries": 302,
+        "certifiedLeaves": 173,
+        "maximumDepth": 4
+      }
+    },
+    {
+      "body": 1,
+      "collider": 3,
+      "poseSeconds": 20,
+      "sourceVertices": 12,
+      "surfaceTriangles": 20,
+      "elapsedMs": 0.44537900000000263,
+      "result": {
+        "kind": "clear",
+        "penetrationTolerance": 0.005,
+        "queries": 44,
+        "certifiedLeaves": 32,
+        "maximumDepth": 1
+      }
+    },
+    {
+      "body": 1,
+      "collider": 4,
+      "poseSeconds": 20,
+      "sourceVertices": 12,
+      "surfaceTriangles": 20,
+      "elapsedMs": 0.6887999999999579,
+      "result": {
+        "kind": "clear",
+        "penetrationTolerance": 0.005,
+        "queries": 68,
+        "certifiedLeaves": 44,
+        "maximumDepth": 2
+      }
+    },
+    {
+      "body": 1,
+      "collider": 5,
+      "poseSeconds": 20,
+      "sourceVertices": 12,
+      "surfaceTriangles": 20,
+      "elapsedMs": 0.27822499999996353,
+      "result": {
+        "kind": "clear",
+        "penetrationTolerance": 0.005,
+        "queries": 32,
+        "certifiedLeaves": 26,
+        "maximumDepth": 1
+      }
+    },
+    {
+      "body": 1,
+      "collider": 6,
+      "poseSeconds": 20,
+      "sourceVertices": 24,
+      "surfaceTriangles": 44,
+      "elapsedMs": 16.082381999999996,
+      "result": {
+        "kind": "clear",
+        "penetrationTolerance": 0.005,
+        "queries": 1206,
+        "certifiedLeaves": 625,
+        "maximumDepth": 7
+      }
+    },
+    {
+      "body": 1,
+      "collider": 7,
+      "poseSeconds": 20,
+      "sourceVertices": 12,
+      "surfaceTriangles": 20,
+      "elapsedMs": 4.969797999999969,
+      "result": {
+        "kind": "clear",
+        "penetrationTolerance": 0.005,
+        "queries": 398,
+        "certifiedLeaves": 209,
+        "maximumDepth": 6
+      }
+    },
+    {
+      "body": 1,
+      "collider": 8,
+      "poseSeconds": 20,
+      "sourceVertices": 12,
+      "surfaceTriangles": 20,
+      "elapsedMs": 1.3563689999999724,
+      "result": {
+        "kind": "clear",
+        "penetrationTolerance": 0.005,
+        "queries": 114,
+        "certifiedLeaves": 67,
+        "maximumDepth": 4
+      }
+    },
+    {
+      "body": 1,
+      "collider": 9,
+      "poseSeconds": 20,
+      "sourceVertices": 12,
+      "surfaceTriangles": 20,
+      "elapsedMs": 37.286558000000014,
+      "result": {
+        "kind": "clear",
+        "penetrationTolerance": 0.005,
+        "queries": 4104,
+        "certifiedLeaves": 2062,
+        "maximumDepth": 15
+      }
+    },
+    {
+      "body": 1,
+      "collider": 10,
+      "poseSeconds": 20,
+      "sourceVertices": 25,
+      "surfaceTriangles": 44,
+      "elapsedMs": 44.000707000000034,
+      "result": {
+        "kind": "clear",
+        "penetrationTolerance": 0.005,
+        "queries": 5708,
+        "certifiedLeaves": 2876,
+        "maximumDepth": 16
+      }
+    },
+    {
+      "body": 1,
+      "collider": 11,
+      "poseSeconds": 20,
+      "sourceVertices": 12,
+      "surfaceTriangles": 20,
+      "elapsedMs": 2.110253000000057,
+      "result": {
+        "kind": "clear",
+        "penetrationTolerance": 0.005,
+        "queries": 236,
+        "certifiedLeaves": 128,
+        "maximumDepth": 5
+      }
+    },
+    {
+      "body": 1,
+      "collider": 12,
+      "poseSeconds": 20,
+      "sourceVertices": 12,
+      "surfaceTriangles": 20,
+      "elapsedMs": 20.54847499999994,
+      "result": {
+        "kind": "clear",
+        "penetrationTolerance": 0.005,
+        "queries": 1712,
+        "certifiedLeaves": 866,
+        "maximumDepth": 9
+      }
+    },
+    {
+      "body": 1,
+      "collider": 13,
+      "poseSeconds": 20,
+      "sourceVertices": 12,
+      "surfaceTriangles": 20,
+      "elapsedMs": 10.693885000000023,
+      "result": {
+        "kind": "clear",
+        "penetrationTolerance": 0.005,
+        "queries": 1134,
+        "certifiedLeaves": 577,
+        "maximumDepth": 10
+      }
+    },
+    {
+      "body": 1,
+      "collider": 14,
+      "poseSeconds": 20,
+      "sourceVertices": 25,
+      "surfaceTriangles": 46,
+      "elapsedMs": 8.14358100000004,
+      "result": {
+        "kind": "clear",
+        "penetrationTolerance": 0.005,
+        "queries": 680,
+        "certifiedLeaves": 363,
+        "maximumDepth": 6
+      }
+    },
+    {
+      "body": 1,
+      "collider": 15,
+      "poseSeconds": 20,
+      "sourceVertices": 12,
+      "surfaceTriangles": 20,
+      "elapsedMs": 3.800589999999943,
+      "result": {
+        "kind": "clear",
+        "penetrationTolerance": 0.005,
+        "queries": 378,
+        "certifiedLeaves": 199,
+        "maximumDepth": 6
+      }
+    },
+    {
+      "body": 1,
+      "collider": 16,
+      "poseSeconds": 20,
+      "sourceVertices": 13,
+      "surfaceTriangles": 22,
+      "elapsedMs": 2.348324000000048,
+      "result": {
+        "kind": "clear",
+        "penetrationTolerance": 0.005,
+        "queries": 82,
+        "certifiedLeaves": 52,
+        "maximumDepth": 2
+      }
+    },
+    {
+      "body": 1,
+      "collider": 17,
+      "poseSeconds": 20,
+      "sourceVertices": 13,
+      "surfaceTriangles": 22,
+      "elapsedMs": 1.6173919999999953,
+      "result": {
+        "kind": "clear",
+        "penetrationTolerance": 0.005,
+        "queries": 178,
+        "certifiedLeaves": 100,
+        "maximumDepth": 4
+      }
+    }
+  ]
+}

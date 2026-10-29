@@ -1,0 +1,104 @@
+bun test v1.4.4+absolute.1 (38afee6c8)
+
+tests/staticDistanceTracker.test.ts:
+(pass) sphere distance lower bounds survive approach, crossing, exit and discontinuous motion [8.22ms]
+(pass) unknown results and thrown queries invalidate state; explicit reset handles geometry changes [0.26ms]
+(pass) caller, callback and returned stats cannot alias tracker state [0.08ms]
+(pass) invalid identifiers and nonfinite oracle output never expand the point budget [0.06ms]
+(pass) domain is checked before propagation and invalidates cached positive bounds [0.07ms]
+(pass) domain callback cannot mutate retained coordinates and errors invalidate prior state [0.07ms]
+
+tests/solid-components.test.ts:
+(pass) cavity walls stay with the surrounding material, separate same-owner pieces do not merge [4.04ms]
+(pass) nested material islands own their own cavities [1.37ms]
+(pass) ownership, touching shells, orphan voids and work budgets fail explicitly [1.52ms]
+(pass) translated coordinates and empty boundaries preserve semantics [0.95ms]
+
+tests/principalInertia.test.ts:
+(pass) rotated box inertia reconstructs across scales and near-degenerate axes [7.28ms]
+(pass) isotropic and thin-body inertia remain finite and deterministic [0.45ms]
+(pass) reject malformed, asymmetric, negative and nonphysical inertia [0.12ms]
+
+tests/alpha.test.ts:
+(pass) RGBA alpha extraction owns its output and preserves exact alpha independently of color [0.15ms]
+(pass) alpha extraction rejects malformed and oversized sources before allocating [0.08ms]
+
+tests/materialPartition.test.ts:
+(pass) ordered material cells remove duplicated volume and keep a distinct exterior [20.70ms]
+(pass) full coverage returns an explicit empty source cell, not a duplicate solid [2.23ms]
+(pass) hollow material, disconnected solids and large translations preserve physical volume [5.51ms]
+(pass) face, edge and point contact do not assign duplicated volume [4.80ms]
+(pass) success and each native failure release all successfully returned handles [4.56ms]
+(pass) invalid budgets and geometry fail before native allocation [0.42ms]
+(pass) host mutation of copied input arrays cannot change caller geometry [0.25ms]
+(pass) incorrect native operations and aliased handles cannot pass conservation [8.01ms]
+(pass) sequential cuts preserve the independent whole-union mass [6.67ms]
+(pass) native lifetime stays bounded as source count grows [15.95ms]
+
+tests/projection.test.ts:
+(pass) bilinear alpha resolves physical holes rather than treating the card as solid [7.82ms]
+(pass) coverage is a union and is invariant to winding/order without mutating inputs [4.69ms]
+(pass) disconnected leaves preserve open space inside their explicit convex reference hull [0.95ms]
+(pass) local coordinates preserve coverage at distant origins and tiny or large scales [4.88ms]
+(pass) sampler wrap modes apply to negative UV coordinates [4.06ms]
+(pass) hull area and sampled area remain separately visible and unreferenced vertices do not inflate it [1.67ms]
+(pass) malformed data, degenerate projections and oversized work are rejected [0.50ms]
+(pass) triangle-local rasterization agrees with independent point-in-triangle queries [24.22ms]
+
+tests/closeRectangularPatch.test.ts:
+(pass) owned oriented closure and analytic volume on axis 0 [2.64ms]
+(pass) owned oriented closure and analytic volume on axis 1 [1.39ms]
+(pass) owned oriented closure and analytic volume on axis 2 [0.96ms]
+(pass) concave interior depression retains solid/air classification [2.76ms]
+(pass) large translation and thin projected footprint retain analytic volume [0.59ms]
+(pass) holes, reversed boundary, nonmanifold faces, invalid base and degenerate faces reject [0.55ms]
+(pass) retained actual terrain closes without changing any source triangle coordinates [57.90ms]
+
+tests/surfaceOrigins.test.ts:
+(pass) partition retains verified source triangles and reversed internal interfaces [24.31ms]
+(pass) false ancestry, flipped orientation and off-surface points are rejected [8.54ms]
+(pass) absent ancestry is explicit and copied metadata survives backend mutations [6.97ms]
+(pass) thin-triangle attribute interpolation remains stable and rejects unrelated points [0.42ms]
+(pass) explicit merge ancestry restores shared topology without proximity welding [1.06ms]
+(pass) per-solid export rebasing preserves a tiny solid at a distant local offset [2.24ms]
+
+tests/overlap.test.ts:
+(pass) initial overlap distinguishes duplicates, partial overlap, touching and disjoint solids [12.62ms]
+(pass) a chip inside a hollow shell has zero intersection, including large world translations [5.62ms]
+(pass) native handles are released on success, invalid output and kernel failure [2.00ms]
+(pass) budgets, orientation and corrupt meshes fail before unbounded kernel work [1.35ms]
+
+tests/manifoldMesh64.test.ts:
+(pass) sidecar retains a native solid whose Float32 export collapses every position [3.31ms]
+(pass) double export retains custom properties and original Boolean face identities [6.40ms]
+(pass) empty export stays empty and temporary handles are released on read failure [1.93ms]
+(pass) normal property channels keep native transformed export values [2.35ms]
+
+tests/classifyMeshWitness.test.ts:
+(pass) analytic face/diagonal witnesses have the correct signed distance [1.02ms]
+(pass) synthetic faces and mixed material/synthetic edges are explicitly unknown [0.35ms]
+(pass) invalid face identity rejects and an unrelated witness stays unresolved [0.22ms]
+(pass) query state owns source geometry after construction [0.20ms]
+(pass) exact shared-edge and vertex signs do not depend on a tangential face normal [0.15ms]
+(pass) oppositely oriented nested boundaries preserve cavity sign [0.47ms]
+
+tests/auditDistanceTriangles.test.ts:
+(pass) face interior detects a sphere missed by all three clear vertices [0.35ms]
+(pass) adaptive subdivision certifies an entire surface above an analytic plane [1.53ms]
+(pass) uncertainty and exhausted budgets never become a clearance result [0.35ms]
+(pass) oracle cannot mutate the reported witness and invalid geometry rejects [0.08ms]
+
+tests/thin-membership.test.ts:
+(pass) thin and collinear subdivisions preserve closed-cube membership without area cutoffs [0.72ms]
+(pass) captured native pine cut with a 1.3e-34 squared face area supports boundary queries [1.22ms]
+
+tests/axialOrientation.test.ts:
+(pass) opposite fibre axes reinforce instead of cancelling; analytic isotropic and planar mixtures [0.34ms]
+(pass) finite extremes and weight scaling preserve the second moment [6.16ms]
+(pass) rotation covariance, positive directional response and sign independence [2.68ms]
+(pass) rejects absent orientation and malformed data rather than choosing an arbitrary axis [0.15ms]
+
+ 70 pass
+ 0 fail
+ 30828 expect() calls
+Ran 70 tests across 14 files. [399.00ms]

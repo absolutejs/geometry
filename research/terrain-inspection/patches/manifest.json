@@ -1,0 +1,172 @@
+{
+  "scope": "Nine deterministic generated/excavated patches, no solver or renderer",
+  "selectedSources": {
+    "/home/alexkahn/alex/geometry-terrain-inspection/research/terrain-inspection/generate-patches.ts": "6321d402b495c36b9593b2652e9e10a6fab6e80e6225c4555eccf0782e2d5e3b",
+    "/home/alexkahn/alex/hello-world/src/world/generatedCollisionMesh.ts": "1b9434a1a7fb659aaec940cd5d6eafd1bc147d824e6d30988fdecc5ed8fe49b3",
+    "/home/alexkahn/alex/hello-world/src/world/terrain.ts": "75aaf7a441c2f0c3733227db4a9226fc2fae3dc01c39ad613f2c41203faae4e4"
+  },
+  "rows": [
+    {
+      "file": "captured-0.json.gz",
+      "site": {
+        "seed": 417317994,
+        "x": 38286.3424544,
+        "z": 10.03214
+      },
+      "edits": [],
+      "rawSha256": "2ce76a676b642eef7e34f71d0ceb1e27a7006659e501dd369ac626908e095cfb",
+      "archiveSha256": "1662c605b58bfec977ae17fd6e9967afe0bebe5ac2e98fb20ed6f33d23bd4f4a",
+      "triangles": 8185
+    },
+    {
+      "file": "captured-2.5.json.gz",
+      "site": {
+        "seed": 417317994,
+        "x": 38286.3424544,
+        "z": 10.03214
+      },
+      "edits": [
+        {
+          "center": [
+            38286.3424544,
+            3.0094918045944024,
+            10.03214
+          ],
+          "radius": 2.5
+        }
+      ],
+      "rawSha256": "99a5f85bf04109e1539778681a0ecf9c51d841d2a0c361cb2742399900497e76",
+      "archiveSha256": "bcb8152687cdfde125ea9c87eb539c93e9a0f2072ad6e863f12872a770adf12a",
+      "triangles": 8249
+    },
+    {
+      "file": "captured-8.json.gz",
+      "site": {
+        "seed": 417317994,
+        "x": 38286.3424544,
+        "z": 10.03214
+      },
+      "edits": [
+        {
+          "center": [
+            38286.3424544,
+            3.0094918045944024,
+            10.03214
+          ],
+          "radius": 8
+        }
+      ],
+      "rawSha256": "f40e9ca249fb83656b391531dbec1a7a4c45c5d11f9584e512b48eb153cecaf4",
+      "archiveSha256": "776ff76fefaf79a18fec86d95755068b22ede967cfca8a841df9c481c5717bb5",
+      "triangles": 8741
+    },
+    {
+      "file": "shore-0.json.gz",
+      "site": {
+        "seed": 417317994,
+        "x": 38160.901,
+        "z": -186.987
+      },
+      "edits": [],
+      "rawSha256": "204bbe253589593b02d6d486f1ec7aeabdd4dbf267097b47aa4b2a13b141b04c",
+      "archiveSha256": "37fe16a5fd86e90935c1d57438b91d851d29a50dae35a19779cdea2bb0c137ec",
+      "triangles": 8192
+    },
+    {
+      "file": "shore-2.5.json.gz",
+      "site": {
+        "seed": 417317994,
+        "x": 38160.901,
+        "z": -186.987
+      },
+      "edits": [
+        {
+          "center": [
+            38160.901,
+            -4.251836498824572,
+            -186.987
+          ],
+          "radius": 2.5
+        }
+      ],
+      "rawSha256": "3f83638f11e433616587009fe73ab02747d38a71ed1c65d3605c319c2729b851",
+      "archiveSha256": "bbed32c9b8f91bc53f492fefd5a3670d2bd7d141a618faa574c5b193a7542b7d",
+      "triangles": 8276
+    },
+    {
+      "file": "shore-8.json.gz",
+      "site": {
+        "seed": 417317994,
+        "x": 38160.901,
+        "z": -186.987
+      },
+      "edits": [
+        {
+          "center": [
+            38160.901,
+            -4.251836498824572,
+            -186.987
+          ],
+          "radius": 8
+        }
+      ],
+      "rawSha256": "c77c7af84d82cbfc21dc9f5747326c1f256ba24648680017ea1950325fc6fe8a",
+      "archiveSha256": "2514a50c2a320f2e358c6d27ae5c4d3cf9c646b37ddf940c4149c57831c03ae4",
+      "triangles": 8720
+    },
+    {
+      "file": "landform-0.json.gz",
+      "site": {
+        "seed": 2126658212,
+        "x": 80881,
+        "z": 66354
+      },
+      "edits": [],
+      "rawSha256": "eca38dee9eb7c0459d9bec2d2e834a7a60950bbad51afcfd8c37dfcb38945f97",
+      "archiveSha256": "918cea3ce1df3b16cedd0907291d75cbeec1a9e27a61ff0c1a5db36ee000d3c8",
+      "triangles": 8234
+    },
+    {
+      "file": "landform-2.5.json.gz",
+      "site": {
+        "seed": 2126658212,
+        "x": 80881,
+        "z": 66354
+      },
+      "edits": [
+        {
+          "center": [
+            80881,
+            573.1888020540937,
+            66354
+          ],
+          "radius": 2.5
+        }
+      ],
+      "rawSha256": "75243f8945092a5bf04ccf77e05eccc79c4ab2a6f5f968f64cb2acb894b0a3ae",
+      "archiveSha256": "c0ecf9006073e1e63c8d654523862abb015c5645e87827c1481ecac84b56f9f4",
+      "triangles": 8298
+    },
+    {
+      "file": "landform-8.json.gz",
+      "site": {
+        "seed": 2126658212,
+        "x": 80881,
+        "z": 66354
+      },
+      "edits": [
+        {
+          "center": [
+            80881,
+            573.1888020540937,
+            66354
+          ],
+          "radius": 8
+        }
+      ],
+      "rawSha256": "fd27d58b6da254454f78ebda9bb8ade8ffa3b23028157eb27450b5ebaad978cf",
+      "archiveSha256": "ff852966822857786f17222add70ac9d4198124f1b8c20b7de9339fceebd3c72",
+      "triangles": 8890
+    }
+  ]
+}
