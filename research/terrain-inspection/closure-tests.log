@@ -1,0 +1,15 @@
+bun test v1.4.4+absolute.1 (38afee6c8)
+
+tests/closeRectangularPatch.test.ts:
+(pass) owned oriented closure and analytic volume on axis 0 [7.55ms]
+(pass) owned oriented closure and analytic volume on axis 1 [1.02ms]
+(pass) owned oriented closure and analytic volume on axis 2 [1.23ms]
+(pass) concave interior depression retains solid/air classification [3.91ms]
+(pass) large translation and thin projected footprint retain analytic volume [0.58ms]
+(pass) holes, reversed boundary, nonmanifold faces, invalid base and degenerate faces reject [1.05ms]
+(pass) retained actual terrain closes without changing any source triangle coordinates [84.47ms]
+
+ 7 pass
+ 0 fail
+ 58 expect() calls
+Ran 7 tests across 1 file. [117.00ms]
