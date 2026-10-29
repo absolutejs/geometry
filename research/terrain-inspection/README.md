@@ -23,3 +23,25 @@ retained 8,234-triangle terrain mesh. Its original triangle coordinates remain
 unchanged, and the 258 boundary edges add 774 explicitly synthetic faces.
 Closed-boundary membership agrees with the tested inside/outside control points.
 This does not yet qualify a signed nearest-point query or a game clearance gate.
+
+The owned signed-witness prototype builds and passes four initial tests. It
+requires a true nearest witness with exact triangle identity from an external
+accelerator; it does not claim to find the nearest point itself. It precomputes
+angle-weighted vertex normals and adjacent-face edge normals. Near uncertain
+features it requires sign agreement, and synthetic boundaries remain unknown.
+The source must be an outward non-self-intersecting boundary: topology and
+finite positive volume are checked; arbitrary self-intersection is not certified.
+
+The captured-patch probe reuses installed three-mesh-bvh 0.8.3 / Three 0.186.1
+with indirect indexing and zero early-exit threshold. Across 574 deterministic
+points (1 mm offsets from original faces plus seeded volume samples), every
+known result matches the independent solid-angle membership oracle. Twenty-four
+queries correctly remain unknown because their closest feature is synthetic.
+One cold observation: build 239 ms, queries 86 ms, full winding oracle 5,025 ms.
+These are cold bounded CPU observations, not FPS or universal speedup claims.
+Source hashes and all points/witnesses are retained in witness-probe.json.
+
+Method background: https://libigl.github.io/tutorial/#signed-distance and the
+installed three-mesh-bvh README closestPointToPoint/indirect-index contracts.
+The closure/witness helpers remain unexported and unreleased. Actual trajectory
+checks, broader shape controls and measured warm cost are still required.

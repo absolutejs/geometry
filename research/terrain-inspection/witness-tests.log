@@ -1,0 +1,12 @@
+bun test v1.4.4+absolute.1 (38afee6c8)
+
+tests/classifyMeshWitness.test.ts:
+(pass) analytic face/diagonal witnesses have the correct signed distance [4.76ms]
+(pass) synthetic faces and mixed material/synthetic edges are explicitly unknown [0.77ms]
+(pass) invalid face identity rejects and an unrelated witness stays unresolved [1.30ms]
+(pass) query state owns source geometry after construction [0.40ms]
+
+ 4 pass
+ 0 fail
+ 14 expect() calls
+Ran 4 tests across 1 file. [15.00ms]
