@@ -1,0 +1,55 @@
+{
+  "scope": "Actual static-distance cache on the exact retained proxy-vertex sequence; compared point-by-point to full-query reference. Positive bounds only; 1e-7 m padding. No between-sample/whole-material certification.",
+  "sources": {
+    "/home/alexkahn/alex/geometry-terrain-inspection/research/terrain-inspection/probe-tracked-trajectory.ts": "d7917875d8e672940f577a6d4a9fafeeff3c9aac6913b63664838fdcc749fa3b",
+    "src/closeRectangularPatch.ts": "159b125a4426c05752fd8348b30ed59937514843d9ae2b5aa0a5bd974a9479a2",
+    "src/classifyMeshWitness.ts": "19a7c2b36c4d759046fe237780296be4751812e870e95677c388b46f3df0b1f6",
+    "src/staticDistanceTracker.ts": "37e64965920424216fe785d8600be440c6b3b45af475c3083b8a559a75b29787",
+    "/home/alexkahn/alex/hello-world/docs/finite-terrain-expansion-2026-10-29/large-deformed-reported-landform-generated-1920-rejected.json.gz": "866104b12d8d7bf60d11dc730c56e8fa5789a34fd8ec210c6e1a42b983bcaab4",
+    "/home/alexkahn/alex/hello-world/node_modules/three/build/three.module.js": "9052042d676cb0fdc1ddfefe193053f34b7ac0513a616fdac4535d49987812ea",
+    "/home/alexkahn/alex/hello-world/node_modules/three-mesh-bvh/src/index.js": "935c798512c3a3b09d5bb951df4556a5d71ec4d807f4733625d1f0799a7ac924",
+    "/home/alexkahn/alex/geometry-terrain-inspection/research/terrain-inspection/trajectory-reference.json": "0c24f8322ad97712d412d6f395edf6b76b68afdec2487f0c9a2d729a668d9282",
+    "/home/alexkahn/alex/geometry-terrain-inspection/research/terrain-inspection/trajectory-reference.json.distances.f64.gz": "4696981f3ec472696efeca0fc23c30a1282f77519acd5238d29db1a82e5b23b5"
+  },
+  "buildMs": 139.071597,
+  "elapsedMs": 322.825602,
+  "queryMs": 127.46677600000382,
+  "points": 438256,
+  "pointSequenceSha256": "91a48d9d71dcad9e23d14e95de304cecc7909082c22bac94b16c72f64f1ea536",
+  "oracleQueries": 7879,
+  "propagated": 430377,
+  "unknowns": 0,
+  "violations": 0,
+  "minimumLowerBound": -0.00002250833637617656,
+  "referenceMinimum": -0.00002240833637617656,
+  "bodies": [
+    {
+      "body": 0,
+      "minimumLowerBound": -0.000011441506623727893,
+      "stats": {
+        "maximumPoints": 48,
+        "roundoffPadding": 1e-7,
+        "trackedPoints": 48,
+        "queries": 3780,
+        "propagated": 54012,
+        "unknowns": 0,
+        "failures": 0,
+        "resets": 0
+      }
+    },
+    {
+      "body": 1,
+      "minimumLowerBound": -0.00002250833637617656,
+      "stats": {
+        "maximumPoints": 316,
+        "roundoffPadding": 1e-7,
+        "trackedPoints": 316,
+        "queries": 4099,
+        "propagated": 376365,
+        "unknowns": 0,
+        "failures": 0,
+        "resets": 0
+      }
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "queries": 438256,
+  "queryMs": 13050.259405000326,
+  "oracleMs": 1359.540332999995,
+  "known": 438256,
+  "unknown": 0,
+  "minimum": -0.00002240833637617656,
+  "plannedSkips": 430342,
+  "boundViolations": 0,
+  "signMismatches": 0,
+  "bruteMismatches": 0,
+  "bodies": [
+    {
+      "body": 0,
+      "proxyVertices": 48,
+      "poses": 1204,
+      "minimum": -0.000011341506623727892,
+      "unknown": 0
+    },
+    {
+      "body": 1,
+      "proxyVertices": 316,
+      "poses": 1204,
+      "minimum": -0.00002240833637617656,
+      "unknown": 0
+    }
+  ]
+}

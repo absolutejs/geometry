@@ -35,9 +35,13 @@ export function classifyMeshWitness(source:Float64Array,faces:Uint32Array,materi
   if(!Array.isArray(query)||query.length!==3||!query.every(Number.isFinite)||!witness||!Array.isArray(witness.point)||witness.point.length!==3||!witness.point.every(Number.isFinite)||!Number.isSafeInteger(witness.triangle)||witness.triangle<0||witness.triangle>=normals.length)throw Error('Invalid nearest witness');
   const triangle=witness.triangle,ids=[indices[triangle*3]!,indices[triangle*3+1]!,indices[triangle*3+2]!];
   let weights:[number,number,number];try{weights=triangleWeights(witness.point,point(ids[0]!),point(ids[1]!),point(ids[2]!));}catch{return{kind:'unknown',reason:'unresolved-witness',triangle};}
-  const candidates:{normal:V;synthetic:boolean}[]=[{normal:normals[triangle]!,synthetic:triangle>=materialTriangles}];
+  const candidates:{normal:V;synthetic:boolean}[]=[];
   const near=weights.map((w,i)=>w<=1e-10?i:-1).filter(i=>i>=0);
-  for(const j of near)candidates.push(edges.get(key(ids[(j+1)%3]!,ids[(j+2)%3]!))!);
+  const exact=weights.map((w,i)=>w===0?i:-1).filter(i=>i>=0);
+  // Exact edge/vertex witnesses use that feature's pseudonormal. Including a
+  // tangential adjacent face would make the result depend on tie-breaking.
+  if(exact.length===0){candidates.push({normal:normals[triangle]!,synthetic:triangle>=materialTriangles});for(const j of near)candidates.push(edges.get(key(ids[(j+1)%3]!,ids[(j+2)%3]!))!);}
+  else if(exact.length===1){const j=exact[0]!;candidates.push(edges.get(key(ids[(j+1)%3]!,ids[(j+2)%3]!))!);}
   if(near.length>=2){const id=ids[weights.indexOf(Math.max(...weights))]!;candidates.push({normal:vertices[id]!,synthetic:!!vertexSynthetic[id]});}
   if(candidates.some(c=>c.synthetic))return{kind:'unknown',reason:'synthetic-boundary',triangle};
   const delta=sub(query,witness.point),distance=Math.hypot(...delta);if(!Number.isFinite(distance))throw Error('Invalid witness distance');

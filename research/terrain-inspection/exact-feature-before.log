@@ -1,0 +1,36 @@
+bun test v1.4.4+absolute.1 (38afee6c8)
+
+tests/classifyMeshWitness.test.ts:
+(pass) analytic face/diagonal witnesses have the correct signed distance [2.67ms]
+(pass) synthetic faces and mixed material/synthetic edges are explicitly unknown [0.42ms]
+(pass) invalid face identity rejects and an unrelated witness stays unresolved [0.52ms]
+(pass) query state owns source geometry after construction [0.25ms]
+22 |  const m=patch(),q=classifyMeshWitness(m.positions,m.indices,2);m.positions.fill(0);m.indices.fill(0);
+23 |  expect(q([.25,3,.5],{point:[.25,2,.5],triangle:0})).toMatchObject({kind:'known',classification:'outside',signedDistance:1});
+24 | });
+25 | test('exact shared-edge and vertex signs do not depend on a tangential face normal',()=>{
+26 |  const m=patch(),q=classifyMeshWitness(m.positions,m.indices);
+27 |  expect(q([1.5,2,.5],{point:[1,2,.5],triangle:1})).toMatchObject({kind:'known',classification:'outside',signedDistance:.5});
+                                                        ^
+error: expect(received).toMatchObject(expected)
+
+  {
+-   "classification": "outside",
+-   "kind": "known",
+-   "signedDistance": 0.5,
++   "kind": "unknown",
++   "reason": "ambiguous-sign",
++   "triangle": 1,
+  }
+
+- Expected  - 3
++ Received  + 3
+
+      at <anonymous> (/home/alexkahn/alex/geometry-terrain-inspection/tests/classifyMeshWitness.test.ts:27:52)
+(fail) exact shared-edge and vertex signs do not depend on a tangential face normal [1.09ms]
+(pass) oppositely oriented nested boundaries preserve cavity sign [0.96ms]
+
+ 5 pass
+ 1 fail
+ 17 expect() calls
+Ran 6 tests across 1 file. [12.00ms]

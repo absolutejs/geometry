@@ -1,0 +1,1872 @@
+{
+  "scope": "All retained replay endpoints and source collider proxy vertices; not native hull export, authored-material surface or continuous trajectory certification. Temporal skips are compared to exact queries here, not executed as a speedup.",
+  "status": "completed",
+  "sources": {
+    "/home/alexkahn/alex/geometry-terrain-inspection/research/terrain-inspection/probe-trajectory.ts": "c71abadd0b45e3ce1bcf0b863ecd100e355734b4c7f11faa95905f837c2cd297",
+    "src/closeRectangularPatch.ts": "159b125a4426c05752fd8348b30ed59937514843d9ae2b5aa0a5bd974a9479a2",
+    "src/classifyMeshWitness.ts": "06bf37185318d1434ae92894b4fc17aa4cc90e9db8b1d71d7e871adf39ac5ea0",
+    "src/solidPointMembership.ts": "0044ba93631ebc1e64f1d4ecad88c3a3be22f66da650a612e1cb46e1633c1769",
+    "/home/alexkahn/alex/hello-world/docs/finite-terrain-expansion-2026-10-29/large-deformed-reported-landform-generated-1920-rejected.json.gz": "866104b12d8d7bf60d11dc730c56e8fa5789a34fd8ec210c6e1a42b983bcaab4",
+    "/home/alexkahn/alex/hello-world/node_modules/three/build/three.module.js": "9052042d676cb0fdc1ddfefe193053f34b7ac0513a616fdac4535d49987812ea",
+    "/home/alexkahn/alex/hello-world/node_modules/three-mesh-bvh/src/index.js": "935c798512c3a3b09d5bb951df4556a5d71ec4d807f4733625d1f0799a7ac924"
+  },
+  "buildMs": 215.309081,
+  "elapsedMs": 16702.664544000003,
+  "queries": 438256,
+  "queryMs": 14571.699055999823,
+  "oracleMs": 1439.4404990000057,
+  "known": 438256,
+  "unknown": 0,
+  "minimum": -0.00002240833637617656,
+  "minimumWitness": {
+    "body": 1,
+    "poseIndex": 73,
+    "seconds": 1.1666666666666667,
+    "vertexIndex": 206,
+    "point": [
+      5.2771160651513185,
+      0.0495763870512107,
+      -0.37525161118592265
+    ],
+    "nearest": {
+      "point": [
+        5.27711586666435,
+        0.04959879420487032,
+        -0.37525149453710893
+      ],
+      "triangle": 1493,
+      "distance": 0.00002240833637617656
+    },
+    "result": {
+      "kind": "known",
+      "classification": "inside",
+      "signedDistance": -0.00002240833637617656,
+      "triangle": 1493
+    }
+  },
+  "plannedSkips": 430342,
+  "boundViolations": 0,
+  "signMismatches": 0,
+  "bruteMismatches": 0,
+  "unknownExamples": [],
+  "oracleRows": [
+    {
+      "body": 0,
+      "poseIndex": 85,
+      "vertexIndex": 15,
+      "point": [
+        0.16717215152330156,
+        0.32727583740512256,
+        -0.23147824869543576
+      ],
+      "result": {
+        "kind": "known",
+        "classification": "outside",
+        "signedDistance": 0.3254171942509158,
+        "triangle": 1109
+      },
+      "expected": "outside"
+    },
+    {
+      "body": 0,
+      "poseIndex": 170,
+      "vertexIndex": 31,
+      "point": [
+        1.2166760270163723,
+        0.22797773936816657,
+        0.06762412974535481
+      ],
+      "result": {
+        "kind": "known",
+        "classification": "outside",
+        "signedDistance": 0.21781794064602003,
+        "triangle": 1239
+      },
+      "expected": "outside"
+    },
+    {
+      "body": 0,
+      "poseIndex": 255,
+      "vertexIndex": 47,
+      "point": [
+        1.2167035883038553,
+        0.1978859946756102,
+        0.04328706657834802
+      ],
+      "result": {
+        "kind": "known",
+        "classification": "outside",
+        "signedDistance": 0.1875939267174301,
+        "triangle": 1239
+      },
+      "expected": "outside"
+    },
+    {
+      "body": 0,
+      "poseIndex": 341,
+      "vertexIndex": 15,
+      "point": [
+        0.14279454145836068,
+        0.30844180728057946,
+        -0.058234014536099554
+      ],
+      "result": {
+        "kind": "known",
+        "classification": "outside",
+        "signedDistance": 0.3077944201544469,
+        "triangle": 1109
+      },
+      "expected": "outside"
+    },
+    {
+      "body": 0,
+      "poseIndex": 426,
+      "vertexIndex": 31,
+      "point": [
+        1.2255773078646643,
+        0.2245055496017807,
+        -0.009748433616289742
+      ],
+      "result": {
+        "kind": "known",
+        "classification": "outside",
+        "signedDistance": 0.21383817119861945,
+        "triangle": 1237
+      },
+      "expected": "outside"
+    },
+    {
+      "body": 0,
+      "poseIndex": 511,
+      "vertexIndex": 47,
+      "point": [
+        1.2060783589081243,
+        0.14728625780718252,
+        0.12561166217980801
+      ],
+      "result": {
+        "kind": "known",
+        "classification": "outside",
+        "signedDistance": 0.13754842277649992,
+        "triangle": 1239
+      },
+      "expected": "outside"
+    },
+    {
+      "body": 0,
+      "poseIndex": 597,
+      "vertexIndex": 15,
+      "point": [
+        0.13784425715134874,
+        0.2946482422100174,
+        -0.017937805244463423
+      ],
+      "result": {
+        "kind": "known",
+        "classification": "outside",
+        "signedDistance": 0.29427631162330337,
+        "triangle": 1109
+      },
+      "expected": "outside"
+    },
+    {
+      "body": 0,
+      "poseIndex": 682,
+      "vertexIndex": 31,
+      "point": [
+        1.2249590456828,
+        0.2247733004210617,
+        -0.0035321591244245054
+      ],
+      "result": {
+        "kind": "known",
+        "classification": "outside",
+        "signedDistance": 0.2141458566548001,
+        "triangle": 1237
+      },
+      "expected": "outside"
+    },
+    {
+      "body": 0,
+      "poseIndex": 767,
+      "vertexIndex": 47,
+      "point": [
+        1.2064424792993786,
+        0.14847344371076265,
+        0.12378453856038896
+      ],
+      "result": {
+        "kind": "known",
+        "classification": "outside",
+        "signedDistance": 0.13872211134423199,
+        "triangle": 1239
+      },
+      "expected": "outside"
+    },
+    {
+      "body": 0,
+      "poseIndex": 853,
+      "vertexIndex": 15,
+      "point": [
+        0.1382721485673284,
+        0.2951783326270483,
+        -0.020374819329642135
+      ],
+      "result": {
+        "kind": "known",
+        "classification": "outside",
+        "signedDistance": 0.29478853792752846,
+        "triangle": 1109
+      },
+      "expected": "outside"
+    },
+    {
+      "body": 0,
+      "poseIndex": 938,
+      "vertexIndex": 31,
+      "point": [
+        1.2252124726695985,
+        0.2246377485980171,
+        -0.0043535053814498514
+      ],
+      "result": {
+        "kind": "known",
+        "classification": "outside",
+        "signedDistance": 0.21400343944088773,
+        "triangle": 1237
+      },
+      "expected": "outside"
+    },
+    {
+      "body": 0,
+      "poseIndex": 1023,
+      "vertexIndex": 47,
+      "point": [
+        1.2066091355168314,
+        0.14841176195118666,
+        0.12386073116580187
+      ],
+      "result": {
+        "kind": "known",
+        "classification": "outside",
+        "signedDistance": 0.1386593025175357,
+        "triangle": 1239
+      },
+      "expected": "outside"
+    },
+    {
+      "body": 0,
+      "poseIndex": 1109,
+      "vertexIndex": 15,
+      "point": [
+        0.13844187708592282,
+        0.2951616544505604,
+        -0.0203085525899781
+      ],
+      "result": {
+        "kind": "known",
+        "classification": "outside",
+        "signedDistance": 0.29477061849423414,
+        "triangle": 1109
+      },
+      "expected": "outside"
+    },
+    {
+      "body": 0,
+      "poseIndex": 1194,
+      "vertexIndex": 31,
+      "point": [
+        1.2253915804238824,
+        0.22463914170445554,
+        -0.004362256433574574
+      ],
+      "result": {
+        "kind": "known",
+        "classification": "outside",
+        "signedDistance": 0.21400312113588735,
+        "triangle": 1237
+      },
+      "expected": "outside"
+    },
+    {
+      "body": 1,
+      "poseIndex": 11,
+      "vertexIndex": 171,
+      "point": [
+        2.686392838529183,
+        6.31572435565862,
+        1.903463716630357
+      ],
+      "result": {
+        "kind": "known",
+        "classification": "outside",
+        "signedDistance": 6.301385799815187,
+        "triangle": 1245
+      },
+      "expected": "outside"
+    },
+    {
+      "body": 1,
+      "poseIndex": 24,
+      "vertexIndex": 159,
+      "point": [
+        2.7972741746507124,
+        5.363702145376808,
+        0.5028564335954011
+      ],
+      "result": {
+        "kind": "known",
+        "classification": "outside",
+        "signedDistance": 5.340897112214133,
+        "triangle": 1238
+      },
+      "expected": "outside"
+    },
+    {
+      "body": 1,
+      "poseIndex": 37,
+      "vertexIndex": 147,
+      "point": [
+        3.36710957248708,
+        4.346853143688496,
+        1.4004065025707255
+      ],
+      "result": {
+        "kind": "known",
+        "classification": "outside",
+        "signedDistance": 4.323628073949055,
+        "triangle": 1373
+      },
+      "expected": "outside"
+    },
+    {
+      "body": 1,
+      "poseIndex": 50,
+      "vertexIndex": 135,
+      "point": [
+        2.5238550253679395,
+        2.710542432781514,
+        0.12736134418449507
+      ],
+      "result": {
+        "kind": "known",
+        "classification": "outside",
+        "signedDistance": 2.6884175458997697,
+        "triangle": 1240
+      },
+      "expected": "outside"
+    },
+    {
+      "body": 1,
+      "poseIndex": 63,
+      "vertexIndex": 123,
+      "point": [
+        2.960334505431336,
+        1.8146594075655598,
+        -2.1160097062175267
+      ],
+      "result": {
+        "kind": "known",
+        "classification": "outside",
+        "signedDistance": 1.7765318761276987,
+        "triangle": 1222
+      },
+      "expected": "outside"
+    },
+    {
+      "body": 1,
+      "poseIndex": 76,
+      "vertexIndex": 111,
+      "point": [
+        3.619602965201245,
+        0.5376628527866876,
+        -0.6046491401879893
+      ],
+      "result": {
+        "kind": "known",
+        "classification": "outside",
+        "signedDistance": 0.5017172722364249,
+        "triangle": 1365
+      },
+      "expected": "outside"
+    },
+    {
+      "body": 1,
+      "poseIndex": 89,
+      "vertexIndex": 99,
+      "point": [
+        3.0773767223880504,
+        0.8410185917790405,
+        -1.2313418670882894
+      ],
+      "result": {
+        "kind": "known",
+        "classification": "outside",
+        "signedDistance": 0.8065960631142314,
+        "triangle": 1363
+      },
+      "expected": "outside"
+    },
+    {
+      "body": 1,
+      "poseIndex": 102,
+      "vertexIndex": 87,
+      "point": [
+        4.003326448651292,
+        0.6696840191989248,
+        -1.1352607949567177
+      ],
+      "result": {
+        "kind": "known",
+        "classification": "outside",
+        "signedDistance": 0.6274279565329655,
+        "triangle": 1358
+      },
+      "expected": "outside"
+    },
+    {
+      "body": 1,
+      "poseIndex": 115,
+      "vertexIndex": 75,
+      "point": [
+        3.0230717630645207,
+        0.3774783727754776,
+        0.18106757933571613
+      ],
+      "result": {
+        "kind": "known",
+        "classification": "outside",
+        "signedDistance": 0.35114096231890224,
+        "triangle": 1370
+      },
+      "expected": "outside"
+    },
+    {
+      "body": 1,
+      "poseIndex": 128,
+      "vertexIndex": 63,
+      "point": [
+        4.3609027058352146,
+        0.20773964843114934,
+        0.3340965141308188
+      ],
+      "result": {
+        "kind": "known",
+        "classification": "outside",
+        "signedDistance": 0.17005184965490572,
+        "triangle": 1366
+      },
+      "expected": "outside"
+    },
+    {
+      "body": 1,
+      "poseIndex": 141,
+      "vertexIndex": 51,
+      "point": [
+        2.6011021595112624,
+        0.3514333414359334,
+        0.14134491689759013
+      ],
+      "result": {
+        "kind": "known",
+        "classification": "outside",
+        "signedDistance": 0.3288027811235914,
+        "triangle": 1240
+      },
+      "expected": "outside"
+    },
+    {
+      "body": 1,
+      "poseIndex": 154,
+      "vertexIndex": 39,
+      "point": [
+        2.58711095405328,
+        0.45816738264854395,
+        0.1318547041225845
+      ],
+      "result": {
+        "kind": "known",
+        "classification": "outside",
+        "signedDistance": 0.435609332875982,
+        "triangle": 1240
+      },
+      "expected": "outside"
+    },
+    {
+      "body": 1,
+      "poseIndex": 167,
+      "vertexIndex": 27,
+      "point": [
+        1.5780405704976561,
+        0.07693624360333118,
+        0.14730033007152743
+      ],
+      "result": {
+        "kind": "known",
+        "classification": "outside",
+        "signedDistance": 0.06386347206725326,
+        "triangle": 1239
+      },
+      "expected": "outside"
+    },
+    {
+      "body": 1,
+      "poseIndex": 180,
+      "vertexIndex": 15,
+      "point": [
+        1.6059250578769202,
+        0.017463469713245416,
+        0.022509485580046285
+      ],
+      "result": {
+        "kind": "known",
+        "classification": "outside",
+        "signedDistance": 0.003451503340437724,
+        "triangle": 1240
+      },
+      "expected": "outside"
+    },
+    {
+      "body": 1,
+      "poseIndex": 193,
+      "vertexIndex": 3,
+      "point": [
+        1.5979964938819453,
+        0.07114966593577865,
+        -0.05520854117834362
+      ],
+      "result": {
+        "kind": "known",
+        "classification": "outside",
+        "signedDistance": 0.05678281033394821,
+        "triangle": 1237
+      },
+      "expected": "outside"
+    },
+    {
+      "body": 1,
+      "poseIndex": 205,
+      "vertexIndex": 307,
+      "point": [
+        5.203608583823487,
+        0.3759780681017242,
+        1.4542984539943606
+      ],
+      "result": {
+        "kind": "known",
+        "classification": "outside",
+        "signedDistance": 0.3364321243394452,
+        "triangle": 1499
+      },
+      "expected": "outside"
+    },
+    {
+      "body": 1,
+      "poseIndex": 218,
+      "vertexIndex": 295,
+      "point": [
+        4.730463833375446,
+        0.7439910233915303,
+        2.1018683440952626
+      ],
+      "result": {
+        "kind": "known",
+        "classification": "outside",
+        "signedDistance": 0.712110877808878,
+        "triangle": 1376
+      },
+      "expected": "outside"
+    },
+    {
+      "body": 1,
+      "poseIndex": 231,
+      "vertexIndex": 283,
+      "point": [
+        4.605715006272433,
+        0.2670693346358166,
+        0.7225366219865316
+      ],
+      "result": {
+        "kind": "known",
+        "classification": "outside",
+        "signedDistance": 0.22917558369494787,
+        "triangle": 1366
+      },
+      "expected": "outside"
+    },
+    {
+      "body": 1,
+      "poseIndex": 244,
+      "vertexIndex": 271,
+      "point": [
+        5.29792039104631,
+        0.40739445174148203,
+        1.5749536180481392
+      ],
+      "result": {
+        "kind": "known",
+        "classification": "outside",
+        "signedDistance": 0.3676183465528226,
+        "triangle": 1501
+      },
+      "expected": "outside"
+    },
+    {
+      "body": 1,
+      "poseIndex": 257,
+      "vertexIndex": 259,
+      "point": [
+        4.326346019219648,
+        0.18369879913644827,
+        0.3300046744152707
+      ],
+      "result": {
+        "kind": "known",
+        "classification": "outside",
+        "signedDistance": 0.14630376963680639,
+        "triangle": 1366
+      },
+      "expected": "outside"
+    },
+    {
+      "body": 1,
+      "poseIndex": 270,
+      "vertexIndex": 247,
+      "point": [
+        5.484814462515487,
+        0.23977243115341507,
+        -1.3356586507116135
+      ],
+      "result": {
+        "kind": "known",
+        "classification": "outside",
+        "signedDistance": 0.183324367149932,
+        "triangle": 1493
+      },
+      "expected": "outside"
+    },
+    {
+      "body": 1,
+      "poseIndex": 283,
+      "vertexIndex": 235,
+      "point": [
+        5.727963766371689,
+        0.0826089416103124,
+        0.3952946760901667
+      ],
+      "result": {
+        "kind": "known",
+        "classification": "outside",
+        "signedDistance": 0.032921276507661926,
+        "triangle": 1494
+      },
+      "expected": "outside"
+    },
+    {
+      "body": 1,
+      "poseIndex": 296,
+      "vertexIndex": 223,
+      "point": [
+        4.64407897477526,
+        0.35846099571234147,
+        -0.9564738255426842
+      ],
+      "result": {
+        "kind": "known",
+        "classification": "outside",
+        "signedDistance": 0.31143161263433927,
+        "triangle": 1358
+      },
+      "expected": "outside"
+    },
+    {
+      "body": 1,
+      "poseIndex": 309,
+      "vertexIndex": 211,
+      "point": [
+        5.294453598254796,
+        0.055820441827827416,
+        -0.33795656897527515
+      ],
+      "result": {
+        "kind": "known",
+        "classification": "outside",
+        "signedDistance": 0.006261888744802934,
+        "triangle": 1493
+      },
+      "expected": "outside"
+    },
+    {
+      "body": 1,
+      "poseIndex": 322,
+      "vertexIndex": 199,
+      "point": [
+        3.886472083969296,
+        0.2561751623830104,
+        0.29116573450702543
+      ],
+      "result": {
+        "kind": "known",
+        "classification": "outside",
+        "signedDistance": 0.22255485857383647,
+        "triangle": 1366
+      },
+      "expected": "outside"
+    },
+    {
+      "body": 1,
+      "poseIndex": 335,
+      "vertexIndex": 187,
+      "point": [
+        5.274848861154676,
+        0.04180563479753374,
+        1.5272844231528644
+      ],
+      "result": {
+        "kind": "known",
+        "classification": "outside",
+        "signedDistance": 0.0020105495390107093,
+        "triangle": 1501
+      },
+      "expected": "outside"
+    },
+    {
+      "body": 1,
+      "poseIndex": 348,
+      "vertexIndex": 175,
+      "point": [
+        3.9283206866165683,
+        0.19157070585384295,
+        1.022518550038405
+      ],
+      "result": {
+        "kind": "known",
+        "classification": "outside",
+        "signedDistance": 0.16138026361387553,
+        "triangle": 1373
+      },
+      "expected": "outside"
+    },
+    {
+      "body": 1,
+      "poseIndex": 361,
+      "vertexIndex": 163,
+      "point": [
+        4.8049829629771565,
+        0.1486581025612943,
+        0.7486404638986204
+      ],
+      "result": {
+        "kind": "known",
+        "classification": "outside",
+        "signedDistance": 0.10910309043487856,
+        "triangle": 1366
+      },
+      "expected": "outside"
+    },
+    {
+      "body": 1,
+      "poseIndex": 374,
+      "vertexIndex": 151,
+      "point": [
+        4.247161943511254,
+        0.13173596699166223,
+        1.5447645650737192
+      ],
+      "result": {
+        "kind": "known",
+        "classification": "outside",
+        "signedDistance": 0.1014056478657764,
+        "triangle": 1373
+      },
+      "expected": "outside"
+    },
+    {
+      "body": 1,
+      "poseIndex": 387,
+      "vertexIndex": 139,
+      "point": [
+        3.447981602708247,
+        0.32911689159782664,
+        0.25449860020994813
+      ],
+      "result": {
+        "kind": "known",
+        "classification": "outside",
+        "signedDistance": 0.29927002184997303,
+        "triangle": 1366
+      },
+      "expected": "outside"
+    },
+    {
+      "body": 1,
+      "poseIndex": 400,
+      "vertexIndex": 127,
+      "point": [
+        3.8994080869532945,
+        0.637957254847616,
+        -1.0013176817297036
+      ],
+      "result": {
+        "kind": "known",
+        "classification": "outside",
+        "signedDistance": 0.5973420148774407,
+        "triangle": 1365
+      },
+      "expected": "outside"
+    },
+    {
+      "body": 1,
+      "poseIndex": 413,
+      "vertexIndex": 115,
+      "point": [
+        4.71950932097734,
+        0.4391427174594402,
+        -0.7487385399285191
+      ],
+      "result": {
+        "kind": "known",
+        "classification": "outside",
+        "signedDistance": 0.3925179572443525,
+        "triangle": 1358
+      },
+      "expected": "outside"
+    },
+    {
+      "body": 1,
+      "poseIndex": 426,
+      "vertexIndex": 103,
+      "point": [
+        3.3242151216146634,
+        0.44443256772460416,
+        -0.20823239148386827
+      ],
+      "result": {
+        "kind": "known",
+        "classification": "outside",
+        "signedDistance": 0.4132963218806808,
+        "triangle": 1365
+      },
+      "expected": "outside"
+    },
+    {
+      "body": 1,
+      "poseIndex": 439,
+      "vertexIndex": 91,
+      "point": [
+        4.004597364259569,
+        0.6833032306979328,
+        -1.129993725749629
+      ],
+      "result": {
+        "kind": "known",
+        "classification": "outside",
+        "signedDistance": 0.6410625377271636,
+        "triangle": 1358
+      },
+      "expected": "outside"
+    },
+    {
+      "body": 1,
+      "poseIndex": 452,
+      "vertexIndex": 79,
+      "point": [
+        3.0604317996218104,
+        0.37483662505447324,
+        0.20873205261180403
+      ],
+      "result": {
+        "kind": "known",
+        "classification": "outside",
+        "signedDistance": 0.3482997068808436,
+        "triangle": 1370
+      },
+      "expected": "outside"
+    },
+    {
+      "body": 1,
+      "poseIndex": 465,
+      "vertexIndex": 67,
+      "point": [
+        4.356998786955588,
+        0.19508922837631415,
+        0.36130162900330454
+      ],
+      "result": {
+        "kind": "known",
+        "classification": "outside",
+        "signedDistance": 0.15757837188090043,
+        "triangle": 1366
+      },
+      "expected": "outside"
+    },
+    {
+      "body": 1,
+      "poseIndex": 478,
+      "vertexIndex": 55,
+      "point": [
+        2.598461522270349,
+        0.36073458707241723,
+        0.1693641408837871
+      ],
+      "result": {
+        "kind": "known",
+        "classification": "outside",
+        "signedDistance": 0.33827935699498823,
+        "triangle": 1239
+      },
+      "expected": "outside"
+    },
+    {
+      "body": 1,
+      "poseIndex": 491,
+      "vertexIndex": 43,
+      "point": [
+        2.619608496669053,
+        0.35873149795008974,
+        0.1650555025047461
+      ],
+      "result": {
+        "kind": "known",
+        "classification": "outside",
+        "signedDistance": 0.3360567175996443,
+        "triangle": 1240
+      },
+      "expected": "outside"
+    },
+    {
+      "body": 1,
+      "poseIndex": 504,
+      "vertexIndex": 31,
+      "point": [
+        1.5607867909269608,
+        0.13681572560741806,
+        0.1534722782150234
+      ],
+      "result": {
+        "kind": "known",
+        "classification": "outside",
+        "signedDistance": 0.12393379932549166,
+        "triangle": 1239
+      },
+      "expected": "outside"
+    },
+    {
+      "body": 1,
+      "poseIndex": 517,
+      "vertexIndex": 19,
+      "point": [
+        1.5457477553798873,
+        0.21913580455775294,
+        0.06611755586870967
+      ],
+      "result": {
+        "kind": "known",
+        "classification": "outside",
+        "signedDistance": 0.20590875604091027,
+        "triangle": 1239
+      },
+      "expected": "outside"
+    },
+    {
+      "body": 1,
+      "poseIndex": 530,
+      "vertexIndex": 7,
+      "point": [
+        1.5646301674810374,
+        0.1866201214022074,
+        -0.04226391208107211
+      ],
+      "result": {
+        "kind": "known",
+        "classification": "outside",
+        "signedDistance": 0.17262761053884143,
+        "triangle": 1237
+      },
+      "expected": "outside"
+    },
+    {
+      "body": 1,
+      "poseIndex": 542,
+      "vertexIndex": 311,
+      "point": [
+        6.305322075704885,
+        0.2793515184056581,
+        1.4986497385347402
+      ],
+      "result": {
+        "kind": "known",
+        "classification": "outside",
+        "signedDistance": 0.23010864432076716,
+        "triangle": 1501
+      },
+      "expected": "outside"
+    },
+    {
+      "body": 1,
+      "poseIndex": 555,
+      "vertexIndex": 299,
+      "point": [
+        4.904032111352082,
+        0.33584468811686463,
+        1.0753377327018614
+      ],
+      "result": {
+        "kind": "known",
+        "classification": "outside",
+        "signedDistance": 0.29707575013082416,
+        "triangle": 1366
+      },
+      "expected": "outside"
+    },
+    {
+      "body": 1,
+      "poseIndex": 568,
+      "vertexIndex": 287,
+      "point": [
+        5.710199366138229,
+        0.15971182141793738,
+        0.7658266429905299
+      ],
+      "result": {
+        "kind": "known",
+        "classification": "outside",
+        "signedDistance": 0.11204705458689997,
+        "triangle": 1501
+      },
+      "expected": "outside"
+    },
+    {
+      "body": 1,
+      "poseIndex": 581,
+      "vertexIndex": 275,
+      "point": [
+        5.3094613172166945,
+        0.4026758083680533,
+        1.5662190944019903
+      ],
+      "result": {
+        "kind": "known",
+        "classification": "outside",
+        "signedDistance": 0.3627507558202096,
+        "triangle": 1501
+      },
+      "expected": "outside"
+    },
+    {
+      "body": 1,
+      "poseIndex": 594,
+      "vertexIndex": 263,
+      "point": [
+        4.310252465454098,
+        0.23728197322780442,
+        0.3313583380318992
+      ],
+      "result": {
+        "kind": "known",
+        "classification": "outside",
+        "signedDistance": 0.20003665427290426,
+        "triangle": 1366
+      },
+      "expected": "outside"
+    },
+    {
+      "body": 1,
+      "poseIndex": 607,
+      "vertexIndex": 251,
+      "point": [
+        5.488777692469624,
+        0.2404166929558924,
+        -1.3341653944902792
+      ],
+      "result": {
+        "kind": "known",
+        "classification": "outside",
+        "signedDistance": 0.18394126302479502,
+        "triangle": 1493
+      },
+      "expected": "outside"
+    },
+    {
+      "body": 1,
+      "poseIndex": 620,
+      "vertexIndex": 239,
+      "point": [
+        5.728225021532768,
+        0.08676708397021793,
+        0.39459006751896997
+      ],
+      "result": {
+        "kind": "known",
+        "classification": "outside",
+        "signedDistance": 0.03707334849111945,
+        "triangle": 1494
+      },
+      "expected": "outside"
+    },
+    {
+      "body": 1,
+      "poseIndex": 633,
+      "vertexIndex": 227,
+      "point": [
+        4.648056908441402,
+        0.35909948245088774,
+        -0.9549831985438803
+      ],
+      "result": {
+        "kind": "known",
+        "classification": "outside",
+        "signedDistance": 0.31204231183009684,
+        "triangle": 1358
+      },
+      "expected": "outside"
+    },
+    {
+      "body": 1,
+      "poseIndex": 646,
+      "vertexIndex": 215,
+      "point": [
+        5.294461205580669,
+        0.05955903180588695,
+        -0.33863041931685667
+      ],
+      "result": {
+        "kind": "known",
+        "classification": "outside",
+        "signedDistance": 0.00999670622101883,
+        "triangle": 1493
+      },
+      "expected": "outside"
+    },
+    {
+      "body": 1,
+      "poseIndex": 659,
+      "vertexIndex": 203,
+      "point": [
+        3.8962161283652232,
+        0.2810893047805161,
+        0.30809257263888457
+      ],
+      "result": {
+        "kind": "known",
+        "classification": "outside",
+        "signedDistance": 0.2474671728855124,
+        "triangle": 1366
+      },
+      "expected": "outside"
+    },
+    {
+      "body": 1,
+      "poseIndex": 672,
+      "vertexIndex": 191,
+      "point": [
+        5.274323526456175,
+        0.04214994927377713,
+        1.5323323434541398
+      ],
+      "result": {
+        "kind": "known",
+        "classification": "outside",
+        "signedDistance": 0.002385698288940708,
+        "triangle": 1501
+      },
+      "expected": "outside"
+    },
+    {
+      "body": 1,
+      "poseIndex": 685,
+      "vertexIndex": 179,
+      "point": [
+        3.946164041276626,
+        0.2038500533253358,
+        1.0205025885891323
+      ],
+      "result": {
+        "kind": "known",
+        "classification": "outside",
+        "signedDistance": 0.17348350522206346,
+        "triangle": 1373
+      },
+      "expected": "outside"
+    },
+    {
+      "body": 1,
+      "poseIndex": 698,
+      "vertexIndex": 167,
+      "point": [
+        4.8044578930693325,
+        0.14900236431876657,
+        0.7536901779895147
+      ],
+      "result": {
+        "kind": "known",
+        "classification": "outside",
+        "signedDistance": 0.10947824366121175,
+        "triangle": 1366
+      },
+      "expected": "outside"
+    },
+    {
+      "body": 1,
+      "poseIndex": 711,
+      "vertexIndex": 155,
+      "point": [
+        4.256209984252142,
+        0.13089147508953447,
+        1.5390606219314658
+      ],
+      "result": {
+        "kind": "known",
+        "classification": "outside",
+        "signedDistance": 0.1004471750845397,
+        "triangle": 1373
+      },
+      "expected": "outside"
+    },
+    {
+      "body": 1,
+      "poseIndex": 724,
+      "vertexIndex": 143,
+      "point": [
+        3.4754620283786943,
+        0.33471558931743495,
+        0.23818158882280313
+      ],
+      "result": {
+        "kind": "known",
+        "classification": "outside",
+        "signedDistance": 0.30453525102657686,
+        "triangle": 1366
+      },
+      "expected": "outside"
+    },
+    {
+      "body": 1,
+      "poseIndex": 737,
+      "vertexIndex": 131,
+      "point": [
+        3.917270626309671,
+        0.6503088115968025,
+        -1.0004556534606739
+      ],
+      "result": {
+        "kind": "known",
+        "classification": "outside",
+        "signedDistance": 0.609535397232028,
+        "triangle": 1365
+      },
+      "expected": "outside"
+    },
+    {
+      "body": 1,
+      "poseIndex": 750,
+      "vertexIndex": 119,
+      "point": [
+        4.720141848584043,
+        0.4390377556935894,
+        -0.7437006103247189
+      ],
+      "result": {
+        "kind": "known",
+        "classification": "outside",
+        "signedDistance": 0.3924336051351892,
+        "triangle": 1358
+      },
+      "expected": "outside"
+    },
+    {
+      "body": 1,
+      "poseIndex": 763,
+      "vertexIndex": 107,
+      "point": [
+        3.342165126074866,
+        0.45674813703277506,
+        -0.20746305262678214
+      ],
+      "result": {
+        "kind": "known",
+        "classification": "outside",
+        "signedDistance": 0.42545242852726595,
+        "triangle": 1365
+      },
+      "expected": "outside"
+    },
+    {
+      "body": 1,
+      "poseIndex": 776,
+      "vertexIndex": 95,
+      "point": [
+        4.009566704226718,
+        0.6779438784028144,
+        -1.1278800839712964
+      ],
+      "result": {
+        "kind": "known",
+        "classification": "outside",
+        "signedDistance": 0.6356701121665798,
+        "triangle": 1358
+      },
+      "expected": "outside"
+    },
+    {
+      "body": 1,
+      "poseIndex": 789,
+      "vertexIndex": 83,
+      "point": [
+        3.0691160600983727,
+        0.3604553140259825,
+        0.21094178790287307
+      ],
+      "result": {
+        "kind": "known",
+        "classification": "outside",
+        "signedDistance": 0.333850027989095,
+        "triangle": 1370
+      },
+      "expected": "outside"
+    },
+    {
+      "body": 1,
+      "poseIndex": 802,
+      "vertexIndex": 71,
+      "point": [
+        4.357959376169995,
+        0.20961156878060638,
+        0.3603254006062167
+      ],
+      "result": {
+        "kind": "known",
+        "classification": "outside",
+        "signedDistance": 0.17208617458306377,
+        "triangle": 1366
+      },
+      "expected": "outside"
+    },
+    {
+      "body": 1,
+      "poseIndex": 815,
+      "vertexIndex": 59,
+      "point": [
+        2.601814841245561,
+        0.43631784315733535,
+        0.18532181041273682
+      ],
+      "result": {
+        "kind": "known",
+        "classification": "outside",
+        "signedDistance": 0.413914738629797,
+        "triangle": 1239
+      },
+      "expected": "outside"
+    },
+    {
+      "body": 1,
+      "poseIndex": 828,
+      "vertexIndex": 47,
+      "point": [
+        2.5988717253871148,
+        0.4097430025309263,
+        0.19474999356791764
+      ],
+      "result": {
+        "kind": "known",
+        "classification": "outside",
+        "signedDistance": 0.3874206329438931,
+        "triangle": 1239
+      },
+      "expected": "outside"
+    },
+    {
+      "body": 1,
+      "poseIndex": 841,
+      "vertexIndex": 35,
+      "point": [
+        2.5969456262625723,
+        0.4399194970323417,
+        0.09330963496878172
+      ],
+      "result": {
+        "kind": "known",
+        "classification": "outside",
+        "signedDistance": 0.41706301451783684,
+        "triangle": 1240
+      },
+      "expected": "outside"
+    },
+    {
+      "body": 1,
+      "poseIndex": 854,
+      "vertexIndex": 23,
+      "point": [
+        1.598788097641775,
+        0.022100712201992057,
+        0.08703032986388468
+      ],
+      "result": {
+        "kind": "known",
+        "classification": "outside",
+        "signedDistance": 0.00850696990489585,
+        "triangle": 1239
+      },
+      "expected": "outside"
+    },
+    {
+      "body": 1,
+      "poseIndex": 867,
+      "vertexIndex": 11,
+      "point": [
+        1.6050228305816066,
+        0.033731483791573424,
+        -0.01760445310171274
+      ],
+      "result": {
+        "kind": "known",
+        "classification": "outside",
+        "signedDistance": 0.019508503600824064,
+        "triangle": 1237
+      },
+      "expected": "outside"
+    },
+    {
+      "body": 1,
+      "poseIndex": 879,
+      "vertexIndex": 315,
+      "point": [
+        6.305213266068049,
+        0.28163555203243895,
+        1.5023226180160536
+      ],
+      "result": {
+        "kind": "known",
+        "classification": "outside",
+        "signedDistance": 0.23241253908414752,
+        "triangle": 1501
+      },
+      "expected": "outside"
+    },
+    {
+      "body": 1,
+      "poseIndex": 892,
+      "vertexIndex": 303,
+      "point": [
+        5.204745231950043,
+        0.38467366125775193,
+        1.4366683800138917
+      ],
+      "result": {
+        "kind": "known",
+        "classification": "outside",
+        "signedDistance": 0.3450256412861253,
+        "triangle": 1499
+      },
+      "expected": "outside"
+    },
+    {
+      "body": 1,
+      "poseIndex": 905,
+      "vertexIndex": 291,
+      "point": [
+        4.725917725425682,
+        0.7457137232549584,
+        2.1004251109021124
+      ],
+      "result": {
+        "kind": "known",
+        "classification": "outside",
+        "signedDistance": 0.7138682961460923,
+        "triangle": 1376
+      },
+      "expected": "outside"
+    },
+    {
+      "body": 1,
+      "poseIndex": 918,
+      "vertexIndex": 279,
+      "point": [
+        4.606137278471853,
+        0.25681455601557435,
+        0.7058914693078604
+      ],
+      "result": {
+        "kind": "known",
+        "classification": "outside",
+        "signedDistance": 0.21883131345299858,
+        "triangle": 1366
+      },
+      "expected": "outside"
+    },
+    {
+      "body": 1,
+      "poseIndex": 931,
+      "vertexIndex": 267,
+      "point": [
+        5.298273889375243,
+        0.4036355767177491,
+        1.575555044815697
+      ],
+      "result": {
+        "kind": "known",
+        "classification": "outside",
+        "signedDistance": 0.363859600551797,
+        "triangle": 1501
+      },
+      "expected": "outside"
+    },
+    {
+      "body": 1,
+      "poseIndex": 944,
+      "vertexIndex": 255,
+      "point": [
+        4.306489366218893,
+        0.2074850861705726,
+        0.34142215873015047
+      ],
+      "result": {
+        "kind": "known",
+        "classification": "outside",
+        "signedDistance": 0.17032756874557436,
+        "triangle": 1366
+      },
+      "expected": "outside"
+    },
+    {
+      "body": 1,
+      "poseIndex": 957,
+      "vertexIndex": 243,
+      "point": [
+        5.148391473874276,
+        0.08737596769804146,
+        -0.2803953153497758
+      ],
+      "result": {
+        "kind": "known",
+        "classification": "outside",
+        "signedDistance": 0.03940168297499259,
+        "triangle": 1492
+      },
+      "expected": "outside"
+    },
+    {
+      "body": 1,
+      "poseIndex": 970,
+      "vertexIndex": 231,
+      "point": [
+        4.72717349480282,
+        0.12797914763756912,
+        -0.08420525238291057
+      ],
+      "result": {
+        "kind": "known",
+        "classification": "outside",
+        "signedDistance": 0.08479271385313042,
+        "triangle": 1365
+      },
+      "expected": "outside"
+    },
+    {
+      "body": 1,
+      "poseIndex": 983,
+      "vertexIndex": 219,
+      "point": [
+        4.305805027046751,
+        0.20684457571946968,
+        0.10104410393281103
+      ],
+      "result": {
+        "kind": "known",
+        "classification": "outside",
+        "signedDistance": 0.16845872139759044,
+        "triangle": 1368
+      },
+      "expected": "outside"
+    },
+    {
+      "body": 1,
+      "poseIndex": 996,
+      "vertexIndex": 207,
+      "point": [
+        5.292259604859395,
+        0.050049700060442515,
+        -0.34188046582433307
+      ],
+      "result": {
+        "kind": "known",
+        "classification": "outside",
+        "signedDistance": 0.0004904591234653759,
+        "triangle": 1493
+      },
+      "expected": "outside"
+    },
+    {
+      "body": 1,
+      "poseIndex": 1009,
+      "vertexIndex": 195,
+      "point": [
+        3.8896743379722203,
+        0.22708205750125732,
+        0.30444676999921183
+      ],
+      "result": {
+        "kind": "known",
+        "classification": "outside",
+        "signedDistance": 0.1935031626798064,
+        "triangle": 1366
+      },
+      "expected": "outside"
+    },
+    {
+      "body": 1,
+      "poseIndex": 1022,
+      "vertexIndex": 183,
+      "point": [
+        4.171817568673567,
+        0.13499606597726688,
+        1.4180350940240618
+      ],
+      "result": {
+        "kind": "known",
+        "classification": "outside",
+        "signedDistance": 0.1046816366743766,
+        "triangle": 1373
+      },
+      "expected": "outside"
+    },
+    {
+      "body": 1,
+      "poseIndex": 1035,
+      "vertexIndex": 171,
+      "point": [
+        3.7017336762241655,
+        0.6367595926846805,
+        2.026343177600119
+      ],
+      "result": {
+        "kind": "known",
+        "classification": "outside",
+        "signedDistance": 0.6140025625796122,
+        "triangle": 1376
+      },
+      "expected": "outside"
+    },
+    {
+      "body": 1,
+      "poseIndex": 1048,
+      "vertexIndex": 159,
+      "point": [
+        3.700580654968544,
+        0.2423300291538797,
+        0.6375898954421682
+      ],
+      "result": {
+        "kind": "known",
+        "classification": "outside",
+        "signedDistance": 0.21218698730273977,
+        "triangle": 1366
+      },
+      "expected": "outside"
+    },
+    {
+      "body": 1,
+      "poseIndex": 1061,
+      "vertexIndex": 147,
+      "point": [
+        4.244987044534499,
+        0.12488632033511715,
+        1.5454440344221947
+      ],
+      "result": {
+        "kind": "known",
+        "classification": "outside",
+        "signedDistance": 0.09458009498726927,
+        "triangle": 1373
+      },
+      "expected": "outside"
+    },
+    {
+      "body": 1,
+      "poseIndex": 1074,
+      "vertexIndex": 135,
+      "point": [
+        3.4383818170695015,
+        0.29949407459500854,
+        0.25714560461388186
+      ],
+      "result": {
+        "kind": "known",
+        "classification": "outside",
+        "signedDistance": 0.2697493837527779,
+        "triangle": 1366
+      },
+      "expected": "outside"
+    },
+    {
+      "body": 1,
+      "poseIndex": 1087,
+      "vertexIndex": 123,
+      "point": [
+        3.652708532297688,
+        1.0346156530019899,
+        -2.019895286939259
+      ],
+      "result": {
+        "kind": "known",
+        "classification": "outside",
+        "signedDistance": 0.9908343149951179,
+        "triangle": 1357
+      },
+      "expected": "outside"
+    },
+    {
+      "body": 1,
+      "poseIndex": 1100,
+      "vertexIndex": 111,
+      "point": [
+        3.621337818041562,
+        0.5376516575053385,
+        -0.5993595666068827
+      ],
+      "result": {
+        "kind": "known",
+        "classification": "outside",
+        "signedDistance": 0.5017186676844062,
+        "triangle": 1365
+      },
+      "expected": "outside"
+    },
+    {
+      "body": 1,
+      "poseIndex": 1113,
+      "vertexIndex": 99,
+      "point": [
+        3.0773767223880504,
+        0.8410185917790405,
+        -1.2313418670882894
+      ],
+      "result": {
+        "kind": "known",
+        "classification": "outside",
+        "signedDistance": 0.8065960631142314,
+        "triangle": 1363
+      },
+      "expected": "outside"
+    },
+    {
+      "body": 1,
+      "poseIndex": 1126,
+      "vertexIndex": 87,
+      "point": [
+        4.003326448651292,
+        0.6696840191989248,
+        -1.1352607949567177
+      ],
+      "result": {
+        "kind": "known",
+        "classification": "outside",
+        "signedDistance": 0.6274279565329655,
+        "triangle": 1358
+      },
+      "expected": "outside"
+    },
+    {
+      "body": 1,
+      "poseIndex": 1139,
+      "vertexIndex": 75,
+      "point": [
+        3.0230717630645207,
+        0.3774783727754776,
+        0.18106757933571613
+      ],
+      "result": {
+        "kind": "known",
+        "classification": "outside",
+        "signedDistance": 0.35114096231890224,
+        "triangle": 1370
+      },
+      "expected": "outside"
+    },
+    {
+      "body": 1,
+      "poseIndex": 1152,
+      "vertexIndex": 63,
+      "point": [
+        4.3609027058352146,
+        0.20773964843114934,
+        0.3340965141308188
+      ],
+      "result": {
+        "kind": "known",
+        "classification": "outside",
+        "signedDistance": 0.17005184965490572,
+        "triangle": 1366
+      },
+      "expected": "outside"
+    },
+    {
+      "body": 1,
+      "poseIndex": 1165,
+      "vertexIndex": 51,
+      "point": [
+        2.6011021595112624,
+        0.3514333414359334,
+        0.14134491689759013
+      ],
+      "result": {
+        "kind": "known",
+        "classification": "outside",
+        "signedDistance": 0.3288027811235914,
+        "triangle": 1240
+      },
+      "expected": "outside"
+    },
+    {
+      "body": 1,
+      "poseIndex": 1178,
+      "vertexIndex": 39,
+      "point": [
+        2.58711095405328,
+        0.45816738264854395,
+        0.1318547041225845
+      ],
+      "result": {
+        "kind": "known",
+        "classification": "outside",
+        "signedDistance": 0.435609332875982,
+        "triangle": 1240
+      },
+      "expected": "outside"
+    },
+    {
+      "body": 1,
+      "poseIndex": 1191,
+      "vertexIndex": 27,
+      "point": [
+        1.5780405704976561,
+        0.07693624360333118,
+        0.14730033007152743
+      ],
+      "result": {
+        "kind": "known",
+        "classification": "outside",
+        "signedDistance": 0.06386347206725326,
+        "triangle": 1239
+      },
+      "expected": "outside"
+    }
+  ],
+  "bodies": [
+    {
+      "body": 0,
+      "proxyVertices": 48,
+      "poses": 1204,
+      "minimum": -0.000011341506623727892,
+      "unknown": 0
+    },
+    {
+      "body": 1,
+      "proxyVertices": 316,
+      "poses": 1204,
+      "minimum": -0.00002240833637617656,
+      "unknown": 0
+    }
+  ]
+}

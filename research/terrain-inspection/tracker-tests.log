@@ -1,0 +1,12 @@
+bun test v1.4.4+absolute.1 (38afee6c8)
+
+tests/staticDistanceTracker.test.ts:
+(pass) sphere distance lower bounds survive approach, crossing, exit and discontinuous motion [7.60ms]
+(pass) unknown results and thrown queries invalidate state; explicit reset handles geometry changes [0.23ms]
+(pass) caller, callback and returned stats cannot alias tracker state [0.05ms]
+(pass) invalid identifiers and nonfinite oracle output never expand the point budget [0.04ms]
+
+ 4 pass
+ 0 fail
+ 12014 expect() calls
+Ran 4 tests across 1 file. [12.00ms]

@@ -1,0 +1,48 @@
+{
+  "scope": "Actual static-distance cache on the exact retained proxy-vertex sequence; compared point-by-point to full-query reference. Positive bounds only; 1e-7 m padding. No between-sample/whole-material certification.",
+  "buildMs": 105.84330999999999,
+  "elapsedMs": 256.593978,
+  "queryMs": 100.48114800000002,
+  "points": 438256,
+  "pointSequenceSha256": "91a48d9d71dcad9e23d14e95de304cecc7909082c22bac94b16c72f64f1ea536",
+  "oracleQueries": 7879,
+  "propagated": 430377,
+  "unknowns": 0,
+  "violations": 0,
+  "minimumLowerBound": -0.00002250833637617656,
+  "referenceMinimum": -0.00002240833637617656,
+  "bodies": [
+    {
+      "body": 0,
+      "minimumLowerBound": -0.000011441506623727893,
+      "stats": {
+        "maximumPoints": 48,
+        "roundoffPadding": 1e-7,
+        "trackedPoints": 48,
+        "queries": 3780,
+        "propagated": 54012,
+        "unknowns": 0,
+        "failures": 0,
+        "resets": 0,
+        "domainRejections": 0,
+        "domainGuard": true
+      }
+    },
+    {
+      "body": 1,
+      "minimumLowerBound": -0.00002250833637617656,
+      "stats": {
+        "maximumPoints": 316,
+        "roundoffPadding": 1e-7,
+        "trackedPoints": 316,
+        "queries": 4099,
+        "propagated": 376365,
+        "unknowns": 0,
+        "failures": 0,
+        "resets": 0,
+        "domainRejections": 0,
+        "domainGuard": true
+      }
+    }
+  ]
+}

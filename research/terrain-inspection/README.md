@@ -45,3 +45,36 @@ Method background: https://libigl.github.io/tutorial/#signed-distance and the
 installed three-mesh-bvh README closestPointToPoint/indirect-index contracts.
 The closure/witness helpers remain unexported and unreleased. Actual trajectory
 checks, broader shape controls and measured warm cost are still required.
+
+## Recorded trajectory and bounded cache (2026-10-29)
+
+The retained 1920 Hz non-settling fixture contributes 438,256 recorded proxy
+vertex positions. Full nearest queries produced no unknowns, sign-oracle
+mismatches, brute-force nearest-distance mismatches or lower-bound violations.
+The minimum signed distance was -0.00002240833637617656 m. This is endpoint
+proxy-vertex evidence, not continuous motion or whole authored-material proof.
+The failing sleep result remains a failure; no poses or solver states changed.
+
+`trajectory-reference.json` and its hashed little-endian float64 gzip preserve
+all full-query distances. The tracked probe validates the exact point sequence
+and both reference hashes before comparing every returned bound. With 1e-7 m
+padding, it makes 7,879 oracle queries and propagates 430,377 conservative
+positive bounds, with zero unknowns or violations. The minimum bound is the
+reference minimum minus padding. A static signed distance is 1-Lipschitz, so
+subtracting point displacement preserves a lower bound; only positive remaining
+bounds skip queries. Geometry changes require reset. A domain callback runs on
+every sample, before cache propagation; rejection or callback failure clears
+that point. Caller and callback tuples cannot alias retained state.
+
+`domain-tracked-trajectory.json` records the bounded patch domain and selected
+source hashes. Its cold observed build/loop times were 106/257 ms, not a hardware
+FPS benchmark. Previous observations, failed tests and the initial tuple type
+error remain recorded rather than silently overwritten.
+
+Exact edge/vertex witnesses now use their feature pseudonormal instead of an
+irrelevant tangential face normal. A regression first reproduced the ambiguous
+result; edge/vertex and nested cavity controls now pass. All 66 package tests
+(30,815 assertions) and the TypeScript build pass in domain-all-tests.log and
+domain-build.log. New helpers are still unexported and unreleased. Broader
+terrain validation and coverage semantics are required before a game gate can
+use them. No dependency adoption or finite-drop gate changes are included.
