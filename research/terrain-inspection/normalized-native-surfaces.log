@@ -1,0 +1,353 @@
+{
+  "scope": "Terminal-pose published Rapier normalized convex export surface audit, 5mm tolerance; export recomputes the hull and is NOT literal stored topology, continuous motion or enclosed-volume certification. Unknown budget exhaustion never clears a hull.",
+  "maximumHullQueries": 100000,
+  "elapsedMs": 571.538223,
+  "queries": 61286,
+  "clear": 19,
+  "penetrating": 0,
+  "unknown": 0,
+  "rows": [
+    {
+      "body": 0,
+      "collider": 0,
+      "poseSeconds": 20,
+      "sourceVertices": 48,
+      "exportVertices": 48,
+      "exportPositionsSha256": "4ba447d432fccbea45988455b7de00c1fa736bfc11f3b429810a9f96774c0725",
+      "exportIndicesSha256": "eedc4a3c4c806142e2649f6eb6bc8850d9e667bb3c4603f1efa46806d5ccb648",
+      "surfaceTriangles": 92,
+      "elapsedMs": 328.89548499999995,
+      "result": {
+        "kind": "clear",
+        "penetrationTolerance": 0.005,
+        "queries": 42348,
+        "certifiedLeaves": 21220,
+        "maximumDepth": 15
+      }
+    },
+    {
+      "body": 1,
+      "collider": 0,
+      "poseSeconds": 20,
+      "sourceVertices": 48,
+      "exportVertices": 47,
+      "exportPositionsSha256": "d5384b1cf29a30b6bebad6643091ec46bff9b7e5e2a8c981fe6743dedd3734fa",
+      "exportIndicesSha256": "70b1d122511361fe0f6921a52dfc882bca5a6524a84f09087555816c80159dff",
+      "surfaceTriangles": 90,
+      "elapsedMs": 21.217166999999904,
+      "result": {
+        "kind": "clear",
+        "penetrationTolerance": 0.005,
+        "queries": 1782,
+        "certifiedLeaves": 936,
+        "maximumDepth": 14
+      }
+    },
+    {
+      "body": 1,
+      "collider": 1,
+      "poseSeconds": 20,
+      "sourceVertices": 24,
+      "exportVertices": 24,
+      "exportPositionsSha256": "459b6a1c560483307a00677e212534e04c3a303b6ad422cbd297301950483fca",
+      "exportIndicesSha256": "a0322f52ffa134fc1a12634d36d92fda8714d1d6d09597da61249699952b8fe4",
+      "surfaceTriangles": 44,
+      "elapsedMs": 10.902174999999943,
+      "result": {
+        "kind": "clear",
+        "penetrationTolerance": 0.005,
+        "queries": 790,
+        "certifiedLeaves": 417,
+        "maximumDepth": 6
+      }
+    },
+    {
+      "body": 1,
+      "collider": 2,
+      "poseSeconds": 20,
+      "sourceVertices": 24,
+      "exportVertices": 24,
+      "exportPositionsSha256": "15fa89c4e289a553a3e6ca0563f0ab436e0734d0559ed9776e9b0aedaea91e4f",
+      "exportIndicesSha256": "5404249866f0bdf9bc6f4344a8706c25b9dbde8ae659ddbde38ab9c383402428",
+      "surfaceTriangles": 44,
+      "elapsedMs": 3.563297999999918,
+      "result": {
+        "kind": "clear",
+        "penetrationTolerance": 0.005,
+        "queries": 302,
+        "certifiedLeaves": 173,
+        "maximumDepth": 4
+      }
+    },
+    {
+      "body": 1,
+      "collider": 3,
+      "poseSeconds": 20,
+      "sourceVertices": 12,
+      "exportVertices": 12,
+      "exportPositionsSha256": "484a4f179992c1d4cf9961562a40eed3edd66a38a8d0d1602d53955a78ff8743",
+      "exportIndicesSha256": "0dbf90ed7a9598755553232051fd9b64aeff9f8cdc721408ac688f134243a695",
+      "surfaceTriangles": 20,
+      "elapsedMs": 0.4325589999999693,
+      "result": {
+        "kind": "clear",
+        "penetrationTolerance": 0.005,
+        "queries": 44,
+        "certifiedLeaves": 32,
+        "maximumDepth": 1
+      }
+    },
+    {
+      "body": 1,
+      "collider": 4,
+      "poseSeconds": 20,
+      "sourceVertices": 12,
+      "exportVertices": 12,
+      "exportPositionsSha256": "2c0c646ca632a7c77e9bf5e87f0b80bebb73149d7a54ac008724eb7b4b5a1588",
+      "exportIndicesSha256": "cf7db586aaab962bd1e7763f2718a82b139c602b035bcf83922224bedaf0dd47",
+      "surfaceTriangles": 20,
+      "elapsedMs": 0.5161739999999782,
+      "result": {
+        "kind": "clear",
+        "penetrationTolerance": 0.005,
+        "queries": 68,
+        "certifiedLeaves": 44,
+        "maximumDepth": 2
+      }
+    },
+    {
+      "body": 1,
+      "collider": 5,
+      "poseSeconds": 20,
+      "sourceVertices": 12,
+      "exportVertices": 12,
+      "exportPositionsSha256": "df57b726ffb62cc86fc6933faa927b6a543056046a5d17449e6f3df06dfd9a68",
+      "exportIndicesSha256": "f38566386d25379f88e443eb73eaa8e0fb36739575b6f1b70a9114f2d775a33f",
+      "surfaceTriangles": 20,
+      "elapsedMs": 0.23292800000001534,
+      "result": {
+        "kind": "clear",
+        "penetrationTolerance": 0.005,
+        "queries": 32,
+        "certifiedLeaves": 26,
+        "maximumDepth": 1
+      }
+    },
+    {
+      "body": 1,
+      "collider": 6,
+      "poseSeconds": 20,
+      "sourceVertices": 24,
+      "exportVertices": 24,
+      "exportPositionsSha256": "7919a5994b5918b90726f3053cf6a2994b77d15f60db28b42aaf1abfa4385f4c",
+      "exportIndicesSha256": "b071b493beba55a422f31e662bf12bcccc48531990a33e1a021bb90a5a65aa0c",
+      "surfaceTriangles": 44,
+      "elapsedMs": 16.232079,
+      "result": {
+        "kind": "clear",
+        "penetrationTolerance": 0.005,
+        "queries": 1206,
+        "certifiedLeaves": 625,
+        "maximumDepth": 7
+      }
+    },
+    {
+      "body": 1,
+      "collider": 7,
+      "poseSeconds": 20,
+      "sourceVertices": 12,
+      "exportVertices": 12,
+      "exportPositionsSha256": "3afed9a4f83ef033cbd66752da8ee7172445ee046b3760e087c6e7f309ddd038",
+      "exportIndicesSha256": "2b7204700dd70a141984cdac04db60a2e16caf91e0cec1ae74022892df75df6a",
+      "surfaceTriangles": 20,
+      "elapsedMs": 5.270239999999944,
+      "result": {
+        "kind": "clear",
+        "penetrationTolerance": 0.005,
+        "queries": 398,
+        "certifiedLeaves": 209,
+        "maximumDepth": 6
+      }
+    },
+    {
+      "body": 1,
+      "collider": 8,
+      "poseSeconds": 20,
+      "sourceVertices": 12,
+      "exportVertices": 12,
+      "exportPositionsSha256": "ec6e485dbec45cfc791f0583f929c051ce28edeeaa3441a455fa6a386961b842",
+      "exportIndicesSha256": "b58df1f21762d0817f772ba17021c77f7536e03e46d1e38bc0fac2f8ea915dde",
+      "surfaceTriangles": 20,
+      "elapsedMs": 1.5541589999999132,
+      "result": {
+        "kind": "clear",
+        "penetrationTolerance": 0.005,
+        "queries": 114,
+        "certifiedLeaves": 67,
+        "maximumDepth": 4
+      }
+    },
+    {
+      "body": 1,
+      "collider": 9,
+      "poseSeconds": 20,
+      "sourceVertices": 12,
+      "exportVertices": 12,
+      "exportPositionsSha256": "e9418ff582de61571bc7e99ea9dba9dbfb411ac5525c57b5e755cd75cacf06d2",
+      "exportIndicesSha256": "ad54ed44ca031d31c7c255970a24d2cb4fad3167d3b0f38f135df4e1a219d047",
+      "surfaceTriangles": 20,
+      "elapsedMs": 30.204386999999997,
+      "result": {
+        "kind": "clear",
+        "penetrationTolerance": 0.005,
+        "queries": 4104,
+        "certifiedLeaves": 2062,
+        "maximumDepth": 15
+      }
+    },
+    {
+      "body": 1,
+      "collider": 10,
+      "poseSeconds": 20,
+      "sourceVertices": 25,
+      "exportVertices": 24,
+      "exportPositionsSha256": "ae22992dc393634be2941d84ddd399e09f2fa1fbde08bd514c58a41c160e6eee",
+      "exportIndicesSha256": "3b162bb60e4c5f327dbcf093d1a82bebf922f3440254519e4f1bf95d127f726a",
+      "surfaceTriangles": 44,
+      "elapsedMs": 53.13730399999997,
+      "result": {
+        "kind": "clear",
+        "penetrationTolerance": 0.005,
+        "queries": 5708,
+        "certifiedLeaves": 2876,
+        "maximumDepth": 16
+      }
+    },
+    {
+      "body": 1,
+      "collider": 11,
+      "poseSeconds": 20,
+      "sourceVertices": 12,
+      "exportVertices": 12,
+      "exportPositionsSha256": "f0376d31b68d8c7eead5b992538db1f30adbc9cc07d164d5e3ee23ba99572fca",
+      "exportIndicesSha256": "f4b72486f1d7415a21d8bdee1f0bd25768f2c213331dc1a500bcfc2c1f683e5b",
+      "surfaceTriangles": 20,
+      "elapsedMs": 2.1011099999999487,
+      "result": {
+        "kind": "clear",
+        "penetrationTolerance": 0.005,
+        "queries": 236,
+        "certifiedLeaves": 128,
+        "maximumDepth": 5
+      }
+    },
+    {
+      "body": 1,
+      "collider": 12,
+      "poseSeconds": 20,
+      "sourceVertices": 12,
+      "exportVertices": 12,
+      "exportPositionsSha256": "72a31b65db2599e62787be91050eae4b6de5fbd9d5b771aff95d98d51bc0c4e3",
+      "exportIndicesSha256": "f4cfa4791d99644b3b5ecefbfc85343db1c722df32350fdeaaa4efa983c04649",
+      "surfaceTriangles": 20,
+      "elapsedMs": 24.61166800000001,
+      "result": {
+        "kind": "clear",
+        "penetrationTolerance": 0.005,
+        "queries": 1712,
+        "certifiedLeaves": 866,
+        "maximumDepth": 9
+      }
+    },
+    {
+      "body": 1,
+      "collider": 13,
+      "poseSeconds": 20,
+      "sourceVertices": 12,
+      "exportVertices": 12,
+      "exportPositionsSha256": "ccd7007780370aa918a10a5e6ff1309a026e7a893d23428da4e91a596df71183",
+      "exportIndicesSha256": "136f2cc8407ed2ae45f8560e0233a36d160f766ee9a131b7bb5e5dd31dfbf71e",
+      "surfaceTriangles": 20,
+      "elapsedMs": 12.53496199999995,
+      "result": {
+        "kind": "clear",
+        "penetrationTolerance": 0.005,
+        "queries": 1130,
+        "certifiedLeaves": 575,
+        "maximumDepth": 10
+      }
+    },
+    {
+      "body": 1,
+      "collider": 14,
+      "poseSeconds": 20,
+      "sourceVertices": 25,
+      "exportVertices": 24,
+      "exportPositionsSha256": "949c4119d2cc2065bdd4465833908b141a39fc479974cba6d1d4d1a2e8f7a952",
+      "exportIndicesSha256": "e0e680b60379dd1ea78011391dcd411c51b4324d71c639098df1b717eb7fb824",
+      "surfaceTriangles": 44,
+      "elapsedMs": 10.773119000000065,
+      "result": {
+        "kind": "clear",
+        "penetrationTolerance": 0.005,
+        "queries": 678,
+        "certifiedLeaves": 361,
+        "maximumDepth": 6
+      }
+    },
+    {
+      "body": 1,
+      "collider": 15,
+      "poseSeconds": 20,
+      "sourceVertices": 12,
+      "exportVertices": 12,
+      "exportPositionsSha256": "966f6edcfdd3b03f2753235050af901c19e3637b9a110eb99f1dde9e02f59da5",
+      "exportIndicesSha256": "b0c98036aa46a65d0c912ca60ccb0a45b38ba991e97d9e5c2c9a667a4f1bc7dc",
+      "surfaceTriangles": 20,
+      "elapsedMs": 8.642438999999968,
+      "result": {
+        "kind": "clear",
+        "penetrationTolerance": 0.005,
+        "queries": 378,
+        "certifiedLeaves": 199,
+        "maximumDepth": 6
+      }
+    },
+    {
+      "body": 1,
+      "collider": 16,
+      "poseSeconds": 20,
+      "sourceVertices": 13,
+      "exportVertices": 12,
+      "exportPositionsSha256": "967d19617e61b2b24bdcc276ef919d6370a438c370895044602bef111b320ed1",
+      "exportIndicesSha256": "c7477840326cb46b9a4397e3e5794aa46fa057751f5c241c8a040915f3124a39",
+      "surfaceTriangles": 20,
+      "elapsedMs": 1.949072000000001,
+      "result": {
+        "kind": "clear",
+        "penetrationTolerance": 0.005,
+        "queries": 80,
+        "certifiedLeaves": 50,
+        "maximumDepth": 2
+      }
+    },
+    {
+      "body": 1,
+      "collider": 17,
+      "poseSeconds": 20,
+      "sourceVertices": 13,
+      "exportVertices": 12,
+      "exportPositionsSha256": "b293b0043da9e34d61eb9c8f65fb6f9832feef37881e6ed4390b62c1122c5c62",
+      "exportIndicesSha256": "cf9c77cb2a955f8cfcdb290fbb68e8d2995301dc09c4ed429f6ec21af655777d",
+      "surfaceTriangles": 20,
+      "elapsedMs": 3.030734999999936,
+      "result": {
+        "kind": "clear",
+        "penetrationTolerance": 0.005,
+        "queries": 176,
+        "certifiedLeaves": 98,
+        "maximumDepth": 4
+      }
+    }
+  ]
+}

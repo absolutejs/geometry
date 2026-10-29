@@ -113,3 +113,13 @@ does not establish continuous-time clearance, exclude a fully enclosed obstacle,
 or prove that reconstructed hulls equal native collision shapes. Next work must
 address actual native-hull coverage and acceleration before promoting a finite
 terrain gate. These findings are a reason to preserve the gate, not bypass it.
+
+The published Rapier 0.18.0 export control also clears 19/19 terminal surfaces
+with 61,286 queries (572 ms cold observed). It uses the canonical game's
+woodColliderShape construction and frees every collider/world. Crucially,
+`vertices()`/`indices()` normalize convex meshes by recomputing a hull: they do
+not expose the exact stored native topology. Five hulls export fewer vertices
+than their source points. Export hashes and counts are retained in
+normalized-native-surfaces.json. This validates a second reconstruction path,
+not permission to claim exact solver-surface coverage. No new engine release
+is needed for these existing APIs, and no engine source was changed.
