@@ -16,3 +16,5 @@ export { auditSurfaceOrigins, type SurfaceOrigins } from './surfaceOrigins.js';
 export { mergeIndexedMesh, type IndexedMergeMesh } from './mergeIndexedMesh.js';
 export { principalInertiaFrame } from './principalInertia.js';
 export { axialOrientationTensor, type WeightedAxis } from './axialOrientation.js';
+
+export { tetrahedronPlaneMoments } from './tetrahedronPlaneMoments.js';

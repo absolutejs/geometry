@@ -1,0 +1,88 @@
+{
+  "result": {
+    "area": 0.5,
+    "gap": 0,
+    "cells": 4096,
+    "detached": true
+  },
+  "bitmapResult": {
+    "alpha": [
+      255,
+      0,
+      64,
+      128
+    ],
+    "sourceWidth": 2,
+    "error": null
+  },
+  "inertiaResult": {
+    "principal": [
+      2,
+      4,
+      4
+    ],
+    "frame": {
+      "x": 0,
+      "y": 0,
+      "z": -0.3826834323650897,
+      "w": 0.9238795325112867
+    },
+    "relativeReconstructionError": 2.220446049250313e-16,
+    "sweeps": 1
+  },
+  "orientationResult": [
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "membershipResult": [
+    "inside",
+    "outside",
+    "boundary"
+  ],
+  "planeResult": {
+    "sample": {
+      "signedVolume": 0.020833333333333332,
+      "fullSignedVolume": 0.16666666666666666,
+      "fraction": 0.125,
+      "centroid": [
+        0.125,
+        0.125,
+        0.125
+      ],
+      "firstMoment": [
+        -0.0078125,
+        -0.0078125,
+        -0.0078125
+      ],
+      "reference": [
+        0.5,
+        0.5,
+        0.5
+      ]
+    },
+    "benchmark": {
+      "samples": 20480,
+      "batchSize": 4096,
+      "batchMs": [
+        36.40000003576279,
+        31.900000035762787,
+        19.80000001192093,
+        22.599999964237213,
+        19.80000001192093
+      ],
+      "checksum": 708.4021164021178
+    },
+    "rejected": {
+      "error": "Error: Zero clipping normal"
+    }
+  },
+  "errors": [],
+  "gpu": "disabled"
+}

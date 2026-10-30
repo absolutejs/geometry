@@ -1,0 +1,28 @@
+{
+  "filesMatched": 37,
+  "version": "0.10.0",
+  "shasum": "3c25820c8098ac7a941177602dac9bb8cf3c7cfb",
+  "integrity": "sha512-w1ZTEXUVvzqkkolJP83m8bmz/pARV+TzPzImCIzogfp0sO3hQVEbmAHgPbi8A6+BqngdjcZ8IVwG1L6eVpXXkQ==",
+  "bytes": 30479,
+  "node": "v22.14.0",
+  "sample": {
+    "signedVolume": 0.020833333333333332,
+    "fullSignedVolume": 0.16666666666666666,
+    "fraction": 0.125,
+    "centroid": [
+      0.125,
+      0.125,
+      0.125
+    ],
+    "firstMoment": [
+      -0.0078125,
+      -0.0078125,
+      -0.0078125
+    ],
+    "reference": [
+      0.5,
+      0.5,
+      0.5
+    ]
+  }
+}

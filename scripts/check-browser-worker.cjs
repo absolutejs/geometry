@@ -13,8 +13,8 @@ const { chromium } = require(process.env.PLAYWRIGHT_MODULE || '/home/alexkahn/.c
         '/index.js': fs.readFileSync('dist/index.js', 'utf8'),
         '/projection.js': fs.readFileSync('dist/projection.js', 'utf8'),
         '/alpha.js': fs.readFileSync('dist/alpha.js', 'utf8'),
- ...Object.fromEntries(['closedComponents','solidPointMembership','solidComponents','signedVolume','overlap','materialPartition','triangleWeights','surfaceOrigins','mergeIndexedMesh','principalInertia','axialOrientation','manifold','manifoldMesh64'].map(n=>['/'+n+'.js',fs.readFileSync('dist/'+n+'.js','utf8')])),
-        '/worker.js': `import {projectAlphaCoverage,alphaFromImageBitmap,principalInertiaFrame,axialOrientationTensor,solidPointMembership} from './index.js'; onmessage = e => { try {if(e.data.membership){const m=e.data.membership;const query=solidPointMembership(m.positions,m.indices);postMessage(m.points.map(query));return;}if(e.data.axes){const tensor=axialOrientationTensor(e.data.axes);postMessage({tensor},[tensor.buffer]);return;}if(e.data.tensor){postMessage(principalInertiaFrame(e.data.tensor));return;}if(e.data.bitmap){const alpha=alphaFromImageBitmap(e.data.bitmap);e.data.bitmap.close();postMessage({alpha},[alpha.buffer]);return;}const r = projectAlphaCoverage(e.data); postMessage(r,[r.cells.buffer]);} catch (error) {postMessage({error:String(error)});} };`,
+ ...Object.fromEntries(['closedComponents','solidPointMembership','solidComponents','signedVolume','overlap','materialPartition','triangleWeights','surfaceOrigins','mergeIndexedMesh','principalInertia','axialOrientation','tetrahedronPlaneMoments','manifold','manifoldMesh64'].map(n=>['/'+n+'.js',fs.readFileSync('dist/'+n+'.js','utf8')])),
+        '/worker.js': `import {projectAlphaCoverage,alphaFromImageBitmap,principalInertiaFrame,axialOrientationTensor,solidPointMembership,tetrahedronPlaneMoments} from './index.js'; onmessage = e => { try {if(e.data.plane){const p=e.data.plane;postMessage(tetrahedronPlaneMoments(p.vertices,p.point,p.normal));return;}if(e.data.planeBenchmark){const vertices=[[0,0,0],[1,0,0],[0,1,0],[0,0,1]],normal=[1,1,1],times=[];let checksum=0;for(let warm=0;warm<512;warm++)tetrahedronPlaneMoments(vertices,[.5,0,0],normal);for(let batch=0;batch<5;batch++){const start=performance.now();for(let i=0;i<4096;i++)checksum+=tetrahedronPlaneMoments(vertices,[.1+.8*(i%64)/63,0,0],normal).signedVolume;times.push(performance.now()-start);}postMessage({samples:20480,batchSize:4096,batchMs:times,checksum});return;}if(e.data.membership){const m=e.data.membership;const query=solidPointMembership(m.positions,m.indices);postMessage(m.points.map(query));return;}if(e.data.axes){const tensor=axialOrientationTensor(e.data.axes);postMessage({tensor},[tensor.buffer]);return;}if(e.data.tensor){postMessage(principalInertiaFrame(e.data.tensor));return;}if(e.data.bitmap){const alpha=alphaFromImageBitmap(e.data.bitmap);e.data.bitmap.close();postMessage({alpha},[alpha.buffer]);return;}const r = projectAlphaCoverage(e.data); postMessage(r,[r.cells.buffer]);} catch (error) {postMessage({error:String(error)});} };`,
       };
       return route.fulfill({contentType: path in sources ? 'text/javascript' : 'text/html', body: sources[path] || '<!doctype html><title>Geometry worker qualification</title>'});
     });
@@ -82,9 +82,23 @@ const { chromium } = require(process.env.PLAYWRIGHT_MODULE || '/home/alexkahn/.c
       });}finally{worker.terminate()}
     });
     assert.deepEqual(membershipResult,['inside','outside','boundary']);
+    const planeResult=await page.evaluate(async()=>{
+      const worker=new Worker('/worker.js',{type:'module'});
+      const request=data=>new Promise((resolve,reject)=>{
+        const timer=setTimeout(()=>reject(Error('plane worker deadline')),10000);
+        worker.onmessage=e=>{clearTimeout(timer);resolve(e.data)};
+        worker.onerror=e=>{clearTimeout(timer);reject(Error(e.message))};worker.postMessage(data);
+      });
+      try{return {sample:await request({plane:{vertices:[[0,0,0],[1,0,0],[0,1,0],[0,0,1]],point:[.5,0,0],normal:[1,1,1]}}),benchmark:await request({planeBenchmark:true}),rejected:await request({plane:{vertices:[[0,0,0],[1,0,0],[0,1,0],[0,0,1]],point:[0,0,0],normal:[0,0,0]}})};}finally{worker.terminate()}
+    });
+    assert.ok(Math.abs(planeResult.sample.signedVolume-1/48)<1e-14);
+    assert.ok(planeResult.sample.centroid.every(x=>Math.abs(x-.125)<1e-14));
+    assert.equal(planeResult.benchmark.samples,20480);
+    assert.ok(planeResult.benchmark.batchMs.every(Number.isFinite));
+    assert.match(planeResult.rejected.error,/Zero clipping normal/);
     assert.deepEqual(errors,[]);
     fs.mkdirSync('.diagnostics',{recursive:true});
-    fs.writeFileSync('.diagnostics/browser-worker.json',JSON.stringify({result,bitmapResult,inertiaResult,orientationResult,membershipResult,errors,gpu:'disabled'},null,2));
+    fs.writeFileSync('.diagnostics/browser-worker.json',JSON.stringify({result,bitmapResult,inertiaResult,orientationResult,membershipResult,planeResult,errors,gpu:'disabled'},null,2));
     console.log('GPU-disabled browser module worker passed',result);
   } finally {await browser.close()}
 })().catch(e=>{console.error(e);process.exitCode=1});

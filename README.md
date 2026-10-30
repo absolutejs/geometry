@@ -292,3 +292,38 @@ faces are not rejected by an absolute area cutoff; exactly collinear boundary
 faces retain their edges. The existing 1e-7 boundary tolerance and winding checks
 remain unchanged. This does not make Boolean geometry exact below native feature
 limits, and does not alter source topology or repair degenerate whole solids.
+
+
+### Plane-clipped tetrahedron moments
+
+`tetrahedronPlaneMoments(vertices, planePoint, planeNormal)` integrates the part
+of a four-vertex oriented tetrahedron on the side
+`dot(position - planePoint, planeNormal) <= 0`. The normal need not be unit length.
+It returns signed clipped/full volumes, their ratio, a centroid (null for an
+empty cut), a reference point and signed first moments relative to that reference.
+Input arrays are borrowed synchronously and never changed. No engine or native
+allocation is required; work is bounded by four faces and six crossed edges.
+
+```ts
+import { tetrahedronPlaneMoments } from '@absolutejs/geometry';
+const cut = tetrahedronPlaneMoments(
+  [[0, 0, 0], [1, 0, 0], [0, 1, 0], [0, 0, 1]],
+  [0.5, 0, 0], [1, 1, 1]
+);
+// cut.signedVolume = 1/48; cut.centroid = [0.125, 0.125, 0.125]
+```
+
+Orientation matters: reversing two vertices reverses signed volume and moments.
+For a valid closed-solid tetrahedral decomposition, sum signed contributions;
+do not take each contribution's absolute value. To combine first moments with a
+common reference `r`, add `firstMoment + signedVolume * (reference - r)`.
+The helper does not construct or validate that decomposition. Tiny represented
+wet corners are retained using a shared cut-vertex integration origin, with no
+absolute volume cutoff. Degenerate or unrepresentable results throw; this is
+floating-point geometry, not exact predicates. A ratio can exceed one by accepted
+floating-point roundoff up to 1e-12; no silent clamping repairs the output.
+
+This measures geometry, not buoyancy or fluid response. A sealed air compartment
+and an open flooded cavity do not exclude the same water volume; the caller must
+supply the appropriate physical region. Water-surface curvature, density, force,
+torque, pressure dynamics and clock ownership are separate responsibilities.
