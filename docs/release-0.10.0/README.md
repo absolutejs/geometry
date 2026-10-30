@@ -37,7 +37,7 @@ none. The artifact and registry release remain separate qualification steps.
 A geometric clipped volume is not automatically the water-displacing volume of a
 hollow or floodable object. No live-world force coupling or boat model is claimed.
 
-The exact 30,479-byte archive is retained beside this record. All 36 packaged
+The exact 30,479-byte archive is retained beside this record. All 37 packaged
 files match the reviewed built files byte-for-byte; an isolated extracted public
 ESM import returns the analytic volume and centroid. SHA1:
 `3c25820c8098ac7a941177602dac9bb8cf3c7cfb`. Registry publication is not yet verified.
