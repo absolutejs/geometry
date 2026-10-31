@@ -247,10 +247,23 @@ is an export record, not an input accepted directly by Manifold's Float32 Mesh A
 Limits:200,000 triangles,100,000 exported property vertices,16 extra channels,
 and at most600,000 position callbacks. `mergeIndexedMesh` accepts Float32 or
 Float64 position-only buffers and still uses explicit merge ancestry. Core imports
-remain independent of Manifold. Input creation in the adapter still uses native
-Float32 Mesh construction: this export improvement cannot restore precision lost
-before a solid was created, or repair invalid native geometry. Keep precision-
-sensitive native operations native until their final export when possible.
+remain independent of Manifold.
+
+`createManifoldMesh64(wasm, mesh)` imports a position-only mesh with `numProp: 3`,
+Float64 `vertProperties`, Uint32 `triVerts`, and optional native mesh metadata
+(such as face IDs and original source runs). The partition adapter uses this
+helper. It constructs the required Float32 native Mesh, then restores the exact
+original coordinates via native warp **before** Boolean operations. It rejects
+nonfinite coordinates, distinct doubles with the same rounded Float32 position,
+unknown native vertices, and changes to vertex/triangle counts during import or
+restoration. Input bounds are 100,000 vertices and 200,000 triangles. Intermediate
+native handles are released; callers own the returned solid.
+
+This does not recover coordinates already lost before this call, repair topology,
+certify self-intersection freedom, or guarantee every thin mesh can pass the native
+Float32 constructor. Rejections are explicit. Keep precision-sensitive operations
+native until final export when possible; repeated serialization/rebasing can still
+introduce slivers at coincident cut faces.
 
 The ancestry contract does not assign grain across a newly cut face spanning
 multiple materials, validate a collider, or prove a physical attachment.

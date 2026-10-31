@@ -1,4 +1,5 @@
 import type { Manifold, ManifoldToplevel } from "manifold-3d";
+import { createManifoldMesh64 } from "./createManifoldMesh64.js";
 import { getManifoldMesh64 } from "./manifoldMesh64.js";
 import { mergeIndexedMesh } from "./mergeIndexedMesh.js";
 import type { OverlapMesh } from "./overlap.js";
@@ -31,23 +32,19 @@ export function createManifoldPartitionKernel(
       )
         throw Error("Invalid Manifold source ID");
       return checked(
-        new wasm.Manifold(
-          new wasm.Mesh({
-            numProp: 3,
-            vertProperties: Float32Array.from(mesh.positions),
-            triVerts: mesh.indices,
-            faceID: Uint32Array.from(
-              { length: mesh.indices.length / 3 },
-              (_, i) => i,
-            ),
-            runOriginalID: new Uint32Array([
-              source === undefined
-                ? wasm.Manifold.reserveIDs(1)
-                : base + source,
-            ]),
-            runIndex: new Uint32Array([0, mesh.indices.length]),
-          }),
-        ),
+        createManifoldMesh64(wasm, {
+          numProp: 3,
+          vertProperties: Float64Array.from(mesh.positions),
+          triVerts: mesh.indices,
+          faceID: Uint32Array.from(
+            { length: mesh.indices.length / 3 },
+            (_, i) => i,
+          ),
+          runOriginalID: new Uint32Array([
+            source === undefined ? wasm.Manifold.reserveIDs(1) : base + source,
+          ]),
+          runIndex: new Uint32Array([0, mesh.indices.length]),
+        }),
       );
     },
     subtract: (a: Manifold, b: Manifold) => checked(a.subtract(b)),
@@ -102,3 +99,8 @@ export function createManifoldPartitionKernel(
   };
 }
 export { getManifoldMesh64 } from "./manifoldMesh64.js";
+
+export {
+  createManifoldMesh64,
+  type ManifoldMesh64Input,
+} from "./createManifoldMesh64.js";

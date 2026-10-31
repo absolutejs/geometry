@@ -1,0 +1,33 @@
+{
+  "gpu": "disabled",
+  "result": {
+    "vertices": 8,
+    "rows": [
+      {
+        "variant": 0,
+        "shape": "broad",
+        "volume": 0.07715763865542163,
+        "faces": 630
+      },
+      {
+        "variant": 1,
+        "shape": "slender",
+        "volume": 0.0012443461309056402,
+        "faces": 616
+      },
+      {
+        "variant": 1,
+        "shape": "broad",
+        "volume": 0.10137243180959565,
+        "faces": 616
+      },
+      {
+        "variant": 2,
+        "shape": "slender",
+        "volume": 0.002436151171618991,
+        "faces": 1490
+      }
+    ]
+  },
+  "errors": []
+}

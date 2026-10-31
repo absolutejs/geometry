@@ -1,0 +1,9 @@
+{
+  "command": "GEOMETRY_IMPORT_CANDIDATE=<package>/src/manifold.ts bun test --preload ./artifacts/deformed-tree-precision/candidate-preload.ts ./tests",
+  "tests": 922,
+  "failures": 0,
+  "assertions": 7501835,
+  "files": 302,
+  "seconds": 125.61,
+  "scope": "Candidate partition adapter only; later-cut restoration is not enabled"
+}
