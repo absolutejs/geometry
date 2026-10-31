@@ -62,3 +62,5 @@ this is not a claim of live-world adoption or hydrodynamic fidelity.
 Final archive SHA1: `842feecfe25f54eb187e628eed883f18bd468ca0`, 32,105 bytes.
 GPU-disabled browser checks pass all 193 conditioning cases and direct/prepared
 benchmark checksums match. Package publication remains pending.
+
+Publication verified 2026-10-31: npm registry version 0.11.0, SHA1 and SHA512 exactly match the final tested archive. Source and archive are pushed at 9e4ef03. Game adoption proceeds from the registry.
