@@ -6,7 +6,10 @@ const dot = (a: V, b: V) => a[0] * b[0] + a[1] * b[1] + a[2] * b[2];
  * Area is unsigned; surfaceNormal preserves source winding. First and row-major
  * second area moments are relative to the returned reference, not world zero.
  * No mesh topology, fluid exposure, pressure coefficient or force is inferred. */
-export function prepareTrianglePlaneMoments(input: readonly V[]) {
+function prepareTrianglePlaneMomentsOrder(
+  input: readonly V[],
+  secondOrder: boolean,
+) {
   if (
     input.length !== 3 ||
     !input.every((v) => v.length === 3 && v.every(Number.isFinite))
@@ -36,15 +39,18 @@ export function prepareTrianglePlaneMoments(input: readonly V[]) {
   function integrate(area: number, points: readonly V[]) {
     const sum = [0, 1, 2].map((k) => points.reduce((s, p) => s + p[k]!, 0));
     const first = sum.map((x) => (area * x) / 3);
-    const second = Array.from({ length: 9 }, (_, i) => {
-      const r = Math.floor(i / 3),
-        c = i % 3;
-      return (
-        (area *
-          (sum[r]! * sum[c]! + points.reduce((s, p) => s + p[r]! * p[c]!, 0))) /
-        12
-      );
-    });
+    const second = secondOrder
+      ? Array.from({ length: 9 }, (_, i) => {
+          const r = Math.floor(i / 3),
+            c = i % 3;
+          return (
+            (area *
+              (sum[r]! * sum[c]! +
+                points.reduce((s, p) => s + p[r]! * p[c]!, 0))) /
+            12
+          );
+        })
+      : [];
     return { area, first, second };
   }
   const fullMoments = integrate(full, [[0, 0, 0], a, b]);
@@ -57,7 +63,7 @@ export function prepareTrianglePlaneMoments(input: readonly V[]) {
       (x) => x * scale * scale * scale * scale,
     );
     const centroid =
-      area > 0
+      area > 0 && secondOrder
         ? (moments.first.map(
             (x, k) => reference[k]! + (x / moments.area) * scale,
           ) as M)
@@ -85,6 +91,12 @@ export function prepareTrianglePlaneMoments(input: readonly V[]) {
       surfaceNormal: [...surfaceNormal] as M,
     };
   };
+  // Internal first-order consumers only read these owned results. Public queries
+  // continue returning independent arrays, preserving their ownership contract.
+  const cachedFull = secondOrder ? null : pack(fullMoments, vertices[0]!);
+  const cachedDry = secondOrder
+    ? null
+    : pack({ area: 0, first: [0, 0, 0], second: [] }, vertices[0]!);
   return (point: V, normal: V) => {
     if (
       ![point, normal].every((v) => v.length === 3 && v.every(Number.isFinite))
@@ -96,11 +108,15 @@ export function prepareTrianglePlaneMoments(input: readonly V[]) {
     const distances = vertices.map((v) => dot(sub(v, point), n) / scale);
     if (!distances.every(Number.isFinite))
       throw Error("Unrepresentable clipping distances");
-    if (distances.every((d) => d <= 0)) return pack(fullMoments, vertices[0]!);
+    if (distances.every((d) => d <= 0))
+      return cachedFull ?? pack(fullMoments, vertices[0]!);
     if (distances.every((d) => d >= 0))
-      return pack(
-        { area: 0, first: [0, 0, 0], second: Array(9).fill(0) },
-        vertices[0]!,
+      return (
+        cachedDry ??
+        pack(
+          { area: 0, first: [0, 0, 0], second: Array(9).fill(0) },
+          vertices[0]!,
+        )
       );
     const wet = distances.map((d, i) => (d < 0 ? i : -1)).filter((i) => i >= 0);
     const ia = wet[0]!,
@@ -154,6 +170,13 @@ export function prepareTrianglePlaneMoments(input: readonly V[]) {
       reference,
     );
   };
+}
+/** Internal first-order path for closed-solid flux; no second moments are returned. */
+export function prepareTriangleFirstPlaneMoments(input: readonly V[]) {
+  return prepareTrianglePlaneMomentsOrder(input, false);
+}
+export function prepareTrianglePlaneMoments(input: readonly V[]) {
+  return prepareTrianglePlaneMomentsOrder(input, true);
 }
 export function trianglePlaneMoments(
   vertices: readonly V[],

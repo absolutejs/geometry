@@ -1,3 +1,4 @@
+import { prepareTriangleFirstPlaneMoments } from "./trianglePlaneMoments.js";
 import { solidComponents } from "./solidComponents.js";
 import { signedVolume } from "./signedVolume.js";
 import { prepareTetrahedronPlaneMoments } from "./tetrahedronPlaneMoments.js";
@@ -49,7 +50,7 @@ export function prepareSolidPlaneMoments(input: {
       throw Error("Unrepresentable solid plane extent");
     const apex = low.map((x, k) => x - extent * (1.234 + k * 0.271)) as M;
     const fullPoint: M = [0, high[1] + extent, 0];
-    const queries = [];
+    const surfaceQueries = [];
     let volume = 0;
     const moment: M = [0, 0, 0];
     for (let t = 0; t < c.indices.length; t += 3) {
@@ -64,6 +65,7 @@ export function prepareSolidPlaneMoments(input: {
           ] as M;
         }),
       ];
+      surfaceQueries.push(prepareTriangleFirstPlaneMoments(vertices.slice(1)));
       let query: ReturnType<typeof prepareTetrahedronPlaneMoments>;
       try {
         query = prepareTetrahedronPlaneMoments(vertices);
@@ -74,7 +76,6 @@ export function prepareSolidPlaneMoments(input: {
         }
         throw e;
       }
-      queries.push(query);
       const full = query(fullPoint, [0, 1, 0]);
       volume += full.signedVolume;
       for (let k = 0; k < 3; k++)
@@ -87,7 +88,7 @@ export function prepareSolidPlaneMoments(input: {
       Math.abs(volume / expected - 1) > 1e-9
     )
       throw Error("Solid plane full moments disagree");
-    return { low, high, extent, queries, volume, moment };
+    return { low, high, extent, surfaceQueries, volume, moment };
   });
   const fullVolume = groups.reduce((s, g) => s + g.volume, 0);
   if (!Number.isFinite(fullVolume)) throw Error("Unrepresentable solid volume");
@@ -106,7 +107,8 @@ export function prepareSolidPlaneMoments(input: {
       fullComponents = 0,
       dryComponents = 0,
       partialComponents = 0,
-      clippedTetrahedra = 0;
+      clippedTetrahedra = 0,
+      evaluatedSurfaceTriangles = 0;
     const firstMoment: M = [0, 0, 0];
     for (const g of groups) {
       let near = 0,
@@ -135,13 +137,34 @@ export function prepareSolidPlaneMoments(input: {
         continue;
       }
       partialComponents++;
-      for (const query of g.queries) {
+      // The cap lies in the clipping plane, so its flux about a point on that
+      // plane is zero. div(y)=3 and div(y_i*y)=4*y_i give the moments.
+      const center = g.low.map((v, k) => (v + g.high[k]!) * 0.5) as M;
+      const offset =
+        center.reduce((sum, v, k) => sum + (v - p[k]!) * n[k]!, 0) /
+        n.reduce((sum, v) => sum + v * v, 0);
+      const origin = center.map((v, k) => v - offset * n[k]!) as M;
+      // Reanchor the dominant coordinate to the input plane: subtracting a
+      // nearly equal projection from the center can erase thin wet depths.
+      const dominant = n.findIndex((x) => Math.abs(x) === 1);
+      let tangent = 0;
+      for (let k = 0; k < 3; k++)
+        if (k !== dominant) tangent += (origin[k]! - p[k]!) * n[k]!;
+      origin[dominant] = p[dominant]! - tangent / n[dominant]!;
+      for (const query of g.surfaceQueries) {
         const r = query(p, n);
-        clippedTetrahedra++;
-        volume += r.signedVolume;
-        if (r.centroid)
-          for (let k = 0; k < 3; k++)
-            firstMoment[k]! += r.signedVolume * r.centroid[k]!;
+        evaluatedSurfaceTriangles++;
+        const delta = r.reference.map((v, k) => v - origin[k]!) as M;
+        const distance = delta.reduce(
+          (sum, v, k) => sum + v * r.surfaceNormal[k]!,
+          0,
+        );
+        const v = (distance * r.area) / 3;
+        volume += v;
+        for (let k = 0; k < 3; k++)
+          firstMoment[k]! +=
+            origin[k]! * v +
+            (distance * (r.firstMoment[k]! + delta[k]! * r.area)) / 4;
       }
     }
     const fraction = volume / fullVolume;
@@ -171,6 +194,7 @@ export function prepareSolidPlaneMoments(input: {
         dryComponents,
         partialComponents,
         clippedTetrahedra,
+        evaluatedSurfaceTriangles,
         skippedDegenerateTetrahedra,
       },
     };

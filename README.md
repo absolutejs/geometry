@@ -402,3 +402,7 @@ values. The result is not silently clamped; relative volume roundoff within
 when signed contributions cancel; use aggregate first moments where possible.
 A nonpositive residual volume has a null centroid. Nonfinite or inconsistent
 results throw. These are floating-point integration rules, not exact predicates.
+
+### Geometry 0.14 plane integration
+
+Partial closed-solid queries now integrate first-order moments of clipped boundary triangles. The clipping cap has zero flux about an origin on its plane. Full/dry component gates remain conservative. `stats.evaluatedSurfaceTriangles` counts partial-boundary queries; `clippedTetrahedra` remains present and is zero for this path. Preparation still independently checks full moments with signed tetrahedra. No topology, ancestry, material-exclusivity or fluid-exposure requirements are relaxed. Runtime benefits depend on geometry; this is not a world simulation budget guarantee.

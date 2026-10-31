@@ -1,0 +1,62 @@
+[
+  {
+    "variant": 0,
+    "component": 0,
+    "medianRuntimeRatio": 0.6062785633266012
+  },
+  {
+    "variant": 0,
+    "component": 1,
+    "medianRuntimeRatio": 0.6229159152350403
+  },
+  {
+    "variant": 1,
+    "component": 0,
+    "medianRuntimeRatio": 0.589645293223271
+  },
+  {
+    "variant": 1,
+    "component": 1,
+    "medianRuntimeRatio": 0.6031825559591797
+  },
+  {
+    "variant": 4,
+    "component": 0,
+    "medianRuntimeRatio": 0.5463905317042754
+  },
+  {
+    "variant": 4,
+    "component": 1,
+    "medianRuntimeRatio": 0.5952855310606924
+  },
+  {
+    "variant": 5,
+    "component": 0,
+    "medianRuntimeRatio": 0.5300200768161545
+  },
+  {
+    "variant": 5,
+    "component": 1,
+    "medianRuntimeRatio": 0.5772407033969569
+  },
+  {
+    "variant": 6,
+    "component": 0,
+    "medianRuntimeRatio": 0.5380230165684124
+  },
+  {
+    "variant": 6,
+    "component": 1,
+    "medianRuntimeRatio": 0.6669502032399058
+  },
+  {
+    "variant": 7,
+    "component": 0,
+    "medianRuntimeRatio": 0.5537446183320232
+  },
+  {
+    "variant": 7,
+    "component": 1,
+    "medianRuntimeRatio": 0.5805128343850655
+  }
+]

@@ -134,3 +134,21 @@ test("rejects malformed ownership, open boundaries and invalid planes", () => {
     }),
   ).toThrow();
 });
+
+test("boundary flux preserves thin slab moments and ignores tangential plane-point offsets", () => {
+  const q = prepareSolidPlaneMoments(
+    mesh([{ box: box([0, 0, 0], [1, 1, 1]), owner: 0 }]),
+  );
+  for (const depth of [1e-12, 1e-9, 1e-6, 0.25, 0.75])
+    for (const tangent of [0, 1e12, -1e12]) {
+      const r = q([tangent, depth, -tangent], [0, 1, 0]);
+      expect(Math.abs(r.volume / depth - 1)).toBeLessThan(1e-10);
+      expect(Math.abs(r.firstMoment[0] / (depth / 2) - 1)).toBeLessThan(1e-10);
+      expect(
+        Math.abs(r.firstMoment[1] / ((depth * depth) / 2) - 1),
+      ).toBeLessThan(1e-9);
+      expect(Math.abs(r.firstMoment[2] / (depth / 2) - 1)).toBeLessThan(1e-10);
+      expect(r.stats.clippedTetrahedra).toBe(0);
+      expect(r.stats.evaluatedSurfaceTriangles).toBe(12);
+    }
+});

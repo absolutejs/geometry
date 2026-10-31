@@ -1,0 +1,29 @@
+{
+  "scope": "Final cache-only optimization reproduces first two seconds of prior twenty-second candidate trajectories exactly",
+  "rows": [
+    {
+      "variant": 0,
+      "identicalSamples": 40
+    },
+    {
+      "variant": 1,
+      "identicalSamples": 40
+    },
+    {
+      "variant": 4,
+      "identicalSamples": 40
+    },
+    {
+      "variant": 5,
+      "identicalSamples": 40
+    },
+    {
+      "variant": 6,
+      "identicalSamples": 40
+    },
+    {
+      "variant": 7,
+      "identicalSamples": 40
+    }
+  ]
+}
