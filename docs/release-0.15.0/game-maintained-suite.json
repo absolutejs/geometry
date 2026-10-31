@@ -1,0 +1,9 @@
+{
+  "command": "GEOMETRY_CAP_CANDIDATE=<real package dist/index.js> bun test --preload ./scripts/geometry-cap-candidate-preload.ts ./tests",
+  "passed": 922,
+  "failed": 0,
+  "assertions": 7501823,
+  "files": 302,
+  "seconds": 131.29,
+  "scope": "Candidate in-memory helper qualification; production remains on published 0.14 with original helper until adoption"
+}

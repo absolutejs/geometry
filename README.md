@@ -406,3 +406,9 @@ results throw. These are floating-point integration rules, not exact predicates.
 ### Geometry 0.14 plane integration
 
 Partial closed-solid queries now integrate first-order moments of clipped boundary triangles. The clipping cap has zero flux about an origin on its plane. Full/dry component gates remain conservative. `stats.evaluatedSurfaceTriangles` counts partial-boundary queries; `clippedTetrahedra` remains present and is zero for this path. Preparation still independently checks full moments with signed tetrahedra. No topology, ancestry, material-exclusivity or fluid-exposure requirements are relaxed. Runtime benefits depend on geometry; this is not a world simulation budget guarantee.
+
+### Closing authored convex tubes
+
+`closeConvexTube(positions, indices)` closes two convex boundary rings using their existing vertices. It returns owned Float64 `positions`, Uint32 `indices`, Float32 cap triangle coordinates and planar cap UV coordinates. Use the indexed double mesh for material operations; the cap arrays are rendering attributes. Side-face order and winding are retained after seam compaction. No averaged cap-center vertices are added.
+
+This is bounded local tube preparation, not general hole repair or a self-intersection certificate: at most two rings of 64 vertices, local coordinate magnitudes <=1000, seam welding on a 1e-6 grid and plane residual <=1e-5. Nonmanifold edges, inconsistent edge winding, warped and nonconvex/star boundary rings are rejected. Slightly nonplanar input rings can change their piecewise-planar cap approximation when retriangulated; compare mass properties when adopting it for existing assets.

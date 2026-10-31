@@ -1,0 +1,16 @@
+[
+  {
+    "variant": 2,
+    "accepted": true,
+    "maximumVolumeChange": 3.5068276282856914e-8,
+    "volume": 0.031251619426028394,
+    "triangles": 1494
+  },
+  {
+    "variant": 3,
+    "accepted": true,
+    "maximumVolumeChange": 2.5757306731932772e-8,
+    "volume": 0.02849462867003044,
+    "triangles": 1492
+  }
+]

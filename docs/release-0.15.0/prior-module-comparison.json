@@ -1,0 +1,8 @@
+{
+  "priorVersion": "0.14.0",
+  "changedExistingFiles": [
+    "index.d.ts",
+    "index.js"
+  ],
+  "note": "Only exports change; all prior geometry modules are byte-identical."
+}

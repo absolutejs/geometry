@@ -20,3 +20,5 @@ export { axialOrientationTensor, type WeightedAxis } from './axialOrientation.js
 export { tetrahedronPlaneMoments, prepareTetrahedronPlaneMoments } from './tetrahedronPlaneMoments.js';
 export { trianglePlaneMoments, prepareTrianglePlaneMoments } from './trianglePlaneMoments.js';
 export { prepareSolidPlaneMoments } from './solidPlaneMoments.js';
+
+export { closeConvexTube, type ClosedConvexTube } from "./closeConvexTube.js";

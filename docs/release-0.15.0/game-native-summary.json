@@ -1,0 +1,65 @@
+{
+  "steps": 76800,
+  "hz": 480,
+  "secondsPerVariant": 20,
+  "variants": 8,
+  "maximumRelativeEnergyError": 1.5980710977939706e-05,
+  "rows": [
+    {
+      "variant": 0,
+      "massKg": 5.741878509521484,
+      "triangles": 634,
+      "relativeEnergyError": 7.072558486486238e-06,
+      "samples": 400
+    },
+    {
+      "variant": 1,
+      "massKg": 7.5745415687561035,
+      "triangles": 450,
+      "relativeEnergyError": 6.327447528955856e-06,
+      "samples": 400
+    },
+    {
+      "variant": 2,
+      "massKg": 10.683867454528809,
+      "triangles": 1548,
+      "relativeEnergyError": 1.5980710977939706e-05,
+      "samples": 400
+    },
+    {
+      "variant": 3,
+      "massKg": 9.847241401672363,
+      "triangles": 1546,
+      "relativeEnergyError": 1.2736558656724916e-05,
+      "samples": 400
+    },
+    {
+      "variant": 4,
+      "massKg": 19.27465057373047,
+      "triangles": 124,
+      "relativeEnergyError": 9.430201174245595e-06,
+      "samples": 400
+    },
+    {
+      "variant": 5,
+      "massKg": 20.690378189086914,
+      "triangles": 130,
+      "relativeEnergyError": 1.2808861512355263e-05,
+      "samples": 400
+    },
+    {
+      "variant": 6,
+      "massKg": 9.056792259216309,
+      "triangles": 1660,
+      "relativeEnergyError": 7.585171324530639e-06,
+      "samples": 400
+    },
+    {
+      "variant": 7,
+      "massKg": 9.193120002746582,
+      "triangles": 1634,
+      "relativeEnergyError": 8.287153402705852e-06,
+      "samples": 400
+    }
+  ]
+}

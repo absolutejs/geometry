@@ -1,0 +1,117 @@
+bun test v1.4.4+absolute.1 (38afee6c8)
+
+tests/solidPlaneMoments.test.ts:
+(pass) closed solid culling keeps cavity volume and first moments, and owns input and outputs [29.11ms]
+(pass) plane complements preserve full moments across boundaries and normal magnitudes [11.62ms]
+(pass) relative moments are stable under translation and scale [12.05ms]
+(pass) rejects malformed ownership, open boundaries and invalid planes [2.13ms]
+(pass) boundary flux preserves thin slab moments and ignores tangential plane-point offsets [2.51ms]
+
+tests/tetrahedronPlaneMoments.test.ts:
+(pass) analytic tetrahedron cuts preserve volume and first moments [3.27ms]
+(pass) oriented moments preserve complementary cuts through general planes [25.37ms]
+(pass) local normalization retains small representable tetrahedra and leaves caller data alone [0.89ms]
+(pass) tiny wet corners retain represented volumes instead of subtracting large pyramids [0.29ms]
+(pass) signed tetrahedral composition measures a box from an exterior origin [1.55ms]
+(pass) normal scaling is immaterial and unrepresentable first moments fail explicitly [0.54ms]
+
+tests/trianglePlaneMoments.test.ts:
+(pass) analytic corner area, first moments, second moments and winding [4.81ms]
+(pass) two wet vertices reproduce independent rectangle-minus-triangle integrals [0.63ms]
+(pass) prepared inputs and returned arrays cannot mutate another query [0.24ms]
+(pass) boundary conventions and invalid or unrepresentable inputs are explicit [0.33ms]
+(pass) translated arbitrary planes partition all area moments with reference rebasing [16.90ms]
+
+tests/solid-components.test.ts:
+(pass) cavity walls stay with the surrounding material, separate same-owner pieces do not merge [4.82ms]
+(pass) nested material islands own their own cavities [2.94ms]
+(pass) ownership, touching shells, orphan voids and work budgets fail explicitly [1.94ms]
+(pass) translated coordinates and empty boundaries preserve semantics [1.26ms]
+
+tests/principalInertia.test.ts:
+(pass) rotated box inertia reconstructs across scales and near-degenerate axes [18.88ms]
+(pass) isotropic and thin-body inertia remain finite and deterministic [0.89ms]
+(pass) reject malformed, asymmetric, negative and nonphysical inertia [0.28ms]
+
+tests/trianglePlaneNative.test.ts:
+(pass) triangle moments match native prism clipping and degree-two surface quadrature [378.75ms]
+
+tests/alpha.test.ts:
+(pass) RGBA alpha extraction owns its output and preserves exact alpha independently of color [1.43ms]
+(pass) alpha extraction rejects malformed and oversized sources before allocating [2.65ms]
+
+tests/materialPartition.test.ts:
+(pass) ordered material cells remove duplicated volume and keep a distinct exterior [48.44ms]
+(pass) full coverage returns an explicit empty source cell, not a duplicate solid [5.19ms]
+(pass) hollow material, disconnected solids and large translations preserve physical volume [14.91ms]
+(pass) face, edge and point contact do not assign duplicated volume [12.12ms]
+(pass) success and each native failure release all successfully returned handles [14.99ms]
+(pass) invalid budgets and geometry fail before native allocation [1.31ms]
+(pass) host mutation of copied input arrays cannot change caller geometry [0.92ms]
+(pass) incorrect native operations and aliased handles cannot pass conservation [13.08ms]
+(pass) sequential cuts preserve the independent whole-union mass [21.32ms]
+(pass) native lifetime stays bounded as source count grows [36.49ms]
+
+tests/projection.test.ts:
+(pass) bilinear alpha resolves physical holes rather than treating the card as solid [20.72ms]
+(pass) coverage is a union and is invariant to winding/order without mutating inputs [6.03ms]
+(pass) disconnected leaves preserve open space inside their explicit convex reference hull [2.05ms]
+(pass) local coordinates preserve coverage at distant origins and tiny or large scales [10.22ms]
+(pass) sampler wrap modes apply to negative UV coordinates [10.03ms]
+(pass) hull area and sampled area remain separately visible and unreferenced vertices do not inflate it [4.01ms]
+(pass) malformed data, degenerate projections and oversized work are rejected [1.17ms]
+(pass) triangle-local rasterization agrees with independent point-in-triangle queries [35.79ms]
+
+tests/surfaceOrigins.test.ts:
+(pass) partition retains verified source triangles and reversed internal interfaces [43.14ms]
+(pass) false ancestry, flipped orientation and off-surface points are rejected [17.92ms]
+(pass) absent ancestry is explicit and copied metadata survives backend mutations [5.61ms]
+(pass) thin-triangle attribute interpolation remains stable and rejects unrelated points [0.60ms]
+(pass) explicit merge ancestry restores shared topology without proximity welding [0.99ms]
+(pass) per-solid export rebasing preserves a tiny solid at a distant local offset [4.53ms]
+
+tests/solidPlaneNative.test.ts:
+(pass) prepared closed-solid moments match independent native cuts of a cavity-bearing solid [454.17ms]
+
+tests/overlap.test.ts:
+(pass) initial overlap distinguishes duplicates, partial overlap, touching and disjoint solids [37.95ms]
+(pass) a chip inside a hollow shell has zero intersection, including large world translations [13.04ms]
+(pass) native handles are released on success, invalid output and kernel failure [5.73ms]
+(pass) budgets, orientation and corrupt meshes fail before unbounded kernel work [4.22ms]
+
+tests/manifoldMesh64.test.ts:
+(pass) sidecar retains a native solid whose Float32 export collapses every position [7.19ms]
+(pass) double export retains custom properties and original Boolean face identities [12.39ms]
+(pass) empty export stays empty and temporary handles are released on read failure [5.56ms]
+(pass) normal property channels keep native transformed export values [5.92ms]
+
+tests/closeConvexTube.test.ts:
+(pass) convex closure preserves authored vertices, winding, volume and cap coordinates [19.79ms]
+(pass) invalid topology, winding, warped and star boundaries remain rejected [1.56ms]
+(pass) captured tree cap junctions partition with strict ancestry after boundary-only closure [788.42ms]
+
+tests/tetrahedronPlaneConditioning.test.ts:
+(pass) nearly full real cut-body tetrahedron preserves the signed volume invariant [2.82ms]
+(pass) exact-input oracle across permutations, units, translations and distant apexes [22.31ms]
+(pass) prepared plane queries own their input and do not share mutable query results [0.85ms]
+(pass) prepared queries reproduce the independent exact-input conditioning oracle [8.91ms]
+(pass) small excluded oblique corner does not reconstruct a nearly full thin tetrahedron [0.45ms]
+(pass) an underflowed nonempty corner is rejected instead of reported dry [0.23ms]
+
+tests/tetrahedronPlaneNative.test.ts:
+(pass) plane moments agree with native cuts and independent capped-surface integrals [419.33ms]
+
+tests/thin-membership.test.ts:
+(pass) thin and collinear subdivisions preserve closed-cube membership without area cutoffs [2.26ms]
+(pass) captured native pine cut with a 1.3e-34 squared face area supports boundary queries [2.96ms]
+
+tests/axialOrientation.test.ts:
+(pass) opposite fibre axes reinforce instead of cancelling; analytic isotropic and planar mixtures [0.73ms]
+(pass) finite extremes and weight scaling preserve the second moment [14.57ms]
+(pass) rotation covariance, positive directional response and sign independence [8.99ms]
+(pass) rejects absent orientation and malformed data rather than choosing an arbitrary axis [0.50ms]
+
+ 75 pass
+ 0 fail
+ 31582 expect() calls
+Ran 75 tests across 18 files. [3.05s]
