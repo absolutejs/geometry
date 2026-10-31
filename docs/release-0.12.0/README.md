@@ -38,3 +38,7 @@ The exact release archive has 39 files, 34,220 bytes, SHA1
 `5413d65fa477e134afcf80283b76064cff912d6c`. Every archived file was compared
 byte-for-byte with the reviewed package build/source. An extracted public ESM
 import passes the analytic second-moment check. Registry publication is pending.
+
+Published successfully 2026-10-31. Registry version, SHA1 and SHA512 were verified
+against archive.json after propagation. npm did not require another browser
+confirmation. The game is adopting the registry package, with no local override.
