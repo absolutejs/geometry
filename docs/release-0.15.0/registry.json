@@ -1,0 +1,20 @@
+{
+  "version": "0.15.0",
+  "dist": {
+    "shasum": "530a3fddb7f017c0a039f24507207c79048a2b09",
+    "tarball": "https://registry.npmjs.org/@absolutejs/geometry/-/geometry-0.15.0.tgz",
+    "fileCount": 43,
+    "integrity": "sha512-y4EtvWvLz/wQUgqZdLG1Fl6KMoGi0LP6CrIFv4fQ9sZotoiPCa/MT4+mW2H6Y7Ph66kuMezCjnfl0f7BaNsgQg==",
+    "signatures": [
+      {
+        "sig": "MEYCIQD2Ug05/CfoREhYq5Xk3S/tPqpo2HpKk0dxe03VlFe6cgIhAMkRnHNCdGL22I1LEaB4WkTfUOuL2Bwbrj25wSsdu4Qd",
+        "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+      },
+      {
+        "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+        "sig": "MEUCIQDzSHfH2wJcpW/qbWNMP6l/YTbPjq79XrKBV9J/KzvbXgIgaK0xCiTWcP/Wttum5Iwh8TqGZev5GsIb3g9F6nl/MM4="
+      }
+    ],
+    "unpackedSize": 135475
+  }
+}
