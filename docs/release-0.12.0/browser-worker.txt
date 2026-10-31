@@ -1,0 +1,2 @@
+{"triangleWorkerCases":100}
+GPU-disabled browser module worker passed { area: 0.5, gap: 0, cells: 4096, detached: true }

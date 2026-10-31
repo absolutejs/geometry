@@ -347,3 +347,28 @@ This version also improves determinant conditioning for exterior-apex
 compositions and constructs clipping intersections locally to preserve small
 edges at translated coordinates. Existing one-shot queries use the same corrected
 implementation; no numerical invariant is relaxed.
+
+### Clipped triangle surface moments (0.12)
+
+`prepareTrianglePlaneMoments(vertices)` owns three finite vertices and returns a
+query `(planePoint, planeNormal)` retaining `dot(x-planePoint,planeNormal)<=0`.
+`trianglePlaneMoments(vertices, planePoint, planeNormal)` is the one-shot form.
+Both return unsigned `area`, `fullArea`, `fraction`, `centroid` (null when empty),
+`surfaceNormal` preserving source winding, `reference`, `firstMoment` and the
+row-major nine-entry `secondMoment`. Moments integrate local coordinates relative
+to `reference`: first is ∫r dA, second is ∫rrᵀ dA. Reversing winding reverses only
+the normal, not area or the physical moments. Coplanar triangles are fully retained.
+
+For an affine scalar field `s(x)=a+b·(x-reference)`, its surface integral is
+`a*area + b·firstMoment`, and its position-weighted integral relative to reference
+is `a*firstMoment + secondMoment*b`. This supports distributed pressure and other
+linear fields without replacing them with a centroid-only approximation. Rebase
+first moments with `m'=m+A*d`; second moments with
+`S'=S+d*mᵀ+m*dᵀ+A*d*dᵀ`, where `d=reference-newReference`.
+
+Preparation caches shape normalization and full moments. Each result owns its
+arrays. Invalid, degenerate and unrepresentable inputs or results throw; no area
+cutoff discards small represented wet patches. This is binary64 geometry, not
+exact predicates. Relative area roundoff up to 1e-12 is accepted without clamping.
+The function does not determine external fluid exposure, validate a closed mesh,
+remove internal material interfaces, infer drag coefficients or apply physics.

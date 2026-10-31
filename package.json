@@ -1,7 +1,7 @@
 {
   "name": "@absolutejs/geometry",
-  "version": "0.11.0",
-  "description": "Bounded geometry projection, oriented material components, point membership and plane-clipped volume moments for web 3D tooling.",
+  "version": "0.12.0",
+  "description": "Bounded geometry projection, oriented material components, point membership and plane-clipped volume and surface moments for web 3D tooling.",
   "type": "module",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",

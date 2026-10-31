@@ -1,0 +1,211 @@
+[
+  {
+    "id": "@absolutejs/geometry@0.12.0",
+    "name": "@absolutejs/geometry",
+    "version": "0.12.0",
+    "size": 34220,
+    "unpackedSize": 114820,
+    "shasum": "5413d65fa477e134afcf80283b76064cff912d6c",
+    "integrity": "sha512-HJhODPDNkNsyNdtm7lElBkwehOCnCShTd6kkja2OzRZn17HBnwYtZDmU6TEoETLhKMSuZC3au2aVZ+WSi2pOAA==",
+    "filename": "absolutejs-geometry-0.12.0.tgz",
+    "files": [
+      {
+        "path": "LICENSE",
+        "size": 3447,
+        "mode": 420
+      },
+      {
+        "path": "README.md",
+        "size": 22380,
+        "mode": 420
+      },
+      {
+        "path": "dist/alpha.d.ts",
+        "size": 448,
+        "mode": 420
+      },
+      {
+        "path": "dist/alpha.js",
+        "size": 1802,
+        "mode": 420
+      },
+      {
+        "path": "dist/axialOrientation.d.ts",
+        "size": 571,
+        "mode": 420
+      },
+      {
+        "path": "dist/axialOrientation.js",
+        "size": 2237,
+        "mode": 420
+      },
+      {
+        "path": "dist/closedComponents.d.ts",
+        "size": 394,
+        "mode": 420
+      },
+      {
+        "path": "dist/closedComponents.js",
+        "size": 3117,
+        "mode": 420
+      },
+      {
+        "path": "dist/index.d.ts",
+        "size": 1151,
+        "mode": 420
+      },
+      {
+        "path": "dist/index.js",
+        "size": 919,
+        "mode": 420
+      },
+      {
+        "path": "dist/manifold.d.ts",
+        "size": 1090,
+        "mode": 420
+      },
+      {
+        "path": "dist/manifold.js",
+        "size": 3795,
+        "mode": 420
+      },
+      {
+        "path": "dist/manifoldMesh64.d.ts",
+        "size": 860,
+        "mode": 420
+      },
+      {
+        "path": "dist/manifoldMesh64.js",
+        "size": 3139,
+        "mode": 420
+      },
+      {
+        "path": "dist/materialPartition.d.ts",
+        "size": 1905,
+        "mode": 420
+      },
+      {
+        "path": "dist/materialPartition.js",
+        "size": 6791,
+        "mode": 420
+      },
+      {
+        "path": "dist/mergeIndexedMesh.d.ts",
+        "size": 510,
+        "mode": 420
+      },
+      {
+        "path": "dist/mergeIndexedMesh.js",
+        "size": 2778,
+        "mode": 420
+      },
+      {
+        "path": "dist/overlap.d.ts",
+        "size": 1091,
+        "mode": 420
+      },
+      {
+        "path": "dist/overlap.js",
+        "size": 3686,
+        "mode": 420
+      },
+      {
+        "path": "dist/principalInertia.d.ts",
+        "size": 526,
+        "mode": 420
+      },
+      {
+        "path": "dist/principalInertia.js",
+        "size": 4488,
+        "mode": 420
+      },
+      {
+        "path": "dist/projection.d.ts",
+        "size": 1431,
+        "mode": 420
+      },
+      {
+        "path": "dist/projection.js",
+        "size": 8850,
+        "mode": 420
+      },
+      {
+        "path": "dist/signedVolume.d.ts",
+        "size": 79,
+        "mode": 420
+      },
+      {
+        "path": "dist/signedVolume.js",
+        "size": 703,
+        "mode": 420
+      },
+      {
+        "path": "dist/solidComponents.d.ts",
+        "size": 826,
+        "mode": 420
+      },
+      {
+        "path": "dist/solidComponents.js",
+        "size": 4439,
+        "mode": 420
+      },
+      {
+        "path": "dist/solidPointMembership.d.ts",
+        "size": 442,
+        "mode": 420
+      },
+      {
+        "path": "dist/solidPointMembership.js",
+        "size": 4813,
+        "mode": 420
+      },
+      {
+        "path": "dist/surfaceOrigins.d.ts",
+        "size": 554,
+        "mode": 420
+      },
+      {
+        "path": "dist/surfaceOrigins.js",
+        "size": 2892,
+        "mode": 420
+      },
+      {
+        "path": "dist/tetrahedronPlaneMoments.d.ts",
+        "size": 1349,
+        "mode": 420
+      },
+      {
+        "path": "dist/tetrahedronPlaneMoments.js",
+        "size": 10577,
+        "mode": 420
+      },
+      {
+        "path": "dist/trianglePlaneMoments.d.ts",
+        "size": 963,
+        "mode": 420
+      },
+      {
+        "path": "dist/trianglePlaneMoments.js",
+        "size": 6286,
+        "mode": 420
+      },
+      {
+        "path": "dist/triangleWeights.d.ts",
+        "size": 355,
+        "mode": 420
+      },
+      {
+        "path": "dist/triangleWeights.js",
+        "size": 1870,
+        "mode": 420
+      },
+      {
+        "path": "package.json",
+        "size": 1266,
+        "mode": 420
+      }
+    ],
+    "entryCount": 39,
+    "bundled": []
+  }
+]
