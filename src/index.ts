@@ -17,4 +17,4 @@ export { mergeIndexedMesh, type IndexedMergeMesh } from './mergeIndexedMesh.js';
 export { principalInertiaFrame } from './principalInertia.js';
 export { axialOrientationTensor, type WeightedAxis } from './axialOrientation.js';
 
-export { tetrahedronPlaneMoments } from './tetrahedronPlaneMoments.js';
+export { tetrahedronPlaneMoments, prepareTetrahedronPlaneMoments } from './tetrahedronPlaneMoments.js';

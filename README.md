@@ -327,3 +327,23 @@ This measures geometry, not buoyancy or fluid response. A sealed air compartment
 and an open flooded cavity do not exclude the same water volume; the caller must
 supply the appropriate physical region. Water-surface curvature, density, force,
 torque, pressure dynamics and clock ownership are separate responsibilities.
+
+### Prepared plane moments (0.11)
+
+For repeated cuts of an unchanged body-local tetrahedron, use
+`prepareTetrahedronPlaneMoments(vertices)` and call the returned function with
+`(planePoint, planeNormal)`. Preparation owns a copy of the four vertices and
+caches plane-independent normalization and full moments. Each query returns the
+same signed-volume, centroid and relative-first-moment contract as
+`tetrahedronPlaneMoments`. Returned arrays can be changed without modifying
+later queries. Rebuild the prepared query when source geometry changes.
+
+For moving rigid bodies, transform the plane into body-local coordinates and
+transform the resulting centroid back. The package does not supply rigid-body
+forces, water clocks, sealing/flooding rules or a displacement-mesh validity
+certificate. Signed tetrahedral contributions must retain their orientation.
+
+This version also improves determinant conditioning for exterior-apex
+compositions and constructs clipping intersections locally to preserve small
+edges at translated coordinates. Existing one-shot queries use the same corrected
+implementation; no numerical invariant is relaxed.
