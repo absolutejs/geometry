@@ -1,3 +1,4 @@
+import { auditManifoldCoverage } from "./manifoldCoverage.js";
 import type { Manifold, ManifoldToplevel } from "manifold-3d";
 import { createManifoldPartitionKernel } from "./manifoldKernel.js";
 import type { OverlapMesh } from "./overlap.js";
@@ -164,6 +165,15 @@ export function createManifoldCutSession(
     return current;
   };
   return {
+    auditCoverage(candidates: readonly OverlapMesh[]) {
+      const target = active();
+      busy = true;
+      try {
+        return auditManifoldCoverage(wasm, target, candidates);
+      } finally {
+        busy = false;
+      }
+    },
     snapshot() {
       return exported(active(), sources);
     },

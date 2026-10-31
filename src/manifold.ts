@@ -5,3 +5,4 @@ export {
   type ManifoldMesh64Input,
 } from "./createManifoldMesh64.js";
 export { createManifoldCutSession } from "./manifoldCutSession.js";
+export { auditManifoldCoverage } from "./manifoldCoverage.js";

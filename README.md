@@ -482,3 +482,18 @@ faces before restoration; immediate import volume can still match while a later
 cut changes. Explicit face IDs retain caller semantics.
 
 Disjoint or merely touching cutter bounds skip native splitting (`broadPhaseSkipped`). This remains allowed after the accepted-cut quota is full. Empty snapshots report `nativeTolerance: null`; skipped empty results report `nativeEvaluated: false`. No near-contact tolerance is introduced by this broad phase.
+
+## Read-only native coverage
+
+`auditManifoldCoverage(wasm, target, candidates)` from the Manifold entry, or
+`session.auditCoverage(candidates)`, compares candidate cells with actual material
+components while retaining native target geometry. Results include owned target
+and component meshes, independent missing/excess volumes, measured cell
+intersections, cross-body overlap and bounded operation counts. Temporary native
+objects are always released; standalone callers retain ownership of `target`.
+
+Overlapping cells are unioned for coverage, so summed collider volume is not
+mistaken for physical mass. Cavity walls and nested islands remain separate
+material components. The API reports geometry evidence; it does not certify
+convexity, contacts or a game's acceptance policy. Bounds and qualification notes
+are in `docs/native-coverage-2026-10-31/README.md`.
