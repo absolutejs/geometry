@@ -425,3 +425,58 @@ Partial closed-solid queries now integrate first-order moments of clipped bounda
 `closeConvexTube(positions, indices)` closes two convex boundary rings using their existing vertices. It returns owned Float64 `positions`, Uint32 `indices`, Float32 cap triangle coordinates and planar cap UV coordinates. Use the indexed double mesh for material operations; the cap arrays are rendering attributes. Side-face order and winding are retained after seam compaction. No averaged cap-center vertices are added.
 
 This is bounded local tube preparation, not general hole repair or a self-intersection certificate: at most two rings of 64 vertices, local coordinate magnitudes <=1000, seam welding on a 1e-6 grid and plane residual <=1e-5. Nonmanifold edges, inconsistent edge winding, warped and nonconvex/star boundary rings are rejected. Slightly nonplanar input rings can change their piecewise-planar cap approximation when retriangulated; compare mass properties when adopting it for existing assets.
+
+## Exact zero-extent shell regularization
+
+`regularizeZeroExtentShells(positions, indices)` removes only complete disconnected
+closed shells whose coordinate range is exactly zero on at least one axis. Such
+shells have no 3D interior. There is no epsilon, near-flat test or volume cutoff;
+even subnormal nonzero thickness is retained. Non-axis-aligned flat geometry is
+also retained. This is a narrow certificate for coincident tool-plane artifacts,
+not general mesh repair or a complete regularized Boolean implementation.
+
+Results contain owned `positions`, `indices`, a retained `sourceTriangles` map,
+`retainedShells`, and `removed` certificates with axis, coordinate and original
+face indices. Topology must be closed before processing. Run it in the frame that
+makes the intended plane exact, before rotating or translating output for display.
+
+## Native cut sessions
+
+`createManifoldCutSession(wasm, inputs, maximumCuts?)` is available from the optional
+`@absolutejs/geometry/manifold` entry. Inputs and cutters are closed oriented meshes
+in one caller-chosen common frame. The session unions the inputs once and retains
+the native solid across cuts, avoiding a Float32 import of generated thin triangles
+between operations. It does not infer a tool frame or snap nearly shared planes.
+
+```ts
+const session = createManifoldCutSession(wasm, sourceMeshes);
+try {
+  const initial = session.snapshot();
+  const result = session.cut(cutterMesh);
+  // result.retained / result.removed are owned mesh copies.
+  // origins identify initial input or accepted cutter index, original face, backside.
+  // result.sequence counts accepted material-removing cuts; air strikes do not count.
+} finally {
+  session.dispose();
+}
+```
+
+Each exported snapshot verifies face ancestry against owned source copies and
+reports exact zero-extent sheets separately. Failed edits leave the previous
+native state intact and release pending handles. Physical volume conservation
+must agree within 1e-8 relative to the pre-cut material. This is geometry acceptance,
+not collision, grain, canopy, motion or material-strength certification. Callers
+must keep the worker bounded and explicitly dispose sessions; rendering copies
+must not be treated as a lossless serialization of native session state.
+
+Limits: 1–63 initial sources, at most 32 accepted cuts, at most 64 total source IDs,
+100,000 source vertices and 200,000 source triangles across all inputs/cutters,
+|coordinate| ≤ 1000, and bounded native exports. Default cut budget is the smaller
+of 32 and the remaining source-ID capacity. Snapshot statistics expose native
+counts, volume/tolerance, exported triangles and removed sheet triangles for
+host diagnostics. No GPU or engine initialization is performed by this adapter.
+
+Double import now assigns a unique original face ID per triangle when IDs are
+omitted. Without this, the native Float32 constructor can merge rounded coplanar
+faces before restoration; immediate import volume can still match while a later
+cut changes. Explicit face IDs retain caller semantics.

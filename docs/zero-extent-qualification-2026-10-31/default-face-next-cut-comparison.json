@@ -1,0 +1,22 @@
+[
+  {
+    "name": "published016",
+    "inputVolume": 0.07712553590676012,
+    "removedVolume": 0.00021289424105950326,
+    "removedReference": 0.0002128941593743995,
+    "removedRelativeError": 3.8368879629047115e-7,
+    "retainedVolume": 0.07691265067327685,
+    "retainedReference": 0.07691264174738573,
+    "retainedRelativeError": 1.1605232796974008e-7
+  },
+  {
+    "name": "candidate",
+    "inputVolume": 0.07712553590676012,
+    "removedVolume": 0.0002128941593743995,
+    "removedReference": 0.0002128941593743995,
+    "removedRelativeError": 0,
+    "retainedVolume": 0.07691264174738573,
+    "retainedReference": 0.07691264174738573,
+    "retainedRelativeError": 0
+  }
+]

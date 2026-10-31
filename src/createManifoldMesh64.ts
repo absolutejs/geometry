@@ -56,7 +56,13 @@ export function createManifoldMesh64(
   if (!mesh.triVerts.every((i) => i < p.length / 3))
     throw Error("Invalid Manifold double import index");
   const seed = new wasm.Manifold(
-    new wasm.Mesh({ ...mesh, vertProperties: rounded }),
+    new wasm.Mesh({
+      ...mesh,
+      vertProperties: rounded,
+      faceID:
+        mesh.faceID ??
+        Uint32Array.from({ length: mesh.triVerts.length / 3 }, (_, i) => i),
+    }),
   );
   try {
     if (

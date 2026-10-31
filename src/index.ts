@@ -3,22 +3,41 @@ export {
   type AlphaProjectionInput,
   type AlphaProjection,
 } from "./projection.js";
-export { alphaFromRgba, alphaFromImageBitmap } from './alpha.js';
+export { alphaFromRgba, alphaFromImageBitmap } from "./alpha.js";
 
-export { closedComponents } from './closedComponents.js';
-export { solidPointMembership } from './solidPointMembership.js';
-export { solidComponents } from './solidComponents.js';
-export { auditSolidOverlaps, type OverlapMesh, type OverlapSolid, type SolidOverlapAudit } from './overlap.js';
-export { partitionSolidMaterials, type MaterialPartitionKernel, type SolidMaterialPartition } from './materialPartition.js';
+export { closedComponents } from "./closedComponents.js";
+export { solidPointMembership } from "./solidPointMembership.js";
+export { solidComponents } from "./solidComponents.js";
+export {
+  auditSolidOverlaps,
+  type OverlapMesh,
+  type OverlapSolid,
+  type SolidOverlapAudit,
+} from "./overlap.js";
+export {
+  partitionSolidMaterials,
+  type MaterialPartitionKernel,
+  type SolidMaterialPartition,
+} from "./materialPartition.js";
 
-export { triangleWeights } from './triangleWeights.js';
-export { auditSurfaceOrigins, type SurfaceOrigins } from './surfaceOrigins.js';
-export { mergeIndexedMesh, type IndexedMergeMesh } from './mergeIndexedMesh.js';
-export { principalInertiaFrame } from './principalInertia.js';
-export { axialOrientationTensor, type WeightedAxis } from './axialOrientation.js';
+export { triangleWeights } from "./triangleWeights.js";
+export { auditSurfaceOrigins, type SurfaceOrigins } from "./surfaceOrigins.js";
+export { mergeIndexedMesh, type IndexedMergeMesh } from "./mergeIndexedMesh.js";
+export { principalInertiaFrame } from "./principalInertia.js";
+export {
+  axialOrientationTensor,
+  type WeightedAxis,
+} from "./axialOrientation.js";
 
-export { tetrahedronPlaneMoments, prepareTetrahedronPlaneMoments } from './tetrahedronPlaneMoments.js';
-export { trianglePlaneMoments, prepareTrianglePlaneMoments } from './trianglePlaneMoments.js';
-export { prepareSolidPlaneMoments } from './solidPlaneMoments.js';
+export {
+  tetrahedronPlaneMoments,
+  prepareTetrahedronPlaneMoments,
+} from "./tetrahedronPlaneMoments.js";
+export {
+  trianglePlaneMoments,
+  prepareTrianglePlaneMoments,
+} from "./trianglePlaneMoments.js";
+export { prepareSolidPlaneMoments } from "./solidPlaneMoments.js";
 
 export { closeConvexTube, type ClosedConvexTube } from "./closeConvexTube.js";
+export { regularizeZeroExtentShells } from "./regularizeZeroExtentShells.js";

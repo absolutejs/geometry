@@ -136,3 +136,54 @@ test("captured deformed limbs retain strict partition ancestry with restored dou
     expect(r.exterior.origins!.reversed.every((v) => v === 0)).toBe(true);
   }
 });
+
+test("omitted face IDs preserve later cut geometry, not just import volume", () => {
+  const raw = JSON.parse(
+    readFileSync(
+      "artifacts/deformed-tree-precision/roundtrip-next-cut.json",
+      "utf8",
+    ),
+  );
+  const positions = Float64Array.from(raw.positions),
+    indices = Uint32Array.from(raw.indices),
+    t = raw.tool,
+    [x, y, z] = t.halfExtents;
+  const seed = wasm.Manifold.hull(
+      [-z, z].flatMap((z) => [
+        [-x, -y, z],
+        [-x, y, z],
+        [x, 0, z],
+      ]) as any,
+    ),
+    cutter = seed.transform([
+      ...t.axes[0],
+      0,
+      ...t.axes[1],
+      0,
+      ...t.axes[2],
+      0,
+      ...t.center,
+      1,
+    ] as any);
+  const exact = createManifoldMesh64(wasm, {
+    numProp: 3,
+    vertProperties: positions,
+    triVerts: indices,
+  });
+  let removed: any, retained: any;
+  try {
+    [removed, retained] = exact.split(cutter);
+    expect(Math.abs(removed.volume() / raw.removedVolume - 1)).toBeLessThan(
+      1e-12,
+    );
+    expect(Math.abs(retained.volume() / raw.retainedVolume - 1)).toBeLessThan(
+      1e-12,
+    );
+  } finally {
+    retained?.delete();
+    removed?.delete();
+    exact.delete();
+    cutter.delete();
+    seed.delete();
+  }
+});
