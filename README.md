@@ -372,3 +372,33 @@ cutoff discards small represented wet patches. This is binary64 geometry, not
 exact predicates. Relative area roundoff up to 1e-12 is accepted without clamping.
 The function does not determine external fluid exposure, validate a closed mesh,
 remove internal material interfaces, infer drag coefficients or apply physics.
+
+### Prepared material-solid cuts (0.13)
+
+`prepareSolidPlaneMoments({positions, indices, owners})` prepares repeated plane
+cuts of an unchanged oriented material mesh. Positions are Float64Array, indices
+Uint32Array, and per-triangle source owners Int16Array or Uint16Array. Owners
+must preserve cavity identity. The input must describe mutually exclusive valid
+material regions; the helper checks closed components and cavity grouping but
+does not certify intersections between different owners.
+
+The returned `(planePoint, planeNormal)` function retains the nonpositive side.
+It reports `volume`, `fullVolume`, `fraction`, `centroid`, `firstMoment`,
+`reference`, and work `stats`. Rebase first moments using
+`firstMoment + volume*(reference-newReference)`. All arrays are owned. Rebuild
+preparation after geometry changes.
+
+Wholly dry components contribute zero. Wholly wet components reuse cached full
+moments. A conservative bounds margin sends uncertain classifications through
+exactly the same tetrahedron clipping path as partial components. Work counters
+report full/dry/partial components, exact tetra queries, cavities and degenerate
+zero-volume decomposition tetrahedra. Small bodies that always cross the plane
+may pay classification overhead without saving queries.
+
+No camera-dependent timestep, force, air-sealing, fluid-exposure or drag policy
+is introduced. Signed tetra contributions are summed without taking absolute
+values. The result is not silently clamped; relative volume roundoff within
+1e-10 is allowed. Centroids of very small immersed regions can be ill-conditioned
+when signed contributions cancel; use aggregate first moments where possible.
+A nonpositive residual volume has a null centroid. Nonfinite or inconsistent
+results throw. These are floating-point integration rules, not exact predicates.
