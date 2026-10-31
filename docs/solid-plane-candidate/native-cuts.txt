@@ -1,0 +1,9 @@
+bun test v1.4.4+absolute.1 (38afee6c8)
+
+tests/solidPlaneNative.test.ts:
+(pass) prepared closed-solid moments match independent native cuts of a cavity-bearing solid [254.47ms]
+
+ 1 pass
+ 0 fail
+ 640 expect() calls
+Ran 1 test across 1 file. [293.00ms]
