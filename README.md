@@ -480,3 +480,5 @@ Double import now assigns a unique original face ID per triangle when IDs are
 omitted. Without this, the native Float32 constructor can merge rounded coplanar
 faces before restoration; immediate import volume can still match while a later
 cut changes. Explicit face IDs retain caller semantics.
+
+Disjoint or merely touching cutter bounds skip native splitting (`broadPhaseSkipped`). This remains allowed after the accepted-cut quota is full. Empty snapshots report `nativeTolerance: null`; skipped empty results report `nativeEvaluated: false`. No near-contact tolerance is introduced by this broad phase.

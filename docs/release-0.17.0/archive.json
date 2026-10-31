@@ -3,10 +3,10 @@
     "id": "@absolutejs/geometry@0.17.0",
     "name": "@absolutejs/geometry",
     "version": "0.17.0",
-    "size": 44720,
-    "unpackedSize": 158067,
-    "shasum": "5e2d143a3f37efc35242e5cbda2ed92dc9782397",
-    "integrity": "sha512-Rvdc+qJNFQVu1+ZhzyjBLWQ9G9B2GoaJmkca7gPyCPfRpmNM1ld+B/XtReymHbEhYiIYcHJTGz9ehQD8tcQYVg==",
+    "size": 45518,
+    "unpackedSize": 164343,
+    "shasum": "6fb7dc982a58ecb9e69010ba528a943864f0abf4",
+    "integrity": "sha512-EtLNwqIb2/pHawq9PCUVcOj96+qQllI3cdltmqXqymQc+Y1dtSBmXXC61oQ3Wxq/vf/Dhknvowr6xihXqp6dmw==",
     "filename": "absolutejs-geometry-0.17.0.tgz",
     "files": [
       {
@@ -16,7 +16,7 @@
       },
       {
         "path": "README.md",
-        "size": 29637,
+        "size": 29948,
         "mode": 420
       },
       {
@@ -91,12 +91,12 @@
       },
       {
         "path": "dist/manifoldCutSession.d.ts",
-        "size": 4152,
+        "size": 8172,
         "mode": 420
       },
       {
         "path": "dist/manifoldCutSession.js",
-        "size": 7052,
+        "size": 8997,
         "mode": 420
       },
       {

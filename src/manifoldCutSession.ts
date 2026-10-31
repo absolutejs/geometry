@@ -56,18 +56,46 @@ export function createManifoldCutSession(
     wasm,
     inputs.length + maximumCuts,
   );
+  const emptySnapshot = (nativeEvaluated: boolean) => ({
+    positions: new Float64Array(),
+    indices: new Uint32Array(),
+    origins: {
+      sources: new Uint16Array(),
+      faces: new Uint32Array(),
+      reversed: new Uint8Array(),
+    },
+    volume: 0,
+    removedSheets: [] as ReturnType<
+      typeof regularizeZeroExtentShells
+    >["removed"],
+    stats: {
+      nativeEvaluated,
+      nativeTriangles: 0,
+      nativeVertices: 0,
+      nativeVolume: 0,
+      nativeTolerance: null as number | null,
+      exportedTriangles: 0,
+      removedSheetTriangles: 0,
+    },
+  });
   const check = (solid: Manifold) => {
+    const status = solid.status(),
+      triangles = solid.numTri(),
+      vertices = solid.numVert(),
+      tolerance = solid.isEmpty() ? null : solid.tolerance();
     if (
-      solid.status() !== "NoError" ||
-      solid.numTri() > 200000 ||
-      solid.numVert() > 100000 ||
-      !Number.isFinite(solid.tolerance()) ||
-      solid.tolerance() > 1e-5
+      status !== "NoError" ||
+      triangles > 200000 ||
+      vertices > 100000 ||
+      (tolerance !== null && (!Number.isFinite(tolerance) || tolerance > 1e-5))
     )
-      throw Error("Native cut session output budget exceeded");
+      throw Error("Native cut session output budget exceeded", {
+        cause: { status, triangles, vertices, tolerance },
+      });
   };
   const exported = (solid: Manifold, ancestry: readonly OverlapMesh[]) => {
     check(solid);
+    if (solid.isEmpty()) return emptySnapshot(true);
     const raw = kernel.mesh(solid),
       regular = regularizeZeroExtentShells(raw.positions, raw.indices);
     const origins: SurfaceOrigins = {
@@ -97,6 +125,7 @@ export function createManifoldCutSession(
       volume,
       removedSheets: regular.removed,
       stats: {
+        nativeEvaluated: true,
         nativeTriangles: solid.numTri(),
         nativeVertices: solid.numVert(),
         nativeVolume: solid.volume(),
@@ -144,10 +173,31 @@ export function createManifoldCutSession(
     },
     cut(mesh: OverlapMesh) {
       const previous = active();
+      const cutterMesh = copy(mesh);
+      const low = [Infinity, Infinity, Infinity],
+        high = [-Infinity, -Infinity, -Infinity];
+      for (let i = 0; i < cutterMesh.positions.length; i++) {
+        const k = i % 3;
+        low[k] = Math.min(low[k]!, cutterMesh.positions[i]!);
+        high[k] = Math.max(high[k]!, cutterMesh.positions[i]!);
+      }
+      const bounds = previous.boundingBox();
+      // Disjoint or merely touching bounds cannot remove a 3D material interior.
+      if (
+        previous.isEmpty() ||
+        low.some((v, k) => v >= bounds.max[k]! || high[k]! <= bounds.min[k]!)
+      )
+        return {
+          changed: false as const,
+          sequence: cuts,
+          retained: exported(previous, sources),
+          removed: emptySnapshot(false),
+          relativeVolumeError: 0,
+          broadPhaseSkipped: true,
+        };
       if (cuts >= maximumCuts)
         throw Error("Native cut session cut budget exceeded");
-      const cutterMesh = copy(mesh),
-        nextSources = [...sources, cutterMesh];
+      const nextSources = [...sources, cutterMesh];
       budget(nextSources);
       busy = true;
       let cutter: Manifold | undefined,
@@ -175,6 +225,7 @@ export function createManifoldCutSession(
             retained: exported(previous, sources),
             removed: removedMesh,
             relativeVolumeError,
+            broadPhaseSkipped: false,
           };
         current = retained;
         retained = undefined;
@@ -187,6 +238,7 @@ export function createManifoldCutSession(
           retained: retainedMesh,
           removed: removedMesh,
           relativeVolumeError,
+          broadPhaseSkipped: false,
         };
       } finally {
         retained?.delete();

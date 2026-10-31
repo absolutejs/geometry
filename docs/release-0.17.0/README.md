@@ -14,3 +14,7 @@ The same common-frame research using serialized intermediates still rejects four
 Limitations: this is not world-rendering, collider, grain, canopy, material-strength or dynamic trajectory acceptance. The game integration is not yet delivered. Tool construction must supply a coherent common frame; the package does not guess one or snap nearly coincident planes. General regularized CSG and arbitrary mesh repair are outside this narrowly certified zero-extent cleanup.
 
 Primary reference: [CGAL regularized solid operations](https://doc.cgal.org/6.0/Nef_3/index.html), checked 2026-10-31. Our implementation handles only exactly axis-collapsed disconnected closed shells; it is not CGAL's general regularization algorithm.
+
+## Overnight bounds follow-up
+
+The actual game integration exposed a remote air strike that needlessly entered native splitting. Exact disjoint/touching bounds now skip that operation, including after the accepted-cut budget is exhausted. Empty snapshots have an explicitly null tolerance. Three added regressions cover remote air strikes, empty material and exact command replay: 93 package tests / 31,703 assertions pass. A GPU-disabled browser worker confirms the skipped strike does not evaluate native geometry. The actual game physical pipeline (not only the research harness) passes 168/168 cases and 8,730 plane queries with unchanged source during the run. The release archive is regenerated after this fix; the earlier archive remains in git history and is superseded.

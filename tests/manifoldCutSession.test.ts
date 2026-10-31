@@ -124,3 +124,39 @@ test("invalid source/cut budgets fail before creating a session", () => {
   bad.indices = bad.indices.slice(0, -3);
   expect(() => createManifoldCutSession(wasm, [bad])).toThrow("Open");
 });
+
+test("far air strikes avoid native cutting, including after the accepted-cut quota is full", () => {
+  const session = createManifoldCutSession(wasm, [cube()], 1);
+  try {
+    const air = session.cut(cube(100));
+    expect(air.changed).toBe(false);
+    expect(air.broadPhaseSkipped).toBe(true);
+    expect(air.removed.stats.nativeEvaluated).toBe(false);
+    expect(session.cuts).toBe(0);
+    expect(session.cut(cube(1)).changed).toBe(true);
+    expect(session.cut(cube(100)).broadPhaseSkipped).toBe(true);
+    expect(session.cuts).toBe(1);
+    expect(session.snapshot().volume).toBe(4);
+  } finally {
+    session.dispose();
+  }
+});
+test("an empty retained material remains empty on subsequent tools", () => {
+  const session = createManifoldCutSession(wasm, [cube()], 1);
+  try {
+    session.cut(cube());
+    const next = session.cut(cube(100));
+    expect(next.changed).toBe(false);
+    expect(next.retained.volume).toBe(0);
+    expect(next.retained.stats.nativeTolerance).toBe(null);
+    expect(session.cuts).toBe(1);
+  } finally {
+    session.dispose();
+  }
+});
+
+test('replaying source meshes and commands reproduces snapshots despite new native source IDs',()=>{
+ const inputs=[cube(),cube(.25)],tools=[cube(.75),cube(.25)];
+ const replay=()=>{const session=createManifoldCutSession(wasm,inputs);try{const snapshots=[session.snapshot()];for(const tool of tools){const cut=session.cut(tool);snapshots.push(cut.removed,cut.retained);}return snapshots;}finally{session.dispose();}};
+ expect(replay()).toEqual(replay());
+});
