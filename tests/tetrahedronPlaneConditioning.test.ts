@@ -72,3 +72,34 @@ test("prepared queries reproduce the independent exact-input conditioning oracle
     ).toBeLessThan(2e-11);
   }
 });
+
+import oblique from "./fixtures/cut-body-oblique-plane.json";
+test("small excluded oblique corner does not reconstruct a nearly full thin tetrahedron", () => {
+  const r = tetrahedronPlaneMoments(
+    oblique.vertices as unknown as readonly V[],
+    oblique.planePoint as unknown as V,
+    oblique.planeNormal as unknown as V,
+  );
+  expect(Math.abs(r.fullSignedVolume / -2.772957275776894e-8 - 1)).toBeLessThan(
+    2e-12,
+  );
+  expect(Math.abs(r.signedVolume/oblique.oracle.wet-1)).toBeLessThan(2e-12);
+  for(let k=0;k<3;k++) expect(Math.abs(r.centroid![k]!-oblique.oracle.centroid[k]!)).toBeLessThan(2e-12);
+  expect(r.fraction).toBeGreaterThan(0.999999);
+  expect(r.fraction).toBeLessThan(1);
+  const q = prepareTetrahedronPlaneMoments(
+    oblique.vertices as unknown as readonly V[],
+  );
+  const dry = q(
+    oblique.planePoint as unknown as V,
+    oblique.planeNormal.map((x) => -x) as V,
+  );
+  expect(
+    Math.abs((r.signedVolume + dry.signedVolume) / r.fullSignedVolume - 1),
+  ).toBeLessThan(2e-14);
+});
+
+test('an underflowed nonempty corner is rejected instead of reported dry',()=>{
+ const q=prepareTetrahedronPlaneMoments([[0,0,0],[1,0,0],[0,1,0],[0,0,1]]);
+ expect(()=>q([1e-120,0,0],[1,1,1])).toThrow('Unrepresentable nonempty corner volume');
+});

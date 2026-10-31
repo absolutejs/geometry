@@ -133,6 +133,52 @@ export function prepareTetrahedronPlaneMoments(input: readonly V[]) {
     };
     if (distances.every((d) => d <= 0)) return finish(full, fullCenter);
     if (distances.every((d) => d >= 0)) return finish(0, null);
+    const wet = distances.map((d, i) => (d < 0 ? i : -1)).filter((i) => i >= 0);
+    const dry = distances.map((d, i) => (d > 0 ? i : -1)).filter((i) => i >= 0);
+    // A single corner is a similar tetrahedron: its volume ratio is the
+    // product of its three edge fractions. Integrate a small corner directly;
+    // subtract a small excluded corner only when at least half is retained.
+    const corner = (index: number) => {
+      let ratio = 1;
+      const offset: MutableV = [0, 0, 0];
+      for (let j = 0; j < 4; j++)
+        if (j !== index) {
+          const t = distances[index]! / (distances[index]! - distances[j]!);
+          ratio *= t;
+          for (let k = 0; k < 3; k++)
+            offset[k]! += ((vertices[j]![k]! - vertices[index]![k]!) * t) / 4;
+        }
+      return { ratio, offset };
+    };
+    if (wet.length === 1) {
+      const i = wet[0]!,
+        part = corner(i);
+      const center = subtract(vertices[i]!, reference).map(
+        (v, k) => (v + part.offset[k]!) / scale,
+      ) as MutableV;
+      const volume = full * part.ratio;
+      if (volume === 0) throw Error("Unrepresentable nonempty corner volume");
+      return finish(
+        volume,
+        center,
+        vertices[i]!.map((v, k) => v + part.offset[k]!) as MutableV,
+      );
+    }
+    if (dry.length === 1) {
+      const i = dry[0]!,
+        part = corner(i);
+      if (part.ratio <= 0.5) {
+        const fraction = 1 - part.ratio;
+        const excluded = subtract(vertices[i]!, reference).map(
+          (v, k) => (v + part.offset[k]!) / scale,
+        );
+        const center = fullCenter.map(
+          (v, k) => (v - part.ratio * excluded[k]!) / fraction,
+        ) as MutableV;
+        return finish(full * fraction, center);
+      }
+    }
+
     // Cache each crossed edge in original coordinates. In particular, do not
     // subtract a body-sized midpoint before constructing a very small wet tip.
     // Construct cut vertices relative to the input vertex nearest the plane.
