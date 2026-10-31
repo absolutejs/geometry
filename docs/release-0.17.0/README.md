@@ -18,3 +18,20 @@ Primary reference: [CGAL regularized solid operations](https://doc.cgal.org/6.0/
 ## Overnight bounds follow-up
 
 The actual game integration exposed a remote air strike that needlessly entered native splitting. Exact disjoint/touching bounds now skip that operation, including after the accepted-cut budget is exhausted. Empty snapshots have an explicitly null tolerance. Three added regressions cover remote air strikes, empty material and exact command replay: 93 package tests / 31,703 assertions pass. A GPU-disabled browser worker confirms the skipped strike does not evaluate native geometry. The actual game physical pipeline (not only the research harness) passes 168/168 cases and 8,730 plane queries with unchanged source during the run. The release archive is regenerated after this fix; the earlier archive remains in git history and is superseded.
+
+## Native coverage extension
+
+The queued release now includes `auditManifoldCoverage` and read-only session
+`auditCoverage`. Targets remain native; candidate cells are assigned to material
+components and missing/excess union volumes are measured independently. Cavity
+walls and nested positive islands retain their signed material meaning. Native
+handles are bounded and disposed on failure; coverage does not imply convexity
+or contact acceptance. The package suite now passes 101 tests / 31,746 assertions.
+The GPU-disabled browser worker additionally checks half-cube session coverage
+and a hollow cube with its cavity excluded. The game geometric-cell matrix passes
+all 168 cases, with unchanged source throughout.
+
+The earlier archive in this directory is superseded by this source extension.
+The regenerated archive matches all 50 shipped dist files from an independent
+build. See coverage-build-verification.json for exact hashes. No npm confirmation
+should be requested while the user is away.

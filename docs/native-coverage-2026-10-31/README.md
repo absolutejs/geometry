@@ -13,3 +13,8 @@ Limits: 128 candidate meshes, 100,000 aggregate candidate vertices, 200,000 aggr
 Cells are assigned by the largest measured intersection; cross-component and outside-assigned volume remain separate outputs, so a bridge cannot masquerade as nearest-center ownership. Component coverage uses the union of assigned cells, not their summed volume. This API does not certify candidate convexity, contact behavior, density or game acceptance thresholds. `nativeBooleanQueries` counts Boolean calls issued, not internal solver iterations.
 
 Initial qualification: 101 package tests pass, including equal-volume displaced cells (both missing/excess detected), overlapping cells, a bridge between bodies, cavity exclusion, nested positive islands with their own cavities, failed handle-copy cleanup, empty material and read-only session failure recovery. The actual game package probe passes all 24 full-cut tree/shape cases and exact native/rendered triangle correspondence. Expansion across all seven cut stages and browser/archive checks follow before the archive is refreshed.
+
+The real GPU-disabled browser worker also passes session coverage and a hollow
+cube test. Browser evidence is in the release qualification log. The game checks
+all 168 variant/shape/cut combinations against this exported API; actual Rapier
+hull preparation is a separate subsequent gate, not implied by these probes.
