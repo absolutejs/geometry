@@ -28,3 +28,14 @@ waves, flooding or fluid reaction. Game evidence lives in its repository.
 
 Publication and archive qualification are recorded below when complete. The game
 remains on published 0.12.0 until registry verification and dependency adoption.
+
+The exact archive is 36,384 bytes / 41 files, SHA1
+5984a4247db3a58c5d279ac0dbde28a39fd85fd4. Every archived file matches the reviewed
+build/source, and an independent TypeScript build matches every shipped output.
+All prior integrator files remain byte-identical to 0.12.0. An extracted public
+ESM consumer resolves the new prepared-solid export.
+
+Publication completed 2026-10-31 after npm's separate login and publish approval.
+Registry version, SHA1 and SHA512 match the tested archive (registry.json).
+The game verified all 41 installed files against this archive before adopting
+the published API. Source/archive were pushed to canonical main at 761e756.
