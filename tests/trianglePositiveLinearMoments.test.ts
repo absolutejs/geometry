@@ -204,3 +204,11 @@ test("exact opposed domains remain empty while nearby thin positive domains surv
   expect(linear.area).toBeGreaterThan(0);
   expect(quadratic.area).toBeGreaterThan(0);
 });
+
+
+test('nonzero first moments cannot silently underflow while the scalar integral survives', () => {
+ const linear=prepare([[0,0,0],[1e-100,0,0],[0,1e-100,0]]);
+ expect(()=>linear([1e-100,1e-100,1e-100])).toThrow('Unrepresentable');
+ const quadratic=prepareTrianglePositiveQuadraticMoments([[0,0,0],[1e-80,0,0],[0,1e-80,0]]);
+ expect(()=>quadratic([1e-80,1e-80,1e-80])).toThrow('Unrepresentable');
+});

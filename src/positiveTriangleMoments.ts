@@ -230,6 +230,7 @@ export function preparePositiveTriangleMoments(
         ...(meanOffset ?? []),
       ].every(Number.isFinite) ||
       (integrated > 0 && integral === 0) ||
+      first.some((x, i) => x !== 0 && relativeFirstMoment[i] === 0) ||
       (cubic > 0 && cubicIntegral === 0) ||
       area > fullArea * (1 + 1e-12)
     )

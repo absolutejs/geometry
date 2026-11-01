@@ -1,24 +1,25 @@
 bun test v1.4.4+absolute.1 (38afee6c8)
 
 tests/trianglePositiveLinearMoments.test.ts:
-(pass) linear positive pressure preserves exact integrals, boundary zeros and thin wet regions [1.63ms]
-(pass) two affine restrictions agree with independent strip integration [1.48ms]
-(pass) linear moments retain scale, winding, relative coordinates and ownership [0.39ms]
-(pass) invalid linear inputs and unrepresentable moments fail explicitly [0.19ms]
-(pass) exposed-surface pressure distinguishes free buoyancy, a sealed bottom and empty fluid [3.40ms]
-(pass) exact opposed domains remain empty while nearby thin positive domains survive [7.79ms]
+(pass) linear positive pressure preserves exact integrals, boundary zeros and thin wet regions [1.99ms]
+(pass) two affine restrictions agree with independent strip integration [0.50ms]
+(pass) linear moments retain scale, winding, relative coordinates and ownership [0.28ms]
+(pass) invalid linear inputs and unrepresentable moments fail explicitly [0.15ms]
+(pass) exposed-surface pressure distinguishes free buoyancy, a sealed bottom and empty fluid [2.53ms]
+(pass) exact opposed domains remain empty while nearby thin positive domains survive [7.55ms]
+(pass) nonzero first moments cannot silently underflow while the scalar integral survives [0.32ms]
 
 tests/trianglePositiveQuadraticMoments.test.ts:
-(pass) positive affine pressure integrates exact clipped powers and first moments [0.36ms]
-(pass) constant, dry and threshold fields preserve exact scope and owned results [0.12ms]
-(pass) full positive fields agree with independent six-point degree-four quadrature [0.34ms]
-(pass) prepared triangles preserve translation, scale, winding and caller ownership [0.14ms]
-(pass) invalid geometry, fields and nonrepresentable powers are rejected [0.13ms]
-(pass) a second affine domain clips water depth before positive pressure [0.17ms]
-(pass) two clipped affine fields are additive under independent surface refinement [0.85ms]
-(pass) nonnegative full domains retain boundary zeros without treating a zero field as wet [0.33ms]
+(pass) positive affine pressure integrates exact clipped powers and first moments [0.64ms]
+(pass) constant, dry and threshold fields preserve exact scope and owned results [0.30ms]
+(pass) full positive fields agree with independent six-point degree-four quadrature [0.63ms]
+(pass) prepared triangles preserve translation, scale, winding and caller ownership [0.22ms]
+(pass) invalid geometry, fields and nonrepresentable powers are rejected [0.37ms]
+(pass) a second affine domain clips water depth before positive pressure [0.22ms]
+(pass) two clipped affine fields are additive under independent surface refinement [1.19ms]
+(pass) nonnegative full domains retain boundary zeros without treating a zero field as wet [0.38ms]
 
- 14 pass
+ 15 pass
  0 fail
- 6352 expect() calls
-Ran 14 tests across 2 files. [27.00ms]
+ 6354 expect() calls
+Ran 15 tests across 2 files. [28.00ms]

@@ -11,7 +11,7 @@ const {chromium}=require(process.env.PLAYWRIGHT_MODULE||'/home/alexkahn/.cache/c
    if(path==='/worker.js')return route.fulfill({contentType:'text/javascript',body:`
 import Module from '/native/manifold.js';
 import {createManifoldMesh64,createManifoldPartitionKernel,getManifoldMesh64,createManifoldCutSession,auditManifoldCoverage} from '/dist/manifold.js';
-import {partitionSolidMaterials,prepareTrianglePositiveQuadraticMoments,prepareSolidPlaneMoments} from '/dist/index.js';
+import {partitionSolidMaterials,prepareTrianglePositiveQuadraticMoments,prepareSolidPlaneMoments,prepareTrianglePositiveLinearMoments} from '/dist/index.js';
 onmessage=async e=>{try{
  const wasm=await Module({locateFile:()=>'/native/manifold.wasm'});wasm.setup();
  const seed=wasm.Manifold.cube([1,1,1],true),m=seed.getMesh();seed.delete();
@@ -25,10 +25,16 @@ onmessage=async e=>{try{
  try{const r=auditManifoldCoverage(wasm,hollow,[]);cavity={components:r.components.length,cavities:r.cavities,volume:r.components[0].nativeVolume};}finally{hollow.delete();hole.delete();holeSeed.delete();outer.delete();}
  const cubeQuery=prepareSolidPlaneMoments({positions:Float64Array.from(m.vertProperties),indices:m.triVerts,owners:new Uint16Array(m.triVerts.length/3)});
  const solidPlanes=[.75,.25,-.75,-.5+1e-9].map(y=>({y,...cubeQuery([0,y,0],[0,1e200,0])}));
+ const linearQuery=prepareTrianglePositiveLinearMoments([[0,0,0],[1,0,0],[0,1,0]]);
+ const linearPressure=linearQuery([0,1,0],[0,1,0]);
+ const opposedValues=[.46248408942483366,-.4349821559153497,-.4370070246513933];
+ const opposedLinear=linearQuery(opposedValues,opposedValues.map(v=>-v));
+ const opposedQuadratic=prepareTrianglePositiveQuadraticMoments([[0,0,0],[1,0,0],[0,1,0]])(opposedValues,opposedValues.map(v=>-v));
+ const thinLinear=linearQuery([-.25,.75,-.25],[.25+2**-30,-.75+2**-30,.25+2**-30]);
  const fullPressure=prepareTrianglePositiveQuadraticMoments([[0,0,0],[1,0,0],[0,1,0]])([0,1,0],[0,1,0]);
  const pressure=prepareTrianglePositiveQuadraticMoments([[0,0,0],[1,0,0],[0,1,0]])([-.5,.5,-.5]);
  const wetPressure=prepareTrianglePositiveQuadraticMoments([[0,0,0],[1,0,0],[0,1,0]])([-.5,.5,-.5],[.25,.25,-.75]);
- postMessage({vertices,rows,sessionResult,cavity,pressure,wetPressure,solidPlanes,fullPressure});
+ postMessage({vertices,rows,sessionResult,cavity,pressure,wetPressure,solidPlanes,fullPressure,linearPressure,opposedLinear,opposedQuadratic,thinLinear});
 }catch(error){postMessage({error:String(error)});}};`});
    const allowed=path.startsWith('/dist/')&&/^\/dist\/[A-Za-z0-9]+\.js$/.test(path);
    const file=allowed?'.'+path:path==='/native/manifold.js'?'node_modules/manifold-3d/manifold.js':path==='/native/manifold.wasm'?'node_modules/manifold-3d/manifold.wasm':null;
@@ -41,6 +47,9 @@ onmessage=async e=>{try{
    w.onmessage=e=>{clearTimeout(timer);w.terminate();resolve(e.data);};w.onerror=e=>{clearTimeout(timer);w.terminate();reject(Error(e.message));};w.postMessage(fixtures);
   }),fixtures);
   assert.deepEqual(result.sessionResult,{coverage:{components:1,missing:0,excess:.5,owner:0},initial:1,removed:.5,retained:.5,sequence:1,airSkipped:true,airNativeEvaluated:false});assert.equal(result.cavity.components,1);assert.equal(result.cavity.cavities,1);assert.ok(Math.abs(result.cavity.volume-7)<1e-12);assert.equal(result.error,undefined);assert.equal(result.vertices,8);assert.equal(result.rows.length,4);result.rows.forEach(r=>assert.ok(r.volume>0&&r.faces>0));assert.deepEqual(errors,[]);assert.ok(Math.abs(result.pressure.integral-1/192)<1e-15);assert.ok(Math.abs(result.pressure.cubicIntegral-1/640)<1e-15);assert.ok(Math.abs(result.pressure.meanOffset[0]-.8)<1e-14);assert.ok(Math.abs(result.wetPressure.integral-(.5**4-.25**4)/12)<1e-15);
+  assert.ok(Math.abs(result.linearPressure.integral-1/6)<1e-15);assert.ok(Math.abs(result.linearPressure.relativeFirstMoment[0]-1/12)<1e-15);assert.equal('cubicIntegral' in result.linearPressure,false);
+  assert.equal(result.opposedLinear.integral,0);assert.equal(result.opposedLinear.area,0);assert.equal(result.opposedQuadratic.integral,0);assert.equal(result.opposedQuadratic.area,0);
+  const thinDepth=2**-30;assert.ok(Math.abs(result.thinLinear.integral/(.75*thinDepth**2/2-thinDepth**3/3)-1)<1e-6);
   assert.equal(result.fullPressure.area,.5);assert.ok(Math.abs(result.fullPressure.integral-1/12)<1e-15);assert.ok(Math.abs(result.fullPressure.cubicIntegral-1/20)<1e-15);
   assert.ok(Math.abs(result.solidPlanes[0].volume-1)<1e-14);assert.equal(result.solidPlanes[2].volume,0);
   assert.ok(Math.abs(result.solidPlanes[1].volume-.75)<1e-14);assert.ok(Math.abs(result.solidPlanes[1].firstMoment[1]+result.solidPlanes[1].reference[1]*result.solidPlanes[1].volume+.09375)<1e-14);
