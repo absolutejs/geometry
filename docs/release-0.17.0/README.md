@@ -4,18 +4,20 @@ The user requested uninterrupted overnight work and deferred all npm confirmatio
 
 ## Current candidate
 
-Source `1b21a33` includes:
+Source `03bdfb9` includes:
 
 - Unique native face ancestry for double imports; bounded native cut sessions retain intermediates, skip disjoint air strikes and expose owned snapshots.
 - Certified removal of exactly axis-collapsed closed sheets; native coverage auditing keeps cavity/positive-island meaning. It does not repair arbitrary invalid Booleans.
 - Prepared positive linear/quadratic surface moments, optional affine clipping domains, exact opposed-domain handling and scalar integration optimizations.
 - Bounded affine surface-domain partitions with owned `reference`, `relativePositions`, `barycentric` and `domains` buffers. Small cells remain in a local frame; callers explicitly control later transforms/quantization. AABB domains have a convenience adapter. Domain membership alone is not solid material ownership.
 
-All **123 package tests / 71,362 assertions** pass. GPU-disabled browser-worker checks cover native imports/cuts/coverage, analytic pressure, thin domains and relative-coordinate partitions beside a 2^52 origin. All **58 compiled files** match a separate build; all **61 archive files** match the source/build checkout. Extracted-archive ESM and transferable-worker consumers pass.
+- Prepared source-triangle interpolation owns reusable projection coefficients and rejects nonfinite internal arithmetic. 100,000 valid point queries exactly match the prior one-shot implementation; all 168 game cut cases retain identical attribute buffers and bounds.
+
+All **126 package tests / 71,478 assertions** pass. GPU-disabled browser-worker checks cover native imports/cuts/coverage, analytic pressure, thin domains and relative-coordinate partitions beside a 2^52 origin. All **58 compiled files** match a separate build; all **61 archive files** match the source/build checkout. Extracted-archive ESM and transferable-worker consumers pass.
 
 Exact archive: `absolutejs-geometry-0.17.0.tgz`.
-SHA256: `857dae04f994f2fa89bae7b7f0f7700625ff73bfbe3c4dc5b297f587c7ae97cf`.
-See `archive-verification.json`, `domain-pack.json`, and `../../research/triangle-domains-2026-11-01/` for current receipts. This replaces all earlier 0.17.0 archives; their hashes and source remain in Git history and dated research records.
+SHA256: `45edfb7001f1d6a9a0bb5b6289f92bf7dba915f5b2bf00037ae1c1c55ed23430`.
+See `prepared-archive-verification.json`, `prepared-pack.json`, `../../research/prepared-weights-2026-11-01/independent-build.json`, and `../../research/triangle-domains-2026-11-01/` for current receipts. This replaces all earlier 0.17.0 archives; their hashes and source remain in Git history and dated research records.
 
 ## Game qualification boundaries
 

@@ -6,4 +6,4 @@ All 126 package tests / 71,478 assertions pass. A GPU-disabled browser worker ve
 
 The game independently compares every render attribute buffer and bounding sphere across 168 actual cut cases: 432 material pieces, 4,320 buffers and 36,590,796 bytes match exactly. Both renderer variants in that comparison load the new math, while the separate 100,000-query test checks the old implementation. Whole-preparation warm medians move from 11.095 to 10.205 ms in separate exploratory runs, but maximums remain high. Off-thread preparation still needs investigation.
 
-This research does not supersede the queued exact 0.17 archive until independent builds, final game regression and refreshed archive qualification finish. No npm authentication is requested.
+The prepared candidate now has 58 identical independently built files and a refreshed exact archive whose 61 files match the checkout. Extracted-archive ESM and transferable-worker consumers pass. The full prepared-render game suite passes 935 tests with frozen source and candidate artifacts. This supersedes the previous queued archive; publication remains deferred and no npm authentication is requested.
