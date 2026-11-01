@@ -109,19 +109,20 @@ export function preparePositiveTriangleMoments(
               s0 * s1 * s2)) /
           10;
       }
-      for (let j = 0; j < 3; j++) {
-        const x = j === 0 ? s0 : j === 1 ? s1 : s2,
-          y = j === 0 ? s1 : j === 1 ? s2 : s0,
-          z = j === 0 ? s2 : j === 1 ? s0 : s1;
-        const point = j === 0 ? p : j === 1 ? q : r;
-        const weight =
-          order === 1
-            ? (pieceArea * (2 * x + y + z)) / 12
-            : (pieceArea *
-                (3 * x * x + y * y + z * z + 2 * x * (y + z) + y * z)) /
-              30;
-        for (let d = 0; d < 3; d++)
-          first[d]! += weight * (u[d]! * point[0] + v[d]! * point[1]);
+      let w0: number, w1: number, w2: number;
+      if (order === 1) {
+        w0 = (pieceArea * (2 * s0 + s1 + s2)) / 12;
+        w1 = (pieceArea * (2 * s1 + s2 + s0)) / 12;
+        w2 = (pieceArea * (2 * s2 + s0 + s1)) / 12;
+      } else {
+        w0 = (pieceArea * (3 * s0 * s0 + s1 * s1 + s2 * s2 + 2 * s0 * (s1 + s2) + s1 * s2)) / 30;
+        w1 = (pieceArea * (3 * s1 * s1 + s2 * s2 + s0 * s0 + 2 * s1 * (s2 + s0) + s2 * s0)) / 30;
+        w2 = (pieceArea * (3 * s2 * s2 + s0 * s0 + s1 * s1 + 2 * s2 * (s0 + s1) + s0 * s1)) / 30;
+      }
+      for (let d = 0; d < 3; d++) {
+        first[d]! += w0 * (u[d]! * p[0] + v[d]! * p[1]);
+        first[d]! += w1 * (u[d]! * q[0] + v[d]! * q[1]);
+        first[d]! += w2 * (u[d]! * r[0] + v[d]! * r[1]);
       }
       area += pieceArea;
     };
@@ -216,9 +217,9 @@ export function preparePositiveTriangleMoments(
     }
     const integral = order === 1 ? integrated * k : integrated * k * k,
       cubicIntegral = cubic * k * k * k;
-    const relativeFirstMoment = first.map((x) =>
-      order === 1 ? x * k : x * k * k,
-    ) as M;
+    const relativeFirstMoment = (order === 1
+      ? first.map((x) => x * k)
+      : first.map((x) => x * k * k)) as M;
     const meanOffset =
       integrated > 0 ? (first.map((x) => x / integrated) as M) : null;
     if (
@@ -230,7 +231,9 @@ export function preparePositiveTriangleMoments(
         ...(meanOffset ?? []),
       ].every(Number.isFinite) ||
       (integrated > 0 && integral === 0) ||
-      first.some((x, i) => x !== 0 && relativeFirstMoment[i] === 0) ||
+      (first[0] !== 0 && relativeFirstMoment[0] === 0) ||
+      (first[1] !== 0 && relativeFirstMoment[1] === 0) ||
+      (first[2] !== 0 && relativeFirstMoment[2] === 0) ||
       (cubic > 0 && cubicIntegral === 0) ||
       area > fullArea * (1 + 1e-12)
     )

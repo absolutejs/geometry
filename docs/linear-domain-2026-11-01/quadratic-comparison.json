@@ -2,14 +2,14 @@
   "cases": 100000,
   "full": 33971,
   "exactlyEqual": true,
-  "baselineMs": 172.71414199999543,
-  "optimizedMs": 194.65008299999965,
-  "ratio": 1.1270072082458933,
+  "baselineMs": 120.35004399999897,
+  "optimizedMs": 114.8815109999933,
+  "ratio": 0.9545614374681431,
   "sourceUnchanged": true,
   "hashes": {
     "/home/alexkahn/alex/geometry-pressure-domain/dist/trianglePositiveQuadraticMoments.js": "3b197e2cc2b0a1d214c383033f4f17ea695621bb03fe1040858a9fa4968df4c0",
     "dist/trianglePositiveQuadraticMoments.js": "308d3867caa93219a7383543c48623730935813caa60c4f081803a506eec88a6",
-    "dist/positiveTriangleMoments.js": "4c3131c5309199f8f141af3501d251947391b27f47311a8ea3e8b39a6ae4003f",
+    "dist/positiveTriangleMoments.js": "ebde62d1ad543370b5b88d613fb628ee68295a7215a5a0bebb882d3d77047304",
     "artifacts/pressure-domain/compare.ts": "1bd8960f8a85cba6f78ce1a97cf85fdda9fed5302f135f8bbcac05a0d27fa8bd"
   },
   "scope": "Deterministic affine field comparison with alternating timed order; not game FPS"
