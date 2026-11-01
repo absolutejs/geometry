@@ -1,0 +1,311 @@
+[
+  {
+    "id": "@absolutejs/geometry@0.17.0",
+    "name": "@absolutejs/geometry",
+    "version": "0.17.0",
+    "size": 52890,
+    "unpackedSize": 195610,
+    "shasum": "dd7439f80e8cd53741f736b1a8b800733c8ec6a8",
+    "integrity": "sha512-vI4zKglIgHArnfvvhkbaI4612RBc+M9usPjeLDbjMDacXE3z8Y8C4ZO9QAUnUPCF5vJgoNebiwyE/aXcIVjaUQ==",
+    "filename": "absolutejs-geometry-0.17.0.tgz",
+    "files": [
+      {
+        "path": "LICENSE",
+        "size": 3447,
+        "mode": 420
+      },
+      {
+        "path": "README.md",
+        "size": 34232,
+        "mode": 420
+      },
+      {
+        "path": "dist/alpha.d.ts",
+        "size": 448,
+        "mode": 420
+      },
+      {
+        "path": "dist/alpha.js",
+        "size": 1802,
+        "mode": 420
+      },
+      {
+        "path": "dist/axialOrientation.d.ts",
+        "size": 571,
+        "mode": 420
+      },
+      {
+        "path": "dist/axialOrientation.js",
+        "size": 2237,
+        "mode": 420
+      },
+      {
+        "path": "dist/closeConvexTube.d.ts",
+        "size": 683,
+        "mode": 420
+      },
+      {
+        "path": "dist/closeConvexTube.js",
+        "size": 6224,
+        "mode": 420
+      },
+      {
+        "path": "dist/closedComponents.d.ts",
+        "size": 394,
+        "mode": 420
+      },
+      {
+        "path": "dist/closedComponents.js",
+        "size": 3117,
+        "mode": 420
+      },
+      {
+        "path": "dist/createManifoldMesh64.d.ts",
+        "size": 802,
+        "mode": 420
+      },
+      {
+        "path": "dist/createManifoldMesh64.js",
+        "size": 3241,
+        "mode": 420
+      },
+      {
+        "path": "dist/index.d.ts",
+        "size": 1568,
+        "mode": 420
+      },
+      {
+        "path": "dist/index.js",
+        "size": 1313,
+        "mode": 420
+      },
+      {
+        "path": "dist/manifold.d.ts",
+        "size": 350,
+        "mode": 420
+      },
+      {
+        "path": "dist/manifold.js",
+        "size": 324,
+        "mode": 420
+      },
+      {
+        "path": "dist/manifoldCoverage.d.ts",
+        "size": 1402,
+        "mode": 420
+      },
+      {
+        "path": "dist/manifoldCoverage.js",
+        "size": 10322,
+        "mode": 420
+      },
+      {
+        "path": "dist/manifoldCutSession.d.ts",
+        "size": 9186,
+        "mode": 420
+      },
+      {
+        "path": "dist/manifoldCutSession.js",
+        "size": 9339,
+        "mode": 420
+      },
+      {
+        "path": "dist/manifoldKernel.d.ts",
+        "size": 1033,
+        "mode": 420
+      },
+      {
+        "path": "dist/manifoldKernel.js",
+        "size": 3750,
+        "mode": 420
+      },
+      {
+        "path": "dist/manifoldMesh64.d.ts",
+        "size": 860,
+        "mode": 420
+      },
+      {
+        "path": "dist/manifoldMesh64.js",
+        "size": 3139,
+        "mode": 420
+      },
+      {
+        "path": "dist/materialPartition.d.ts",
+        "size": 1905,
+        "mode": 420
+      },
+      {
+        "path": "dist/materialPartition.js",
+        "size": 6791,
+        "mode": 420
+      },
+      {
+        "path": "dist/mergeIndexedMesh.d.ts",
+        "size": 510,
+        "mode": 420
+      },
+      {
+        "path": "dist/mergeIndexedMesh.js",
+        "size": 2778,
+        "mode": 420
+      },
+      {
+        "path": "dist/overlap.d.ts",
+        "size": 1091,
+        "mode": 420
+      },
+      {
+        "path": "dist/overlap.js",
+        "size": 3686,
+        "mode": 420
+      },
+      {
+        "path": "dist/positiveTriangleMoments.d.ts",
+        "size": 1145,
+        "mode": 420
+      },
+      {
+        "path": "dist/positiveTriangleMoments.js",
+        "size": 8502,
+        "mode": 420
+      },
+      {
+        "path": "dist/principalInertia.d.ts",
+        "size": 526,
+        "mode": 420
+      },
+      {
+        "path": "dist/principalInertia.js",
+        "size": 4488,
+        "mode": 420
+      },
+      {
+        "path": "dist/projection.d.ts",
+        "size": 1431,
+        "mode": 420
+      },
+      {
+        "path": "dist/projection.js",
+        "size": 8850,
+        "mode": 420
+      },
+      {
+        "path": "dist/regularizeZeroExtentShells.d.ts",
+        "size": 920,
+        "mode": 420
+      },
+      {
+        "path": "dist/regularizeZeroExtentShells.js",
+        "size": 1958,
+        "mode": 420
+      },
+      {
+        "path": "dist/signedVolume.d.ts",
+        "size": 79,
+        "mode": 420
+      },
+      {
+        "path": "dist/signedVolume.js",
+        "size": 703,
+        "mode": 420
+      },
+      {
+        "path": "dist/solidComponents.d.ts",
+        "size": 826,
+        "mode": 420
+      },
+      {
+        "path": "dist/solidComponents.js",
+        "size": 4439,
+        "mode": 420
+      },
+      {
+        "path": "dist/solidPlaneMoments.d.ts",
+        "size": 1021,
+        "mode": 420
+      },
+      {
+        "path": "dist/solidPlaneMoments.js",
+        "size": 8344,
+        "mode": 420
+      },
+      {
+        "path": "dist/solidPointMembership.d.ts",
+        "size": 442,
+        "mode": 420
+      },
+      {
+        "path": "dist/solidPointMembership.js",
+        "size": 4813,
+        "mode": 420
+      },
+      {
+        "path": "dist/surfaceOrigins.d.ts",
+        "size": 554,
+        "mode": 420
+      },
+      {
+        "path": "dist/surfaceOrigins.js",
+        "size": 2892,
+        "mode": 420
+      },
+      {
+        "path": "dist/tetrahedronPlaneMoments.d.ts",
+        "size": 1349,
+        "mode": 420
+      },
+      {
+        "path": "dist/tetrahedronPlaneMoments.js",
+        "size": 10577,
+        "mode": 420
+      },
+      {
+        "path": "dist/trianglePlaneMoments.d.ts",
+        "size": 1463,
+        "mode": 420
+      },
+      {
+        "path": "dist/trianglePlaneMoments.js",
+        "size": 7971,
+        "mode": 420
+      },
+      {
+        "path": "dist/trianglePositiveLinearMoments.d.ts",
+        "size": 759,
+        "mode": 420
+      },
+      {
+        "path": "dist/trianglePositiveLinearMoments.js",
+        "size": 520,
+        "mode": 420
+      },
+      {
+        "path": "dist/trianglePositiveQuadraticMoments.d.ts",
+        "size": 637,
+        "mode": 420
+      },
+      {
+        "path": "dist/trianglePositiveQuadraticMoments.js",
+        "size": 365,
+        "mode": 420
+      },
+      {
+        "path": "dist/triangleWeights.d.ts",
+        "size": 355,
+        "mode": 420
+      },
+      {
+        "path": "dist/triangleWeights.js",
+        "size": 1870,
+        "mode": 420
+      },
+      {
+        "path": "package.json",
+        "size": 1266,
+        "mode": 420
+      }
+    ],
+    "entryCount": 59,
+    "bundled": []
+  }
+]

@@ -96,3 +96,12 @@ Current SHA1: a86e07eb5f13079e0a315ca662b4310ea8564e2e; SHA256:
 bfa36c2b4dfb027c7bc0676ff1da457d7f70e43da54a6f2f7bff73d9bb3f75cc.
 See scalar-query-build-verification.json. This supersedes the earlier waterline
 archive; version 0.17.0 remains unpublished and requires no additional release.
+
+## Linear-domain and direct integration checkpoint
+
+The queued archive now includes positive linear surface/first moments, exact opposed-domain handling, representability guards and direct full-domain integration. It passes116 package tests/38,100 assertions,100,000 exact quadratic comparisons, and GPU-disabled browser import/worker checks. All56 compiled files match an independent build and the59-file archive; see linear-build-verification.json.
+
+Archive SHA1: dd7439f80e8cd53741f736b1a8b800733c8ec6a8.
+Archive SHA256: cb85a7bfc1286bf7d2de2c737f6ac9bc8c3e69fcb7368b5348adbcdfb0179a5b.
+
+This replaces the scalar-query archive in this research branch. Canonical-main promotion and final native-motion qualification are separate pending gates. The predecessor linear candidate passed931 maintained game tests; that suite is not falsely labeled as a run on the later direct-weight optimization. No publication/authentication is initiated while the user is away.
