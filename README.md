@@ -552,3 +552,25 @@ this is an exact identity at all three vertices, not an epsilon or volume cutoff
 Nearby thin positive domains remain integrated. Nonfinite/unrepresentable results
 reject explicitly. Fully retained domains share the direct polynomial fast path;
 crossing domains retain analytic clipping without point sampling.
+
+### Bounded surface domains (queued 0.17.0 extension)
+
+`partitionTriangleAffineDomains(triangle, domains, options)` partitions a triangle
+into convex polygons. Each domain is an intersection of affine fields supplied as
+three values at the input vertices; nonnegative values are inside. Returned
+`positions`, `barycentric` and `domains` arrays are owned by the result. Domain
+indices describe each polygon's relative interior; zero-area boundary fragments
+are not separate cells. An identically zero field includes the full polygon.
+`partitionTriangleBoxDomains` supplies the six fields for each axis-aligned box.
+
+Use the barycentric coordinates for attribute interpolation and fan-triangulate
+each convex polygon. Defaults limit output to 1,024 cells and 8,192 vertices;
+explicit limits are checked during partitioning. Invalid input, unrepresentable
+intersections, area-conservation failure or exhausted budgets throw, without
+returning partial results. These are bounded double-precision operations, not
+exact-arithmetic Boolean solid repair. Domain membership is not a proof of solid
+ownership: applications must establish their own material/volume assumptions.
+
+For example, the triangle `[[0,0,0],[1,0,0],[0,1,0]]` and one domain
+`[[[-0.5,0.5,0.5]]]` separate the region `x+y >= 0.5`; its area is `0.375`.
+A positive rescaling of the affine field describes the same domain.

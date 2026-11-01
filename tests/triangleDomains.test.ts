@@ -1,5 +1,5 @@
 import { test, expect } from "bun:test";
-import { partitionTriangleBoxDomains } from "../src/triangleBoxDomains";
+import { partitionTriangleBoxDomains } from "../src/triangleDomains";
 const triangle = [
   [0, 0, 0],
   [1, 0, 0],
@@ -22,7 +22,7 @@ test("overlapping boxes partition exact analytic triangle areas and preserve win
   const cells = partitionTriangleBoxDomains(triangle, boxes),
     totals = new Map<string, number>();
   for (const c of cells) {
-    const key = Array.from(c.boxes).join(",");
+    const key = Array.from(c.domains).join(",");
     totals.set(key, (totals.get(key) ?? 0) + area(c.positions));
     expect(area(c.positions)).toBeGreaterThan(0);
     for (let i = 0; i < c.positions.length; i += 3) {
@@ -40,18 +40,18 @@ test("overlapping boxes partition exact analytic triangle areas and preserve win
   expect(totals.has("")).toBe(false);
 });
 test("closed boundaries, absent boxes and zero-width boxes have explicit area semantics", () => {
-  expect(partitionTriangleBoxDomains(triangle, [])[0]!.boxes.length).toBe(0);
+  expect(partitionTriangleBoxDomains(triangle, [])[0]!.domains.length).toBe(0);
   expect(
     partitionTriangleBoxDomains(triangle, [
       { min: [0, 0, 0], max: [1, 1, 0] },
-    ])[0]!.boxes,
+    ])[0]!.domains,
   ).toEqual(new Uint32Array([0]));
   for (const b of [
     { min: [1, 0, -1], max: [2, 1, 1] },
     { min: [0.5, 0, -1], max: [0.5, 1, 1] },
   ] as const) {
     const cells = partitionTriangleBoxDomains(triangle, [b]);
-    expect(cells.every((c) => c.boxes.length === 0)).toBe(true);
+    expect(cells.every((c) => c.domains.length === 0)).toBe(true);
     expect(cells.reduce((s, c) => s + area(c.positions), 0)).toBe(0.5);
   }
 });
@@ -60,7 +60,7 @@ test("thin positive regions survive and output owns its buffers", () => {
     cells = partitionTriangleBoxDomains(triangle, [
       { min: [0, 0, -1], max: [width, 1, 1] },
     ]);
-  const inside = cells.filter((c) => c.boxes.length);
+  const inside = cells.filter((c) => c.domains.length);
   expect(inside.reduce((s, c) => s + area(c.positions), 0)).toBeCloseTo(
     width - (width * width) / 2,
     20,
@@ -149,9 +149,9 @@ test("seeded oblique, translated and scaled partitions preserve area and interio
       for (const [id, b] of boxes.entries()) {
         const d = center.flatMap((x, a) => [x - b.min[a]!, b.max[a]! - x]);
         if (Math.min(...d) > scale * 1e-10)
-          expect(Array.from(cell.boxes)).toContain(id);
+          expect(Array.from(cell.domains)).toContain(id);
         if (Math.min(...d) < -scale * 1e-10)
-          expect(Array.from(cell.boxes)).not.toContain(id);
+          expect(Array.from(cell.domains)).not.toContain(id);
       }
       for (let i = 0; i < cell.positions.length; i += 3)
         for (let a = 0; a < 3; a++) {
@@ -166,14 +166,47 @@ test("seeded oblique, translated and scaled partitions preserve area and interio
   }
 });
 
-test('affine domains classify oblique half-spaces and intersect opposed fields without phantom area',async()=>{
- const {partitionTriangleAffineDomains}=await import('../src/triangleBoxDomains');
- const cells=partitionTriangleAffineDomains(triangle,[[[-.5,.5,.5]]]);
- expect(cells.filter(c=>c.boxes.length).reduce((s,c)=>s+area(c.positions),0)).toBeCloseTo(.375,14);
- const empty=partitionTriangleAffineDomains(triangle,[[[-.5,.5,.5],[.5,-.5,-.5]]]);
- expect(empty.every(c=>c.boxes.length===0)).toBe(true);
- expect(empty.reduce((s,c)=>s+area(c.positions),0)).toBeCloseTo(.5,14);
- const scaled=partitionTriangleAffineDomains(triangle,[[[-5e30,5e30,5e30]]]);
- expect(scaled.map(c=>Array.from(c.positions))).toEqual(cells.map(c=>Array.from(c.positions)));
- expect(()=>partitionTriangleAffineDomains(triangle,[[]])).toThrow();
+test("affine domains classify oblique half-spaces and intersect opposed fields without phantom area", async () => {
+  const { partitionTriangleAffineDomains } =
+    await import("../src/triangleDomains");
+  const cells = partitionTriangleAffineDomains(triangle, [[[-0.5, 0.5, 0.5]]]);
+  expect(
+    cells
+      .filter((c) => c.domains.length)
+      .reduce((s, c) => s + area(c.positions), 0),
+  ).toBeCloseTo(0.375, 14);
+  const empty = partitionTriangleAffineDomains(triangle, [
+    [
+      [-0.5, 0.5, 0.5],
+      [0.5, -0.5, -0.5],
+    ],
+  ]);
+  expect(empty.every((c) => c.domains.length === 0)).toBe(true);
+  expect(empty.reduce((s, c) => s + area(c.positions), 0)).toBeCloseTo(0.5, 14);
+  const scaled = partitionTriangleAffineDomains(triangle, [
+    [[-5e30, 5e30, 5e30]],
+  ]);
+  expect(scaled.map((c) => Array.from(c.positions))).toEqual(
+    cells.map((c) => Array.from(c.positions)),
+  );
+  expect(() => partitionTriangleAffineDomains(triangle, [[]])).toThrow();
+});
+
+test("rejects absolute-coordinate precision collapse while the same local partition remains valid", async () => {
+  const { partitionTriangleAffineDomains } =
+    await import("../src/triangleDomains");
+  const origin = 2 ** 52;
+  expect(() =>
+    partitionTriangleAffineDomains(
+      [
+        [origin, 0, 0],
+        [origin + 1, 0, 0],
+        [origin, 1, 0],
+      ],
+      [[[-1, 1, 1]]],
+    ),
+  ).toThrow("local input frame");
+  const local = partitionTriangleAffineDomains(triangle, [[[-1, 1, 1]]]);
+  expect(local.reduce((s, c) => s + area(c.positions), 0)).toBe(0.5);
+  expect(local.every((c) => area(c.positions) > 0)).toBe(true);
 });

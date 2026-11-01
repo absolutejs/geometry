@@ -4,13 +4,13 @@ export type DomainBox = {
 };
 type Point = readonly [number, number, number];
 type Vertex = { p: number[]; w: number[] };
-export type TriangleBoxCell = {
+export type TriangleDomainCell = {
   /** Convex polygon, in original triangle winding; fan triangulation is valid. */
   positions: Float64Array;
   /** Barycentric coordinates in the input triangle, one triple per vertex. */
   barycentric: Float64Array;
   /** Input domain/box indices containing this polygon's relative interior. */
-  boxes: Uint32Array;
+  domains: Uint32Array;
 };
 /** Partition a triangle by domains of affine fields (three vertex values each).
  * A domain is the intersection where all its fields are nonnegative. This classifies domains, NOT
@@ -23,7 +23,7 @@ export function partitionTriangleAffineDomains(
   triangle: readonly [Point, Point, Point],
   domains: readonly (readonly Point[])[],
   options: { maxCells?: number; maxVertices?: number } = {},
-): TriangleBoxCell[] {
+): TriangleDomainCell[] {
   const maxCells = options.maxCells ?? 1024;
   const maxVertices = options.maxVertices ?? 8192;
   if (
@@ -148,13 +148,42 @@ export function partitionTriangleAffineDomains(
   const area = cells.reduce((sum, c) => sum + magnitude(c.vertices), 0);
   if (!Number.isFinite(area) || Math.abs(area / originalArea - 1) > 1e-10)
     throw Error("Triangle domain area conservation failed");
-  return cells.map((c) => ({
-    positions: Float64Array.from(
+  const span = Math.max(...initial.flatMap((v) => v.p.map(Math.abs)));
+  return cells.map((c) => {
+    const positions = Float64Array.from(
       c.vertices.flatMap((v) => v.p.map((x, a) => x + origin[a]!)),
-    ),
-    barycentric: Float64Array.from(c.vertices.flatMap((v) => v.w)),
-    boxes: Uint32Array.from(c.boxes),
-  }));
+    );
+    const roundTrip = c.vertices.map((v, i) => ({
+      w: v.w,
+      p: [0, 1, 2].map((a) => positions[i * 3 + a]! - origin[a]!),
+    }));
+    if (
+      roundTrip.some((v, i) =>
+        v.p.some(
+          (x, a) =>
+            Math.abs(x - c.vertices[i]!.p[a]!) > 64 * Number.EPSILON * span,
+        ),
+      )
+    )
+      throw Error(
+        "Unrepresentable absolute domain positions; use a local input frame",
+      );
+    const expected = magnitude(c.vertices),
+      actual = magnitude(roundTrip);
+    if (
+      !(actual > 0) ||
+      !Number.isFinite(actual) ||
+      Math.abs(actual / expected - 1) > 1e-10
+    )
+      throw Error(
+        "Domain export area conservation failed; use a local input frame",
+      );
+    return {
+      positions,
+      barycentric: Float64Array.from(c.vertices.flatMap((v) => v.w)),
+      domains: Uint32Array.from(c.boxes),
+    };
+  });
 }
 
 /** Convenience adapter: each AABB contributes six affine half-spaces. */
@@ -162,7 +191,7 @@ export function partitionTriangleBoxDomains(
   triangle: readonly [Point, Point, Point],
   boxes: readonly DomainBox[],
   options: { maxCells?: number; maxVertices?: number } = {},
-): TriangleBoxCell[] {
+): TriangleDomainCell[] {
   if (
     !Array.isArray(triangle) ||
     triangle.length !== 3 ||
