@@ -41,3 +41,4 @@ export { prepareSolidPlaneMoments } from "./solidPlaneMoments.js";
 
 export { closeConvexTube, type ClosedConvexTube } from "./closeConvexTube.js";
 export { regularizeZeroExtentShells } from "./regularizeZeroExtentShells.js";
+export { prepareTrianglePositiveQuadraticMoments } from './trianglePositiveQuadraticMoments.js';

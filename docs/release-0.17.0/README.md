@@ -35,3 +35,35 @@ The earlier archive in this directory is superseded by this source extension.
 The regenerated archive matches all 50 shipped dist files from an independent
 build. See coverage-build-verification.json for exact hashes. No npm confirmation
 should be requested while the user is away.
+
+## Analytic positive pressure extension — archive refresh pending
+
+The queued source additionally exports `prepareTrianglePositiveQuadraticMoments`.
+It clips an affine scalar's positive region in barycentric space and integrates
+its squared/cubed field and quadratic first moment. This replaces centroid-only
+pressure sampling in the isolated game fluid research. Five targeted tests / 91
+assertions cover clipped analytic integrals, thin positive regions, independent
+six-point quadrature, translated/scaled geometry, ownership and invalid powers.
+The coverage-era archive above is superseded; final suite/build/archive evidence
+will be regenerated before this queued release is offered for publishing.
+
+For each clipped subtriangle of area A and vertex values x,y,z, the quadratic
+integral is A(x²+y²+z²+xy+yz+zx)/6 and cubic integral is
+A(x³+y³+z³+x²(y+z)+y²(x+z)+z²(x+y)+xyz)/10. The quadratic first-moment
+weight at the x vertex is A(3x²+y²+z²+2x(y+z)+yz)/30, with cyclic permutations
+at the other vertices. These follow from barycentric monomial integration.
+An independent positive degree-four rule is used only as a test oracle:
+[FEniCS Basix quadrature source](https://github.com/FEniCS/basix/blob/main/cpp/basix/quadrature.cpp).
+
+A pressure application point derived from these moments matches instantaneous
+integrated force, torque and work for an affine normal velocity. A subsequent
+finite-step rigid-body integrator still needs its own rate, ordering and energy
+qualification; the geometry API does not certify those dynamics.
+
+The analytic-pressure checkpoint passes the full 106-test suite (31,837
+assertions) and the GPU-disabled browser worker, including a clipped pressure
+integral and weighted application point. All 52 dist files match an independent
+build and the refreshed archive. See positive-pressure-build-verification.json:
+SHA1 3dd33af9f1e3e70a26ffa8fd1c7054bafbf34d89; SHA256
+96361ed282f4b40cdaddc2be17caf5c4a802d0ecd30a751c6ef2282b1bed5bd2.
+The archive is queued, not published.

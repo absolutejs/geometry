@@ -497,3 +497,21 @@ mistaken for physical mass. Cavity walls and nested islands remain separate
 material components. The API reports geometry evidence; it does not certify
 convexity, contacts or a game's acceptance policy. Bounds and qualification notes
 are in `docs/native-coverage-2026-10-31/README.md`.
+
+## Positive quadratic triangle moments
+
+`prepareTrianglePositiveQuadraticMoments([a, b, c])` owns a finite, nondegenerate
+triangle and returns a query accepting three scalar values at its vertices. It
+integrates their affine interpolant `s` over the portion where `s > 0`: area,
+`integral = ∫s² dA`, `cubicIntegral = ∫s³ dA`, and
+`relativeFirstMoment = ∫(x-reference)s² dA`. `meanOffset` is the quadratic-weighted
+point relative to the owned `reference`, or null for zero pressure. The result
+also includes full area and the oriented unit surface normal. Returned arrays
+are owned; mutating them does not affect future queries.
+
+The query clips in triangle barycentric coordinates and integrates polynomial
+moments analytically. It does not subdivide into samples, call WASM, infer a drag
+coefficient, determine exposure to flow, or advance a body. Keeping moments in a
+relative frame avoids forming a weighted absolute position at large coordinates.
+Non-finite inputs, degenerate triangles and unrepresentable output powers throw.
+This is double-precision arithmetic, not an exact-arithmetic geometry kernel.
