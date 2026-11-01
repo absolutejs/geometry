@@ -1,8 +1,8 @@
 {
-  "source": "222fcf584fb93f56e087caa6f0a0b0a9fa64f952",
+  "source": "1b21a33146fda239814e9b7a098e83365f6c7e50",
   "archive": "absolutejs-geometry-0.17.0.tgz",
-  "sha1": "6ad6350c19d310142d5ebe9022750299401ac0a7",
-  "sha256": "8e944c00af4b82c1909adce60615da792438369d9dcd1602e42ca839559b3a6e",
+  "sha1": "d1710dcfec8a7af66e0f37476062d6fa0b68c5ce",
+  "sha256": "857dae04f994f2fa89bae7b7f0f7700625ff73bfbe3c4dc5b297f587c7ae97cf",
   "files": [
     {
       "file": "LICENSE",
@@ -36,8 +36,8 @@
     },
     {
       "file": "dist/index.js",
-      "bytes": 1313,
-      "sha256": "efa55c8cea5c7ffc2bd2c4127c386c6c8b6bb073c4dcade3dae2f9b1f17755cc"
+      "bytes": 1413,
+      "sha256": "16ec9fe3849d32606ac8791fb6f178d647f01da16987ba5d93132ba877dfb2c3"
     },
     {
       "file": "dist/manifold.js",
@@ -130,6 +130,11 @@
       "sha256": "5738eae553b2edc7f7dc778afda38837cecf3bdcc38ace912d141440c77f3fa1"
     },
     {
+      "file": "dist/triangleDomains.js",
+      "bytes": 6462,
+      "sha256": "8c75847e55263ddc47f31cc0b1eb7f7555e41584b9848637bf6377726d67cade"
+    },
+    {
       "file": "dist/trianglePlaneMoments.js",
       "bytes": 7971,
       "sha256": "88cc62b585a13706af521179e0af7626e1f6dd03c3043560dc0c581457010686"
@@ -156,8 +161,8 @@
     },
     {
       "file": "README.md",
-      "bytes": 34232,
-      "sha256": "4d1e94045084446c6b9492c7d9685fa8a295b3d9e76204b9f2283e85ec574d75"
+      "bytes": 35863,
+      "sha256": "3fcd97f97d18c321a477ddd87397e315dea2081d7e373eaf97c89a92c4117b98"
     },
     {
       "file": "dist/alpha.d.ts",
@@ -186,8 +191,8 @@
     },
     {
       "file": "dist/index.d.ts",
-      "bytes": 1568,
-      "sha256": "95ff7f12373810d876248f06cd9ee8c8345154411bafd923a24f774ebf4af83d"
+      "bytes": 1709,
+      "sha256": "27a0514ba75a2f3e18727d598c82d9e6c6eab26301854a4f53aa05fc15588f3c"
     },
     {
       "file": "dist/manifold.d.ts",
@@ -280,6 +285,11 @@
       "sha256": "f9390d81c27f6b9c223afe7a6dbe208076d4c25178db038facff1584bd218a2b"
     },
     {
+      "file": "dist/triangleDomains.d.ts",
+      "bytes": 1815,
+      "sha256": "97a39976f5cadaa77d010d47bd1420141cadbd960fd88ca6dda53634427b948b"
+    },
+    {
       "file": "dist/trianglePlaneMoments.d.ts",
       "bytes": 1463,
       "sha256": "45c8acede45b521531f7aea6821433db9bb2cc3058f82892c442b03fc68cccaf"
@@ -300,5 +310,5 @@
       "sha256": "fd2486acf9f55a93bfcc02f010e043259ed9871ec7223cafa2a0e91670e117b0"
     }
   ],
-  "independentDistMatches": 56
+  "independentDistMatches": 58
 }
