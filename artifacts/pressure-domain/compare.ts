@@ -1,10 +1,10 @@
 import { prepareTrianglePositiveQuadraticMoments as optimized } from '../../dist/trianglePositiveQuadraticMoments.js';
 import { readFileSync, writeFileSync } from 'node:fs';
 import { createHash } from 'node:crypto';
-const baselinePath='/home/alexkahn/alex/geometry-scalar-plane/dist/trianglePositiveQuadraticMoments.js';
+const baselinePath='/home/alexkahn/alex/geometry-pressure-domain/dist/trianglePositiveQuadraticMoments.js';
 const {prepareTrianglePositiveQuadraticMoments:baseline}=await import(baselinePath);
 const hash=(p:string)=>createHash('sha256').update(readFileSync(p)).digest('hex');
-const paths=[baselinePath,'dist/trianglePositiveQuadraticMoments.js','artifacts/pressure-domain/compare.ts'];
+const paths=[baselinePath,'dist/trianglePositiveQuadraticMoments.js','dist/positiveTriangleMoments.js','artifacts/pressure-domain/compare.ts'];
 const before=paths.map(hash);
 let seed=0x751ca32b;
 const random=()=>{seed^=seed<<13;seed^=seed>>>17;seed^=seed<<5;return (seed>>>0)/4294967296;};
@@ -37,4 +37,4 @@ for(let t=0;t<10000;t++){
 }
 const after=paths.map(hash);if(JSON.stringify(before)!==JSON.stringify(after))throw Error('Source changed');
 const result={cases,full,exactlyEqual:true,baselineMs,optimizedMs,ratio:optimizedMs/baselineMs,sourceUnchanged:true,hashes:Object.fromEntries(paths.map((p,i)=>[p,before[i]])),scope:'Deterministic affine field comparison with alternating timed order; not game FPS'};
-writeFileSync('docs/pressure-domain-2026-11-01/comparison.json',JSON.stringify(result,null,2)+'\n');console.log(JSON.stringify(result));
+writeFileSync('docs/linear-domain-2026-11-01/quadratic-comparison.json',JSON.stringify(result,null,2)+'\n');console.log(JSON.stringify(result));

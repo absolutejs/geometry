@@ -529,3 +529,26 @@ normalized-plane path for each triangle. Public triangle queries retain their
 input validation and owned results. Surface flux is accumulated with scalar
 coordinates to avoid temporary vectors; clipping rules, component ownership,
 precision guards and summation order are unchanged.
+
+## Positive linear triangle moments
+
+`prepareTrianglePositiveLinearMoments([a, b, c])` owns the same validated triangle
+geometry and affine-domain clipping as the quadratic query. Its returned function
+accepts three finite field values and an optional three-value positive domain.
+It integrates the positive linear field: `integral = integral(s dA)` and
+`relativeFirstMoment = integral((x-reference) s dA)`. `meanOffset` is the weighted
+point relative to `reference`, or null for a zero result. `area`, `fullArea` and
+oriented `surfaceNormal` are also returned. Every returned array is owned.
+There is no `cubicIntegral` on the linear result.
+
+For hydrostatic pressure, field values may be vertex depths below a waterline,
+with an explicitly supplied domain describing the exposed region. The math does
+not decide contact sealing, permeability or fluid connectivity. A caller can
+assemble force from `-normal * integral` and torque from the first moment, with
+its own physical coefficient and reference-frame conversion.
+
+An all-zero domain is empty. Exactly opposed field/domain values are also empty:
+this is an exact identity at all three vertices, not an epsilon or volume cutoff.
+Nearby thin positive domains remain integrated. Nonfinite/unrepresentable results
+reject explicitly. Fully retained domains share the direct polynomial fast path;
+crossing domains retain analytic clipping without point sampling.
