@@ -1,3 +1,4 @@
+import { prepareSurfaceFluxHierarchy } from "./surfaceFluxHierarchy.js";
 import { prepareTriangleFirstPlaneMomentsForSolid } from "./trianglePlaneMoments.js";
 import { solidComponents } from "./solidComponents.js";
 import { signedVolume } from "./signedVolume.js";
@@ -50,7 +51,7 @@ export function prepareSolidPlaneMoments(input: {
       throw Error("Unrepresentable solid plane extent");
     const apex = low.map((x, k) => x - extent * (1.234 + k * 0.271)) as M;
     const fullPoint: M = [0, high[1] + extent, 0];
-    const surfaceQueries = [];
+    const surfaceFaces: M[][] = [];
     let volume = 0;
     const moment: M = [0, 0, 0];
     for (let t = 0; t < c.indices.length; t += 3) {
@@ -65,7 +66,7 @@ export function prepareSolidPlaneMoments(input: {
           ] as M;
         }),
       ];
-      surfaceQueries.push(prepareTriangleFirstPlaneMomentsForSolid(vertices.slice(1)));
+      surfaceFaces.push(vertices.slice(1));
       let query: ReturnType<typeof prepareTetrahedronPlaneMoments>;
       try {
         query = prepareTetrahedronPlaneMoments(vertices);
@@ -88,7 +89,22 @@ export function prepareSolidPlaneMoments(input: {
       Math.abs(volume / expected - 1) > 1e-9
     )
       throw Error("Solid plane full moments disagree");
-    return { low, high, extent, surfaceQueries, volume, moment };
+    const surfaceHierarchy =
+      surfaceFaces.length > 64
+        ? prepareSurfaceFluxHierarchy(surfaceFaces)
+        : null;
+    const surfaceQueries = surfaceHierarchy
+      ? []
+      : surfaceFaces.map(prepareTriangleFirstPlaneMomentsForSolid);
+    return {
+      low,
+      high,
+      extent,
+      surfaceQueries,
+      surfaceHierarchy,
+      volume,
+      moment,
+    };
   });
   const fullVolume = groups.reduce((s, g) => s + g.volume, 0);
   if (!Number.isFinite(fullVolume)) throw Error("Unrepresentable solid volume");
@@ -108,7 +124,9 @@ export function prepareSolidPlaneMoments(input: {
       dryComponents = 0,
       partialComponents = 0,
       clippedTetrahedra = 0,
-      evaluatedSurfaceTriangles = 0;
+      evaluatedSurfaceTriangles = 0,
+      fullSurfaceNodes = 0,
+      drySurfaceNodes = 0;
     const firstMoment: M = [0, 0, 0];
     for (const g of groups) {
       let near = 0,
@@ -151,16 +169,33 @@ export function prepareSolidPlaneMoments(input: {
       for (let k = 0; k < 3; k++)
         if (k !== dominant) tangent += (origin[k]! - p[k]!) * n[k]!;
       origin[dominant] = p[dominant]! - tangent / n[dominant]!;
+      if (g.surfaceHierarchy) {
+        const result = g.surfaceHierarchy(p, n, origin);
+        volume += result.volume;
+        for (let k = 0; k < 3; k++) firstMoment[k]! += result.firstMoment[k]!;
+        evaluatedSurfaceTriangles += result.evaluatedSurfaceTriangles;
+        fullSurfaceNodes += result.fullSurfaceNodes;
+        drySurfaceNodes += result.drySurfaceNodes;
+        continue;
+      }
       for (const query of g.surfaceQueries) {
         const r = query(p, n);
         evaluatedSurfaceTriangles++;
-        const dx=r.reference[0]-origin[0],dy=r.reference[1]-origin[1],dz=r.reference[2]-origin[2];
-        const distance=dx*r.surfaceNormal[0]+dy*r.surfaceNormal[1]+dz*r.surfaceNormal[2];
-        const v=(distance*r.area)/3;
-        volume+=v;
-        firstMoment[0]+=origin[0]*v+(distance*(r.firstMoment[0]+dx*r.area))/4;
-        firstMoment[1]+=origin[1]*v+(distance*(r.firstMoment[1]+dy*r.area))/4;
-        firstMoment[2]+=origin[2]*v+(distance*(r.firstMoment[2]+dz*r.area))/4;
+        const dx = r.reference[0] - origin[0],
+          dy = r.reference[1] - origin[1],
+          dz = r.reference[2] - origin[2];
+        const distance =
+          dx * r.surfaceNormal[0] +
+          dy * r.surfaceNormal[1] +
+          dz * r.surfaceNormal[2];
+        const v = (distance * r.area) / 3;
+        volume += v;
+        firstMoment[0] +=
+          origin[0] * v + (distance * (r.firstMoment[0] + dx * r.area)) / 4;
+        firstMoment[1] +=
+          origin[1] * v + (distance * (r.firstMoment[1] + dy * r.area)) / 4;
+        firstMoment[2] +=
+          origin[2] * v + (distance * (r.firstMoment[2] + dz * r.area)) / 4;
       }
     }
     const fraction = volume / fullVolume;
@@ -191,6 +226,8 @@ export function prepareSolidPlaneMoments(input: {
         partialComponents,
         clippedTetrahedra,
         evaluatedSurfaceTriangles,
+        fullSurfaceNodes,
+        drySurfaceNodes,
         skippedDegenerateTetrahedra,
       },
     };

@@ -152,3 +152,84 @@ test("boundary flux preserves thin slab moments and ignores tangential plane-poi
       expect(r.stats.evaluatedSurfaceTriangles).toBe(12);
     }
 });
+
+function refine(input: ReturnType<typeof mesh>, levels: number) {
+  let positions = Array.from(input.positions),
+    indices = Array.from(input.indices),
+    owners = Array.from(input.owners);
+  for (let level = 0; level < levels; level++) {
+    const edges = new Map<string, number>(),
+      next: number[] = [],
+      nextOwners: number[] = [];
+    const middle = (a: number, b: number) => {
+      const key = a < b ? `${a}/${b}` : `${b}/${a}`;
+      const found = edges.get(key);
+      if (found !== undefined) return found;
+      const index = positions.length / 3;
+      for (let k = 0; k < 3; k++)
+        positions.push(
+          positions[a * 3 + k]! +
+            (positions[b * 3 + k]! - positions[a * 3 + k]!) * 0.5,
+        );
+      edges.set(key, index);
+      return index;
+    };
+    for (let t = 0; t < indices.length; t += 3) {
+      const a = indices[t]!,
+        b = indices[t + 1]!,
+        c = indices[t + 2]!,
+        ab = middle(a, b),
+        bc = middle(b, c),
+        ca = middle(c, a);
+      next.push(a, ab, ca, ab, b, bc, ca, bc, c, ab, bc, ca);
+      nextOwners.push(...Array(4).fill(owners[t / 3]!));
+    }
+    indices = next;
+    owners = nextOwners;
+  }
+  return {
+    positions: Float64Array.from(positions),
+    indices: Uint32Array.from(indices),
+    owners: Uint16Array.from(owners),
+  };
+}
+test("hierarchical face aggregation retains thin slabs, complements, scale and cavity moments", () => {
+  for (const scale of [1e-40, 1, 1e40]) {
+    const input = refine(
+        mesh([{ box: box([0, 0, 0], [scale, scale, scale]), owner: 0 }]),
+        3,
+      ),
+      query = prepareSolidPlaneMoments(input);
+    for (const depth of [1e-12, 1e-9, 0.2, 0.5, 0.9]) {
+      const r = query([0, depth * scale, 0], [0, 1, 0]),
+        c = query([0, depth * scale, 0], [0, -1, 0]);
+      expect(Math.abs(r.volume / (depth * scale ** 3) - 1)).toBeLessThan(1e-9);
+      expect(
+        Math.abs(r.firstMoment[1] / (0.5 * depth ** 2 * scale ** 4) - 1),
+      ).toBeLessThan(1e-8);
+      expect(Math.abs((r.volume + c.volume) / scale ** 3 - 1)).toBeLessThan(
+        1e-10,
+      );
+      for (let k = 0; k < 3; k++)
+        expect(
+          Math.abs((r.firstMoment[k]! + c.firstMoment[k]!) / scale ** 4 - 0.5),
+        ).toBeLessThan(1e-10);
+      expect(r.stats.evaluatedSurfaceTriangles).toBeLessThan(
+        input.indices.length / 3,
+      );
+    }
+  }
+  const q = prepareSolidPlaneMoments(
+    refine(
+      mesh([
+        { box: box([0, 0, 0], [2, 2, 2]), owner: 0 },
+        { box: box([0.5, 0.5, 0.5], [1.5, 1.5, 1.5], true), owner: 0 },
+      ]),
+      2,
+    ),
+  );
+  const r = q([0, 1, 0], [0, 1, 0]);
+  close(r.volume, 3.5);
+  close(r.firstMoment[1], 1.625);
+  expect(r.stats.cavities).toBe(1);
+});
