@@ -19,6 +19,7 @@ export function prepareTrianglePositiveQuadraticMoments(input: readonly V[]) {
   const length=Math.hypot(...cross),fullArea=length*.5*scale*scale;
   if(!(fullArea>0)||!Number.isFinite(fullArea))throw Error('Degenerate or unrepresentable quadratic triangle');
   const surfaceNormal=cross.map(x=>x/length) as M;
+  const corners: readonly (readonly [number, number])[] = [[0,0],[1,0],[0,1]];
   return (values:readonly number[], domainValues?:readonly number[])=>{
     if(values.length!==3||!values.every(Number.isFinite))throw Error('Invalid triangle scalar values');
     if(domainValues && (domainValues.length!==3||!domainValues.every(Number.isFinite)))throw Error('Invalid triangle domain values');
@@ -26,7 +27,21 @@ export function prepareTrianglePositiveQuadraticMoments(input: readonly V[]) {
     const k=Math.max(...values.map(Math.abs));
     let area=0,quadratic=0,cubic=0;
     const first:M=[0,0,0];
-    if(k>0 && values.some(s=>s>0)) {
+    const integratePiece=(pieceArea:number,s0:number,s1:number,s2:number,p:readonly [number,number],q:readonly [number,number],r:readonly [number,number])=>{
+        quadratic+=pieceArea*(s0*s0+s1*s1+s2*s2+s0*s1+s1*s2+s2*s0)/6;
+        cubic+=pieceArea*(s0**3+s1**3+s2**3+s0*s0*(s1+s2)+s1*s1*(s0+s2)+s2*s2*(s0+s1)+s0*s1*s2)/10;
+        for(let j=0;j<3;j++){
+          const x=j===0?s0:j===1?s1:s2,y=j===0?s1:j===1?s2:s0,z=j===0?s2:j===1?s0:s1;
+          const point=j===0?p:j===1?q:r;
+          const weight=pieceArea*(3*x*x+y*y+z*z+2*x*(y+z)+y*z)/30;
+          for(let d=0;d<3;d++)first[d]!+=weight*(u[d]!*point[0]+v[d]!*point[1]);
+        }
+        area+=pieceArea;
+    };
+    // Entire positive domain: use the same integrator without clipping polygons.
+    if(k>0 && values.every(s=>s>=0) && (!domainValues || (domainScale>0 && domainValues.every(d=>d>=0)))) {
+      integratePiece(fullArea,values[0]!/k,values[1]!/k,values[2]!/k,corners[0]!,corners[1]!,corners[2]!);
+    } else if(k>0 && values.some(s=>s>0)) {
       type Node={p:[number,number];s:number;d:number};
       let polygon:Node[]=[{p:[0,0],s:values[0]!/k,d:domainValues?(domainScale?domainValues[0]!/domainScale:0):1},{p:[1,0],s:values[1]!/k,d:domainValues?(domainScale?domainValues[1]!/domainScale:0):1},{p:[0,1],s:values[2]!/k,d:domainValues?(domainScale?domainValues[2]!/domainScale:0):1}];
       for(const field of (domainValues?['d','s']:['s']) as ('d'|'s')[]){
@@ -51,14 +66,7 @@ export function prepareTrianglePositiveQuadraticMoments(input: readonly V[]) {
         if(fraction===0)continue;
         const pieceArea=fullArea*fraction,s=nodes.map(n=>n.s);
         const [s0,s1,s2]=s as M;
-        quadratic+=pieceArea*(s0*s0+s1*s1+s2*s2+s0*s1+s1*s2+s2*s0)/6;
-        cubic+=pieceArea*(s0**3+s1**3+s2**3+s0*s0*(s1+s2)+s1*s1*(s0+s2)+s2*s2*(s0+s1)+s0*s1*s2)/10;
-        for(let j=0;j<3;j++){
-          const x=s[j]!,y=s[(j+1)%3]!,z=s[(j+2)%3]!;
-          const weight=pieceArea*(3*x*x+y*y+z*z+2*x*(y+z)+y*z)/30;
-          for(let d=0;d<3;d++)first[d]!+=weight*(u[d]!*nodes[j]!.p[0]+v[d]!*nodes[j]!.p[1]);
-        }
-        area+=pieceArea;
+        integratePiece(pieceArea,s0,s1,s2,p!,q!,r!);
       }
     }
     const integral=quadratic*k*k,cubicIntegral=cubic*k*k*k;

@@ -79,3 +79,17 @@ test('two clipped affine fields are additive under independent surface refinemen
   for(let d=0;d<3;d++)expect(moment[d]).toBeCloseTo(target.relativeFirstMoment[d]!,13);
  }
 });
+
+test('nonnegative full domains retain boundary zeros without treating a zero field as wet',()=>{
+ for(const values of [[0,1,0],[1,0,2],[1e-90,2e-90,3e-90],[1,2,3]]){
+  const full=query(values);
+  for(const domain of [[0,1,0],[1,0,0],[0,0,1],[0,Number.MIN_VALUE,0],[0,1e300,2e300]])
+   expect(query(values,domain)).toEqual(full);
+  const dry=query(values,[0,0,0]);expect(dry.area).toBe(0);expect(dry.meanOffset).toBeNull();
+ }
+ const linear=query([0,1,0],[0,1,0]);
+ expect(linear.area).toBe(.5);expect(linear.integral).toBeCloseTo(1/12,15);
+ expect(linear.cubicIntegral).toBeCloseTo(1/20,15);
+ expect(linear.relativeFirstMoment[0]).toBeCloseTo(1/20,15);
+ expect(linear.relativeFirstMoment[1]).toBeCloseTo(1/60,15);
+});

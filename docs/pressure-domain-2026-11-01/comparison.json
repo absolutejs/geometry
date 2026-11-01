@@ -1,0 +1,15 @@
+{
+  "cases": 100000,
+  "full": 33971,
+  "exactlyEqual": true,
+  "baselineMs": 154.9487730000028,
+  "optimizedMs": 117.80239900000328,
+  "ratio": 0.7602667431254918,
+  "sourceUnchanged": true,
+  "hashes": {
+    "/home/alexkahn/alex/geometry-scalar-plane/dist/trianglePositiveQuadraticMoments.js": "b942659943dd6423c7d92dd7e869f9ca86e7cfab51da5cd3b689bf85e5f4b05c",
+    "dist/trianglePositiveQuadraticMoments.js": "3b197e2cc2b0a1d214c383033f4f17ea695621bb03fe1040858a9fa4968df4c0",
+    "artifacts/pressure-domain/compare.ts": "a71d429788fcca899add9580724739a3d3203bc7ab2e8fe94aaa617d9d73da91"
+  },
+  "scope": "Deterministic affine field comparison with alternating timed order; not game FPS"
+}
