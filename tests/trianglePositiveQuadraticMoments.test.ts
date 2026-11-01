@@ -51,3 +51,31 @@ test('invalid geometry, fields and nonrepresentable powers are rejected',()=>{
  expect(()=>prepareTrianglePositiveQuadraticMoments([[0,0,0],[1,0,0],[2,0,0]])).toThrow();
  for(const values of [[1,2],[1,2,NaN],[1e308,1e308,1e308],[1e-300,1e-300,1e-300]])expect(()=>query(values)).toThrow();
 });
+
+test('a second affine domain clips water depth before positive pressure',()=>{
+ const a=query([-.5,.5,-.5],[.25,.25,-.75]);
+ expect(a.integral).toBeCloseTo((.5**4-.25**4)/12,14);
+ expect(a.cubicIntegral).toBeCloseTo((.5**5-.25**5)/20,14);
+ expect(a.area).toBeCloseTo(.09375,14);
+ expect(query([1,1,1],[1,1,1])).toEqual(query([1,1,1]));
+ for(const domain of [[0,0,0],[-1,-2,-3],[-1,0,-1]]){
+  const r=query([1,2,3],domain);expect(r.area).toBe(0);expect(r.integral).toBe(0);expect(r.meanOffset).toBeNull();
+ }
+ expect(()=>query([1,2,3],[1,NaN,2])).toThrow();
+ expect(()=>query([1,2,3],[1,2])).toThrow();
+});
+test('two clipped affine fields are additive under independent surface refinement',()=>{
+ const a=triangle[0],b=triangle[1],c=triangle[2],ab=[.5,0,0]as const,bc=[.5,.5,0]as const,ca=[0,.5,0]as const;
+ for(const values of [[-.3,.7,-.3],[.4,-.6,.9],[2,3,1]])for(const domain of [[.2,.2,-.8],[-.1,.9,.4],[1,1,1]]){
+  const target=query(values,domain),pieces=[[a,ab,ca],[ab,b,bc],[ca,bc,c],[ab,bc,ca]];
+  let i2=0,i3=0,area=0;const moment=[0,0,0];
+  for(const piece of pieces){
+   const interp=(p:readonly number[],s:number[])=>s[0]!*(1-p[0]!-p[1]!)+s[1]!*p[0]!+s[2]!*p[1]!;
+   const r=prepareTrianglePositiveQuadraticMoments(piece)(piece.map(p=>interp(p,values)),piece.map(p=>interp(p,domain)));
+   i2+=r.integral;i3+=r.cubicIntegral;area+=r.area;
+   for(let d=0;d<3;d++)moment[d]!+=r.relativeFirstMoment[d]!+r.reference[d]!*r.integral;
+  }
+  expect(i2).toBeCloseTo(target.integral,13);expect(i3).toBeCloseTo(target.cubicIntegral,13);expect(area).toBeCloseTo(target.area,13);
+  for(let d=0;d<3;d++)expect(moment[d]).toBeCloseTo(target.relativeFirstMoment[d]!,13);
+ }
+});

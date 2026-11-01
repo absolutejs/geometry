@@ -67,3 +67,20 @@ build and the refreshed archive. See positive-pressure-build-verification.json:
 SHA1 3dd33af9f1e3e70a26ffa8fd1c7054bafbf34d89; SHA256
 96361ed282f4b40cdaddc2be17caf5c4a802d0ecd30a751c6ef2282b1bed5bd2.
 The archive is queued, not published.
+
+## Waterline domain extension — current archive superseded pending refresh
+
+The query's optional second affine field restricts the integration domain, allowing
+water depth to clip the surface before pressure evaluation. Two new regressions
+cover closed-form crossed half-planes, wholly dry regions, malformed domains and
+additivity under four-way surface refinement. All seven targeted pressure tests
+pass (160 assertions). The earlier analytic-only checkpoint remains in git history;
+the latest exact archive will be regenerated after the coupled fluid qualification.
+
+The waterline extension now passes the complete 108-test suite (31,906 assertions)
+and the GPU-disabled browser-worker check. All 52 shipped dist files match the
+independent build and refreshed archive. See waterline-build-verification.json.
+Current archive SHA1: dbc43eb73612fbd7e06d1f12220075be4c5321cf; SHA256:
+1755ce2cd7a326051b56522e020ab58c0000f4d86825e67ab0808a2c4571fb5d.
+The prior analytic-only archive is superseded. This package remains unpublished;
+the separate game still-water/current qualification is recorded by the game.

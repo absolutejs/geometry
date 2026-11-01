@@ -515,3 +515,11 @@ coefficient, determine exposure to flow, or advance a body. Keeping moments in a
 relative frame avoids forming a weighted absolute position at large coordinates.
 Non-finite inputs, degenerate triangles and unrepresentable output powers throw.
 This is double-precision arithmetic, not an exact-arithmetic geometry kernel.
+
+An optional second query argument supplies three affine domain values. Integration
+then includes only points where both pressure scalar and domain scalar are
+positive. For a horizontal waterline, supply each vertex's depth below the
+surface as the domain value. This clips wet area exactly before computing the
+pressure moments; a fully dry domain yields zero moments. Domain boundaries
+carry no area, and a field that is identically zero is excluded. This remains a
+flat boundary calculation, not a wave or fluid solver.

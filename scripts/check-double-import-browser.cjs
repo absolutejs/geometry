@@ -24,7 +24,8 @@ onmessage=async e=>{try{
  const outer=wasm.Manifold.cube([2,2,2]),holeSeed=wasm.Manifold.cube([1,1,1]),hole=holeSeed.translate([.5,.5,.5]),hollow=outer.subtract(hole);let cavity;
  try{const r=auditManifoldCoverage(wasm,hollow,[]);cavity={components:r.components.length,cavities:r.cavities,volume:r.components[0].nativeVolume};}finally{hollow.delete();hole.delete();holeSeed.delete();outer.delete();}
  const pressure=prepareTrianglePositiveQuadraticMoments([[0,0,0],[1,0,0],[0,1,0]])([-.5,.5,-.5]);
- postMessage({vertices,rows,sessionResult,cavity,pressure});
+ const wetPressure=prepareTrianglePositiveQuadraticMoments([[0,0,0],[1,0,0],[0,1,0]])([-.5,.5,-.5],[.25,.25,-.75]);
+ postMessage({vertices,rows,sessionResult,cavity,pressure,wetPressure});
 }catch(error){postMessage({error:String(error)});}};`});
    const allowed=path.startsWith('/dist/')&&/^\/dist\/[A-Za-z0-9]+\.js$/.test(path);
    const file=allowed?'.'+path:path==='/native/manifold.js'?'node_modules/manifold-3d/manifold.js':path==='/native/manifold.wasm'?'node_modules/manifold-3d/manifold.wasm':null;
@@ -36,7 +37,7 @@ onmessage=async e=>{try{
    const w=new Worker('/worker.js',{type:'module'}),timer=setTimeout(()=>{w.terminate();reject(Error('worker deadline'));},20000);
    w.onmessage=e=>{clearTimeout(timer);w.terminate();resolve(e.data);};w.onerror=e=>{clearTimeout(timer);w.terminate();reject(Error(e.message));};w.postMessage(fixtures);
   }),fixtures);
-  assert.deepEqual(result.sessionResult,{coverage:{components:1,missing:0,excess:.5,owner:0},initial:1,removed:.5,retained:.5,sequence:1,airSkipped:true,airNativeEvaluated:false});assert.equal(result.cavity.components,1);assert.equal(result.cavity.cavities,1);assert.ok(Math.abs(result.cavity.volume-7)<1e-12);assert.equal(result.error,undefined);assert.equal(result.vertices,8);assert.equal(result.rows.length,4);result.rows.forEach(r=>assert.ok(r.volume>0&&r.faces>0));assert.deepEqual(errors,[]);assert.ok(Math.abs(result.pressure.integral-1/192)<1e-15);assert.ok(Math.abs(result.pressure.cubicIntegral-1/640)<1e-15);assert.ok(Math.abs(result.pressure.meanOffset[0]-.8)<1e-14);
+  assert.deepEqual(result.sessionResult,{coverage:{components:1,missing:0,excess:.5,owner:0},initial:1,removed:.5,retained:.5,sequence:1,airSkipped:true,airNativeEvaluated:false});assert.equal(result.cavity.components,1);assert.equal(result.cavity.cavities,1);assert.ok(Math.abs(result.cavity.volume-7)<1e-12);assert.equal(result.error,undefined);assert.equal(result.vertices,8);assert.equal(result.rows.length,4);result.rows.forEach(r=>assert.ok(r.volume>0&&r.faces>0));assert.deepEqual(errors,[]);assert.ok(Math.abs(result.pressure.integral-1/192)<1e-15);assert.ok(Math.abs(result.pressure.cubicIntegral-1/640)<1e-15);assert.ok(Math.abs(result.pressure.meanOffset[0]-.8)<1e-14);assert.ok(Math.abs(result.wetPressure.integral-(.5**4-.25**4)/12)<1e-15);
   fs.mkdirSync('.diagnostics',{recursive:true});fs.writeFileSync('.diagnostics/import64-browser.json',JSON.stringify({gpu:'disabled',result,errors},null,2));console.log(JSON.stringify(result));
  }finally{await browser.close();}
 })().catch(e=>{console.error(e);process.exitCode=1;});

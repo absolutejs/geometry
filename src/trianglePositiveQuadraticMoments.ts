@@ -2,7 +2,8 @@ type V = readonly [number, number, number];
 type M = [number, number, number];
 /** Prepare an owned triangle for exact polynomial integration over the region
  * where a linearly interpolated scalar is positive. Query values are supplied
- * at its three vertices. Integrates s², (x-reference)s² and s³, without sampling
+ * at its three vertices. Optional domain values additionally restrict integration
+ * to their positive affine region (for example, depth below a waterline). Integrates s², (x-reference)s² and s³, without sampling
  * or native geometry. Suitable for pressure/weighted-area calculations; no
  * coefficient, exposure, force or time integrator is inferred. */
 export function prepareTrianglePositiveQuadraticMoments(input: readonly V[]) {
@@ -18,22 +19,29 @@ export function prepareTrianglePositiveQuadraticMoments(input: readonly V[]) {
   const length=Math.hypot(...cross),fullArea=length*.5*scale*scale;
   if(!(fullArea>0)||!Number.isFinite(fullArea))throw Error('Degenerate or unrepresentable quadratic triangle');
   const surfaceNormal=cross.map(x=>x/length) as M;
-  return (values:readonly number[])=>{
+  return (values:readonly number[], domainValues?:readonly number[])=>{
     if(values.length!==3||!values.every(Number.isFinite))throw Error('Invalid triangle scalar values');
+    if(domainValues && (domainValues.length!==3||!domainValues.every(Number.isFinite)))throw Error('Invalid triangle domain values');
+    const domainScale=domainValues?Math.max(...domainValues.map(Math.abs)):1;
     const k=Math.max(...values.map(Math.abs));
     let area=0,quadratic=0,cubic=0;
     const first:M=[0,0,0];
     if(k>0 && values.some(s=>s>0)) {
-      type Node={p:[number,number];s:number};
-      const vertices:Node[]=[{p:[0,0],s:values[0]!/k},{p:[1,0],s:values[1]!/k},{p:[0,1],s:values[2]!/k}];
-      const polygon:Node[]=[];
-      for(let i=0;i<3;i++){
-        const left=vertices[(i+2)%3]!,right=vertices[i]!;
-        if((left.s>=0)!==(right.s>=0)){
-          const t=left.s/(left.s-right.s);
-          polygon.push({p:[left.p[0]+(right.p[0]-left.p[0])*t,left.p[1]+(right.p[1]-left.p[1])*t],s:0});
+      type Node={p:[number,number];s:number;d:number};
+      let polygon:Node[]=[{p:[0,0],s:values[0]!/k,d:domainValues?(domainScale?domainValues[0]!/domainScale:0):1},{p:[1,0],s:values[1]!/k,d:domainValues?(domainScale?domainValues[1]!/domainScale:0):1},{p:[0,1],s:values[2]!/k,d:domainValues?(domainScale?domainValues[2]!/domainScale:0):1}];
+      for(const field of (domainValues?['d','s']:['s']) as ('d'|'s')[]){
+        if(!polygon.some(n=>n[field]>0)){polygon=[];break;}
+        const clipped:Node[]=[];
+        for(let i=0;i<polygon.length;i++){
+          const left=polygon[(i+polygon.length-1)%polygon.length]!,right=polygon[i]!;
+          if((left[field]>=0)!==(right[field]>=0)){
+            const t=left[field]/(left[field]-right[field]);
+            const node:Node={p:[left.p[0]+(right.p[0]-left.p[0])*t,left.p[1]+(right.p[1]-left.p[1])*t],s:left.s+(right.s-left.s)*t,d:left.d+(right.d-left.d)*t};
+            node[field]=0;clipped.push(node);
+          }
+          if(right[field]>=0)clipped.push(right);
         }
-        if(right.s>=0)polygon.push(right);
+        polygon=clipped;
       }
       for(let i=1;i+1<polygon.length;i++){
         const nodes=[polygon[0]!,polygon[i]!,polygon[i+1]!];

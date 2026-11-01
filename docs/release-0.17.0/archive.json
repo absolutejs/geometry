@@ -3,10 +3,10 @@
     "id": "@absolutejs/geometry@0.17.0",
     "name": "@absolutejs/geometry",
     "version": "0.17.0",
-    "size": 50132,
-    "unpackedSize": 184863,
-    "shasum": "3dd33af9f1e3e70a26ffa8fd1c7054bafbf34d89",
-    "integrity": "sha512-k7tXrRdwY1bI1BRf28ZBLQT+/JzPGHn804fxAKDIvowMGqV9cMWfH8iMqaTPd528CqhSg0W1sE6qvipTZb9UJA==",
+    "size": 50686,
+    "unpackedSize": 186674,
+    "shasum": "dbc43eb73612fbd7e06d1f12220075be4c5321cf",
+    "integrity": "sha512-EptGlL8zWY6gO9CDc6qPz14scJScKoZnkHqT+0xBo6HXoqhhFA0fQwYROwrE/9TrXKDBkv3Sm8zGG771/lweHw==",
     "filename": "absolutejs-geometry-0.17.0.tgz",
     "files": [
       {
@@ -16,7 +16,7 @@
       },
       {
         "path": "README.md",
-        "size": 31935,
+        "size": 32458,
         "mode": 420
       },
       {
@@ -261,12 +261,12 @@
       },
       {
         "path": "dist/trianglePositiveQuadraticMoments.d.ts",
-        "size": 781,
+        "size": 947,
         "mode": 420
       },
       {
         "path": "dist/trianglePositiveQuadraticMoments.js",
-        "size": 4352,
+        "size": 5474,
         "mode": 420
       },
       {
