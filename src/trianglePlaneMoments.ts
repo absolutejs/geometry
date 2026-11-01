@@ -9,6 +9,7 @@ const dot = (a: V, b: V) => a[0] * b[0] + a[1] * b[1] + a[2] * b[2];
 function prepareTrianglePlaneMomentsOrder(
   input: readonly V[],
   secondOrder: boolean,
+  validatedPlane = false,
 ) {
   if (
     input.length !== 3 ||
@@ -98,14 +99,14 @@ function prepareTrianglePlaneMomentsOrder(
     ? null
     : pack({ area: 0, first: [0, 0, 0], second: [] }, vertices[0]!);
   return (point: V, normal: V) => {
-    if (
-      ![point, normal].every((v) => v.length === 3 && v.every(Number.isFinite))
-    )
-      throw Error("Invalid triangle plane input");
-    const maximum = Math.max(...normal.map(Math.abs));
-    if (!(maximum > 0)) throw Error("Zero clipping normal");
-    const n = normal.map((x) => x / maximum) as M;
-    const distances = vertices.map((v) => dot(sub(v, point), n) / scale);
+    let n=normal;
+    if(!validatedPlane){
+      if(![point,normal].every(v=>v.length===3&&v.every(Number.isFinite)))throw Error("Invalid triangle plane input");
+      const maximum=Math.max(Math.abs(normal[0]),Math.abs(normal[1]),Math.abs(normal[2]));
+      if(!(maximum>0))throw Error("Zero clipping normal");
+      n=[normal[0]/maximum,normal[1]/maximum,normal[2]/maximum];
+    }
+    const distances=vertices.map(v=>((v[0]-point[0])*n[0]+(v[1]-point[1])*n[1]+(v[2]-point[2])*n[2])/scale);
     if (!distances.every(Number.isFinite))
       throw Error("Unrepresentable clipping distances");
     if (distances.every((d) => d <= 0))
@@ -184,4 +185,10 @@ export function trianglePlaneMoments(
   normal: V,
 ) {
   return prepareTrianglePlaneMoments(vertices)(point, normal);
+}
+
+/** Internal closed-solid path: caller validates finite point and normal once and
+ * normalizes the normal to maximum absolute component one before each query. */
+export function prepareTriangleFirstPlaneMomentsForSolid(input: readonly V[]) {
+  return prepareTrianglePlaneMomentsOrder(input, false, true);
 }

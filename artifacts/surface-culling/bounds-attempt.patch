@@ -1,0 +1,70 @@
+diff --git a/src/solidPlaneMoments.ts b/src/solidPlaneMoments.ts
+index a470e01..7289011 100644
+--- a/src/solidPlaneMoments.ts
++++ b/src/solidPlaneMoments.ts
+@@ -65,7 +65,10 @@ export function prepareSolidPlaneMoments(input: {
+           ] as M;
+         }),
+       ];
+-      surfaceQueries.push(prepareTriangleFirstPlaneMoments(vertices.slice(1)));
++      const triangle=vertices.slice(1),querySurface=prepareTriangleFirstPlaneMoments(triangle);
++      const triangleLow=[0,1,2].map(k=>Math.min(...triangle.map(v=>v[k]!))) as M;
++      const triangleHigh=[0,1,2].map(k=>Math.max(...triangle.map(v=>v[k]!))) as M;
++      surfaceQueries.push({query:querySurface,full:querySurface(fullPoint,[0,1,0]),low:triangleLow,high:triangleHigh});
+       let query: ReturnType<typeof prepareTetrahedronPlaneMoments>;
+       try {
+         query = prepareTetrahedronPlaneMoments(vertices);
+@@ -108,7 +111,7 @@ export function prepareSolidPlaneMoments(input: {
+       dryComponents = 0,
+       partialComponents = 0,
+       clippedTetrahedra = 0,
+-      evaluatedSurfaceTriangles = 0;
++      evaluatedSurfaceTriangles = 0, cachedFullSurfaceTriangles=0, drySurfaceTriangles=0;
+     const firstMoment: M = [0, 0, 0];
+     for (const g of groups) {
+       let near = 0,
+@@ -151,9 +154,19 @@ export function prepareSolidPlaneMoments(input: {
+       for (let k = 0; k < 3; k++)
+         if (k !== dominant) tangent += (origin[k]! - p[k]!) * n[k]!;
+       origin[dominant] = p[dominant]! - tangent / n[dominant]!;
+-      for (const query of g.surfaceQueries) {
+-        const r = query(p, n);
+-        evaluatedSurfaceTriangles++;
++      for (const surface of g.surfaceQueries) {
++        let near=0,far=0,errorScale=0;
++        for(let k=0;k<3;k++){
++          const a=(surface.low[k]!-p[k]!)*n[k]!,b=(surface.high[k]!-p[k]!)*n[k]!;
++          near+=Math.min(a,b);far+=Math.max(a,b);
++          errorScale+=(Math.abs(surface.low[k]!)+Math.abs(surface.high[k]!)+2*Math.abs(p[k]!))*Math.abs(n[k]!);
++        }
++        if(![near,far,errorScale].every(Number.isFinite))throw Error('Unrepresentable surface plane interval');
++        const margin=64*Number.EPSILON*Math.max(errorScale,g.extent);
++        if(near>margin){drySurfaceTriangles++;continue;}
++        const full=far < -margin;
++        const r=full?surface.full:surface.query(p,n);
++        if(full)cachedFullSurfaceTriangles++;else evaluatedSurfaceTriangles++;
+         const delta = r.reference.map((v, k) => v - origin[k]!) as M;
+         const distance = delta.reduce(
+           (sum, v, k) => sum + v * r.surfaceNormal[k]!,
+@@ -194,7 +207,7 @@ export function prepareSolidPlaneMoments(input: {
+         dryComponents,
+         partialComponents,
+         clippedTetrahedra,
+-        evaluatedSurfaceTriangles,
++        evaluatedSurfaceTriangles, cachedFullSurfaceTriangles, drySurfaceTriangles,
+         skippedDegenerateTetrahedra,
+       },
+     };
+diff --git a/tests/solidPlaneMoments.test.ts b/tests/solidPlaneMoments.test.ts
+index 31259f1..5cf6fb5 100644
+--- a/tests/solidPlaneMoments.test.ts
++++ b/tests/solidPlaneMoments.test.ts
+@@ -149,6 +149,7 @@ test("boundary flux preserves thin slab moments and ignores tangential plane-poi
+       ).toBeLessThan(1e-9);
+       expect(Math.abs(r.firstMoment[2] / (depth / 2) - 1)).toBeLessThan(1e-10);
+       expect(r.stats.clippedTetrahedra).toBe(0);
+-      expect(r.stats.evaluatedSurfaceTriangles).toBe(12);
++      expect(r.stats.evaluatedSurfaceTriangles+r.stats.cachedFullSurfaceTriangles+r.stats.drySurfaceTriangles).toBe(12);
++      expect(r.stats.evaluatedSurfaceTriangles).toBeLessThanOrEqual(8);
+     }
+ });

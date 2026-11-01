@@ -84,3 +84,15 @@ Current archive SHA1: dbc43eb73612fbd7e06d1f12220075be4c5321cf; SHA256:
 1755ce2cd7a326051b56522e020ab58c0000f4d86825e67ab0808a2c4571fb5d.
 The prior analytic-only archive is superseded. This package remains unpublished;
 the separate game still-water/current qualification is recorded by the game.
+
+## Final scalar-query optimization checkpoint
+
+The selected closed-solid query optimization preserves all 9,600 actual captured
+volumes and first moments exactly while reducing paired CPU query time to 64.03%
+of baseline. See docs/surface-query-2026-10-31 for the measured and rejected
+alternatives. The full 108-test suite and GPU-disabled browser checks pass.
+All 52 dist files match an independent build and the refreshed exact archive.
+Current SHA1: a86e07eb5f13079e0a315ca662b4310ea8564e2e; SHA256:
+bfa36c2b4dfb027c7bc0676ff1da457d7f70e43da54a6f2f7bff73d9bb3f75cc.
+See scalar-query-build-verification.json. This supersedes the earlier waterline
+archive; version 0.17.0 remains unpublished and requires no additional release.

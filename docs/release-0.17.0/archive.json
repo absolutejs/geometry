@@ -3,10 +3,10 @@
     "id": "@absolutejs/geometry@0.17.0",
     "name": "@absolutejs/geometry",
     "version": "0.17.0",
-    "size": 50686,
-    "unpackedSize": 186674,
-    "shasum": "dbc43eb73612fbd7e06d1f12220075be4c5321cf",
-    "integrity": "sha512-EptGlL8zWY6gO9CDc6qPz14scJScKoZnkHqT+0xBo6HXoqhhFA0fQwYROwrE/9TrXKDBkv3Sm8zGG771/lweHw==",
+    "size": 51104,
+    "unpackedSize": 188192,
+    "shasum": "a86e07eb5f13079e0a315ca662b4310ea8564e2e",
+    "integrity": "sha512-wBoa2LlARFnqEiQCtKstrpla5ePSNlptJ2nvg7UF1/igYPUvzFHtGJR6QASM+ffKmE/bqpvf9JzErVZUr7AlVA==",
     "filename": "absolutejs-geometry-0.17.0.tgz",
     "files": [
       {
@@ -16,7 +16,7 @@
       },
       {
         "path": "README.md",
-        "size": 32458,
+        "size": 32817,
         "mode": 420
       },
       {
@@ -216,7 +216,7 @@
       },
       {
         "path": "dist/solidPlaneMoments.js",
-        "size": 8168,
+        "size": 8344,
         "mode": 420
       },
       {
@@ -251,12 +251,12 @@
       },
       {
         "path": "dist/trianglePlaneMoments.d.ts",
-        "size": 1009,
+        "size": 1463,
         "mode": 420
       },
       {
         "path": "dist/trianglePlaneMoments.js",
-        "size": 7128,
+        "size": 7657,
         "mode": 420
       },
       {

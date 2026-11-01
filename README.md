@@ -523,3 +523,9 @@ surface as the domain value. This clips wet area exactly before computing the
 pressure moments; a fully dry domain yields zero moments. Domain boundaries
 carry no area, and a field that is identically zero is excluded. This remains a
 flat boundary calculation, not a wave or fluid solver.
+
+Closed-solid surface queries validate the plane once, then use an internal
+normalized-plane path for each triangle. Public triangle queries retain their
+input validation and owned results. Surface flux is accumulated with scalar
+coordinates to avoid temporary vectors; clipping rules, component ownership,
+precision guards and summation order are unchanged.

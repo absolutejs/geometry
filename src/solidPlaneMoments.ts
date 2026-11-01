@@ -1,4 +1,4 @@
-import { prepareTriangleFirstPlaneMoments } from "./trianglePlaneMoments.js";
+import { prepareTriangleFirstPlaneMomentsForSolid } from "./trianglePlaneMoments.js";
 import { solidComponents } from "./solidComponents.js";
 import { signedVolume } from "./signedVolume.js";
 import { prepareTetrahedronPlaneMoments } from "./tetrahedronPlaneMoments.js";
@@ -65,7 +65,7 @@ export function prepareSolidPlaneMoments(input: {
           ] as M;
         }),
       ];
-      surfaceQueries.push(prepareTriangleFirstPlaneMoments(vertices.slice(1)));
+      surfaceQueries.push(prepareTriangleFirstPlaneMomentsForSolid(vertices.slice(1)));
       let query: ReturnType<typeof prepareTetrahedronPlaneMoments>;
       try {
         query = prepareTetrahedronPlaneMoments(vertices);
@@ -154,17 +154,13 @@ export function prepareSolidPlaneMoments(input: {
       for (const query of g.surfaceQueries) {
         const r = query(p, n);
         evaluatedSurfaceTriangles++;
-        const delta = r.reference.map((v, k) => v - origin[k]!) as M;
-        const distance = delta.reduce(
-          (sum, v, k) => sum + v * r.surfaceNormal[k]!,
-          0,
-        );
-        const v = (distance * r.area) / 3;
-        volume += v;
-        for (let k = 0; k < 3; k++)
-          firstMoment[k]! +=
-            origin[k]! * v +
-            (distance * (r.firstMoment[k]! + delta[k]! * r.area)) / 4;
+        const dx=r.reference[0]-origin[0],dy=r.reference[1]-origin[1],dz=r.reference[2]-origin[2];
+        const distance=dx*r.surfaceNormal[0]+dy*r.surfaceNormal[1]+dz*r.surfaceNormal[2];
+        const v=(distance*r.area)/3;
+        volume+=v;
+        firstMoment[0]+=origin[0]*v+(distance*(r.firstMoment[0]+dx*r.area))/4;
+        firstMoment[1]+=origin[1]*v+(distance*(r.firstMoment[1]+dy*r.area))/4;
+        firstMoment[2]+=origin[2]*v+(distance*(r.firstMoment[2]+dz*r.area))/4;
       }
     }
     const fraction = volume / fullVolume;

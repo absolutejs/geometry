@@ -1,0 +1,8 @@
+{
+  "queries": 9600,
+  "exactMoments": true,
+  "sourceUnchanged": true,
+  "referenceMs": 17515.920445999993,
+  "candidateMs": 11214.813742999999,
+  "ratio": 0.6402640259513772
+}
