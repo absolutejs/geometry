@@ -1,0 +1,14 @@
+bun test v1.4.4+absolute.1 (38afee6c8)
+
+tests/triangleBoxDomains.test.ts:
+(pass) overlapping boxes partition exact analytic triangle areas and preserve winding/attributes [3.35ms]
+(pass) closed boundaries, absent boxes and zero-width boxes have explicit area semantics [1.28ms]
+(pass) thin positive regions survive and output owns its buffers [0.77ms]
+(pass) rejects invalid geometry and bounded output overflow without partial answers [0.42ms]
+(pass) seeded oblique, translated and scaled partitions preserve area and interior box membership [41.89ms]
+(pass) affine domains classify oblique half-spaces and intersect opposed fields without phantom area [0.54ms]
+
+ 6 pass
+ 0 fail
+ 33258 expect() calls
+Ran 6 tests across 1 file. [53.00ms]

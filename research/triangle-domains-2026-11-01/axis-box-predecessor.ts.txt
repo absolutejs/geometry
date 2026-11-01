@@ -1,0 +1,171 @@
+export type DomainBox = {
+  min: readonly [number, number, number];
+  max: readonly [number, number, number];
+};
+type Point = readonly [number, number, number];
+type Vertex = { p: number[]; w: number[] };
+export type TriangleBoxCell = {
+  /** Convex polygon, in original triangle winding; fan triangulation is valid. */
+  positions: Float64Array;
+  /** Barycentric coordinates in the input triangle, one triple per vertex. */
+  barycentric: Float64Array;
+  /** Input box indices containing this polygon's relative interior. */
+  boxes: Uint32Array;
+};
+/** Partition a triangle by closed axis-aligned boxes. This classifies boxes, NOT
+ * solid material ownership. A caller must establish its own source-union premise.
+ * Touching lines/points do not produce separate zero-area cells. A triangle
+ * coplanar with a box boundary belongs to that box. No epsilon or snapping is used.
+ * Work and output are bounded; budget/representability failures throw, never return
+ * a partial partition. Input buffers are never borrowed in the result. */
+export function partitionTriangleBoxDomains(
+  triangle: readonly [Point, Point, Point],
+  boxes: readonly DomainBox[],
+  options: { maxCells?: number; maxVertices?: number } = {},
+): TriangleBoxCell[] {
+  const maxCells = options.maxCells ?? 1024;
+  const maxVertices = options.maxVertices ?? 8192;
+  if (
+    !Number.isSafeInteger(maxCells) ||
+    maxCells < 1 ||
+    maxCells > 16384 ||
+    !Number.isSafeInteger(maxVertices) ||
+    maxVertices < 3 ||
+    maxVertices > 131072 ||
+    !Array.isArray(triangle) ||
+    triangle.length !== 3 ||
+    !Array.isArray(boxes) ||
+    boxes.length > 64
+  )
+    throw Error("Invalid triangle domain budget");
+  const valid = (p: readonly number[]) =>
+    Array.isArray(p) &&
+    p.length === 3 &&
+    p.every((x) => Number.isFinite(x) && Math.abs(x) <= 1e100);
+  if (
+    !triangle.every(valid) ||
+    !boxes.every(
+      (b) =>
+        b &&
+        valid(b.min) &&
+        valid(b.max) &&
+        b.min.every((v: number, a: number) => v <= b.max[a]!),
+    )
+  )
+    throw Error("Invalid triangle domain coordinates");
+  const origin = triangle[0];
+  const initial = triangle.map((p, i) => ({
+    p: p.map((v, a) => v - origin[a]!),
+    w: [+(i === 0), +(i === 1), +(i === 2)],
+  }));
+  const magnitude = (v: Vertex[]) => {
+    let area = 0;
+    for (let i = 1; i + 1 < v.length; i++) {
+      const u = v[i]!.p.map((x, a) => x - v[0]!.p[a]!),
+        w = v[i + 1]!.p.map((x, a) => x - v[0]!.p[a]!);
+      area +=
+        Math.hypot(
+          u[1]! * w[2]! - u[2]! * w[1]!,
+          u[2]! * w[0]! - u[0]! * w[2]!,
+          u[0]! * w[1]! - u[1]! * w[0]!,
+        ) / 2;
+    }
+    return area;
+  };
+  const originalArea = magnitude(initial);
+  if (!(originalArea > 0) || !Number.isFinite(originalArea))
+    throw Error("Unrepresentable triangle domain area");
+  // Each split creates two polygons sharing the same computed crossing vertices.
+  const split = (
+    polygon: Vertex[],
+    axis: number,
+    bound: number,
+    sign: number,
+  ): [Vertex[], Vertex[]] => {
+    const d = polygon.map((v) => sign * (v.p[axis]! - bound));
+    if (d.every((x) => x >= 0)) return [polygon, []];
+    if (d.every((x) => x <= 0)) return [[], polygon];
+    const inside: Vertex[] = [],
+      outside: Vertex[] = [];
+    for (let i = 0; i < polygon.length; i++) {
+      const j = (i + 1) % polygon.length,
+        a = polygon[i]!,
+        b = polygon[j]!,
+        da = d[i]!,
+        db = d[j]!;
+      if (da >= 0) inside.push(a);
+      if (da <= 0) outside.push(a);
+      if ((da < 0 && db > 0) || (da > 0 && db < 0)) {
+        // Interpolate from the closer endpoint to preserve thin fragments.
+        const near = Math.abs(da) <= Math.abs(db) ? a : b,
+          far = near === a ? b : a;
+        const t =
+          Math.min(Math.abs(da), Math.abs(db)) / (Math.abs(da) + Math.abs(db));
+        if (!(t > 0 && t < 1))
+          throw Error("Unrepresentable domain intersection fraction");
+        const v = {
+          p: near.p.map((x, k) => x + (far.p[k]! - x) * t),
+          w: near.w.map((x, k) => x + (far.w[k]! - x) * t),
+        };
+        v.p[axis] = bound;
+        if (!v.p.every(Number.isFinite) || !v.w.every(Number.isFinite))
+          throw Error("Unrepresentable domain intersection");
+        inside.push(v);
+        outside.push(v);
+      }
+    }
+    return [inside, outside];
+  };
+  let cells: { vertices: Vertex[]; boxes: number[] }[] = [
+    { vertices: initial, boxes: [] },
+  ];
+  for (const [id, box] of boxes.entries()) {
+    const next: typeof cells = [];
+    let vertices = 0;
+    const append = (v: Vertex[], owners: number[]) => {
+      if (v.length < 3 || magnitude(v) === 0) return;
+      vertices += v.length;
+      if (next.length >= maxCells || vertices > maxVertices)
+        throw Error("Triangle domain partition budget exceeded");
+      next.push({ vertices: v, boxes: owners });
+    };
+    for (const cell of cells) {
+      // Reject a whole disjoint cell before introducing unnecessary plane cuts.
+      const disjoint = [0, 1, 2].some((a) => {
+        const low = box.min[a]! - origin[a]!,
+          high = box.max[a]! - origin[a]!;
+        return (
+          cell.vertices.every((v) => v.p[a]! < low) ||
+          cell.vertices.every((v) => v.p[a]! > high)
+        );
+      });
+      if (disjoint) {
+        append(cell.vertices, cell.boxes);
+        continue;
+      }
+      let inside = cell.vertices;
+      for (let a = 0; a < 3 && inside.length; a++)
+        for (const [bound, sign] of [
+          [box.min[a]! - origin[a]!, 1],
+          [box.max[a]! - origin[a]!, -1],
+        ]) {
+          if (!inside.length) break;
+          const [keep, out] = split(inside, a, bound!, sign!);
+          append(out, cell.boxes);
+          inside = keep;
+        }
+      append(inside, [...cell.boxes, id]);
+    }
+    cells = next;
+  }
+  const area = cells.reduce((sum, c) => sum + magnitude(c.vertices), 0);
+  if (!Number.isFinite(area) || Math.abs(area / originalArea - 1) > 1e-10)
+    throw Error("Triangle domain area conservation failed");
+  return cells.map((c) => ({
+    positions: Float64Array.from(
+      c.vertices.flatMap((v) => v.p.map((x, a) => x + origin[a]!)),
+    ),
+    barycentric: Float64Array.from(c.vertices.flatMap((v) => v.w)),
+    boxes: Uint32Array.from(c.boxes),
+  }));
+}

@@ -44,3 +44,4 @@ export { regularizeZeroExtentShells } from "./regularizeZeroExtentShells.js";
 export { prepareTrianglePositiveQuadraticMoments } from './trianglePositiveQuadraticMoments.js';
 
 export { prepareTrianglePositiveLinearMoments } from './trianglePositiveLinearMoments.js';
+export { partitionTriangleAffineDomains, partitionTriangleBoxDomains, type DomainBox, type TriangleBoxCell } from './triangleBoxDomains.js';
