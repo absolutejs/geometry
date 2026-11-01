@@ -1,0 +1,110 @@
+{
+  "queries": 100000,
+  "exact": true,
+  "before": {
+    "/home/alexkahn/alex/geometry-triangle-box-domains/dist/triangleWeights.js": "2d147dd9a17ac414c7260ee47054b7397eda61b90bfd05dfdb4ab26644a59406",
+    "/home/alexkahn/alex/geometry-triangle-box-domains/dist/index.js": "16ec9fe3849d32606ac8791fb6f178d647f01da16987ba5d93132ba877dfb2c3",
+    "dist/triangleWeights.js": "a345b202b5022945693cadd8fb6974466b38c97db15ccd382d9df23e3117def9",
+    "dist/index.js": "c42818e914a6959a3f001dff41cd4191690155226ac23ac7f979b4cc95b97358"
+  },
+  "after": {
+    "/home/alexkahn/alex/geometry-triangle-box-domains/dist/triangleWeights.js": "2d147dd9a17ac414c7260ee47054b7397eda61b90bfd05dfdb4ab26644a59406",
+    "/home/alexkahn/alex/geometry-triangle-box-domains/dist/index.js": "16ec9fe3849d32606ac8791fb6f178d647f01da16987ba5d93132ba877dfb2c3",
+    "dist/triangleWeights.js": "a345b202b5022945693cadd8fb6974466b38c97db15ccd382d9df23e3117def9",
+    "dist/index.js": "c42818e914a6959a3f001dff41cd4191690155226ac23ac7f979b4cc95b97358"
+  },
+  "unchanged": true,
+  "samples": [
+    {
+      "pass": 0,
+      "mode": "baseline",
+      "elapsedMs": 71.57592000000002,
+      "checksum": 200068.24730353846
+    },
+    {
+      "pass": 0,
+      "mode": "single",
+      "elapsedMs": 54.11800499999998,
+      "checksum": 200068.24730353846
+    },
+    {
+      "pass": 0,
+      "mode": "prepared",
+      "elapsedMs": 18.166035000000022,
+      "checksum": 200068.24730353846
+    },
+    {
+      "pass": 1,
+      "mode": "prepared",
+      "elapsedMs": 14.205491999999992,
+      "checksum": 200068.24730353846
+    },
+    {
+      "pass": 1,
+      "mode": "single",
+      "elapsedMs": 57.03439800000001,
+      "checksum": 200068.24730353846
+    },
+    {
+      "pass": 1,
+      "mode": "baseline",
+      "elapsedMs": 66.79722099999998,
+      "checksum": 200068.24730353846
+    },
+    {
+      "pass": 2,
+      "mode": "baseline",
+      "elapsedMs": 63.11086000000006,
+      "checksum": 200068.24730353846
+    },
+    {
+      "pass": 2,
+      "mode": "single",
+      "elapsedMs": 43.66736400000002,
+      "checksum": 200068.24730353846
+    },
+    {
+      "pass": 2,
+      "mode": "prepared",
+      "elapsedMs": 13.275703999999905,
+      "checksum": 200068.24730353846
+    },
+    {
+      "pass": 3,
+      "mode": "prepared",
+      "elapsedMs": 11.39072299999998,
+      "checksum": 200068.24730353846
+    },
+    {
+      "pass": 3,
+      "mode": "single",
+      "elapsedMs": 54.70637499999998,
+      "checksum": 200068.24730353846
+    },
+    {
+      "pass": 3,
+      "mode": "baseline",
+      "elapsedMs": 69.78259000000003,
+      "checksum": 200068.24730353846
+    },
+    {
+      "pass": 4,
+      "mode": "baseline",
+      "elapsedMs": 67.81620199999998,
+      "checksum": 200068.24730353846
+    },
+    {
+      "pass": 4,
+      "mode": "single",
+      "elapsedMs": 54.144517000000064,
+      "checksum": 200068.24730353846
+    },
+    {
+      "pass": 4,
+      "mode": "prepared",
+      "elapsedMs": 12.199210999999991,
+      "checksum": 200068.24730353846
+    }
+  ],
+  "runtime": "Bun CPU; warm paired observations, not browser FPS"
+}

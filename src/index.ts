@@ -20,7 +20,7 @@ export {
   type SolidMaterialPartition,
 } from "./materialPartition.js";
 
-export { triangleWeights } from "./triangleWeights.js";
+export { triangleWeights, prepareTriangleWeights } from "./triangleWeights.js";
 export { auditSurfaceOrigins, type SurfaceOrigins } from "./surfaceOrigins.js";
 export { mergeIndexedMesh, type IndexedMergeMesh } from "./mergeIndexedMesh.js";
 export { principalInertiaFrame } from "./principalInertia.js";

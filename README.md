@@ -574,3 +574,12 @@ ownership: applications must establish their own material/volume assumptions.
 For example, the triangle `[[0,0,0],[1,0,0],[0,1,0]]` and one domain
 `[[[-0.5,0.5,0.5]]]` separate the region `x+y >= 0.5`; its area is `0.375`.
 A positive rescaling of the affine field describes the same domain.
+
+### Repeated source-face interpolation
+
+`prepareTriangleWeights(a, b, c, maximumPlaneDistance?)` owns a prepared source
+triangle and returns a point-query function. Use it when multiple cut vertices
+share the same source face. It preserves dominant-plane projection, outside-face
+rejection and the existing projection-distance limits; each result is an owned
+three-element array. `triangleWeights` remains the one-shot form. Nonrepresentable
+geometry or query arithmetic rejects instead of returning nonfinite weights.
