@@ -69,9 +69,17 @@ export function preparePositiveTriangleMoments(
     )
       throw Error("Invalid triangle domain values");
     const domainScale = domainValues
-      ? Math.max(...domainValues.map(Math.abs))
+      ? Math.max(
+          Math.abs(domainValues[0]!),
+          Math.abs(domainValues[1]!),
+          Math.abs(domainValues[2]!),
+        )
       : 1;
-    const k = Math.max(...values.map(Math.abs));
+    const k = Math.max(
+      Math.abs(values[0]!),
+      Math.abs(values[1]!),
+      Math.abs(values[2]!),
+    );
     // Exactly opposite affine values have no positive-area common domain.
     // This is an exact input identity, never an epsilon or small-volume cutoff.
     const opposed =
@@ -115,9 +123,18 @@ export function preparePositiveTriangleMoments(
         w1 = (pieceArea * (2 * s1 + s2 + s0)) / 12;
         w2 = (pieceArea * (2 * s2 + s0 + s1)) / 12;
       } else {
-        w0 = (pieceArea * (3 * s0 * s0 + s1 * s1 + s2 * s2 + 2 * s0 * (s1 + s2) + s1 * s2)) / 30;
-        w1 = (pieceArea * (3 * s1 * s1 + s2 * s2 + s0 * s0 + 2 * s1 * (s2 + s0) + s2 * s0)) / 30;
-        w2 = (pieceArea * (3 * s2 * s2 + s0 * s0 + s1 * s1 + 2 * s2 * (s0 + s1) + s0 * s1)) / 30;
+        w0 =
+          (pieceArea *
+            (3 * s0 * s0 + s1 * s1 + s2 * s2 + 2 * s0 * (s1 + s2) + s1 * s2)) /
+          30;
+        w1 =
+          (pieceArea *
+            (3 * s1 * s1 + s2 * s2 + s0 * s0 + 2 * s1 * (s2 + s0) + s2 * s0)) /
+          30;
+        w2 =
+          (pieceArea *
+            (3 * s2 * s2 + s0 * s0 + s1 * s1 + 2 * s2 * (s0 + s1) + s0 * s1)) /
+          30;
       }
       for (let d = 0; d < 3; d++) {
         first[d]! += w0 * (u[d]! * p[0] + v[d]! * p[1]);
@@ -130,8 +147,14 @@ export function preparePositiveTriangleMoments(
     if (
       !opposed &&
       k > 0 &&
-      values.every((s) => s >= 0) &&
-      (!domainValues || (domainScale > 0 && domainValues.every((d) => d >= 0)))
+      values[0]! >= 0 &&
+      values[1]! >= 0 &&
+      values[2]! >= 0 &&
+      (!domainValues ||
+        (domainScale > 0 &&
+          domainValues[0]! >= 0 &&
+          domainValues[1]! >= 0 &&
+          domainValues[2]! >= 0))
     ) {
       integratePiece(
         fullArea,
@@ -142,7 +165,11 @@ export function preparePositiveTriangleMoments(
         corners[1]!,
         corners[2]!,
       );
-    } else if (!opposed && k > 0 && values.some((s) => s > 0)) {
+    } else if (
+      !opposed &&
+      k > 0 &&
+      (values[0]! > 0 || values[1]! > 0 || values[2]! > 0)
+    ) {
       type Node = { p: [number, number]; s: number; d: number };
       let polygon: Node[] = [
         {
@@ -217,9 +244,9 @@ export function preparePositiveTriangleMoments(
     }
     const integral = order === 1 ? integrated * k : integrated * k * k,
       cubicIntegral = cubic * k * k * k;
-    const relativeFirstMoment = (order === 1
-      ? first.map((x) => x * k)
-      : first.map((x) => x * k * k)) as M;
+    const relativeFirstMoment = (
+      order === 1 ? first.map((x) => x * k) : first.map((x) => x * k * k)
+    ) as M;
     const meanOffset =
       integrated > 0 ? (first.map((x) => x / integrated) as M) : null;
     if (

@@ -1,0 +1,17 @@
+{
+  "cases": 100000,
+  "full": 33971,
+  "exactlyEqual": true,
+  "baselineMs": 237.22735099999886,
+  "optimizedMs": 156.00520999999085,
+  "ratio": 0.6576189859321558,
+  "sourceUnchanged": true,
+  "hashes": {
+    "/home/alexkahn/alex/geometry-linear-domain/dist/trianglePositiveQuadraticMoments.js": "308d3867caa93219a7383543c48623730935813caa60c4f081803a506eec88a6",
+    "/home/alexkahn/alex/geometry-linear-domain/dist/positiveTriangleMoments.js": "ebde62d1ad543370b5b88d613fb628ee68295a7215a5a0bebb882d3d77047304",
+    "dist/trianglePositiveQuadraticMoments.js": "308d3867caa93219a7383543c48623730935813caa60c4f081803a506eec88a6",
+    "dist/positiveTriangleMoments.js": "8cfc937fb6ec3389c01dfe280351234682e8b95ee0d2592d6f58a44425d13bb5",
+    "artifacts/pressure-domain/compare.ts": "b375dd7e74fb6cb5520b65f23983e7c0a7a9e748fd0de0a21f3a19f8ef763e46"
+  },
+  "scope": "Deterministic affine field comparison with alternating timed order; not game FPS"
+}
