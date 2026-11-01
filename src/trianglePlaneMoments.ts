@@ -106,12 +106,15 @@ function prepareTrianglePlaneMomentsOrder(
       if(!(maximum>0))throw Error("Zero clipping normal");
       n=[normal[0]/maximum,normal[1]/maximum,normal[2]/maximum];
     }
-    const distances=vertices.map(v=>((v[0]-point[0])*n[0]+(v[1]-point[1])*n[1]+(v[2]-point[2])*n[2])/scale);
-    if (!distances.every(Number.isFinite))
+    const p0 = vertices[0]!, p1 = vertices[1]!, p2 = vertices[2]!;
+    const d0 = ((p0[0]-point[0])*n[0]+(p0[1]-point[1])*n[1]+(p0[2]-point[2])*n[2])/scale,
+      d1 = ((p1[0]-point[0])*n[0]+(p1[1]-point[1])*n[1]+(p1[2]-point[2])*n[2])/scale,
+      d2 = ((p2[0]-point[0])*n[0]+(p2[1]-point[1])*n[1]+(p2[2]-point[2])*n[2])/scale;
+    if (!Number.isFinite(d0) || !Number.isFinite(d1) || !Number.isFinite(d2))
       throw Error("Unrepresentable clipping distances");
-    if (distances.every((d) => d <= 0))
+    if (d0 <= 0 && d1 <= 0 && d2 <= 0)
       return cachedFull ?? pack(fullMoments, vertices[0]!);
-    if (distances.every((d) => d >= 0))
+    if (d0 >= 0 && d1 >= 0 && d2 >= 0)
       return (
         cachedDry ??
         pack(
@@ -119,6 +122,7 @@ function prepareTrianglePlaneMomentsOrder(
           vertices[0]!,
         )
       );
+    const distances = [d0, d1, d2];
     const wet = distances.map((d, i) => (d < 0 ? i : -1)).filter((i) => i >= 0);
     const ia = wet[0]!,
       reference = vertices[ia]!;
