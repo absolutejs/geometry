@@ -6,7 +6,10 @@ type Point = readonly [number, number, number];
 type Vertex = { p: number[]; w: number[] };
 export type TriangleDomainCell = {
   /** Convex polygon, in original triangle winding; fan triangulation is valid. */
-  positions: Float64Array;
+  /** Shared input-triangle origin, copied into this cell. */
+  reference: Float64Array;
+  /** Coordinates relative to reference; do not discard this origin. */
+  relativePositions: Float64Array;
   /** Barycentric coordinates in the input triangle, one triple per vertex. */
   barycentric: Float64Array;
   /** Input domain/box indices containing this polygon's relative interior. */
@@ -148,42 +151,12 @@ export function partitionTriangleAffineDomains(
   const area = cells.reduce((sum, c) => sum + magnitude(c.vertices), 0);
   if (!Number.isFinite(area) || Math.abs(area / originalArea - 1) > 1e-10)
     throw Error("Triangle domain area conservation failed");
-  const span = Math.max(...initial.flatMap((v) => v.p.map(Math.abs)));
-  return cells.map((c) => {
-    const positions = Float64Array.from(
-      c.vertices.flatMap((v) => v.p.map((x, a) => x + origin[a]!)),
-    );
-    const roundTrip = c.vertices.map((v, i) => ({
-      w: v.w,
-      p: [0, 1, 2].map((a) => positions[i * 3 + a]! - origin[a]!),
-    }));
-    if (
-      roundTrip.some((v, i) =>
-        v.p.some(
-          (x, a) =>
-            Math.abs(x - c.vertices[i]!.p[a]!) > 64 * Number.EPSILON * span,
-        ),
-      )
-    )
-      throw Error(
-        "Unrepresentable absolute domain positions; use a local input frame",
-      );
-    const expected = magnitude(c.vertices),
-      actual = magnitude(roundTrip);
-    if (
-      !(actual > 0) ||
-      !Number.isFinite(actual) ||
-      Math.abs(actual / expected - 1) > 1e-10
-    )
-      throw Error(
-        "Domain export area conservation failed; use a local input frame",
-      );
-    return {
-      positions,
-      barycentric: Float64Array.from(c.vertices.flatMap((v) => v.w)),
-      domains: Uint32Array.from(c.boxes),
-    };
-  });
+  return cells.map((c) => ({
+    reference: Float64Array.from(origin),
+    relativePositions: Float64Array.from(c.vertices.flatMap((v) => v.p)),
+    barycentric: Float64Array.from(c.vertices.flatMap((v) => v.w)),
+    domains: Uint32Array.from(c.boxes),
+  }));
 }
 
 /** Convenience adapter: each AABB contributes six affine half-spaces. */

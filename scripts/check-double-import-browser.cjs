@@ -11,7 +11,7 @@ const {chromium}=require(process.env.PLAYWRIGHT_MODULE||'/home/alexkahn/.cache/c
    if(path==='/worker.js')return route.fulfill({contentType:'text/javascript',body:`
 import Module from '/native/manifold.js';
 import {createManifoldMesh64,createManifoldPartitionKernel,getManifoldMesh64,createManifoldCutSession,auditManifoldCoverage} from '/dist/manifold.js';
-import {partitionSolidMaterials,prepareTrianglePositiveQuadraticMoments,prepareSolidPlaneMoments,prepareTrianglePositiveLinearMoments} from '/dist/index.js';
+import {partitionTriangleAffineDomains,partitionSolidMaterials,prepareTrianglePositiveQuadraticMoments,prepareSolidPlaneMoments,prepareTrianglePositiveLinearMoments} from '/dist/index.js';
 onmessage=async e=>{try{
  const wasm=await Module({locateFile:()=>'/native/manifold.wasm'});wasm.setup();
  const seed=wasm.Manifold.cube([1,1,1],true),m=seed.getMesh();seed.delete();
@@ -34,7 +34,10 @@ onmessage=async e=>{try{
  const fullPressure=prepareTrianglePositiveQuadraticMoments([[0,0,0],[1,0,0],[0,1,0]])([0,1,0],[0,1,0]);
  const pressure=prepareTrianglePositiveQuadraticMoments([[0,0,0],[1,0,0],[0,1,0]])([-.5,.5,-.5]);
  const wetPressure=prepareTrianglePositiveQuadraticMoments([[0,0,0],[1,0,0],[0,1,0]])([-.5,.5,-.5],[.25,.25,-.75]);
- postMessage({vertices,rows,sessionResult,cavity,pressure,wetPressure,solidPlanes,fullPressure,linearPressure,opposedLinear,opposedQuadratic,thinLinear});
+ const domainCells=partitionTriangleAffineDomains([[2**52,0,0],[2**52+1,0,0],[2**52,1,0]],[[[-1,1,1]]]);
+ const domainArea=c=>{const p=c.relativePositions;let a=0;for(let i=3;i+3<p.length;i+=3)a+=((p[i]-p[0])*(p[i+4]-p[1])-(p[i+1]-p[1])*(p[i+3]-p[0]))/2;return a;};
+ const domainResult={cells:domainCells.length,area:domainCells.reduce((s,c)=>s+domainArea(c),0),positive:domainCells.every(c=>domainArea(c)>0),reference:domainCells[0].reference[0],typed:domainCells.every(c=>c.relativePositions instanceof Float64Array&&c.barycentric instanceof Float64Array&&c.domains instanceof Uint32Array)};
+ postMessage({domainResult,vertices,rows,sessionResult,cavity,pressure,wetPressure,solidPlanes,fullPressure,linearPressure,opposedLinear,opposedQuadratic,thinLinear});
 }catch(error){postMessage({error:String(error)});}};`});
    const allowed=path.startsWith('/dist/')&&/^\/dist\/[A-Za-z0-9]+\.js$/.test(path);
    const file=allowed?'.'+path:path==='/native/manifold.js'?'node_modules/manifold-3d/manifold.js':path==='/native/manifold.wasm'?'node_modules/manifold-3d/manifold.wasm':null;
@@ -54,6 +57,7 @@ onmessage=async e=>{try{
   assert.ok(Math.abs(result.solidPlanes[0].volume-1)<1e-14);assert.equal(result.solidPlanes[2].volume,0);
   assert.ok(Math.abs(result.solidPlanes[1].volume-.75)<1e-14);assert.ok(Math.abs(result.solidPlanes[1].firstMoment[1]+result.solidPlanes[1].reference[1]*result.solidPlanes[1].volume+.09375)<1e-14);
   const slab=result.solidPlanes[3];assert.ok(Math.abs(slab.volume/(slab.y+.5)-1)<1e-6);
+  assert.deepEqual(result.domainResult,{cells:2,area:.5,positive:true,reference:2**52,typed:true});
   fs.mkdirSync('.diagnostics',{recursive:true});fs.writeFileSync('.diagnostics/import64-browser.json',JSON.stringify({gpu:'disabled',result,errors},null,2));console.log(JSON.stringify(result));
  }finally{await browser.close();}
 })().catch(e=>{console.error(e);process.exitCode=1;});

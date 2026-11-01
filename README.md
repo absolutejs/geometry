@@ -558,7 +558,7 @@ crossing domains retain analytic clipping without point sampling.
 `partitionTriangleAffineDomains(triangle, domains, options)` partitions a triangle
 into convex polygons. Each domain is an intersection of affine fields supplied as
 three values at the input vertices; nonnegative values are inside. Returned
-`positions`, `barycentric` and `domains` arrays are owned by the result. Domain
+`reference`, `relativePositions`, `barycentric` and `domains` arrays are owned by the result. Positions stay relative to the input triangle origin, avoiding collapse when a small partition sits at a large absolute coordinate. Retain the origin through downstream transforms; adding it prematurely can lose that precision. Domain
 indices describe each polygon's relative interior; zero-area boundary fragments
 are not separate cells. An identically zero field includes the full polygon.
 `partitionTriangleBoxDomains` supplies the six fields for each axis-aligned box.
