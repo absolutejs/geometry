@@ -105,3 +105,9 @@ Archive SHA1: dd7439f80e8cd53741f736b1a8b800733c8ec6a8.
 Archive SHA256: cb85a7bfc1286bf7d2de2c737f6ac9bc8c3e69fcb7368b5348adbcdfb0179a5b.
 
 This replaces the scalar-query archive in this research branch. Canonical-main promotion and final native-motion qualification are separate pending gates. The predecessor linear candidate passed931 maintained game tests; that suite is not falsely labeled as a run on the later direct-weight optimization. No publication/authentication is initiated while the user is away.
+
+## Current affine-input archive — 2026-11-01
+
+This final candidate replaces every archive hash above. Scalar affine-input normalization removes per-query array callbacks without changing integration equations. All 116 package tests pass; 100,000 quadratic comparisons match exactly. The final candidate passes 12 dense native-motion cases and the full 934-test game integration suite. The linear predecessor separately passed 48 reference cases and 56 prior timeouts; those are not relabeled as tests of this final optimization.
+
+All 56 compiled files match an independent build; all 59 archive files match the source/build checkout. Extracted archive ESM and transferable-worker consumers pass. See archive-verification.json and ../affine-scalar-2026-11-01 for checks. Current archive SHA256: `8e944c00af4b82c1909adce60615da792438369d9dcd1602e42ca839559b3a6e`. No publication has been attempted.

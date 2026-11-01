@@ -1,0 +1,304 @@
+{
+  "source": "222fcf584fb93f56e087caa6f0a0b0a9fa64f952",
+  "archive": "absolutejs-geometry-0.17.0.tgz",
+  "sha1": "6ad6350c19d310142d5ebe9022750299401ac0a7",
+  "sha256": "8e944c00af4b82c1909adce60615da792438369d9dcd1602e42ca839559b3a6e",
+  "files": [
+    {
+      "file": "LICENSE",
+      "bytes": 3447,
+      "sha256": "fdf012c1426f19c8ba6122a692929beb006a5e20dade15eb709a68741b8e46f8"
+    },
+    {
+      "file": "dist/alpha.js",
+      "bytes": 1802,
+      "sha256": "d6f4287ab0b0d1165ddf4c0238480908947316728c405cc1436c9de5ef3d799f"
+    },
+    {
+      "file": "dist/axialOrientation.js",
+      "bytes": 2237,
+      "sha256": "054f363b13c2d48f55159696e8308083a7d1d37211bfe479f36ce11af438b97f"
+    },
+    {
+      "file": "dist/closeConvexTube.js",
+      "bytes": 6224,
+      "sha256": "95aa5102b16f879b884cb95cf462d96ccb22874d8d95837be8272c8715778da5"
+    },
+    {
+      "file": "dist/closedComponents.js",
+      "bytes": 3117,
+      "sha256": "2ee9468cc32492d0e50475bd4c784e961067200dd0dc557f92fc7c2deae63cc7"
+    },
+    {
+      "file": "dist/createManifoldMesh64.js",
+      "bytes": 3241,
+      "sha256": "e3680ea4902213e6a16732960344c531a28eadd8f101c44fe42ba148a96eff8d"
+    },
+    {
+      "file": "dist/index.js",
+      "bytes": 1313,
+      "sha256": "efa55c8cea5c7ffc2bd2c4127c386c6c8b6bb073c4dcade3dae2f9b1f17755cc"
+    },
+    {
+      "file": "dist/manifold.js",
+      "bytes": 324,
+      "sha256": "f3c8070300dcba74b6071d416a408debe8b30591dba3ddbe84300fbf307627cb"
+    },
+    {
+      "file": "dist/manifoldCoverage.js",
+      "bytes": 10322,
+      "sha256": "63e2e64eb1d6ef3fbedda48f2dc1d8f3b4962f4e5be6863c31d9585d928cafbb"
+    },
+    {
+      "file": "dist/manifoldCutSession.js",
+      "bytes": 9339,
+      "sha256": "b48f8f1bb22413827c157a841e4d4a1c185763e671d3719a62be80b83a29acd4"
+    },
+    {
+      "file": "dist/manifoldKernel.js",
+      "bytes": 3750,
+      "sha256": "adca9ad26312c14b4a5a83721e9a659d410d21da64d448900f197f91a407109c"
+    },
+    {
+      "file": "dist/manifoldMesh64.js",
+      "bytes": 3139,
+      "sha256": "a3ae8eaf0520242a99d9a1dea101b25e3a0c718e9f15ccb8f8eeb1c16cd8449b"
+    },
+    {
+      "file": "dist/materialPartition.js",
+      "bytes": 6791,
+      "sha256": "e5104fcb2f4ca8800eee0a2fa6d684a7c327feb20d474a276e3a21680dae82eb"
+    },
+    {
+      "file": "dist/mergeIndexedMesh.js",
+      "bytes": 2778,
+      "sha256": "bc6980d500382558b640c7cfb6afe80d98d4f0e0d9226a08b6f0f2fe4fe1796f"
+    },
+    {
+      "file": "dist/overlap.js",
+      "bytes": 3686,
+      "sha256": "6c9ae036a3beeffc1eccb66d392c0018e95384ab211f8dcdb66b945717fee6b1"
+    },
+    {
+      "file": "dist/positiveTriangleMoments.js",
+      "bytes": 8976,
+      "sha256": "8cfc937fb6ec3389c01dfe280351234682e8b95ee0d2592d6f58a44425d13bb5"
+    },
+    {
+      "file": "dist/principalInertia.js",
+      "bytes": 4488,
+      "sha256": "27fd81eaba420cdbe6b97c290b33e4e016fef7e4a07fa2a379bae21f4c3d45d0"
+    },
+    {
+      "file": "dist/projection.js",
+      "bytes": 8850,
+      "sha256": "61216338a46d16e565a221e661d6349b360e49108c70939b0ac068806ed9eec5"
+    },
+    {
+      "file": "dist/regularizeZeroExtentShells.js",
+      "bytes": 1958,
+      "sha256": "55c19fae79382c23970118e958802145bff661fb801c75cd88fd0b7c5b55745d"
+    },
+    {
+      "file": "dist/signedVolume.js",
+      "bytes": 703,
+      "sha256": "7b968665a7dd18543b877e081190de116522c745b6b7eea688c06b4c0ef75a18"
+    },
+    {
+      "file": "dist/solidComponents.js",
+      "bytes": 4439,
+      "sha256": "a9b2ae99d8f80965af897681a69c5801737f9e7cf3cc2edec1bc4c665d395e48"
+    },
+    {
+      "file": "dist/solidPlaneMoments.js",
+      "bytes": 8344,
+      "sha256": "3dacf5f1dce92d6729f40fcc703fe4fcbbe57c6a8e03d68b38079995b9fc10d3"
+    },
+    {
+      "file": "dist/solidPointMembership.js",
+      "bytes": 4813,
+      "sha256": "07035fd2ea66ddede5fe95b2a8980f3fb969872f8ecdaedb8f108e21be12a740"
+    },
+    {
+      "file": "dist/surfaceOrigins.js",
+      "bytes": 2892,
+      "sha256": "ec0eda084cc165bfa16ddda851b77adf858201a1dec1fce876b2155c01b604d7"
+    },
+    {
+      "file": "dist/tetrahedronPlaneMoments.js",
+      "bytes": 10577,
+      "sha256": "5738eae553b2edc7f7dc778afda38837cecf3bdcc38ace912d141440c77f3fa1"
+    },
+    {
+      "file": "dist/trianglePlaneMoments.js",
+      "bytes": 7971,
+      "sha256": "88cc62b585a13706af521179e0af7626e1f6dd03c3043560dc0c581457010686"
+    },
+    {
+      "file": "dist/trianglePositiveLinearMoments.js",
+      "bytes": 520,
+      "sha256": "14cbac99c1839246bce9df8365d42db4696c2af4623b435e4092c038aa258af3"
+    },
+    {
+      "file": "dist/trianglePositiveQuadraticMoments.js",
+      "bytes": 365,
+      "sha256": "308d3867caa93219a7383543c48623730935813caa60c4f081803a506eec88a6"
+    },
+    {
+      "file": "dist/triangleWeights.js",
+      "bytes": 1870,
+      "sha256": "2d147dd9a17ac414c7260ee47054b7397eda61b90bfd05dfdb4ab26644a59406"
+    },
+    {
+      "file": "package.json",
+      "bytes": 1266,
+      "sha256": "f993e85de8c639f0102bbc2850b7f88a00d1e4797b1eb6bd3fc940cf7e0891f4"
+    },
+    {
+      "file": "README.md",
+      "bytes": 34232,
+      "sha256": "4d1e94045084446c6b9492c7d9685fa8a295b3d9e76204b9f2283e85ec574d75"
+    },
+    {
+      "file": "dist/alpha.d.ts",
+      "bytes": 448,
+      "sha256": "6477b8c7bf23ab87aa4341eaef9ed009ccbf2d1e296e3b08465c4a48a3841486"
+    },
+    {
+      "file": "dist/axialOrientation.d.ts",
+      "bytes": 571,
+      "sha256": "c08df2a4ca72c437c8f3b768301f675b8adc3542ca31412a97c8a2fe1a3ff64e"
+    },
+    {
+      "file": "dist/closeConvexTube.d.ts",
+      "bytes": 683,
+      "sha256": "3055a01e6dc371d5daac21e4b581f2cb5672446bab58c1b85e34d260bf868627"
+    },
+    {
+      "file": "dist/closedComponents.d.ts",
+      "bytes": 394,
+      "sha256": "a7a2720902cc477959b934d3692587e85f13f064ef78a8b2a26260e2cce64d71"
+    },
+    {
+      "file": "dist/createManifoldMesh64.d.ts",
+      "bytes": 802,
+      "sha256": "cbea31dd9649ae34f24a8e6d5d36fd45ab36df97eedca62235ddc999db8c546b"
+    },
+    {
+      "file": "dist/index.d.ts",
+      "bytes": 1568,
+      "sha256": "95ff7f12373810d876248f06cd9ee8c8345154411bafd923a24f774ebf4af83d"
+    },
+    {
+      "file": "dist/manifold.d.ts",
+      "bytes": 350,
+      "sha256": "4a8a9cd4e7316c1c8c98690edcc2fc9d0db1c86a56d3e1510efd4286ef5b9de1"
+    },
+    {
+      "file": "dist/manifoldCoverage.d.ts",
+      "bytes": 1402,
+      "sha256": "079d0e333135ce43ec089837bbbe560c44399bc2719b5c7ae244530155f4446f"
+    },
+    {
+      "file": "dist/manifoldCutSession.d.ts",
+      "bytes": 9186,
+      "sha256": "594df6417cff3e90a5b2c3f1884712418e709f0b92094b1645a4ca9d479a317b"
+    },
+    {
+      "file": "dist/manifoldKernel.d.ts",
+      "bytes": 1033,
+      "sha256": "c9e79baf0a4757401403ebb53ea982f473b116948cae29b5d0df89d3442cd455"
+    },
+    {
+      "file": "dist/manifoldMesh64.d.ts",
+      "bytes": 860,
+      "sha256": "73e9ef380e026fe00b0ace3de3a7a1bc3cd6e834db7339a712dcf4d1e4079454"
+    },
+    {
+      "file": "dist/materialPartition.d.ts",
+      "bytes": 1905,
+      "sha256": "d3f969a8cd4be5ca9accdaea0da7d2f59637eef65e638866a2b1379a8e6e9642"
+    },
+    {
+      "file": "dist/mergeIndexedMesh.d.ts",
+      "bytes": 510,
+      "sha256": "698c90f0a643dcef1a808be20ec82ed9440c8a8c7bcb5c88defad18d28303552"
+    },
+    {
+      "file": "dist/overlap.d.ts",
+      "bytes": 1091,
+      "sha256": "0de01028161fa5c9c34523b25444b1088f79bcaf70f7e527c696c374857273c0"
+    },
+    {
+      "file": "dist/positiveTriangleMoments.d.ts",
+      "bytes": 1145,
+      "sha256": "dfd46f4d59c31c8f442fdbce4c00e2a948821b4edcb3a3cf87a2a8cba4ea3985"
+    },
+    {
+      "file": "dist/principalInertia.d.ts",
+      "bytes": 526,
+      "sha256": "5c49e0231bba201aae68852d816b4e8f3fe6ca061c4bfcb33553a0c8e2170676"
+    },
+    {
+      "file": "dist/projection.d.ts",
+      "bytes": 1431,
+      "sha256": "d0bdfff918d824a187dc74fa7e4475bda44a2b8dc616ada1b6898d72b14290f2"
+    },
+    {
+      "file": "dist/regularizeZeroExtentShells.d.ts",
+      "bytes": 920,
+      "sha256": "bfd038c1d5dc37c6c9bda36e1dca1b11741f9f33926452e71e11a7b51a985d7a"
+    },
+    {
+      "file": "dist/signedVolume.d.ts",
+      "bytes": 79,
+      "sha256": "66096999945046dfcf1eac7ceda644a1830657d84d8024b8750379d5bfb67314"
+    },
+    {
+      "file": "dist/solidComponents.d.ts",
+      "bytes": 826,
+      "sha256": "ef6fa8c1dc7bd3c9ff482e174c50fb79341f387e7a575a784dc8dfd2b91de915"
+    },
+    {
+      "file": "dist/solidPlaneMoments.d.ts",
+      "bytes": 1021,
+      "sha256": "e63dac37060929b2b0568f813de1caa42b4bcd7ba95f8daa985c311a0e42996f"
+    },
+    {
+      "file": "dist/solidPointMembership.d.ts",
+      "bytes": 442,
+      "sha256": "b655b99bfbbf260d9ff0e5a165f6cb1d0ada8ea9057ed8752a9d24b98854a4e9"
+    },
+    {
+      "file": "dist/surfaceOrigins.d.ts",
+      "bytes": 554,
+      "sha256": "39d1ea182d8eb3b2cfdf92f0657d3b896d048650ee332e3e1bab60cc014a9104"
+    },
+    {
+      "file": "dist/tetrahedronPlaneMoments.d.ts",
+      "bytes": 1349,
+      "sha256": "f9390d81c27f6b9c223afe7a6dbe208076d4c25178db038facff1584bd218a2b"
+    },
+    {
+      "file": "dist/trianglePlaneMoments.d.ts",
+      "bytes": 1463,
+      "sha256": "45c8acede45b521531f7aea6821433db9bb2cc3058f82892c442b03fc68cccaf"
+    },
+    {
+      "file": "dist/trianglePositiveLinearMoments.d.ts",
+      "bytes": 759,
+      "sha256": "094f9bce94c11256d6d3277789c17eb89e0d8f6d0b66f7aacc2b8678ab993c26"
+    },
+    {
+      "file": "dist/trianglePositiveQuadraticMoments.d.ts",
+      "bytes": 637,
+      "sha256": "ef344a82596e10a74faed6be2bc798a432c73736c2f5a8728378cfbab630bece"
+    },
+    {
+      "file": "dist/triangleWeights.d.ts",
+      "bytes": 355,
+      "sha256": "fd2486acf9f55a93bfcc02f010e043259ed9871ec7223cafa2a0e91670e117b0"
+    }
+  ],
+  "independentDistMatches": 56
+}
