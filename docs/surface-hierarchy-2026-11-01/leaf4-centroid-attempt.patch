@@ -1,0 +1,24 @@
+diff --git a/src/surfaceFluxHierarchy.ts b/src/surfaceFluxHierarchy.ts
+index fc50227..7dfaaa7 100644
+--- a/src/surfaceFluxHierarchy.ts
++++ b/src/surfaceFluxHierarchy.ts
+@@ -77,8 +77,17 @@ export function prepareSurfaceFluxHierarchy(input: readonly (readonly V[])[]) {
+       ].every(Number.isFinite)
+     )
+       throw Error("Unrepresentable surface flux hierarchy");
+-    if (faces.length > 16) {
+-      const axis = high.map((v, k) => v - low[k]!).indexOf(extent);
++    if (faces.length > 4) {
++      const centroidLow: M = [Infinity, Infinity, Infinity],
++        centroidHigh: M = [-Infinity, -Infinity, -Infinity];
++      for (const face of faces)
++        for (let k = 0; k < 3; k++) {
++          const center = face.vertices.reduce((sum, v) => sum + v[k]! / 3, 0);
++          centroidLow[k] = Math.min(centroidLow[k]!, center);
++          centroidHigh[k] = Math.max(centroidHigh[k]!, center);
++        }
++      const spread = centroidHigh.map((v, k) => v - centroidLow[k]!);
++      const axis = spread.indexOf(Math.max(...spread));
+       const sorted = faces
+         .slice()
+         .sort(

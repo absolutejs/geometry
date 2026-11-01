@@ -1,0 +1,66 @@
+diff --git a/src/surfaceFluxHierarchy.ts b/src/surfaceFluxHierarchy.ts
+index fc50227..26688c9 100644
+--- a/src/surfaceFluxHierarchy.ts
++++ b/src/surfaceFluxHierarchy.ts
+@@ -77,8 +77,17 @@ export function prepareSurfaceFluxHierarchy(input: readonly (readonly V[])[]) {
+       ].every(Number.isFinite)
+     )
+       throw Error("Unrepresentable surface flux hierarchy");
+-    if (faces.length > 16) {
+-      const axis = high.map((v, k) => v - low[k]!).indexOf(extent);
++    if (faces.length > 4) {
++      const centroidLow: M = [Infinity, Infinity, Infinity],
++        centroidHigh: M = [-Infinity, -Infinity, -Infinity];
++      for (const face of faces)
++        for (let k = 0; k < 3; k++) {
++          const center = face.vertices.reduce((sum, v) => sum + v[k]! / 3, 0);
++          centroidLow[k] = Math.min(centroidLow[k]!, center);
++          centroidHigh[k] = Math.max(centroidHigh[k]!, center);
++        }
++      const spread = centroidHigh.map((v, k) => v - centroidLow[k]!);
++      const axis = spread.indexOf(Math.max(...spread));
+       const sorted = faces
+         .slice()
+         .sort(
+@@ -103,22 +112,24 @@ export function prepareSurfaceFluxHierarchy(input: readonly (readonly V[])[]) {
+       drySurfaceNodes = 0;
+     const firstMoment: M = [0, 0, 0];
+     const addFull = (node: Node) => {
+-      const d = node.reference.map((v, k) => v - origin[k]!) as M;
++      const dx = node.reference[0] - origin[0],
++        dy = node.reference[1] - origin[1],
++        dz = node.reference[2] - origin[2];
+       const flux =
+           node.flux +
+-          d[0] * node.normal[0] +
+-          d[1] * node.normal[1] +
+-          d[2] * node.normal[2],
++          dx * node.normal[0] +
++          dy * node.normal[1] +
++          dz * node.normal[2],
+         v = flux / 3;
+       volume += v;
+       for (let i = 0; i < 3; i++)
+         firstMoment[i]! +=
+           origin[i]! * v +
+           (node.weighted[i]! +
+-            node.first[i * 3]! * d[0] +
+-            node.first[i * 3 + 1]! * d[1] +
+-            node.first[i * 3 + 2]! * d[2] +
+-            d[i]! * flux) /
++            node.first[i * 3]! * dx +
++            node.first[i * 3 + 1]! * dy +
++            node.first[i * 3 + 2]! * dz +
++            (i === 0 ? dx : i === 1 ? dy : dz) * flux) /
+             4;
+     };
+     const visit = (node: Node) => {
+@@ -136,7 +147,7 @@ export function prepareSurfaceFluxHierarchy(input: readonly (readonly V[])[]) {
+             2 * Math.abs(point[k]!)) *
+           Math.abs(normal[k]!);
+       }
+-      if (![near, far, scale].every(Number.isFinite))
++      if (!Number.isFinite(near) || !Number.isFinite(far) || !Number.isFinite(scale))
+         throw Error("Unrepresentable surface plane interval");
+       const margin = 64 * Number.EPSILON * Math.max(scale, node.extent);
+       if (near > margin) {

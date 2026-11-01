@@ -47,3 +47,19 @@ A GPU-disabled browser-worker extension is prepared for a 768-triangle refined
 cube, checking actual hierarchy use, half-volume/centroid and a thin slab. It
 will run after the current sequential game audit; syntax validation alone is
 not recorded as browser qualification.
+
+## Recorded performance decision
+
+All three hierarchy variants pass the 9,600 captured-pose accuracy gate (errors
+on the order of 1e-15 normalized), but none justifies adoption yet. Sequential
+paired CPU-time ratios versus the direct path were 0.9323 for the original
+16-face tree, 0.9898 for four-face centroid-spread groups, and 0.9451 after
+removing traversal temporary arrays. These are single paired observations, not
+hardware-FPS evidence. Small components sometimes regress. The four-face
+attempts are preserved as patches; source here returns to the original tested
+prototype. Game receipts are on research/float-contact under
+`docs/hydrostatic-hierarchy-2026-11-01/`. The canonical queued archive is unchanged.
+
+Next investigation removes allocation from the direct triangle classification
+path instead of paying hierarchy traversal overhead. It lives in the separate
+`research/scalar-plane` branch; this hierarchy is not silently shipped.
