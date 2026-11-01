@@ -42,3 +42,8 @@ differences below a predeclared 1e-9; preserve all measurements. Then actual nat
 trajectories, CPU measurements and browser/independent archive qualification if
 results justify adoption. The reference package and current long game audit are
 not modified while this work proceeds.
+
+A GPU-disabled browser-worker extension is prepared for a 768-triangle refined
+cube, checking actual hierarchy use, half-volume/centroid and a thin slab. It
+will run after the current sequential game audit; syntax validation alone is
+not recorded as browser qualification.
