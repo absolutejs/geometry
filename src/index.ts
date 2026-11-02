@@ -45,3 +45,5 @@ export { prepareTrianglePositiveQuadraticMoments } from './trianglePositiveQuadr
 
 export { prepareTrianglePositiveLinearMoments } from './trianglePositiveLinearMoments.js';
 export { partitionTriangleAffineDomains, partitionTriangleBoxDomains, type DomainBox, type TriangleDomainCell } from './triangleDomains.js';
+
+export { prepareUpwardSurface, type UpwardSurfaceInput, type UpwardSurfaceHit } from "./upwardSurface.js";

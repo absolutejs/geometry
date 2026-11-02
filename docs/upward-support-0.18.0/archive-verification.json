@@ -1,0 +1,10 @@
+{
+  "version": "0.18.0",
+  "archive": "absolutejs-geometry-0.18.0.tgz",
+  "bytes": 59504,
+  "sha256": "eaba0fb7da9c9e4164d34915a6e84f7f8fc6f2d3adfdff420af80bc9c05bbb96",
+  "integrity": "sha512-uV29XUyPwkYaxzIUmWW65/2RmH7xF+WUhdlbGLL1gJENXFnVjQm3RuMmMCfqScDo+l14S/a3gA/hXUjH2f2ePA==",
+  "shasum": "5b6363e0b418eeee53066e7aef611ece39bc6ca6",
+  "installedFilesMatch": true,
+  "browserPassed": true
+}

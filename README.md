@@ -583,3 +583,41 @@ share the same source face. It preserves dominant-plane projection, outside-face
 rejection and the existing projection-distance limits; each result is an owned
 three-element array. `triangleWeights` remains the one-shot form. Nonrepresentable
 geometry or query arithmetic rejects instead of returning nonfinite weights.
+
+## Repeated upward surface queries
+
+`prepareUpwardSurface({ positions, indices, cellSize: 4 })` builds an owned XZ
+spatial index for upward-wound mesh faces. Positions are Float32Array or
+Float64Array xyz triples; indices are Uint16Array or Uint32Array triangle triples.
+Coordinates and heights must use the same frame and units. The game can reuse it
+for terrain support; builders can inspect walkable surfaces or place objects.
+
+```ts
+const surface = prepareUpwardSurface({ positions, indices });
+const { hit, trianglesTested } = surface.query(x, z, referenceY, 1);
+// hit is null without coverage within one unit of referenceY, otherwise:
+// { height, slopeX, slopeZ, triangle }
+```
+
+The nearest upward surface is returned, not necessarily the highest surface.
+Downward ceilings and exactly vertical/degenerate projections are excluded.
+Equal-distance ties retain input triangle order. No height is extrapolated across
+missing coverage. `maxDistance` is inclusive; callers needing a strict threshold
+can apply it to the result. Optional fifth query argument `edgeTolerance`
+(default 1e-8, maximum 1e-4) controls dimensionless barycentric edge tolerance
+inside indexed cells; it does not expand the index's geometric footprint.
+
+Preparation retains no input buffers: they may be changed or transferred after
+preparation. `.stats` reports triangle/upward-face/cell/reference counts and
+coefficient bytes (not total JS/Map overhead). Each query reports actual indexed
+triangle visits. Inputs are capped at 262,144 vertices and 131,072 triangles;
+`maxReferences` defaults to 262,144 and cannot exceed 1,048,576. Grid reference
+expansion is checked before inserting a face, so an enormous face with tiny cells
+fails rather than silently causing unbounded work. Invalid inputs, unsafe grid
+coordinates and nonfinite arithmetic throw RangeError. Empty meshes are allowed.
+
+This module imports no renderer, React or physics engine. A support hit is not a
+solid-membership result, a contact manifold or proof that a body is balanced.
+Multiple chunks must be queried in their own coordinate frames; missing neighboring
+geometry remains unknown. Use repeated sample queries to build application-specific
+support policies rather than treating a single center hit as whole-object support.

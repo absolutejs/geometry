@@ -2,3 +2,7 @@ node_modules/
 dist/
 *.tgz
 .diagnostics/
+
+.package-cache/
+docs/upward-support-0.18.0/independent/
+docs/upward-support-0.18.0/archive-consumer/

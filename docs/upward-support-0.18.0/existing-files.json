@@ -1,0 +1,226 @@
+[
+  {
+    "file": "triangleWeights.d.ts",
+    "same": true
+  },
+  {
+    "file": "triangleWeights.js",
+    "same": true
+  },
+  {
+    "file": "trianglePlaneMoments.d.ts",
+    "same": true
+  },
+  {
+    "file": "regularizeZeroExtentShells.js",
+    "same": true
+  },
+  {
+    "file": "closedComponents.js",
+    "same": true
+  },
+  {
+    "file": "trianglePlaneMoments.js",
+    "same": true
+  },
+  {
+    "file": "trianglePositiveLinearMoments.js",
+    "same": true
+  },
+  {
+    "file": "manifoldCoverage.js",
+    "same": true
+  },
+  {
+    "file": "closeConvexTube.js",
+    "same": true
+  },
+  {
+    "file": "projection.d.ts",
+    "same": true
+  },
+  {
+    "file": "manifoldMesh64.d.ts",
+    "same": true
+  },
+  {
+    "file": "overlap.js",
+    "same": true
+  },
+  {
+    "file": "solidComponents.d.ts",
+    "same": true
+  },
+  {
+    "file": "surfaceOrigins.d.ts",
+    "same": true
+  },
+  {
+    "file": "materialPartition.d.ts",
+    "same": true
+  },
+  {
+    "file": "surfaceOrigins.js",
+    "same": true
+  },
+  {
+    "file": "alpha.d.ts",
+    "same": true
+  },
+  {
+    "file": "trianglePositiveLinearMoments.d.ts",
+    "same": true
+  },
+  {
+    "file": "manifoldKernel.d.ts",
+    "same": true
+  },
+  {
+    "file": "manifoldKernel.js",
+    "same": true
+  },
+  {
+    "file": "closeConvexTube.d.ts",
+    "same": true
+  },
+  {
+    "file": "createManifoldMesh64.d.ts",
+    "same": true
+  },
+  {
+    "file": "signedVolume.js",
+    "same": true
+  },
+  {
+    "file": "closedComponents.d.ts",
+    "same": true
+  },
+  {
+    "file": "triangleDomains.js",
+    "same": true
+  },
+  {
+    "file": "manifoldCutSession.js",
+    "same": true
+  },
+  {
+    "file": "manifoldCoverage.d.ts",
+    "same": true
+  },
+  {
+    "file": "axialOrientation.js",
+    "same": true
+  },
+  {
+    "file": "tetrahedronPlaneMoments.d.ts",
+    "same": true
+  },
+  {
+    "file": "solidPointMembership.d.ts",
+    "same": true
+  },
+  {
+    "file": "triangleDomains.d.ts",
+    "same": true
+  },
+  {
+    "file": "projection.js",
+    "same": true
+  },
+  {
+    "file": "signedVolume.d.ts",
+    "same": true
+  },
+  {
+    "file": "tetrahedronPlaneMoments.js",
+    "same": true
+  },
+  {
+    "file": "overlap.d.ts",
+    "same": true
+  },
+  {
+    "file": "solidPlaneMoments.d.ts",
+    "same": true
+  },
+  {
+    "file": "materialPartition.js",
+    "same": true
+  },
+  {
+    "file": "principalInertia.js",
+    "same": true
+  },
+  {
+    "file": "manifoldCutSession.d.ts",
+    "same": true
+  },
+  {
+    "file": "positiveTriangleMoments.d.ts",
+    "same": true
+  },
+  {
+    "file": "mergeIndexedMesh.d.ts",
+    "same": true
+  },
+  {
+    "file": "alpha.js",
+    "same": true
+  },
+  {
+    "file": "solidComponents.js",
+    "same": true
+  },
+  {
+    "file": "positiveTriangleMoments.js",
+    "same": true
+  },
+  {
+    "file": "createManifoldMesh64.js",
+    "same": true
+  },
+  {
+    "file": "solidPlaneMoments.js",
+    "same": true
+  },
+  {
+    "file": "trianglePositiveQuadraticMoments.js",
+    "same": true
+  },
+  {
+    "file": "axialOrientation.d.ts",
+    "same": true
+  },
+  {
+    "file": "regularizeZeroExtentShells.d.ts",
+    "same": true
+  },
+  {
+    "file": "manifold.js",
+    "same": true
+  },
+  {
+    "file": "manifold.d.ts",
+    "same": true
+  },
+  {
+    "file": "manifoldMesh64.js",
+    "same": true
+  },
+  {
+    "file": "principalInertia.d.ts",
+    "same": true
+  },
+  {
+    "file": "trianglePositiveQuadraticMoments.d.ts",
+    "same": true
+  },
+  {
+    "file": "mergeIndexedMesh.js",
+    "same": true
+  },
+  {
+    "file": "solidPointMembership.js",
+    "same": true
+  }
+]
