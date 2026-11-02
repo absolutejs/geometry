@@ -41,9 +41,25 @@ export { prepareSolidPlaneMoments } from "./solidPlaneMoments.js";
 
 export { closeConvexTube, type ClosedConvexTube } from "./closeConvexTube.js";
 export { regularizeZeroExtentShells } from "./regularizeZeroExtentShells.js";
-export { prepareTrianglePositiveQuadraticMoments } from './trianglePositiveQuadraticMoments.js';
+export { prepareTrianglePositiveQuadraticMoments } from "./trianglePositiveQuadraticMoments.js";
 
-export { prepareTrianglePositiveLinearMoments } from './trianglePositiveLinearMoments.js';
-export { partitionTriangleAffineDomains, partitionTriangleBoxDomains, type DomainBox, type TriangleDomainCell } from './triangleDomains.js';
+export { prepareTrianglePositiveLinearMoments } from "./trianglePositiveLinearMoments.js";
+export {
+  partitionTriangleAffineDomains,
+  partitionTriangleBoxDomains,
+  type DomainBox,
+  type TriangleDomainCell,
+} from "./triangleDomains.js";
 
-export { prepareUpwardSurface, type UpwardSurfaceInput, type UpwardSurfaceHit } from "./upwardSurface.js";
+export {
+  prepareUpwardSurface,
+  type UpwardSurfaceInput,
+  type UpwardSurfaceHit,
+} from "./upwardSurface.js";
+
+export {
+  partitionStarShapedMesh,
+  type StarPartition,
+  type StarPartitionPiece,
+  type StarPartitionOptions,
+} from "./starPartition.js";

@@ -1,0 +1,14 @@
+bun test v1.4.4+absolute.1 (38afee6c8)
+
+tests/starPartition.test.ts:
+(pass) positive kernel-local tetrahedra retain source-face identity and total volume [2.08ms]
+(pass) signed translations and uniform scaling preserve local coordinates and cubic volume [3.52ms]
+(pass) native independent union audit preserves a genuinely concave star-shaped boundary [55.44ms]
+(pass) outside, boundary and numerically precarious kernels are rejected without hull fallback [1.29ms]
+(pass) open, reversed, disconnected and degenerate topology cannot silently produce a partition [0.83ms]
+(pass) invalid budgets, types, indices and nonfinite input fail before unbounded work [0.37ms]
+
+ 6 pass
+ 0 fail
+ 101 expect() calls
+Ran 6 tests across 1 file. [74.00ms]

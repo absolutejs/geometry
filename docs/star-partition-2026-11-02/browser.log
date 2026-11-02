@@ -1,0 +1,27 @@
+{
+  "result": {
+    "pieces": 12,
+    "volume": 4.8,
+    "clearance": 0.2773500981126145,
+    "sourceTriangles": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+    ],
+    "float64": true,
+    "indices32": true,
+    "inputDetached": true,
+    "rejection": "Error: Kernel is outside, on or too close to a boundary face"
+  },
+  "errors": [],
+  "scope": "Built ESM browser worker, transferred Float64 inputs/outputs, rejected invalid kernel; GPU/WebGL disabled"
+}

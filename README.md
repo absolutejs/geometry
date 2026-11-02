@@ -621,3 +621,30 @@ solid-membership result, a contact manifold or proof that a body is balanced.
 Multiple chunks must be queried in their own coordinate frames; missing neighboring
 geometry remains unknown. Use repeated sample queries to build application-specific
 support policies rather than treating a single center hit as whole-object support.
+
+### Bounded star-shaped mesh partition candidates (0.19)
+
+`partitionStarShapedMesh(mesh, kernel, options?)` creates one positive convex
+ tetrahedron per outward surface triangle. Input is an already-qualified simple,
+star-shaped, connected closed boundary with Float64 positions and Uint32 indices,
+and a known strict interior kernel. This is not general convex decomposition:
+there is no kernel search, topology repair, proximity welding, or whole-solid
+convex-hull fallback. Self-intersection validation remains the caller's input
+precondition. Independently audit coverage/overlap and the collision engine's
+exported geometry and mass before using the pieces for physics.
+
+```ts
+import { partitionStarShapedMesh } from '@absolutejs/geometry';
+const partition = partitionStarShapedMesh(mesh, [0, 0, 0]);
+// Each piece owns Float64 positions and Uint32 indices, in coordinates relative
+// to partition.origin. Reapply that origin exactly once when placing the result.
+```
+
+The default budget is 256 triangles; callers may select 4–1024. Kernel clearance
+must exceed source extent times `minimumRelativeClearance` (default 1e-9,
+allowed 1e-12 through 0.1). A determinant floor of extent³ × 1e-14 rejects tiny
+numerically precarious cells. Unrepresentable scales, shared mutable buffers,
+open/nonmanifold/disconnected boundaries, reversed winding, and boundary/outside
+kernels fail explicitly. Unreferenced vertices do not affect geometric extent.
+The result includes source-triangle ancestry, total signed volume and measured
+minimum kernel clearance. It has no native WASM lifetime or runtime dependency.

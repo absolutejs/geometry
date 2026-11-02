@@ -1,0 +1,14 @@
+{
+  "lockfileVersion": 2,
+  "configVersion": 1,
+  "workspaces": {
+    "": {
+      "dependencies": {
+        "@absolutejs/geometry": "file:../absolutejs-geometry-0.19.0.tgz",
+      },
+    },
+  },
+  "packages": {
+    "@absolutejs/geometry": ["@absolutejs/geometry@../absolutejs-geometry-0.19.0.tgz", { "peerDependencies": { "manifold-3d": "3.5.1" }, "optionalPeers": ["manifold-3d"] }, "sha512-pnMJpXkRBu9kt/VHtuCsyIvagIHz/sovEjz+QlIDWh9J6D+49A/UHJyW/aJLuW7lQObUx2QKse++mlD5Vu+kYA=="],
+  }
+}
