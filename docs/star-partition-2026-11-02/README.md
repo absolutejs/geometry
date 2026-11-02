@@ -37,3 +37,8 @@ Rapier 0.21.0 exported-boundary missing/excess/overlap and density-derived mass 
 1e-5 relative thresholds. Full case records remain in the game's durable docs.
 These are candidate qualification checks; no game production import is redirected
 to this worktree or its archive consumer.
+
+Publication completed after npm browser confirmation on 2026-11-02. The game now
+pins registry version 0.19.0. Its installed package matches all 65 qualified archive
+files; archive SHA256 is e6d2577dbe13a1d9db91c4c97647ee6d90f654f26b6ba0f1873057f5e2bfa415.
+The game's durable consumer record is docs/stone-worker-2026-11-02/published-package.json.
