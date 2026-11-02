@@ -27,3 +27,13 @@ Qualification so far:
 Independent build and game-authored stone checks are recorded separately as they
 complete. Source and archive must be backed up before npm publication. No game
 production dependency is changed before that publication is verified.
+
+Final candidate checks: a second clean-worktree build matches every shipped archive
+file exactly (`independent-build.json`). The exact archive also passes 24 game
+qualification cases: four authored stone shapes × three nonuniform size scales ×
+local/distant source coordinates. The local outputs match the original fixture
+coordinates exactly; translated-coordinate error remains below 1e-10 m. Native
+Rapier 0.21.0 exported-boundary missing/excess/overlap and density-derived mass pass
+1e-5 relative thresholds. Full case records remain in the game's durable docs.
+These are candidate qualification checks; no game production import is redirected
+to this worktree or its archive consumer.

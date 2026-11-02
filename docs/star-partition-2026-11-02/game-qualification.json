@@ -1,0 +1,16 @@
+{
+  "cases": 24,
+  "sizes": [
+    0.2,
+    1,
+    1.8
+  ],
+  "variants": 4,
+  "maximumCoordinateDifference": 7.273848190436638e-12,
+  "maximumMissingRelative": 2.1138430299080758e-08,
+  "maximumExcessRelative": 3.3945352302758616e-08,
+  "maximumMassRelative": 5.5016117661566e-08,
+  "nativePackage": "@absolutejs/rapier3d@0.21.0",
+  "gameProductionGeometry": "0.18.0 unchanged",
+  "scope": "Exact-archive candidate qualification, no production adoption"
+}
