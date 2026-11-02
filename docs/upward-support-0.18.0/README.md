@@ -37,9 +37,9 @@ negative-coordinate chunk boundary. This is not a complete rock stability policy
 
 ## Delivery status
 
-Tested source and exact archive are being backed up before npm publication.
-The publisher account check returns Unauthorized; a new npm login and publication
-confirmation are required. The game remains on published 0.17.0. No file dependency
+Tested source and exact archive are pushed at `d426950`. Publisher login and
+publication confirmation completed, and npm accepted publication. Registry
+integrity and shasum now match the exact tested archive; publication is verified. The game has installed published 0.18.0 and is qualifying its production adapter. No file dependency
 or installed dependency patch is being shipped as a substitute.
 
 Reproduce with BVM Bun 1.4.4+absolute.1:
