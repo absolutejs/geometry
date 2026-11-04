@@ -3,5 +3,7 @@
   "version": "0.21.0",
   "sha256": "be9cc9407f0e507a6f99a77b1b2b50a01ca31762a569dd1a8689e36ea6a2d96f",
   "bytes": 66581,
-  "state": "qualified; unpublished"
+  "state": "published; public registry archive verified byte-for-byte",
+  "sourceCommit": "c608115bcb2897ad0d1c98475f54d756442e18f2",
+  "verifiedTarball": "https://registry.npmjs.org/@absolutejs%2fgeometry/-/geometry-0.21.0.tgz"
 }

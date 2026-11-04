@@ -17,7 +17,10 @@ root refinement fixes scalar-interpolation bias, but sharp corners still require
 finer cells. A 0.125 m construction differs from a local 0.0625 m reference by up
 to 0.010753 m in the sampled edited shoreline. This is measured convergence at
 one site, not a global distance certificate or a rendering speed improvement.
-The game remains on its published dependency until this release is available.
+Published as 0.21.0 and adopted from the registry by the game.
 
-Only the exact pending release archive is retained. Build duplicates, temporary
-consumer extraction and npm pack cache were removed. No GPU work was performed.
+The registry archive matches the qualified bytes. Metadata and the plain tarball
+URL initially returned 404; the encoded scope URL served the matching archive,
+then normal exact-version Bun installation succeeded. Both local tarballs, build
+duplicates, temporary consumer extraction and npm pack cache were removed.
+No GPU work was performed.
