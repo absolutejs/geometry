@@ -648,3 +648,28 @@ open/nonmanifold/disconnected boundaries, reversed winding, and boundary/outside
 kernels fail explicitly. Unreferenced vertices do not affect geometric extent.
 The result includes source-triangle ancestry, total signed volume and measured
 minimum kernel clearance. It has no native WASM lifetime or runtime dependency.
+
+### Bounded scalar contour distances (0.20)
+
+`prepareScalarContour2D({values,width,height,spacing,maxSegments?})` extracts
+piecewise-linear **sign-change** boundaries from a row-major scalar grid and
+builds an owned spatial hierarchy. `nearest(x,y,radius)` returns distance, closest
+point and segment identity, or null when no boundary lies within the finite
+radius. Queries outside the sampled rectangle throw. Coordinates are local;
+translate world positions before querying. Inputs must be finite, at most 262144
+samples, with spacing in [1e-9, 1e6]. The default segment cap is 131072.
+
+This is exact distance to the extracted segments, **not** an exact SDF of the
+underlying continuous function. No inside/outside membership is inferred.
+Zero belongs to the nonnegative side; isolated tangencies are omitted. The
+asymptotic decider resolves alternating-sign cells; exact saddles use a fixed
+diagonal. `ambiguousCells` and `zeroPlateauCells` expose problematic input regions.
+Do not certify a plateau or an unresolved thin feature as valid signed distance.
+
+For tiled finite-radius fields, sample a halo beyond the query interior at least
+as wide as the radius plus a cell margin. Otherwise missing exterior boundaries
+can bias distances. Consumers own revision keys, signs, quantization/error
+budgets and invalidation. A radius-limited null is not proof of global emptiness.
+`bytes` reports persistent typed-array payload, excluding build temporaries and
+JS engine overhead; `segments()` returns an independent debug copy. No callbacks,
+shared mutable input or retained global cache are used.

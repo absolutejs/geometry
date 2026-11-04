@@ -63,3 +63,5 @@ export {
   type StarPartitionPiece,
   type StarPartitionOptions,
 } from "./starPartition.js";
+
+export { prepareScalarContour2D, type ScalarContour2DInput, type ContourHit2D } from './scalarContour2D.js';

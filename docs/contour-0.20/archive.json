@@ -1,0 +1,6 @@
+{
+  "file": "artifacts/absolutejs-geometry-0.20.0.tgz",
+  "bytes": 65156,
+  "sha256": "d7a6e773b7bffa10c106f958147ddd8dd3eee15f6483931a516d6dd688a91ec3",
+  "consumer": "passed; numeric distance checked to 1e-14, not decimal bit equality"
+}

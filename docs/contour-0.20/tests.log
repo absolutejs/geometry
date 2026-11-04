@@ -1,0 +1,6 @@
+Bun 1.4.4+absolute.1; bun test ./tests; exit 0
+
+ 147 pass
+ 0 fail
+ 74449 expect() calls
+Ran 147 tests across 29 files. [1271.00ms]
