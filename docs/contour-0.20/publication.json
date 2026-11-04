@@ -1,0 +1,6 @@
+{
+  "sha256": "d7a6e773b7bffa10c106f958147ddd8dd3eee15f6483931a516d6dd688a91ec3",
+  "exactArchiveMatch": true,
+  "version": "0.20.0",
+  "note": "Registry returned transient metadata and tarball 404s after publish; exact registry archive subsequently verified."
+}
