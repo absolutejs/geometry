@@ -67,3 +67,45 @@ test('overlapping halo tiles agree on metric distances at shared interior bounda
   if(p&&q)expect(p.distance).toBeCloseTo(q.distance,12);
  }
 });
+test('bounded root refinement removes scalar scaling bias and shares crossing vertices',()=>{
+ const f=(x:number,y:number)=>Math.expm1((x-.317)*7);
+ const input=grid(9,.5,f),old=prepareScalarContour2D(input),c=prepareScalarContour2D({...input,sample:f,refinementSteps:14});
+ expect(Math.abs(old.nearest(0,2,1)!.distance-.317)).toBeGreaterThan(.05);
+ expect(c.nearest(0,2,1)!.distance).toBeCloseTo(.317,4);
+ expect(c.refinedEdges).toBe(9);expect(c.refinementSamples).toBe(9*16);
+ const s=c.segments();for(let i=4;i<s.length;i+=4)expect(s[i]).toBe(s[0]);
+ expect(c.segmentCount).toBe(old.segmentCount);
+});
+test('refinement validates oracle agreement, finite samples and strict callback budgets',()=>{
+ const input=grid(3,1,x=>x-.3);
+ expect(()=>prepareScalarContour2D({...input,sample:()=>NaN})).toThrow('Nonfinite');
+ expect(()=>prepareScalarContour2D({...input,sample:()=>1})).toThrow('signs');
+ let calls=0;expect(()=>prepareScalarContour2D({...input,sample:x=>{calls++;return x-.3;},maxRefinementSamples:3})).toThrow('budget');expect(calls).toBe(3);
+ expect(()=>prepareScalarContour2D({...input,refinementSteps:2})).toThrow();
+ for(const refinementSteps of [-1,21,NaN,1.2])expect(()=>prepareScalarContour2D({...input,sample:x=>x-.3,refinementSteps})).toThrow();
+ const exact=prepareScalarContour2D({...grid(3,1,x=>x-1),sample:x=>x-1});expect(exact.nearest(1,1,1)?.distance).toBe(0);
+});
+
+test('refinement handles horizontal transitions, discontinuities and opt-out without query callbacks',()=>{
+ const input=grid(5,.5,(_,y)=>y<.317?-1:1);let calls=0;
+ const sample=(_:number,y:number)=>{calls++;return y<.317?-1:1;};
+ const c=prepareScalarContour2D({...input,sample,refinementSteps:16});
+ expect(c.nearest(1,0,1)!.distance).toBeCloseTo(.317,5);
+ expect(c.refinedEdges).toBe(5);const before=calls;
+ for(let i=0;i<100;i++)c.nearest(i/100,0,1);
+ expect(calls).toBe(before);
+ expect(prepareScalarContour2D({...input,sample,refinementSteps:0,maxRefinementSamples:0}).segments()).toEqual(prepareScalarContour2D(input).segments());
+ expect(calls).toBe(before);
+});
+test('refined curved contour retains hierarchy correctness and converges with cell resolution',()=>{
+ const f=(x:number,y:number)=>Math.expm1((Math.hypot(x-4,y-4)-2.13)*3),errors=[];
+ for(const spacing of [.5,.25]){
+  const c=prepareScalarContour2D({...grid(8/spacing+1,spacing,f),sample:f,refinementSteps:16}),s=c.segments();let error=0;
+  for(let i=0;i<120;i++){
+   const x=4+3*Math.cos(i*.71),y=4+3*Math.sin(i*.71),hit=c.nearest(x,y,2)!;
+   expect(hit).toEqual(brute(s,x,y,2));error=Math.max(error,Math.abs(hit.distance-.87));
+  }
+  errors.push(error);
+ }
+ expect(errors[1]!).toBeLessThan(errors[0]!/2);
+});

@@ -6,6 +6,13 @@ export type ScalarContour2DInput = {
   spacing: number;
   /** Hard output/work limit, checked before construction. Default 131072 segments. */
   maxSegments?: number;
+  /** Optional local-coordinate scalar oracle. Must agree with grid vertex signs.
+   * Used only on sign-changing edges; does not discover subcell closed features. */
+  sample?: (x: number, y: number) => number;
+  /** Bisection steps per crossing edge, 0..20. Default 12 when sample is supplied. */
+  refinementSteps?: number;
+  /** Hard oracle evaluation budget, default 65536, maximum 1048576. */
+  maxRefinementSamples?: number;
 };
 export type ContourHit2D = { distance: number; x: number; y: number; segment: number };
 /** A piecewise-linear sign-change contour, not an exact SDF of the original function.
@@ -16,6 +23,12 @@ export type ContourHit2D = { distance: number; x: number; y: number; segment: nu
 export function prepareScalarContour2D(input: ScalarContour2DInput) {
   const {values, width, height, spacing} = input;
   const limit=input.maxSegments ?? 131072;
+  const steps=input.refinementSteps ?? (input.sample ? 12 : 0);
+  const sampleLimit=input.maxRefinementSamples ?? 65536;
+  if (!Number.isInteger(steps)||steps<0||steps>20||
+      (input.sample!==undefined&&typeof input.sample!=='function')||
+      (steps>0&&!input.sample)||!Number.isSafeInteger(sampleLimit)||sampleLimit<0||sampleLimit>1048576)
+    throw new RangeError('Invalid contour refinement configuration');
   if (!Number.isSafeInteger(width)||!Number.isSafeInteger(height)||width<2||height<2||
       width*height>262144||values.length!==width*height||
       !(values instanceof Float32Array || values instanceof Float64Array)||
@@ -35,6 +48,15 @@ export function prepareScalarContour2D(input: ScalarContour2DInput) {
     if(count>limit)throw new RangeError('Contour segment budget exceeded');
   }
   const segments=new Float64Array(count*4);
+  const refined=new Map<number,number[]>();
+  let refinementSamples=0;
+  const sample=(x:number,y:number)=>{
+    if(refinementSamples>=sampleLimit)throw new RangeError('Contour refinement sample budget exceeded');
+    refinementSamples++;
+    const value=input.sample!(x,y);
+    if(!Number.isFinite(value))throw new RangeError('Nonfinite contour refinement sample');
+    return value;
+  };
   let used=0;
   for(let y=0;y<height-1;y++)for(let x=0;x<width-1;x++){
     const i=y*width+x,v=[values[i]!,values[i+1]!,values[i+width+1]!,values[i+width]!];
@@ -46,10 +68,28 @@ export function prepareScalarContour2D(input: ScalarContour2DInput) {
       // Scale before interpolation so opposite finite extrema cannot overflow.
       const scale=Math.max(Math.abs(v[e]!),Math.abs(v[n]!));
       const a=v[e]!/scale,b=v[n]!/scale,t=a/(a-b);
-      edges.push(e);points[e]=[
+      edges.push(e);
+      if(steps===0){points[e]=[
         (corners[e]![0]!+(corners[n]![0]!-corners[e]![0]!)*t)*spacing,
         (corners[e]![1]!+(corners[n]![1]!-corners[e]![1]!)*t)*spacing
-      ];
+      ];continue;}
+      const ia=corners[e]![1]!*width+corners[e]![0]!,ib=corners[n]![1]!*width+corners[n]![0]!;
+      const first=Math.min(ia,ib),last=Math.max(ia,ib),key=first*2+(last-first===width?1:0);
+      const cached=refined.get(key);if(cached){points[e]=cached;continue;}
+      const ax=(first%width)*spacing,ay=Math.floor(first/width)*spacing;
+      const bx=(last%width)*spacing,by=Math.floor(last/width)*spacing;
+      const va=sample(ax,ay),vb=sample(bx,by);
+      if((va>=0)!==(values[first]!>=0)||(vb>=0)!==(values[last]!>=0))
+        throw new Error('Contour refinement oracle disagrees with grid signs');
+      let lo=0,hi=1;
+      if(va===0)hi=0;else if(vb===0)lo=1;
+      else for(let iteration=0;iteration<steps;iteration++){
+        const mid=(lo+hi)/2,value=sample(ax+(bx-ax)*mid,ay+(by-ay)*mid);
+        if(value===0){lo=hi=mid;break;}
+        if((value>=0)===(va>=0))lo=mid;else hi=mid;
+      }
+      const fraction=(lo+hi)/2,point=[ax+(bx-ax)*fraction,ay+(by-ay)*fraction];
+      refined.set(key,point);points[e]=point;
     }
     const add=(a:number,b:number)=>{
       const p=points[a]!,q=points[b]!;
@@ -63,6 +103,7 @@ export function prepareScalarContour2D(input: ScalarContour2DInput) {
       if(q>=0){add(0,1);add(2,3);}else{add(0,3);add(1,2);}
     }
   }
+  const refinedEdges=refined.size;refined.clear();
   // Flat binary hierarchy; leaves contain <=8 segments. No recursion during queries.
   const order=Uint32Array.from({length:count},(_,i)=>i);
   const bounds=new Float64Array(Math.max(1,2*count)*4);
@@ -87,7 +128,7 @@ export function prepareScalarContour2D(input: ScalarContour2DInput) {
   if(count)build(0,count);
   const stack=new Int32Array(64);
   return {
-    width,height,spacing,maxX,maxY,segmentCount:count,ambiguousCells,zeroPlateauCells,
+    width,height,spacing,maxX,maxY,segmentCount:count,ambiguousCells,zeroPlateauCells,refinedEdges,refinementSamples,refinementSteps:steps,
     /** Persistent typed-array payload only; excludes engine/object overhead and build temporaries. */
     bytes:segments.byteLength+order.byteLength+bounds.byteLength+nodes.byteLength+stack.byteLength,
     /** A copy for debug/export; cannot mutate the query's owned geometry. */

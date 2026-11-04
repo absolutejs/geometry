@@ -671,5 +671,29 @@ as wide as the radius plus a cell margin. Otherwise missing exterior boundaries
 can bias distances. Consumers own revision keys, signs, quantization/error
 budgets and invalidation. A radius-limited null is not proof of global emptiness.
 `bytes` reports persistent typed-array payload, excluding build temporaries and
-JS engine overhead; `segments()` returns an independent debug copy. No callbacks,
-shared mutable input or retained global cache are used.
+JS engine overhead; `segments()` returns an independent debug copy. Queries do
+not call the sampler or retain shared mutable input or a global cache.
+
+### Optional contour edge refinement (0.21)
+
+Pass a deterministic `sample(x,y)` scalar oracle in local coordinates to refine
+sign-changing edges before building the hierarchy. `refinementSteps` defaults to
+12 and accepts 0..20; 0 preserves linear interpolation. The oracle must be finite
+and agree with the input grid signs at crossing endpoints. It must not mutate
+input values. Adjacent cells share the same cached crossing, preventing cracks
+from opposite edge traversal. No oracle is called during nearest queries.
+
+`maxRefinementSamples` bounds **all** callback evaluations including endpoint
+checks (default 65536, maximum 1048576). Exceeding it throws before the next call.
+Results expose `refinedEdges`, `refinementSamples` and `refinementSteps` for
+profiling. The temporary edge cache is released before hierarchy construction.
+A callback's own execution cost cannot be bounded by this API; use a worker and
+a host deadline for untrusted or expensive samplers.
+
+For a continuous edge with one sign-changing root, bisection places the crossing
+within half the final bracket width (`spacing / 2^(steps+1)`). This is **not** a
+bound on the 2D contour or distance error. Curved segments still need adequate
+grid resolution. Discontinuous scalars locate a sign transition, not a certified
+root; multiple roots, subcell islands, tangencies and ambiguous-cell topology
+are not recovered by edge refinement. The existing grid-based asymptotic decider
+is unchanged. Refinement is opt-in and does not change unrefined results.
