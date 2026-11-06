@@ -44,3 +44,14 @@ stopping at this first rigid branch contact is not a complete physical fix.
 Native branch response, bending, fracture and persistent topology remain separate.
 
 This feature is not published yet. No npm authentication prompt has been opened.
+
+## Release qualification
+
+Version 0.22.0 is prepared from source commit `9cba53b`. A separate clean checkout
+and the exact npm archive match all 66 emitted files. The archive's public ESM
+entry point passes its contact control. `archive.json` records the exact bytes,
+integrity and per-file hashes. The first pack command could not write the default
+npm cache under the filesystem sandbox; using an owned local cache succeeded.
+The local cache, extracted archive and independent checkout are removed after
+qualification. One 68,685-byte archive remains under `.qualification` for the
+pending release. It is not an installed dependency patch or an npm publication.

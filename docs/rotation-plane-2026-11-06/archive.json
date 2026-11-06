@@ -1,0 +1,343 @@
+{
+  "version": "0.22.0",
+  "sourceCommit": "9cba53b",
+  "archive": ".qualification/rotation-plane-0.22.0/absolutejs-geometry-0.22.0.tgz",
+  "bytes": 68685,
+  "sha256": "52f230c0295a57f123d6e2a418592fc9c5fd5303586ac84a60d9febc0ae2a8b1",
+  "integrity": "sha512-eMZAIx/BeEWGzNovfnIUCtKsjndd9hIb8jnzRRpNrWjyfZcKfs7Nr5hYMbhoyBdS9fen4TpGSUz37as5zNvnqQ==",
+  "shasum": "577d0831f0eba0752487007d152363b42b46c0f6",
+  "matchingEmittedFiles": 66,
+  "files": [
+    {
+      "path": "alpha.d.ts",
+      "bytes": 448,
+      "sha256": "6477b8c7bf23ab87aa4341eaef9ed009ccbf2d1e296e3b08465c4a48a3841486"
+    },
+    {
+      "path": "alpha.js",
+      "bytes": 1802,
+      "sha256": "d6f4287ab0b0d1165ddf4c0238480908947316728c405cc1436c9de5ef3d799f"
+    },
+    {
+      "path": "axialOrientation.d.ts",
+      "bytes": 571,
+      "sha256": "c08df2a4ca72c437c8f3b768301f675b8adc3542ca31412a97c8a2fe1a3ff64e"
+    },
+    {
+      "path": "axialOrientation.js",
+      "bytes": 2237,
+      "sha256": "054f363b13c2d48f55159696e8308083a7d1d37211bfe479f36ce11af438b97f"
+    },
+    {
+      "path": "closeConvexTube.d.ts",
+      "bytes": 683,
+      "sha256": "3055a01e6dc371d5daac21e4b581f2cb5672446bab58c1b85e34d260bf868627"
+    },
+    {
+      "path": "closeConvexTube.js",
+      "bytes": 6224,
+      "sha256": "95aa5102b16f879b884cb95cf462d96ccb22874d8d95837be8272c8715778da5"
+    },
+    {
+      "path": "closedComponents.d.ts",
+      "bytes": 394,
+      "sha256": "a7a2720902cc477959b934d3692587e85f13f064ef78a8b2a26260e2cce64d71"
+    },
+    {
+      "path": "closedComponents.js",
+      "bytes": 3117,
+      "sha256": "2ee9468cc32492d0e50475bd4c784e961067200dd0dc557f92fc7c2deae63cc7"
+    },
+    {
+      "path": "createManifoldMesh64.d.ts",
+      "bytes": 802,
+      "sha256": "cbea31dd9649ae34f24a8e6d5d36fd45ab36df97eedca62235ddc999db8c546b"
+    },
+    {
+      "path": "createManifoldMesh64.js",
+      "bytes": 3241,
+      "sha256": "e3680ea4902213e6a16732960344c531a28eadd8f101c44fe42ba148a96eff8d"
+    },
+    {
+      "path": "index.d.ts",
+      "bytes": 2204,
+      "sha256": "867234884d334301c1807244abff47b4c174734ffa440a9d5469f7c08d5d3bb7"
+    },
+    {
+      "path": "index.js",
+      "bytes": 1690,
+      "sha256": "43eb361082cd0547936c00323e167d2ad83161643c028cf2f7381e416e7fd4b6"
+    },
+    {
+      "path": "manifold.d.ts",
+      "bytes": 350,
+      "sha256": "4a8a9cd4e7316c1c8c98690edcc2fc9d0db1c86a56d3e1510efd4286ef5b9de1"
+    },
+    {
+      "path": "manifold.js",
+      "bytes": 324,
+      "sha256": "f3c8070300dcba74b6071d416a408debe8b30591dba3ddbe84300fbf307627cb"
+    },
+    {
+      "path": "manifoldCoverage.d.ts",
+      "bytes": 1402,
+      "sha256": "079d0e333135ce43ec089837bbbe560c44399bc2719b5c7ae244530155f4446f"
+    },
+    {
+      "path": "manifoldCoverage.js",
+      "bytes": 10322,
+      "sha256": "63e2e64eb1d6ef3fbedda48f2dc1d8f3b4962f4e5be6863c31d9585d928cafbb"
+    },
+    {
+      "path": "manifoldCutSession.d.ts",
+      "bytes": 9186,
+      "sha256": "594df6417cff3e90a5b2c3f1884712418e709f0b92094b1645a4ca9d479a317b"
+    },
+    {
+      "path": "manifoldCutSession.js",
+      "bytes": 9339,
+      "sha256": "b48f8f1bb22413827c157a841e4d4a1c185763e671d3719a62be80b83a29acd4"
+    },
+    {
+      "path": "manifoldKernel.d.ts",
+      "bytes": 1033,
+      "sha256": "c9e79baf0a4757401403ebb53ea982f473b116948cae29b5d0df89d3442cd455"
+    },
+    {
+      "path": "manifoldKernel.js",
+      "bytes": 3750,
+      "sha256": "adca9ad26312c14b4a5a83721e9a659d410d21da64d448900f197f91a407109c"
+    },
+    {
+      "path": "manifoldMesh64.d.ts",
+      "bytes": 860,
+      "sha256": "73e9ef380e026fe00b0ace3de3a7a1bc3cd6e834db7339a712dcf4d1e4079454"
+    },
+    {
+      "path": "manifoldMesh64.js",
+      "bytes": 3139,
+      "sha256": "a3ae8eaf0520242a99d9a1dea101b25e3a0c718e9f15ccb8f8eeb1c16cd8449b"
+    },
+    {
+      "path": "materialPartition.d.ts",
+      "bytes": 1905,
+      "sha256": "d3f969a8cd4be5ca9accdaea0da7d2f59637eef65e638866a2b1379a8e6e9642"
+    },
+    {
+      "path": "materialPartition.js",
+      "bytes": 6791,
+      "sha256": "e5104fcb2f4ca8800eee0a2fa6d684a7c327feb20d474a276e3a21680dae82eb"
+    },
+    {
+      "path": "mergeIndexedMesh.d.ts",
+      "bytes": 510,
+      "sha256": "698c90f0a643dcef1a808be20ec82ed9440c8a8c7bcb5c88defad18d28303552"
+    },
+    {
+      "path": "mergeIndexedMesh.js",
+      "bytes": 2778,
+      "sha256": "bc6980d500382558b640c7cfb6afe80d98d4f0e0d9226a08b6f0f2fe4fe1796f"
+    },
+    {
+      "path": "overlap.d.ts",
+      "bytes": 1091,
+      "sha256": "0de01028161fa5c9c34523b25444b1088f79bcaf70f7e527c696c374857273c0"
+    },
+    {
+      "path": "overlap.js",
+      "bytes": 3686,
+      "sha256": "6c9ae036a3beeffc1eccb66d392c0018e95384ab211f8dcdb66b945717fee6b1"
+    },
+    {
+      "path": "positiveTriangleMoments.d.ts",
+      "bytes": 1145,
+      "sha256": "dfd46f4d59c31c8f442fdbce4c00e2a948821b4edcb3a3cf87a2a8cba4ea3985"
+    },
+    {
+      "path": "positiveTriangleMoments.js",
+      "bytes": 8976,
+      "sha256": "8cfc937fb6ec3389c01dfe280351234682e8b95ee0d2592d6f58a44425d13bb5"
+    },
+    {
+      "path": "principalInertia.d.ts",
+      "bytes": 526,
+      "sha256": "5c49e0231bba201aae68852d816b4e8f3fe6ca061c4bfcb33553a0c8e2170676"
+    },
+    {
+      "path": "principalInertia.js",
+      "bytes": 4488,
+      "sha256": "27fd81eaba420cdbe6b97c290b33e4e016fef7e4a07fa2a379bae21f4c3d45d0"
+    },
+    {
+      "path": "projection.d.ts",
+      "bytes": 1431,
+      "sha256": "d0bdfff918d824a187dc74fa7e4475bda44a2b8dc616ada1b6898d72b14290f2"
+    },
+    {
+      "path": "projection.js",
+      "bytes": 8850,
+      "sha256": "61216338a46d16e565a221e661d6349b360e49108c70939b0ac068806ed9eec5"
+    },
+    {
+      "path": "regularizeZeroExtentShells.d.ts",
+      "bytes": 920,
+      "sha256": "bfd038c1d5dc37c6c9bda36e1dca1b11741f9f33926452e71e11a7b51a985d7a"
+    },
+    {
+      "path": "regularizeZeroExtentShells.js",
+      "bytes": 1958,
+      "sha256": "55c19fae79382c23970118e958802145bff661fb801c75cd88fd0b7c5b55745d"
+    },
+    {
+      "path": "rotationPlane.d.ts",
+      "bytes": 1174,
+      "sha256": "ec636b48fa466bf7e7efc076aeb8f7965ac1a6c9c53e9821324a6f9d025d3f9f"
+    },
+    {
+      "path": "rotationPlane.js",
+      "bytes": 4765,
+      "sha256": "e9bfa73ffff55609c42c8bf15abac557f470e9e2719b08c2d91fc14ba796c2bc"
+    },
+    {
+      "path": "scalarContour2D.d.ts",
+      "bytes": 1922,
+      "sha256": "6de43097bb5cd74bd386f0f0fdec0d5cb269192011e23d310407c84221e5c5f5"
+    },
+    {
+      "path": "scalarContour2D.js",
+      "bytes": 10242,
+      "sha256": "bbd518b6b38bb34ff02adbe0a9c0c89d564ba0996da5972aae43ccf908364203"
+    },
+    {
+      "path": "signedVolume.d.ts",
+      "bytes": 79,
+      "sha256": "66096999945046dfcf1eac7ceda644a1830657d84d8024b8750379d5bfb67314"
+    },
+    {
+      "path": "signedVolume.js",
+      "bytes": 703,
+      "sha256": "7b968665a7dd18543b877e081190de116522c745b6b7eea688c06b4c0ef75a18"
+    },
+    {
+      "path": "solidComponents.d.ts",
+      "bytes": 826,
+      "sha256": "ef6fa8c1dc7bd3c9ff482e174c50fb79341f387e7a575a784dc8dfd2b91de915"
+    },
+    {
+      "path": "solidComponents.js",
+      "bytes": 4439,
+      "sha256": "a9b2ae99d8f80965af897681a69c5801737f9e7cf3cc2edec1bc4c665d395e48"
+    },
+    {
+      "path": "solidPlaneMoments.d.ts",
+      "bytes": 1021,
+      "sha256": "e63dac37060929b2b0568f813de1caa42b4bcd7ba95f8daa985c311a0e42996f"
+    },
+    {
+      "path": "solidPlaneMoments.js",
+      "bytes": 8344,
+      "sha256": "3dacf5f1dce92d6729f40fcc703fe4fcbbe57c6a8e03d68b38079995b9fc10d3"
+    },
+    {
+      "path": "solidPointMembership.d.ts",
+      "bytes": 442,
+      "sha256": "b655b99bfbbf260d9ff0e5a165f6cb1d0ada8ea9057ed8752a9d24b98854a4e9"
+    },
+    {
+      "path": "solidPointMembership.js",
+      "bytes": 4813,
+      "sha256": "07035fd2ea66ddede5fe95b2a8980f3fb969872f8ecdaedb8f108e21be12a740"
+    },
+    {
+      "path": "starPartition.d.ts",
+      "bytes": 1356,
+      "sha256": "0e0c53ef8b23c909dd5f8e59a593bc6eec6cfa420da466fa1a223d98ea4c5d27"
+    },
+    {
+      "path": "starPartition.js",
+      "bytes": 4956,
+      "sha256": "b5c83eb130bd7ffd98187c58db17faf6953324b3aa53bfcc971b712907b49c47"
+    },
+    {
+      "path": "surfaceOrigins.d.ts",
+      "bytes": 554,
+      "sha256": "39d1ea182d8eb3b2cfdf92f0657d3b896d048650ee332e3e1bab60cc014a9104"
+    },
+    {
+      "path": "surfaceOrigins.js",
+      "bytes": 2892,
+      "sha256": "ec0eda084cc165bfa16ddda851b77adf858201a1dec1fce876b2155c01b604d7"
+    },
+    {
+      "path": "tetrahedronPlaneMoments.d.ts",
+      "bytes": 1349,
+      "sha256": "f9390d81c27f6b9c223afe7a6dbe208076d4c25178db038facff1584bd218a2b"
+    },
+    {
+      "path": "tetrahedronPlaneMoments.js",
+      "bytes": 10577,
+      "sha256": "5738eae553b2edc7f7dc778afda38837cecf3bdcc38ace912d141440c77f3fa1"
+    },
+    {
+      "path": "triangleDomains.d.ts",
+      "bytes": 1815,
+      "sha256": "97a39976f5cadaa77d010d47bd1420141cadbd960fd88ca6dda53634427b948b"
+    },
+    {
+      "path": "triangleDomains.js",
+      "bytes": 6462,
+      "sha256": "8c75847e55263ddc47f31cc0b1eb7f7555e41584b9848637bf6377726d67cade"
+    },
+    {
+      "path": "trianglePlaneMoments.d.ts",
+      "bytes": 1463,
+      "sha256": "45c8acede45b521531f7aea6821433db9bb2cc3058f82892c442b03fc68cccaf"
+    },
+    {
+      "path": "trianglePlaneMoments.js",
+      "bytes": 7971,
+      "sha256": "88cc62b585a13706af521179e0af7626e1f6dd03c3043560dc0c581457010686"
+    },
+    {
+      "path": "trianglePositiveLinearMoments.d.ts",
+      "bytes": 759,
+      "sha256": "094f9bce94c11256d6d3277789c17eb89e0d8f6d0b66f7aacc2b8678ab993c26"
+    },
+    {
+      "path": "trianglePositiveLinearMoments.js",
+      "bytes": 520,
+      "sha256": "14cbac99c1839246bce9df8365d42db4696c2af4623b435e4092c038aa258af3"
+    },
+    {
+      "path": "trianglePositiveQuadraticMoments.d.ts",
+      "bytes": 637,
+      "sha256": "ef344a82596e10a74faed6be2bc798a432c73736c2f5a8728378cfbab630bece"
+    },
+    {
+      "path": "trianglePositiveQuadraticMoments.js",
+      "bytes": 365,
+      "sha256": "308d3867caa93219a7383543c48623730935813caa60c4f081803a506eec88a6"
+    },
+    {
+      "path": "triangleWeights.d.ts",
+      "bytes": 684,
+      "sha256": "9378539973ab245470cbe25b1735d546c11b72baa7b0ea179631e917e929fe13"
+    },
+    {
+      "path": "triangleWeights.js",
+      "bytes": 3066,
+      "sha256": "a345b202b5022945693cadd8fb6974466b38c97db15ccd382d9df23e3117def9"
+    },
+    {
+      "path": "upwardSurface.d.ts",
+      "bytes": 1425,
+      "sha256": "4231e33bc4f90cdb87e780f35e77c260a4d01833917309ad1e909bc5cee9e972"
+    },
+    {
+      "path": "upwardSurface.js",
+      "bytes": 5651,
+      "sha256": "b41c262999ff216d1d8ac295086743be42373226c4a9aa119bc271fe57db0ac1"
+    }
+  ],
+  "scope": "Independent clean checkout and exact archive emitted files match; release remains unpublished."
+}
