@@ -697,3 +697,15 @@ grid resolution. Discontinuous scalars locate a sign transition, not a certified
 root; multiple roots, subcell islands, tangencies and ambiguous-cell topology
 are not recovered by edge refinement. The existing grid-based asymptotic decider
 is unchanged. Refinement is opt-in and does not change unrefined results.
+
+### Rigid rotation against a plane
+
+`firstRotationPlaneContact({ positions, pivot, axis, plane: { normal, constant }, maxAngle })`
+returns the earliest positive rotational contact, an initial-contact result, or a
+clear result for a bounded Float64 point cloud. The clear half-space satisfies
+`dot(normal, point) + constant > 0`; the maximum sweep is 2π radians. Results
+include angle, vertex index, point, signed residual distance and evaluated vertex
+count. The query normalizes the axis and plane, validates up to 100,000 vertices,
+and solves analytical trajectories without angular stepping. Include all boundary
+vertices, including clip intersections, when querying a clipped mesh. This is a
+plane-contact query; it does not resolve impacts, arbitrary terrain or fracture.

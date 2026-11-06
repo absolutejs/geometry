@@ -1,4 +1,4 @@
-node_modules/
+node_modules
 dist/
 *.tgz
 .diagnostics/
@@ -6,3 +6,5 @@ dist/
 .package-cache/
 docs/upward-support-0.18.0/independent/
 docs/upward-support-0.18.0/archive-consumer/
+
+.qualification/

@@ -1,0 +1,48 @@
+{
+  "result": {
+    "contact": {
+      "value": {
+        "status": "contact",
+        "angle": 0.7853981633974484,
+        "vertex": 0,
+        "point": [
+          -1.414213562373095,
+          -1.1102230246251565e-16,
+          0
+        ],
+        "distance": -1.1102230246251565e-16,
+        "evaluatedVertices": 1
+      }
+    },
+    "detached": true,
+    "rejected": {
+      "error": "Error: Degenerate rotation axis or plane"
+    },
+    "near": {
+      "value": {
+        "status": "contact",
+        "angle": 1e-18,
+        "vertex": 0,
+        "point": [
+          -1,
+          0,
+          0
+        ],
+        "distance": 0,
+        "evaluatedVertices": 1
+      }
+    },
+    "clear": {
+      "value": {
+        "status": "clear",
+        "angle": null,
+        "vertex": null,
+        "point": null,
+        "distance": null,
+        "evaluatedVertices": 1
+      }
+    }
+  },
+  "errors": [],
+  "scope": "Bounded GPU-disabled browser worker; transferred input, invalid-query recovery, near-zero and no-contact controls. No rendering or FPS claim."
+}
